@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+ background-color: #000000;
+}
+
+.circle {
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(#ff2b2b, #4655ff);
+    border: 2px solid #fff;
+    border-radius: 50px;
+}
+
+.nav-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    margin-left: 20px;
+    justify-content: space-between;
+}
+
+.search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #171717;
+    width: 35%;
+    height: 20px;
+    padding: 1%;
+    border-radius: 7px;
+}
+
+.search form {
+    width: 90%;
+}
+
+.search input {
+    background-color: transparent;
+    border: none;
+    margin-left: 15px;
+    width: 100%;
+    font-size: 15px;
+    color: #fff;
+    caret-color: rgb(255, 255, 255);
+} 
+
+.search input:focus {
+    outline: none;
+} 
+
+.search input::placeholder {
+    color: #fff;
+}
+
+//aasdfsdfaff
+
+input#menu {
+    display: none;
+}
+
+.icon {
+    background-color: #171717;
+    cursor: pointer;
+    display: block;
+    height: 24px;
+    padding: 16px;
+    width: 24px;
+    border-radius: 10px;
+}
+
+label.icon {
+    position: fixed;
+    z-index: 200;
+}
+
+.icon .menu,
+.icon .menu::before,
+.icon .menu::after {
+    background: #ffffff;
+    content: '';
+    display: block;
+    height: 2px;
+    position: absolute;
+    transition: background ease .3s, top ease .3s .3s, transform ease .3s;
+    width: 20px;
+}
+
+.icon .menu {
+    left: 18px;
+    top: 27px;
+}
+
+.icon .menu::before {
+    top: -6px;
+}
+
+.icon .menu::after {
+    top: 6px;
+}
+
+#menu:checked + .icon .menu {
+    background: transparent;
+}
+
+#menu:checked + .icon .menu::before {
+    transform: rotate(45deg);
+}
+
+#menu:checked + .icon .menu::after {
+    transform: rotate(-45deg);
+}
+
+#menu:checked + .icon .menu::before,
+#menu:checked + .icon .menu::after {
+    top: 0;
+    transition: top ease .3s, transform ease .3s .3s;
+}
+
+nav {
+    background-color: #171717;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
+    height: 100vh;
+    padding-top: 60px;
+    position: fixed;
+    transition: width ease .6s;
+    width: 60px;
+    height: 37.4%;
+    border-radius: 10px 0px 0px 10px;
+    z-index: 100;
+    overflow: hidden;
+}
+
+#menu:checked ~ nav {
+    width: 200px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+nav li {
+    cursor: pointer;
+    display: block;
+    line-height: 60px;
+    padding-left: 19px;
+    white-space: nowrap;
+}
+nav i {
+    color: #9FB1BD;
+    margin-right: 24px;
+    vertical-align: text-bottom;
+}
+
+.list-icon {
+    color: #fff;
+    width: 25px;
+    height: 25px;
+}
+
+.user {
+    display: flex;
+    justify-content: flex-end;
+}
