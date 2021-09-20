@@ -1,8 +1,7 @@
-import "./navbar.scss";
 import { RiSettings4Line, RiMusic2Line, RiHistoryFill } from "react-icons/ri";
 import { MdFavoriteBorder } from "react-icons/md";
 import { GoListUnordered } from "react-icons/go";
-import { IoIosSettings } from "react-icons/io";
+import "./style/navbar.scss";
 
 function Navbar() {
   return (

@@ -1,10 +1,12 @@
 import React from "react";
-import Navbar from "../src/components/Navbar/Navbar"
+// import { Navbar } from "./components/Navbar";
+import Register from "./pages/Register/";
 
 function App() {
   return (
     <div className="App">
-      <Navbar />
+      <Register />
+      {/* <Navbar /> */}
     </div>
   );
 }

@@ -1,0 +1,13 @@
+body,
+html {
+  height: 100%;
+}
+
+body {
+  background-image: url("../../../assets/images/pexels-elevate-1267350 (1).jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/*# sourceMappingURL=register.css.map */
