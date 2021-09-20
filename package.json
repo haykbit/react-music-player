@@ -1,5 +1,7 @@
 {
-  "dependencies": {
-    "workspaces": "^0.1.0"
-  }
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ]
 }
