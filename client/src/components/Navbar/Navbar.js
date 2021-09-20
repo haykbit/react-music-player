@@ -12,7 +12,7 @@ function Navbar() {
           <input type="text" placeholder="Artistas, canciones o albums" />
         </form>
       </div>
-      
+
       <div className="nav-rigth-side">
         <div className="user">
           <input type="checkbox" id="menu" />
@@ -37,13 +37,11 @@ function Navbar() {
               <li>
                 <RiSettings4Line className="list-icon" />
               </li>
-              <li></li>
             </ul>
           </nav>
         </div>
-        
-        <div className="menu-general"></div>
       </div>
+      <div className="menu-general"></div>
     </div>
   );
 }
