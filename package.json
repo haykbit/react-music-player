@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "workspaces": "^0.1.0"
+  }
+}
