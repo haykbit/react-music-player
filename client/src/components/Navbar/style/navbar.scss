@@ -29,9 +29,9 @@ body {
     flex-direction: row;
     align-items: center;
     background-color: #171717;
-    width: 35%;
+    width: 60%;
     height: 20px;
-    padding: 1%;
+    padding: 15px;
     border-radius: 7px;
 }
 
@@ -59,6 +59,10 @@ body {
 
 //aasdfsdfaff
 
+.nav-rigth-side {
+ width: 100%;
+}
+
 input#menu {
     display: none;
 }
@@ -70,7 +74,7 @@ input#menu {
     height: 24px;
     padding: 16px;
     width: 24px;
-    border-radius: 10px;
+    border-radius: 7px;
 }
 
 label.icon {
@@ -91,7 +95,7 @@ label.icon {
 }
 
 .icon .menu {
-    left: 18px;
+    left: 19px;
     top: 27px;
 }
 
@@ -122,21 +126,23 @@ label.icon {
 }
 
 nav {
-    background-color: #171717;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
-    height: 100vh;
-    padding-top: 60px;
-    position: fixed;
+    height: 100%;
     transition: width ease .6s;
-    width: 60px;
-    height: 37.4%;
-    border-radius: 10px 0px 0px 10px;
+    border-radius: 10px 10px 10px 10px;
     z-index: 100;
     overflow: hidden;
+    visibility: hidden;
 }
 
 #menu:checked ~ nav {
-    width: 200px;
+    width: 250px;
+    background-color: #171717;
+    visibility: visible;
+}
+
+#menu:checked ~ .icon {    
+    background-color: transparent;
 }
 
 nav ul {
@@ -147,8 +153,7 @@ nav ul {
 nav li {
     cursor: pointer;
     display: block;
-    line-height: 60px;
-    padding-left: 19px;
+    padding-left: 25px;
     white-space: nowrap;
 }
 nav i {
@@ -158,7 +163,47 @@ nav i {
 }
 
 .list-icon {
-    color: #fff;
+    color: rgb(151, 151, 151);
     width: 25px;
     height: 25px;
+}
+
+.user {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.user nav ul li {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    line-height: 0px;
+    background: #0F0F0F;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 8px 23px;
+}
+
+nav li h4 {
+    color: #fff;
+    margin-left: 30px;
+}
+
+nav li h5 {
+    color: #fff;
+    margin-left: 10px;
+}
+
+.user-icon {
+    width: 38px;
+    height: 38px;
+    border: 2px solid #fff;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.user-icon-li {
+    background-color: transparent !important;
+    padding: 0px !important;
+    margin: 25px !important;
 }
