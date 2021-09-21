@@ -1,13 +1,10 @@
-body,
-html {
+.background {
   position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-}
 
-body {
   background-image: url("../../../assets/images/pexels-elevate-1267350\ \(1\).jpg");
   background-position: center;
   bottom: 1vh;
