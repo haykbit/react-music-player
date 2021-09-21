@@ -1,13 +1,7 @@
 import { RiSettings4Line, RiMusic2Line, RiHistoryFill } from "react-icons/ri";
 import { MdFavoriteBorder } from "react-icons/md";
 import { GoListUnordered } from "react-icons/go";
-import { FaUserCircle } from "react-icons/fa";
-import PlaylistCarrusel from "../PlaylistCarrusel";
 import userImage from "../../assets/images/profile.jpg";
-import portadaUno from "../../assets/images/portada-1.png";
-import portadaDos from "../../assets/images/portada-2.png";
-import portadaTres from "../../assets/images/portada-3.png";
-import portadaCuatro from "../../assets/images/portada-4.png";
 
 import "./style/navbar.scss";
 
@@ -67,7 +61,6 @@ function Navbar() {
         </div>
         <div className="menu-general"></div>
       </div>
-      <PlaylistCarrusel />
     </>
   );
 }

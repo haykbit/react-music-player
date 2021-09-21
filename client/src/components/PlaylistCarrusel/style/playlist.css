@@ -1,15 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
-
 * {
   font-family: "Montserrat", sans-serif;
-  //outline: 1px solid red;
 }
 
 body {
   background-color: #000000;
 }
-
-//======== RECOMEND =========//
 
 .recomend-container {
   margin-left: 25px;
@@ -31,12 +27,17 @@ body {
   margin-right: 15px;
   border-radius: 5px;
   display: inline-block;
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
   transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
 }
 
 .list-item:hover {
-  transform: scale(0.95);
-  box-shadow: 0px 0px 0px 4px rgb(255, 255, 255);
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95);
+  -webkit-box-shadow: 0px 0px 0px 4px white;
+          box-shadow: 0px 0px 0px 4px white;
 }
 
 .list-name {
@@ -55,9 +56,12 @@ body {
 }
 
 .scroll {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
 .scroll-container::-webkit-scrollbar {
   display: none;
 }
+/*# sourceMappingURL=playlist.css.map */
