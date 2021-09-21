@@ -288,4 +288,8 @@ nav li h5 {
   white-space: nowrap;
   width: auto;
 }
+
+.scroll::-webkit-scrollbar {
+  display: none;
+}
 /*# sourceMappingURL=navbar.css.map */
