@@ -6,6 +6,10 @@ import portadaCuatro from "../../assets/images/portada-4.png";
 import "./style/playlist.scss";
 
 function PlaylistCarrusel() {
+  const scroll = (scrollOffset) => {
+    ref.current.scrollLeft += scrollOffset;
+  };
+
   return (
     <>
       <div className="recomend-container">
@@ -132,7 +136,9 @@ function PlaylistCarrusel() {
                 </a>
               </div>
             </div>
+            <button onClick={() => scroll(20)}>More</button>
           </div>
+          <button onClick={() => scroll(20)}>More</button>
         </div>
       </div>
     </>

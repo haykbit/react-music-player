@@ -53,6 +53,16 @@
 }
 
 .scroll-container::-webkit-scrollbar {
-  display: none;
+  height: 5px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+  background-color: #6200ff;
+  border-radius: 5px;
+  width: 50px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+  width: 50px;
 }
 /*# sourceMappingURL=playlist.css.map */
