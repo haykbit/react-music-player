@@ -14,8 +14,10 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  position: fixed;
+  position: -webkit-sticky;
+  position: sticky;
   z-index: 100;
+  top: 0;
   width: 100%;
   background-color: black;
   padding: 18px;
@@ -216,7 +218,7 @@ nav i {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  margin-right: 20px;
+  margin-right: 35px;
 }
 
 nav li h4 {
