@@ -1,12 +1,12 @@
 import React from "react";
-import "./RegisterForm.scss";
+import "./style/RegisterForm.scss";
 
 function RegisterForm() {
   return (
     <div className="register-box">
       <div>Register</div>
       <div></div>
-      <div>Name</div>
+      <input className="register-inputs"></input>
       <div>Password</div>
       <div>Surname</div>
       <div>Confirm Password</div>

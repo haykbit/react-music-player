@@ -1,0 +1,15 @@
+.register-box {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  background-color: rgba(255, 0, 0, 0.7);
+  border-radius: 25px;
+  height: 75vh;
+  width: 110vh;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 100px;
+}
+.register-inputs {
+}
