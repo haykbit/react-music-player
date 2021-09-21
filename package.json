@@ -3,5 +3,9 @@
   "workspaces": [
     "client",
     "server"
-  ]
+  ],
+  "scripts": {
+    "client": "yarn workspace client start",
+    "server": "yarn workspace nodemon server"
+  }
 }
