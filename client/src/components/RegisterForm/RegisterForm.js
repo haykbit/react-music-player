@@ -1,5 +1,5 @@
 import React from "react";
-import "./RegisterForm.scss";
+import "./style/RegisterForm.scss";
 
 function RegisterForm() {
   return (
