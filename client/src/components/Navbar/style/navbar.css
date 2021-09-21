@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 * {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 body {
@@ -83,8 +83,8 @@ body {
   color: #fff;
 }
 
-.nav-rigth-side {
-  width: 100%;
+.nav-menu {
+  width: 70%;
 }
 
 input#menu {
@@ -106,73 +106,72 @@ label.icon {
   z-index: 200;
 }
 
-.icon .menu,
-.icon .menu::before,
-.icon .menu::after {
+.icon .nav-list,
+.icon .nav-list::before,
+.icon .nav-list::after {
   background: #ffffff;
-  content: '';
+  content: "";
   display: block;
   height: 2px;
   position: absolute;
-  -webkit-transition: background ease .3s, top ease .3s .3s, -webkit-transform ease .3s;
-  transition: background ease .3s, top ease .3s .3s, -webkit-transform ease .3s;
-  transition: background ease .3s, top ease .3s .3s, transform ease .3s;
-  transition: background ease .3s, top ease .3s .3s, transform ease .3s, -webkit-transform ease .3s;
+  -webkit-transition: background ease 0.3s, top ease 0.3s 0.3s, -webkit-transform ease 0.3s;
+  transition: background ease 0.3s, top ease 0.3s 0.3s, -webkit-transform ease 0.3s;
+  transition: background ease 0.3s, top ease 0.3s 0.3s, transform ease 0.3s;
+  transition: background ease 0.3s, top ease 0.3s 0.3s, transform ease 0.3s, -webkit-transform ease 0.3s;
   width: 20px;
 }
 
-.icon .menu {
+.icon .nav-list {
   left: 19px;
   top: 27px;
 }
 
-.icon .menu::before {
+.icon .nav-list::before {
   top: -6px;
 }
 
-.icon .menu::after {
+.icon .nav-list::after {
   top: 6px;
 }
 
-#menu:checked + .icon .menu {
+#menu:checked + .icon .nav-list {
   background: transparent;
 }
 
-#menu:checked + .icon .menu::before {
+#menu:checked + .icon .nav-list::before {
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
 }
 
-#menu:checked + .icon .menu::after {
+#menu:checked + .icon .nav-list::after {
   -webkit-transform: rotate(-45deg);
           transform: rotate(-45deg);
 }
 
-#menu:checked + .icon .menu::before,
-#menu:checked + .icon .menu::after {
+#menu:checked + .icon .nav-list::before,
+#menu:checked + .icon .nav-list::after {
   top: 0;
-  -webkit-transition: top ease .3s, -webkit-transform ease .3s .3s;
-  transition: top ease .3s, -webkit-transform ease .3s .3s;
-  transition: top ease .3s, transform ease .3s .3s;
-  transition: top ease .3s, transform ease .3s .3s, -webkit-transform ease .3s .3s;
+  -webkit-transition: top ease 0.3s, -webkit-transform ease 0.3s 0.3s;
+  transition: top ease 0.3s, -webkit-transform ease 0.3s 0.3s;
+  transition: top ease 0.3s, transform ease 0.3s 0.3s;
+  transition: top ease 0.3s, transform ease 0.3s 0.3s, -webkit-transform ease 0.3s 0.3s;
 }
 
 nav {
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  height: 100%;
-  -webkit-transition: width ease .6s;
-  transition: width ease .6s;
   border-radius: 10px 10px 10px 10px;
   z-index: 100;
+  width: 50px;
   overflow: hidden;
-  visibility: hidden;
+  display: none;
+  position: absolute;
 }
 
 #menu:checked ~ nav {
   width: 250px;
   background-color: #171717;
-  visibility: visible;
+  display: block;
 }
 
 #menu:checked ~ .icon {
@@ -186,34 +185,6 @@ nav ul {
 }
 
 nav li {
-  cursor: pointer;
-  display: block;
-  padding-left: 25px;
-  white-space: nowrap;
-}
-
-nav i {
-  color: #9FB1BD;
-  margin-right: 24px;
-  vertical-align: text-bottom;
-}
-
-.list-icon {
-  color: #979797;
-  width: 25px;
-  height: 25px;
-}
-
-.user {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-}
-
-.user nav ul li {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -224,11 +195,35 @@ nav i {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  line-height: 0px;
-  background: #0F0F0F;
-  border-radius: 10px;
+  background: #0f0f0f;
   margin: 10px;
   padding: 8px 23px;
+  border-radius: 10px;
+  line-height: 0px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+nav i {
+  color: #9fb1bd;
+  margin-right: 24px;
+  vertical-align: text-bottom;
+}
+
+.list-icon {
+  color: #979797;
+  width: 25px;
+  height: 25px;
+}
+
+.menu-actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-right: 20px;
 }
 
 nav li h4 {
@@ -238,12 +233,13 @@ nav li h4 {
 
 nav li h5 {
   color: #fff;
-  margin-left: 10px;
+  margin-left: 55px;
 }
 
 .user-icon {
   width: 38px;
   height: 38px;
+  position: fixed;
   border: 2px solid #fff;
   border-radius: 50px;
   cursor: pointer;
@@ -252,6 +248,44 @@ nav li h5 {
 .user-icon-li {
   background-color: transparent !important;
   padding: 0px !important;
-  margin: 25px !important;
+  margin: 23px !important;
+  width: 60%;
+}
+
+.recomend-container {
+  margin-left: 25px;
+  margin-top: 40px;
+}
+
+.recomend-container h2 {
+  color: #fff;
+}
+
+.recomend-container h1 {
+  color: #fff;
+  padding: 20px;
+}
+
+.list-item {
+  width: 250px;
+  height: 100%;
+  background: white;
+  margin-right: 15px;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.list-name {
+  width: 50%;
+  white-space: normal;
+}
+
+.scroll {
+  height: 300px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding: 0;
+  white-space: nowrap;
+  width: auto;
 }
 /*# sourceMappingURL=navbar.css.map */
