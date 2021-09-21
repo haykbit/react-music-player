@@ -6,15 +6,32 @@ function RegisterForm() {
     <form>
       <div className="register-box">
         <div className="text">Register</div>
-        <div></div>
-        <input className="register-inputs" placeholder="Name"></input>
-        <input className="register-inputs" placeholder="Password"></input>
-        <input className="register-inputs" placeholder="Surname"></input>
+        <div className="space"></div>
         <input
-          className="register-inputs"
-          placeholder="Confirm password"
+          className="register-inputs name"
+          placeholder="Name"
+          type="text"
         ></input>
-        <input className="register-inputs" placeholder="Email"></input>
+        <input
+          className="register-inputs password"
+          placeholder="Password"
+          type="password"
+        ></input>
+        <input
+          className="register-inputs surname"
+          placeholder="Surname"
+          type="text"
+        ></input>
+        <input
+          className="register-inputs cpassword"
+          placeholder="Confirm password"
+          type="password"
+        ></input>
+        <input
+          className="register-inputs email"
+          placeholder="Email"
+          type="email"
+        ></input>
         <div className="checkboxes">
           <label>
             <input type="checkbox"></input>
@@ -27,7 +44,7 @@ function RegisterForm() {
         </div>
         <button className="register-inputs button">Register</button>
         <div>
-          <p>* Your data will be saved on a secured server</p>
+          <p className="info">* Your data will be saved on a secured server</p>
         </div>
       </div>
     </form>
