@@ -10,8 +10,7 @@ body {
 .circle {
   width: 20px;
   height: 20px;
-  background: -webkit-gradient(linear, left top, left bottom, from(#ff2b2b), to(#4655ff));
-  background: linear-gradient(#ff2b2b, #4655ff);
+  background: linear-gradient(45deg, red 0%, #1f00ff 80%);
   border: 2px solid #fff;
   border-radius: 50px;
 }
@@ -250,46 +249,5 @@ nav li h5 {
   padding: 0px !important;
   margin: 23px !important;
   width: 60%;
-}
-
-.recomend-container {
-  margin-left: 25px;
-  margin-top: 40px;
-}
-
-.recomend-container h2 {
-  color: #fff;
-}
-
-.recomend-container h1 {
-  color: #fff;
-  padding: 20px;
-}
-
-.list-item {
-  width: 250px;
-  height: 100%;
-  background: white;
-  margin-right: 15px;
-  border-radius: 5px;
-  display: inline-block;
-}
-
-.list-name {
-  width: 50%;
-  white-space: normal;
-}
-
-.scroll {
-  height: 300px;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  padding: 0;
-  white-space: nowrap;
-  width: auto;
-}
-
-.scroll::-webkit-scrollbar {
-  display: none;
 }
 /*# sourceMappingURL=navbar.css.map */

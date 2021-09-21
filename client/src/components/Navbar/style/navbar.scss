@@ -12,7 +12,11 @@ body {
 .circle {
   width: 20px;
   height: 20px;
-  background: linear-gradient(#ff2b2b, #4655ff);
+  background: linear-gradient(
+    45deg,
+    rgba(255, 0, 0, 1) 0%,
+    rgba(31, 0, 255, 1) 80%
+  );
   border: 2px solid #fff;
   border-radius: 50px;
 }
@@ -209,47 +213,4 @@ nav li h5 {
   padding: 0px !important;
   margin: 23px !important;
   width: 60%;
-}
-
-//======== RECOMEND =========//
-
-.recomend-container {
-  margin-left: 25px;
-  margin-top: 40px;
-}
-
-.recomend-container h2 {
-  color: #fff;
-}
-
-.recomend-container h1 {
-  color: #fff;
-  padding: 20px;
-}
-
-.list-item {
-  width: 250px;
-  height: 100%;
-  background: rgb(255, 255, 255);
-  margin-right: 15px;
-  border-radius: 5px;
-  display: inline-block;
-}
-
-.list-name {
-    width: 50%;
-    white-space: normal;
-}
-
-.scroll {
-  height: 300px;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  padding: 0;
-  white-space: nowrap;
-  width: auto;
-}
-
-.scroll::-webkit-scrollbar {
-    display: none;
 }
