@@ -1,13 +1,29 @@
 .register-box {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
-  background-color: rgba(255, 0, 0, 0.7);
+  grid-column-gap: 35px;
+  grid-row-gap: 8px;
+
+  background-color: rgba(23, 23, 23, 0.85);
   border-radius: 25px;
-  height: 75vh;
+  bottom: 4vh;
+  height: 70vh;
   width: 110vh;
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
   padding: 100px;
+}
+.register-inputs {
+  height: 8vh;
+  width: 42vh;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+}
+.text {
+  color: white;
+  font-size: 40px;
+  font-weight: 600;
+  margin: 0;
 }
