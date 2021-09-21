@@ -234,6 +234,108 @@ function PlaylistCarrusel() {
                   </div>
                 </a>
               </div>
+              {/* ITEM 6 */}
+              <div className="item-container">
+                <a href="#" className="fill-div">
+                  <div
+                    className="list-item"
+                    style={{
+                      backgroundImage: `url(${portadaTres})`,
+                      backgroundSize: "auto",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  >
+                    <div className="list-name">
+                      <h1>Lista Pop Rock España</h1>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {/* ITEM 6 */}
+              <div className="item-container">
+                <a href="#" className="fill-div">
+                  <div
+                    className="list-item"
+                    style={{
+                      backgroundImage: `url(${portadaTres})`,
+                      backgroundSize: "auto",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  >
+                    <div className="list-name">
+                      <h1>Lista Pop Rock España</h1>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {/* ITEM 6 */}
+              <div className="item-container">
+                <a href="#" className="fill-div">
+                  <div
+                    className="list-item"
+                    style={{
+                      backgroundImage: `url(${portadaTres})`,
+                      backgroundSize: "auto",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  >
+                    <div className="list-name">
+                      <h1>Lista Pop Rock España</h1>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {/* ITEM 6 */}
+              <div className="item-container">
+                <a href="#" className="fill-div">
+                  <div
+                    className="list-item"
+                    style={{
+                      backgroundImage: `url(${portadaTres})`,
+                      backgroundSize: "auto",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  >
+                    <div className="list-name">
+                      <h1>Lista Pop Rock España</h1>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {/* ITEM 6 */}
+              <div className="item-container">
+                <a href="#" className="fill-div">
+                  <div
+                    className="list-item"
+                    style={{
+                      backgroundImage: `url(${portadaTres})`,
+                      backgroundSize: "auto",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  >
+                    <div className="list-name">
+                      <h1>Lista Pop Rock España</h1>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {/* ITEM 6 */}
+              <div className="item-container">
+                <a href="#" className="fill-div">
+                  <div
+                    className="list-item"
+                    style={{
+                      backgroundImage: `url(${portadaTres})`,
+                      backgroundSize: "auto",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  >
+                    <div className="list-name">
+                      <h1>Lista Pop Rock España</h1>
+                    </div>
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </div>

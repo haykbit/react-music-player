@@ -8,10 +8,6 @@ function Home() {
     <>
       <Navbar />
       <PlaylistCarrusel />
-      <PlaylistCarrusel />
-      <PlaylistCarrusel />
-      <PlaylistCarrusel />
-      <PlaylistCarrusel />
     </>
   );
 }
