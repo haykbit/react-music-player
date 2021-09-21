@@ -1,18 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
-
-* {
-  font-family: "Montserrat", sans-serif;
-  //outline: 1px solid red;
-}
-
-body {
-  background-color: #000000;
-}
-
 .circle {
   width: 20px;
   height: 20px;
-  background: linear-gradient(#ff2b2b, #4655ff);
+  background: linear-gradient(
+    45deg,
+    rgba(255, 0, 0, 1) 0%,
+    rgba(31, 0, 255, 1) 80%
+  );
   border: 2px solid #fff;
   border-radius: 50px;
 }
@@ -20,8 +13,12 @@ body {
 .nav-container {
   display: flex;
   flex-direction: row;
-  margin-top: 20px;
-  margin-left: 20px;
+  position: sticky;
+  z-index: 100;
+  top: 0;
+  width: 100%;
+  background-color: black;
+  padding: 18px;
   justify-content: space-between;
 }
 
@@ -81,7 +78,7 @@ input#menu {
 }
 
 label.icon {
-  position: fixed;
+  position: sticky;
   z-index: 200;
 }
 
@@ -181,8 +178,9 @@ nav i {
 
 .menu-actions {
   display: flex;
+  position: sticky;
   justify-content: flex-end;
-  margin-right: 20px;
+  margin-right: 35px;
 }
 
 nav li h4 {
@@ -209,47 +207,4 @@ nav li h5 {
   padding: 0px !important;
   margin: 23px !important;
   width: 60%;
-}
-
-//======== RECOMEND =========//
-
-.recomend-container {
-  margin-left: 25px;
-  margin-top: 40px;
-}
-
-.recomend-container h2 {
-  color: #fff;
-}
-
-.recomend-container h1 {
-  color: #fff;
-  padding: 20px;
-}
-
-.list-item {
-  width: 250px;
-  height: 100%;
-  background: rgb(255, 255, 255);
-  margin-right: 15px;
-  border-radius: 5px;
-  display: inline-block;
-}
-
-.list-name {
-    width: 50%;
-    white-space: normal;
-}
-
-.scroll {
-  height: 300px;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  padding: 0;
-  white-space: nowrap;
-  width: auto;
-}
-
-.scroll::-webkit-scrollbar {
-    display: none;
 }

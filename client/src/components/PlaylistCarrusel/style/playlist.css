@@ -1,0 +1,58 @@
+.recomend-container {
+  margin-left: 25px;
+  margin-top: 40px;
+}
+
+.recomend-container h2 {
+  color: #fff;
+}
+
+.recomend-container h1 {
+  color: #fff;
+  padding: 20px;
+}
+
+.list-item {
+  width: 250px;
+  height: 100%;
+  margin-right: 15px;
+  border-radius: 5px;
+  display: inline-block;
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
+}
+
+.list-item:hover {
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95);
+  -webkit-box-shadow: 0px 0px 0px 4px white;
+          box-shadow: 0px 0px 0px 4px white;
+}
+
+.list-name {
+  width: 50%;
+  font-size: 20px;
+  white-space: normal;
+}
+
+.scroll-container {
+  height: 300px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding: 0;
+  white-space: nowrap;
+  width: auto;
+}
+
+.scroll {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+/*# sourceMappingURL=playlist.css.map */

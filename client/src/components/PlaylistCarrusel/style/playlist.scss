@@ -1,0 +1,50 @@
+.recomend-container {
+  margin-left: 25px;
+  margin-top: 40px;
+}
+
+.recomend-container h2 {
+  color: #fff;
+}
+
+.recomend-container h1 {
+  color: #fff;
+  padding: 20px;
+}
+
+.list-item {
+  width: 250px;
+  height: 100%;
+  margin-right: 15px;
+  border-radius: 5px;
+  display: inline-block;
+  transition: transform 0.2s;
+}
+
+.list-item:hover {
+  transform: scale(0.95);
+  box-shadow: 0px 0px 0px 4px rgb(255, 255, 255);
+}
+
+.list-name {
+  width: 50%;
+  font-size: 20px;
+  white-space: normal;
+}
+
+.scroll-container {
+  height: 300px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding: 0;
+  white-space: nowrap;
+  width: auto;
+}
+
+.scroll {
+  display: flex;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
