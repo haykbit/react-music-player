@@ -9,7 +9,7 @@ function PlaylistCarrusel() {
   return (
     <>
       <div className="recomend-container">
-        <h2 className="recomend-title">You may like...</h2>
+        <h2 className="recomend-title">You may like</h2>
         <div className="recomend-list">
           <div className="scroll-container">
             <div className="scroll">

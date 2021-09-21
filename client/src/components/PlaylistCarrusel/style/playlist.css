@@ -5,6 +5,7 @@
 
 .recomend-container h2 {
   color: #fff;
+  font-size: 30px;
 }
 
 .recomend-container h1 {
@@ -12,9 +13,9 @@
   padding: 20px;
 }
 
-.list-item {
-  width: 250px;
-  height: 100%;
+.recomend-container .list-item {
+  width: 340px;
+  height: 380px;
   margin-right: 15px;
   border-radius: 5px;
   display: inline-block;
@@ -24,21 +25,21 @@
   transition: transform 0.2s, -webkit-transform 0.2s;
 }
 
-.list-item:hover {
+.recomend-container .list-item:hover {
   -webkit-transform: scale(0.95);
           transform: scale(0.95);
-  -webkit-box-shadow: 0px 0px 0px 4px white;
-          box-shadow: 0px 0px 0px 4px white;
+  -webkit-box-shadow: 0px 0px 0px 3px white;
+          box-shadow: 0px 0px 0px 3px white;
 }
 
-.list-name {
+.recomend-container .list-name {
   width: 50%;
-  font-size: 20px;
+  font-size: 25px;
   white-space: normal;
 }
 
 .scroll-container {
-  height: 300px;
+  height: 404px;
   overflow-x: scroll;
   overflow-y: hidden;
   padding: 0;
@@ -46,7 +47,7 @@
   width: auto;
 }
 
-.scroll {
+.scroll-container .scroll {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -54,16 +55,10 @@
 
 .scroll-container::-webkit-scrollbar {
   height: 6px;
-  width: 10px;
 }
 
 .scroll-container::-webkit-scrollbar-thumb {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.685);
   border-radius: 8px;
-  width: 10px;
-}
-
-.scroll-container::-webkit-scrollbar:horizontal {
-  width: 10px;
 }
 /*# sourceMappingURL=playlist.css.map */
