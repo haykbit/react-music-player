@@ -6,6 +6,6 @@
   ],
   "scripts": {
     "client": "yarn workspace client start",
-    "server": "yarn workspace nodemon server"
+    "server": "yarn workspace server"
   }
 }
