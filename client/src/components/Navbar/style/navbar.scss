@@ -78,7 +78,7 @@ input#menu {
 }
 
 label.icon {
-  position: fixed;
+  position: sticky;
   z-index: 200;
 }
 
@@ -178,6 +178,7 @@ nav i {
 
 .menu-actions {
   display: flex;
+  position: sticky;
   justify-content: flex-end;
   margin-right: 35px;
 }

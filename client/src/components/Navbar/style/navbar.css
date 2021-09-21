@@ -97,7 +97,8 @@ input#menu {
 }
 
 label.icon {
-  position: fixed;
+  position: -webkit-sticky;
+  position: sticky;
   z-index: 200;
 }
 
@@ -215,6 +216,8 @@ nav i {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  position: -webkit-sticky;
+  position: sticky;
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
