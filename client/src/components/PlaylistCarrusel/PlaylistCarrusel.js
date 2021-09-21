@@ -6,10 +6,6 @@ import portadaCuatro from "../../assets/images/portada-4.png";
 import "./style/playlist.scss";
 
 function PlaylistCarrusel() {
-  const scroll = (scrollOffset) => {
-    ref.current.scrollLeft += scrollOffset;
-  };
-
   return (
     <>
       <div className="recomend-container">
@@ -34,6 +30,7 @@ function PlaylistCarrusel() {
                   </div>
                 </a>
               </div>
+
               {/* ITEM 2 */}
               <div className="item-container">
                 <a href="#" className="fill-div">
@@ -135,10 +132,110 @@ function PlaylistCarrusel() {
                   </div>
                 </a>
               </div>
+              {/* ITEM 6 */}
+              <div className="item-container">
+                <a href="#" className="fill-div">
+                  <div
+                    className="list-item"
+                    style={{
+                      backgroundImage: `url(${portadaTres})`,
+                      backgroundSize: "auto",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  >
+                    <div className="list-name">
+                      <h1>Lista Pop Rock España</h1>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {/* ITEM 6 */}
+              <div className="item-container">
+                <a href="#" className="fill-div">
+                  <div
+                    className="list-item"
+                    style={{
+                      backgroundImage: `url(${portadaTres})`,
+                      backgroundSize: "auto",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  >
+                    <div className="list-name">
+                      <h1>Lista Pop Rock España</h1>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {/* ITEM 6 */}
+              <div className="item-container">
+                <a href="#" className="fill-div">
+                  <div
+                    className="list-item"
+                    style={{
+                      backgroundImage: `url(${portadaTres})`,
+                      backgroundSize: "auto",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  >
+                    <div className="list-name">
+                      <h1>Lista Pop Rock España</h1>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {/* ITEM 6 */}
+              <div className="item-container">
+                <a href="#" className="fill-div">
+                  <div
+                    className="list-item"
+                    style={{
+                      backgroundImage: `url(${portadaTres})`,
+                      backgroundSize: "auto",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  >
+                    <div className="list-name">
+                      <h1>Lista Pop Rock España</h1>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {/* ITEM 6 */}
+              <div className="item-container">
+                <a href="#" className="fill-div">
+                  <div
+                    className="list-item"
+                    style={{
+                      backgroundImage: `url(${portadaTres})`,
+                      backgroundSize: "auto",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  >
+                    <div className="list-name">
+                      <h1>Lista Pop Rock España</h1>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {/* ITEM 6 */}
+              <div className="item-container">
+                <a href="#" className="fill-div">
+                  <div
+                    className="list-item"
+                    style={{
+                      backgroundImage: `url(${portadaTres})`,
+                      backgroundSize: "auto",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  >
+                    <div className="list-name">
+                      <h1>Lista Pop Rock España</h1>
+                    </div>
+                  </div>
+                </a>
+              </div>
             </div>
-            <button onClick={() => scroll(20)}>More</button>
           </div>
-          <button onClick={() => scroll(20)}>More</button>
         </div>
       </div>
     </>

@@ -53,16 +53,17 @@
 }
 
 .scroll-container::-webkit-scrollbar {
-  height: 5px;
+  height: 6px;
+  width: 10px;
 }
 
 .scroll-container::-webkit-scrollbar-thumb {
-  background-color: #6200ff;
-  border-radius: 5px;
-  width: 50px;
+  background: #fff;
+  border-radius: 8px;
+  width: 10px;
 }
 
-.scroll-container::-webkit-scrollbar-track {
-  width: 50px;
+.scroll-container::-webkit-scrollbar:horizontal {
+  width: 10px;
 }
 /*# sourceMappingURL=playlist.css.map */
