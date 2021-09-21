@@ -12,7 +12,11 @@ body {
 .circle {
   width: 20px;
   height: 20px;
-  background: linear-gradient(#ff2b2b, #4655ff);
+  background: linear-gradient(
+    45deg,
+    rgba(255, 0, 0, 1) 0%,
+    rgba(31, 0, 255, 1) 80%
+  );
   border: 2px solid #fff;
   border-radius: 50px;
 }
@@ -237,8 +241,8 @@ nav li h5 {
 }
 
 .list-name {
-    width: 50%;
-    white-space: normal;
+  width: 50%;
+  white-space: normal;
 }
 
 .scroll {
@@ -251,5 +255,5 @@ nav li h5 {
 }
 
 .scroll::-webkit-scrollbar {
-    display: none;
+  display: none;
 }

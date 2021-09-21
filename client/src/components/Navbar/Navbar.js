@@ -70,30 +70,35 @@ function Navbar() {
         <h2 className="recomend-title">Te puede gustar...</h2>
         <div className="recomend-list">
           <div className="scroll">
-            <div
-              className="list-item"
-              style={{
-                backgroundImage: `url(${portadaUno})`,
-                backgroundSize: "auto",
-                backgroundRepeat: "no-repeat",
-              }}
-            >
-              <div className="list-name">
-                <h1>Lista Pop Rock España</h1>
+            <a href="#" className="fill-div">
+              <div
+                className="list-item"
+                style={{
+                  backgroundImage: `url(${portadaUno})`,
+                  backgroundSize: "auto",
+                  backgroundRepeat: "no-repeat",
+                }}
+              >
+                <div className="list-name">
+                  <h1>Lista Pop Rock España</h1>
+                </div>
               </div>
-            </div>
-            <div
-              className="list-item"
-              style={{
-                backgroundImage: `url(${portadaDos})`,
-                backgroundSize: "auto",
-                backgroundRepeat: "no-repeat",
-              }}
-            >
-              <div className="list-name">
-                <h1>Lista Pop Rock España</h1>
+            </a>
+
+            <a href="#" className="fill-div">
+              <div
+                className="list-item"
+                style={{
+                  backgroundImage: `url(${portadaDos})`,
+                  backgroundSize: "auto",
+                  backgroundRepeat: "no-repeat",
+                }}
+              >
+                <div className="list-name">
+                  <h1>Lista Pop Rock España</h1>
+                </div>
               </div>
-            </div>
+            </a>
             <div
               className="list-item"
               style={{
