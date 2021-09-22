@@ -4,47 +4,33 @@
   "version": "1.0.0",
   "private": true,
   "main": "./src/App.js",
-
-
-  "scripts": {
-    "start": "craco start",
-    "dev": "yarn run start",
-    "build": "craco build",
-    "build:style": "tailwind build src/styles/tailwind.css -o src/styles/tailwind.css",
-    "netlify:build": "yarn run build:style && yarn run build",
-    "test": "react-scripts test",
-    "test:watch": "react-scripts test --watchAll",
-    "test:ci:all": "cross-env CI=true react-scripts test --all --env=jsdom",
-    "test:related": "cross-env CI=true react-scripts test --bail --findRelatedTests --env=jsdom",
-    "eject": "react-scripts eject",
-    "lint:js": "eslint . --ext .js",
-    "lint:js:fix": "yarn run lint:js -- --fix",
-    "lint:format": "prettier --write .",
-    "lint:format:check": "prettier --check .",
-    "precommit": "lint-staged"
-  },
-
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.7",
-    "@testing-library/user-event": "^12.8.3",
-    "axios": "^0.21.4",
-    "cross-env": "5.0.5",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-icons": "^4.2.0",
-    "react-router-dom": "^5.3.0",
-    "react-scripts": "4.0.3",
-    "redux": "^4.1.1",
-    "redux-thunk": "^2.3.0",
-    "sass": "^1.41.1",
-    "web-vitals": "^1.1.2"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
+    "axios": "^0.21.4",
+    "cross-env": "5.0.5",
+    "formik": "^2.2.9",
+    "jest": "^27.2.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.2.0",
+    "react-router-dom": "^5.3.0",
+    "react-scripts": "4.0.3",
+    "react-spring": "^9.2.4",
+    "redux": "^4.1.1",
+    "redux-thunk": "^2.3.0",
+    "sass": "^1.41.1",
+    "web-vitals": "^1.1.2",
+    "yup": "^0.32.9"
   },
   "eslintConfig": {
     "extends": [

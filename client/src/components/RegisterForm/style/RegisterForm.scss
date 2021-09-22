@@ -1,8 +1,13 @@
 .register-box {
-  align-items: center;
+  align-items: flex-start;
   display: grid;
+
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 0px 25px;
+  grid-template-areas:
+    "text space"
+    "name surname"
+    "password cpassword" "email checkboxes" "button info";
 
   background-color: rgba(23, 23, 23, 0.85);
   border-radius: 25px;
@@ -13,6 +18,27 @@
   overflow: hidden;
   box-sizing: border-box;
   padding: 90px;
+}
+.name {
+  grid-area: name;
+}
+.password {
+  grid-area: password;
+}
+.surname {
+  grid-area: surname;
+}
+.cpassword {
+  grid-area: cpassword;
+}
+.email {
+  grid-area: email;
+}
+.info {
+  grid-area: info;
+}
+.space {
+  grid-area: space;
 }
 .register-inputs {
   height: 8vh;
@@ -40,11 +66,13 @@ p {
   font-size: 40px;
   font-weight: 600;
   margin: 0;
+  grid-area: text;
 }
 .button {
   background-color: #395fff;
   color: white;
   cursor: pointer;
+  grid-area: button;
 }
 .button:hover {
   transform: scale(1.05) perspective(1px);
@@ -55,8 +83,9 @@ p {
 }
 .checkboxes {
   display: grid;
+  grid-area: checkboxes;
   grid-template-columns: repeat(1, 1fr);
-  grid-gap: 25px 0px;
+  grid-gap: 10px 0px;
 }
 input[type="checkbox"] {
   height: 12px;
@@ -70,4 +99,11 @@ label {
 }
 span {
   bottom: 20vh;
+}
+.errorMessage {
+  color: #e92b2d;
+  font-weight: 600;
+  font-size: 12px;
+  box-sizing: border-box;
+  padding: 2px;
 }
