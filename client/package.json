@@ -4,26 +4,12 @@
   "version": "1.0.0",
   "private": true,
   "main": "./src/App.js",
-
-
   "scripts": {
-    "start": "craco start",
-    "dev": "yarn run start",
-    "build": "craco build",
-    "build:style": "tailwind build src/styles/tailwind.css -o src/styles/tailwind.css",
-    "netlify:build": "yarn run build:style && yarn run build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:watch": "react-scripts test --watchAll",
-    "test:ci:all": "cross-env CI=true react-scripts test --all --env=jsdom",
-    "test:related": "cross-env CI=true react-scripts test --bail --findRelatedTests --env=jsdom",
-    "eject": "react-scripts eject",
-    "lint:js": "eslint . --ext .js",
-    "lint:js:fix": "yarn run lint:js -- --fix",
-    "lint:format": "prettier --write .",
-    "lint:format:check": "prettier --check .",
-    "precommit": "lint-staged"
+    "eject": "react-scripts eject"
   },
-
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
@@ -39,12 +25,6 @@
     "redux-thunk": "^2.3.0",
     "sass": "^1.41.1",
     "web-vitals": "^1.1.2"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [

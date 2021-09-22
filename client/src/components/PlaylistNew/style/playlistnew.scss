@@ -84,6 +84,11 @@
           border: none;
           background-color: #363636;
           cursor: pointer;
+          transition: transform 0.2s;
+
+          &:hover {
+            transform: scale(1.1);
+          }
         }
       }
 
@@ -93,6 +98,10 @@
           height: 25px;
           color: #fff;
           margin-top: 3px;
+
+          &:hover {
+            color: rgb(255, 71, 71);
+          }
         }
         button {
           width: 40px;
