@@ -1,33 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { login } from "../../redux/auth/action";
-// import { signInWithGoogle } from "../../services/auth";
+import { login, loginWithEmailAndPassword } from "../../redux/auth/action";
 function LoginForm() {
+  const [loginForm, setLoginForm] = useState({ email: "", password: "" });
+  const { email, password } = loginForm;
   const dispatch = useDispatch();
 
-  const handleChange = () => {};
-  const handleLogin = async () => {
+  const handleChange = (event) => {
+    setLoginForm({ ...loginForm, [event.target.name]: event.target.value });
+  };
+  const handleLoginWithGoogle = async () => {
     dispatch(login());
-    // console.log("clicked");
-    // try {
-    //   await signInWithGoogle();
-    // } catch (error) {
-    //   console.log(error);
-    // }
+  };
 
-    // console.log("clicked2");
+  const handleLoginWithEmailAndPassword = (event) => {
+    event.preventDefault();
+    dispatch(loginWithEmailAndPassword(email, password));
   };
 
   return (
     <div className="loginBox">
-      <form className="loginForm">
+      <form className="loginForm" onSubmit={handleLoginWithEmailAndPassword}>
         <label>email</label>
-        <input />
+        <input value={email} name="email" onChange={handleChange} />
         <label>password</label>
-        <input />
+        <input value={password} name="password" onChange={handleChange} />
         <button>Login</button>
       </form>
-      <button onClick={handleLogin}>Login with Google</button>
+      <button onClick={handleLoginWithGoogle}>Login with Google</button>
     </div>
   );
 }

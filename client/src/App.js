@@ -11,11 +11,11 @@ import Register from "./pages/Register";
 function App() {
   const history = useHistory();
   const { loading, accessToken } = useSelector((state) => state);
-  useEffect(() => {
-    if (!loading && !accessToken) {
-      history.push("/login");
-    }
-  }, [loading, accessToken, history]);
+  // useEffect(() => {
+  //   if (!loading && !accessToken) {
+  //     history.push("/register");
+  //   }
+  // }, [loading, accessToken, history]);
 
   return (
     <>
