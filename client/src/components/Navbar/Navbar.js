@@ -1,6 +1,7 @@
 import { RiSettings4Line, RiMusic2Line, RiHistoryFill } from "react-icons/ri";
 import { MdFavoriteBorder } from "react-icons/md";
 import { GoListUnordered } from "react-icons/go";
+import portadaUno from "../../assets/images/portada-1.png";
 import userImage from "../../assets/images/profile.jpg";
 
 import "./style/navbar.scss";
@@ -10,7 +11,13 @@ function Navbar() {
     <>
       <div className="nav-container">
         <div className="search">
-          <div className="circle"></div>
+          <div
+            className="circle"
+            style={{
+              backgroundImage: `url(${portadaUno})`,
+              backgroundSize: "contain",
+            }}
+          ></div>
           <form>
             <input type="text" placeholder="Artistas, canciones o albums" />
           </form>
