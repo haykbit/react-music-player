@@ -6,7 +6,7 @@
   "main": "./src/app.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon ./src/app.js",
+    "start": "nodemon ./src/server.js",
     "dev": "NODE_ENV=DEVELOPMENT nodemon --inspect --trace-warnings ./src/app.js",
     "prod": "NODE_ENV=PRODUCTION nodemon --inspect --trace-warnings ./src/app.js",
 

@@ -1,11 +1,24 @@
-const app = require('./app')
-const dotenv=require('./dotenv')
+const express = require("express");
+const helmet = require("helmet");
+const { json } = require("body-parser");
+const cors = require("cors");
 
-//Setting up config file
+const { config } = require("./config");
 
-dotenv.config({path: 'server/config/config.env'})
+const app = express();
 
+app.use(helmet());
+app.use(json());
+/* app.use(
+  cors({
+    origin: config.client.URL,
+  })
+); */
 
-app.listen(process.env.PORT,()  =>  {
-    console.log(`Server started on PORT: ${process.env.PORT} in process ${process.env.PORT} mode.`)
-})
+app.get("/", (req, res) => {
+  res.status(200).send({
+    data: "root page!",
+  });
+});
+
+module.exports = app;
