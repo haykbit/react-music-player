@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "",
+    "mappings": "AAAA,AAAA,aAAa,CAAC;EACZ,OAAO,EAAE,IAAI;EACb,qBAAqB,EAAE,cAAc;EACrC,QAAQ,EAAE,IAAI;EACd,gBAAgB,EAAE,oBAAoB;EACtC,aAAa,EAAE,IAAI;EACnB,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,KAAK;EACZ,QAAQ,EAAE,QAAQ;EAClB,QAAQ,EAAE,MAAM;EAChB,UAAU,EAAE,UAAU;EACtB,OAAO,EAAE,KAAK;CACf",
     "sources": [
         "RegisterForm.scss"
     ],
