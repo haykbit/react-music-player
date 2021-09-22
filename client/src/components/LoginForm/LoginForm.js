@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/auth/action";
+import "./style/loginform.scss";
 // import { signInWithGoogle } from "../../services/auth";
 function LoginForm() {
   const dispatch = useDispatch();
@@ -19,8 +20,8 @@ function LoginForm() {
   };
 
   return (
-    <div className="loginBox">
-      <form className="loginForm">
+    <div className="login-container">
+      <form className="login-form">
         <label>email</label>
         <input />
         <label>password</label>
