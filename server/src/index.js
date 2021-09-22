@@ -1,11 +1,11 @@
 const app = require("./server");
-const config = require("./config/config");
+const { config } = require("./config");
 const connect = require("./db/connect");
 
-connect().then(async function onServerInit() {
-  config.log("DB Connected");
+connect().then(async () => {
+  console.log(`DB connected!`);
 
   app.listen(config.app.PORT, () => {
-    config.log(`Server running at http://localhost:${config.app.PORT}`);
+    console.log(`Server running at http://localhost:${config.app.PORT}`);
   });
 });
