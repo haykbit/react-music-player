@@ -14,6 +14,7 @@ function App() {
   // useEffect(() => {
   //   if (!loading && !accessToken) {
   //     history.push("/register");
+  //     history.push("/login");
   //   }
   // }, [loading, accessToken, history]);
 

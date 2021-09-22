@@ -13,7 +13,8 @@
     "firebase-admin": "^9.11.1",
     "helmet": "^4.6.0",
     "mongoose": "^6.0.7",
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.12",
+    "validator": "^13.6.0"
   },
   "scripts": {
     "server": "nodemon ./src/index.js"
