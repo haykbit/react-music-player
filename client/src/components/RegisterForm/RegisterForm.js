@@ -1,13 +1,18 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import Input from "../Input/index";
+import Button from "../Buttons/index";
 import { Formik } from "formik";
+// import { Link } from "react-router-dom";
 import FormSchema from "./FormSchema";
 import "./style/RegisterForm.scss";
 
 function RegisterForm() {
+  let history = useHistory();
   return (
     <Formik
       onSubmit={(values) => {
+        history.push("/home-page");
         console.log(values);
         console.log("Form Submitted");
       }}
@@ -120,7 +125,18 @@ function RegisterForm() {
                 <div className="errorMessage">{errors.checkboxOne}</div>
               )}
             </div>
-            <button className="register-inputs button">Register</button>
+
+            {/* <button className="register-inputs button">Register</button> */}
+            {/* <Link to="home-page"> */}
+            <Button
+              submitButton
+              disabled={isValidating || !isValid}
+              className="register-inputs button"
+            >
+              Register
+            </Button>
+            {/* </Link> */}
+
             <div>
               <p className="info">
                 * Your data will be saved on a secured server
