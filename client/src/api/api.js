@@ -3,10 +3,9 @@ import { getCurrentUserToken } from "../services/auth";
 
 export async function syncUserData() {
   const userToken = await getCurrentUserToken();
-
   return axios({
     method: "POST",
-    url: `${process.env.REACT_APP_API_BASE_URL}/login`,
+    url: `${process.env.REACT_APP_API_BASE_URL}/users/login`,
     headers: {
       Authorization: `Bearer ${userToken}`,
     },

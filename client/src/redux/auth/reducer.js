@@ -5,6 +5,7 @@ import {
   LOAD_PROFILE,
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
+  SIGN_OUT_SUCCESS,
 } from "./types";
 
 import INITIAL_STATE from "./state";
@@ -36,7 +37,8 @@ const reducer = (state = INITIAL_STATE, action) => {
         loading: false,
         error: action.payload,
       };
-
+    case SIGN_OUT_SUCCESS:
+      return state;
     default:
       return state;
   }

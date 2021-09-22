@@ -11,11 +11,11 @@ const app = express();
 
 app.use(helmet());
 app.use(json());
-/* app.use(
+app.use(
   cors({
     origin: config.client.URL,
   })
-); */
+);
 
 app.use("/users", userRouter);
 

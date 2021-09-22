@@ -2,9 +2,9 @@ import {
   signInWithGoogle,
   signUpWithEmailAndPassword,
   signInWithEmailAndPassword,
-  onAuthStateChanged,
-  getCurrentUserToken,
+  signOut,
 } from "../../services/auth";
+import { syncUserData } from "../../api/api";
 import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
@@ -13,6 +13,7 @@ import {
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
+  SIGN_OUT_SUCCESS,
 } from "./types";
 
 export const login = () => async (dispatch) => {
@@ -27,6 +28,7 @@ export const login = () => async (dispatch) => {
     };
     dispatch({ type: LOGIN_SUCCESS, payload: accessToken });
     dispatch({ type: LOAD_PROFILE, payload: userProfile });
+    await syncUserData();
   } catch (error) {}
 };
 
@@ -40,6 +42,7 @@ export const registerWithEmailAndPassword =
       dispatch({
         type: REGISTER_SUCCESS,
       });
+      await syncUserData();
     } catch (error) {}
   };
 
@@ -57,5 +60,11 @@ export const loginWithEmailAndPassword =
 
       dispatch({ type: LOGIN_SUCCESS, payload: accessToken });
       dispatch({ type: LOAD_PROFILE, payload: userProfile });
+      await syncUserData();
     } catch (error) {}
   };
+
+export const logOut = () => async (dispatch) => {
+  await signOut();
+  dispatch({ type: SIGN_OUT_SUCCESS });
+};
