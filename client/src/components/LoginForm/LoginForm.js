@@ -1,7 +1,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/auth/action";
+import google from "../../assets/images/search.png";
+import gmail from "../../assets/images/gmail.png";
 import "./style/loginform.scss";
+
 // import { signInWithGoogle } from "../../services/auth";
 function LoginForm() {
   const dispatch = useDispatch();
@@ -21,14 +24,23 @@ function LoginForm() {
 
   return (
     <div className="login-container">
-      <form className="login-form">
-        <label>email</label>
-        <input />
-        <label>password</label>
-        <input />
-        <button>Login</button>
-      </form>
-      <button onClick={handleLogin}>Login with Google</button>
+      <div className="login-section">
+        <form className="login-form">
+          <h2>Login</h2>
+          <input placeholder="Email" />
+          <input placeholder="Password" />
+          <button className="login-btn">Login</button>
+        </form>
+        <button className="login-gl-btn" onClick={handleLogin}>
+          <img src={google} alt="" />
+          Login with Google
+        </button>
+        <h3>Or</h3>
+        <button className="register-btn">
+          <img src={gmail} alt="" />
+          Register
+        </button>
+      </div>
     </div>
   );
 }
