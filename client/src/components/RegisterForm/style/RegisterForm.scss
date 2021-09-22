@@ -1,5 +1,5 @@
 .register-box {
-  align-items: center;
+  align-items: flex-start;
   display: grid;
 
   grid-template-columns: repeat(2, 1fr);
@@ -99,4 +99,11 @@ label {
 }
 span {
   bottom: 20vh;
+}
+.errorMessage {
+  color: #e92b2d;
+  font-weight: 600;
+  font-size: 12px;
+  box-sizing: border-box;
+  padding: 2px;
 }
