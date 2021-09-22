@@ -49,18 +49,6 @@ function RegisterForm() {
               errorMessage={errors.name}
             />
             <Input
-              className="register-inputs password"
-              type="password"
-              name="password"
-              label=""
-              value={values.password}
-              placeholder="Password"
-              handleChange={handleChange}
-              handleBlur={handleBlur}
-              hasErrorMessage={touched.password}
-              errorMessage={errors.password}
-            />
-            <Input
               className="register-inputs surname"
               type="text"
               name="surname"
@@ -72,6 +60,19 @@ function RegisterForm() {
               hasErrorMessage={touched.surname}
               errorMessage={errors.surname}
             />
+            <Input
+              className="register-inputs password"
+              type="password"
+              name="password"
+              label=""
+              value={values.password}
+              placeholder="Password"
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              hasErrorMessage={touched.password}
+              errorMessage={errors.password}
+            />
+
             <Input
               className="register-inputs cpassword"
               name="confirm"

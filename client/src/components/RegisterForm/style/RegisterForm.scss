@@ -6,8 +6,8 @@
   grid-gap: 0px 25px;
   grid-template-areas:
     "text space"
-    "name password"
-    "surname cpassword" "email checkboxes" "button info";
+    "name surname"
+    "password cpassword" "email checkboxes" "button info";
 
   background-color: rgba(23, 23, 23, 0.85);
   border-radius: 25px;
