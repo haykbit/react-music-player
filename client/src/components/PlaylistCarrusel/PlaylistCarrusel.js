@@ -9,7 +9,7 @@ function PlaylistCarrusel() {
   return (
     <>
       <div className="recomend-container">
-        <h2 className="recomend-title">You may like...</h2>
+        <h2 className="recomend-title">You may like</h2>
         <div className="recomend-list">
           <div className="scroll-container">
             <div className="scroll">
@@ -30,6 +30,7 @@ function PlaylistCarrusel() {
                   </div>
                 </a>
               </div>
+
               {/* ITEM 2 */}
               <div className="item-container">
                 <a href="#" className="fill-div">
@@ -104,6 +105,210 @@ function PlaylistCarrusel() {
                     className="list-item"
                     style={{
                       backgroundImage: `url(${portadaDos})`,
+                      backgroundSize: "auto",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  >
+                    <div className="list-name">
+                      <h1>Lista Pop Rock España</h1>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {/* ITEM 6 */}
+              <div className="item-container">
+                <a href="#" className="fill-div">
+                  <div
+                    className="list-item"
+                    style={{
+                      backgroundImage: `url(${portadaTres})`,
+                      backgroundSize: "auto",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  >
+                    <div className="list-name">
+                      <h1>Lista Pop Rock España</h1>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {/* ITEM 6 */}
+              <div className="item-container">
+                <a href="#" className="fill-div">
+                  <div
+                    className="list-item"
+                    style={{
+                      backgroundImage: `url(${portadaTres})`,
+                      backgroundSize: "auto",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  >
+                    <div className="list-name">
+                      <h1>Lista Pop Rock España</h1>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {/* ITEM 6 */}
+              <div className="item-container">
+                <a href="#" className="fill-div">
+                  <div
+                    className="list-item"
+                    style={{
+                      backgroundImage: `url(${portadaTres})`,
+                      backgroundSize: "auto",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  >
+                    <div className="list-name">
+                      <h1>Lista Pop Rock España</h1>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {/* ITEM 6 */}
+              <div className="item-container">
+                <a href="#" className="fill-div">
+                  <div
+                    className="list-item"
+                    style={{
+                      backgroundImage: `url(${portadaTres})`,
+                      backgroundSize: "auto",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  >
+                    <div className="list-name">
+                      <h1>Lista Pop Rock España</h1>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {/* ITEM 6 */}
+              <div className="item-container">
+                <a href="#" className="fill-div">
+                  <div
+                    className="list-item"
+                    style={{
+                      backgroundImage: `url(${portadaTres})`,
+                      backgroundSize: "auto",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  >
+                    <div className="list-name">
+                      <h1>Lista Pop Rock España</h1>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {/* ITEM 6 */}
+              <div className="item-container">
+                <a href="#" className="fill-div">
+                  <div
+                    className="list-item"
+                    style={{
+                      backgroundImage: `url(${portadaTres})`,
+                      backgroundSize: "auto",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  >
+                    <div className="list-name">
+                      <h1>Lista Pop Rock España</h1>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {/* ITEM 6 */}
+              <div className="item-container">
+                <a href="#" className="fill-div">
+                  <div
+                    className="list-item"
+                    style={{
+                      backgroundImage: `url(${portadaTres})`,
+                      backgroundSize: "auto",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  >
+                    <div className="list-name">
+                      <h1>Lista Pop Rock España</h1>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {/* ITEM 6 */}
+              <div className="item-container">
+                <a href="#" className="fill-div">
+                  <div
+                    className="list-item"
+                    style={{
+                      backgroundImage: `url(${portadaTres})`,
+                      backgroundSize: "auto",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  >
+                    <div className="list-name">
+                      <h1>Lista Pop Rock España</h1>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {/* ITEM 6 */}
+              <div className="item-container">
+                <a href="#" className="fill-div">
+                  <div
+                    className="list-item"
+                    style={{
+                      backgroundImage: `url(${portadaTres})`,
+                      backgroundSize: "auto",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  >
+                    <div className="list-name">
+                      <h1>Lista Pop Rock España</h1>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {/* ITEM 6 */}
+              <div className="item-container">
+                <a href="#" className="fill-div">
+                  <div
+                    className="list-item"
+                    style={{
+                      backgroundImage: `url(${portadaTres})`,
+                      backgroundSize: "auto",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  >
+                    <div className="list-name">
+                      <h1>Lista Pop Rock España</h1>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {/* ITEM 6 */}
+              <div className="item-container">
+                <a href="#" className="fill-div">
+                  <div
+                    className="list-item"
+                    style={{
+                      backgroundImage: `url(${portadaTres})`,
+                      backgroundSize: "auto",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  >
+                    <div className="list-name">
+                      <h1>Lista Pop Rock España</h1>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {/* ITEM 6 */}
+              <div className="item-container">
+                <a href="#" className="fill-div">
+                  <div
+                    className="list-item"
+                    style={{
+                      backgroundImage: `url(${portadaTres})`,
                       backgroundSize: "auto",
                       backgroundRepeat: "no-repeat",
                     }}

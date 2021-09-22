@@ -1,5 +1,6 @@
 import React from "react";
 import PlaylistCarrusel from "../../components/PlaylistCarrusel";
+import PlaylistNew from "../../components/PlaylistNew/PlaylistNew";
 import Navbar from "../../components/Navbar/Navbar";
 import "./style/home.scss";
 
@@ -8,10 +9,7 @@ function Home() {
     <>
       <Navbar />
       <PlaylistCarrusel />
-      <PlaylistCarrusel />
-      <PlaylistCarrusel />
-      <PlaylistCarrusel />
-      <PlaylistCarrusel />
+      <PlaylistNew />
     </>
   );
 }
