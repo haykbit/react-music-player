@@ -21,3 +21,19 @@ async function seedUsers() {
     console.log(err);
   }
 }
+
+async function seedDatabase() {
+  try {
+    const userExists = await db.User.findOne({
+      firebase_id: "i6uvFci1zlShHRk33QDBTSzoAJU2",
+    }).lean();
+    if (!userExists) {
+      await mongoose.connection.collection("users").drop();
+      seedUsers();
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+module.exports = seedDatabase;
