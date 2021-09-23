@@ -1,8 +1,7 @@
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-
-import { Switch, Route } from "react-router-dom";
 
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -26,6 +25,7 @@ function App() {
           <Route path="/home-page" exact component={Home} />
           <Route path="/register" exact component={Register} />
           <Route path="/profile" exact component={Profile} />
+          <Route path="/login" exact component={Login} />
         </Switch>
       </Router>
     </>
