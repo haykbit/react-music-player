@@ -7,6 +7,7 @@ import { Switch, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
+import Profile from "./pages/Profile";
 
 function App() {
   const history = useHistory();
@@ -20,11 +21,13 @@ function App() {
 
   return (
     <>
-      <Switch>
-        <Route path="/home-page" exact component={Home} />
-        <Route path="/register" exact component={Register} />
-        <Route path="/login" exact component={Login} />
-      </Switch>
+      <Router>
+        <Switch>
+          <Route path="/home-page" exact component={Home} />
+          <Route path="/register" exact component={Register} />
+          <Route path="/profile" exact component={Profile} />
+        </Switch>
+      </Router>
     </>
   );
 }
