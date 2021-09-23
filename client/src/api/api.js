@@ -11,3 +11,10 @@ export async function syncUserData() {
     },
   });
 }
+
+export async function getUserProfile(id) {
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/users/${id}`,
+  });
+}
