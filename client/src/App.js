@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 
 import { Switch, Route } from "react-router-dom";
 
-import Navbar from "./components/Navbar/";
 import Login from "./pages/Login";
+import Home from "./pages/Home";
 import Register from "./pages/Register";
 
 function App() {
@@ -13,6 +13,7 @@ function App() {
   const { loading, accessToken } = useSelector((state) => state);
   // useEffect(() => {
   //   if (!loading && !accessToken) {
+  //     history.push("/register");
   //     history.push("/login");
   //   }
   // }, [loading, accessToken, history]);
@@ -20,7 +21,7 @@ function App() {
   return (
     <>
       <Switch>
-        <Route path="/home-page" exact component={Navbar} />
+        <Route path="/home-page" exact component={Home} />
         <Route path="/register" exact component={Register} />
         <Route path="/login" exact component={Login} />
       </Switch>

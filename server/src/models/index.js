@@ -1,4 +1,4 @@
-import { User } from "./userModel";
+const { User } = require("./userModel");
 
 module.exports = {
   User: User,

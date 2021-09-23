@@ -1,4 +1,5 @@
 {
+  "name": "apollofy",
   "private": true,
   "workspaces": [
     "client",
@@ -6,6 +7,24 @@
   ],
   "scripts": {
     "client": "yarn workspace client start",
-    "server": "yarn workspace server server"
-  }
+    "server": "yarn workspace server server",
+    "start": "concurrently --kill-others-on-fail \"yarn server\"  \"yarn client\""
+  },
+  "contributors": [
+    {
+      "name": "Sebastian"
+    },
+    {
+      "name": "Kim"
+    },
+    {
+      "name": "Jordi "
+    },
+    {
+      "name": "Hayk"
+    },
+    {
+      "name": "Einar"
+    }
+  ]
 }
