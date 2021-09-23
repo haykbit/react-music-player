@@ -50,12 +50,12 @@ function RegisterForm() {
   let history = useHistory();
   const dispatch = useDispatch();
 
-  const handleRegisterSubmit = (event) => {
-    //event.preventDefault();
-    console.log(event);
-    dispatch(registerWithEmailAndPassword(email, password));
-    console.log(event);
-  };
+  // const handleRegisterSubmit = (event) => {
+  //event.preventDefault();
+  //   console.log(event);
+  //   dispatch(registerWithEmailAndPassword(email, password));
+  //   console.log(event);
+  // };
 
   const handleRegisterChange = (event) => {
     console.log(event, "CHANGE EVENT");
@@ -68,7 +68,9 @@ function RegisterForm() {
         //history.push("/home-page");
         console.log(values);
         console.log("Form Submitted");
-        handleRegisterSubmit();
+        dispatch(registerWithEmailAndPassword(values.email, values.password));
+
+        // handleRegisterSubmit();
       }}
       onChange={(values) => {
         console.log(values, "OnChange values");
