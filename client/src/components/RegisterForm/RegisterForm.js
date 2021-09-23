@@ -1,39 +1,4 @@
-/* import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { registerWithEmailAndPassword } from "../../redux/auth/action";
-import "./style/RegisterForm.scss";
-
-function RegisterForm() {
-  
-
-  const dispatch = useDispatch();
-
-  
-  const handleChange = (event) => {
-    setForm({ ...form, [event.target.name]: event.target.value });
-  };
-  return (
-    <form className="register-box" onSubmit={handleSubmit}>
-      <div>Register</div>
-      <div></div>
-      <div>Name</div>
-      <div>
-        Password
-        <input value={password} onChange={handleChange} name="password" />
-      </div>
-      <div>Surname</div>
-      <div>Confirm Password</div>
-      <div>
-        Email
-        <input value={email} name="email" onChange={handleChange} />
-      </div>
-      <div></div>
-      <div>
-        <button>Register Button</button>
-      </div>
-    </form> */
-
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Input from "../Input/index";
@@ -43,38 +8,18 @@ import FormSchema from "./FormSchema";
 import "./style/RegisterForm.scss";
 import { registerWithEmailAndPassword } from "../../redux/auth/action";
 
-function RegisterForm() {
-  const [form, setForm] = useState({ email: "", password: "" });
-  const { email, password } = form;
+import { getAuth } from "firebase/auth";
 
+function RegisterForm() {
   let history = useHistory();
   const dispatch = useDispatch();
-
-  // const handleRegisterSubmit = (event) => {
-  //event.preventDefault();
-  //   console.log(event);
-  //   dispatch(registerWithEmailAndPassword(email, password));
-  //   console.log(event);
-  // };
-
-  const handleRegisterChange = (event) => {
-    console.log(event, "CHANGE EVENT");
-    setForm({ ...form, [event.target.name]: event.target.value });
-  };
 
   return (
     <Formik
       onSubmit={(values) => {
-        //history.push("/home-page");
         console.log(values);
         console.log("Form Submitted");
         dispatch(registerWithEmailAndPassword(values.email, values.password));
-
-        // handleRegisterSubmit();
-      }}
-      onChange={(values) => {
-        console.log(values, "OnChange values");
-        handleRegisterChange(values);
       }}
       initialValues={{
         name: "",
@@ -110,7 +55,6 @@ function RegisterForm() {
               placeholder="Name"
               handleChange={(e) => {
                 handleChange(e);
-                handleRegisterChange(e);
               }}
               handleBlur={handleBlur}
               hasErrorMessage={touched.name}
@@ -123,7 +67,9 @@ function RegisterForm() {
               label=""
               value={values.surname}
               placeholder="Surname"
-              handleChange={handleChange}
+              handleChange={(e) => {
+                handleChange(e);
+              }}
               handleBlur={handleBlur}
               hasErrorMessage={touched.surname}
               errorMessage={errors.surname}
@@ -135,7 +81,7 @@ function RegisterForm() {
               label=""
               value={values.password}
               placeholder="Password"
-              handleChange={handleChange}
+              onChange={handleChange}
               handleBlur={handleBlur}
               hasErrorMessage={touched.password}
               errorMessage={errors.password}
@@ -160,7 +106,9 @@ function RegisterForm() {
               label=""
               type="email"
               value={values.email}
-              onChange={handleChange}
+              handleChange={(e) => {
+                handleChange(e);
+              }}
               onBlur={handleBlur}
               hasErrorMessage={touched.email}
               errorMessage={errors.email}
