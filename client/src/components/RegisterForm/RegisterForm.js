@@ -53,9 +53,7 @@ function RegisterForm() {
               label=""
               value={values.name}
               placeholder="Name"
-              handleChange={(e) => {
-                handleChange(e);
-              }}
+              onChange={handleChange}
               handleBlur={handleBlur}
               hasErrorMessage={touched.name}
               errorMessage={errors.name}
