@@ -1,15 +1,15 @@
 {
-  "name": "Apollofy",
+  "name": "apollofy",
   "private": true,
   "workspaces": [
-    "server",
-    "client"
+    "client",
+    "server"
   ],
-    "scripts": {
-        "client": "yarn workspace client start",
-        "server": "yarn workspace server start",
-        "start": "concurrently --kill-others-on-fail \"yarn server\"  \"yarn client\""
-    },
+  "scripts": {
+    "client": "yarn workspace client start",
+    "server": "yarn workspace server server",
+    "start": "concurrently --kill-others-on-fail \"yarn server\"  \"yarn client\""
+  },
   "contributors": [
     {
       "name": "Sebastian"
@@ -26,15 +26,5 @@
     {
       "name": "Einar"
     }
-  ],
-  "devDependencies": {
-    "@commitlint/cli": "^11.0.0",
-    "@commitlint/config-conventional": "^11.0.0",
-    "commitlint": "^11.0.0",
-    "eslint": "^7.19.0",
-    "husky": "^4.3.8",
-    "lint-staged": "^10.5.3"
-  }
-
+  ]
 }
-
