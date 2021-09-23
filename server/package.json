@@ -1,12 +1,33 @@
 {
   "name": "server",
+  "description": "apollofy music project api",
   "version": "1.0.0",
+  "private": true,
+  "main": "./src/app.js",
   "license": "MIT",
+  "scripts": {
+    "server": "nodemon ./src/index.js",
+    "test": "jest --env=node",
+    "test:ci:all": "jest --env=node",
+    "test:watch": "jest --watch",
+    "test:related": "jest --bail --findRelatedTests",
+    "lint:js": "eslint . --ext .js",
+    "lint:js:fix": "yarn run lint:js -- --fix",
+    "lint:format": "prettier --write .",
+    "lint:format:check": "prettier --check .",
+    "precommit": "lint-staged"
+  },
+  "type": "commonjs",
+  "keywords": [
+    "node.js"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "dependencies": {
     "body-parser": "^1.19.0",
     "client": "1.0.0",
     "cors": "^2.8.5",
-    "cross-env": "5.0.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "firebase": "^9.0.2",
@@ -15,8 +36,6 @@
     "mongoose": "^6.0.7",
     "nodemon": "^2.0.12",
     "validator": "^13.6.0"
-  },
-  "scripts": {
-    "server": "nodemon ./src/index.js"
   }
+  
 }
