@@ -5,7 +5,7 @@ import portadaCuatro from "../../assets/images/portada-4.png";
 import { BsFillCaretRightFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 
-import "./style/playlistnew.scss";
+import "./style/userprofile.scss";
 
 function UserProfile() {
   return (
