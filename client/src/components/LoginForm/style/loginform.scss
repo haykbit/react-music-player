@@ -20,7 +20,7 @@
     input {
       padding: 24px;
       width: 300px;
-      font-size: 20px;
+      font-size: 16px;
       margin-top: 10px;
       border: none;
       border-radius: 5px;
@@ -48,6 +48,7 @@
     font-size: 20px;
     text-align: center;
     border: none;
+    cursor: pointer;
     border-radius: 7px;
     display: flex;
     justify-content: center;
@@ -62,6 +63,8 @@
 
   .login-btn {
     background-color: #395fff;
+    margin-bottom: 20px;
+    padding: 22px;
   }
 
   .login-gl-btn {

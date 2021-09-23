@@ -31,11 +31,11 @@ function LoginForm() {
           <input placeholder="Password" />
           <button className="login-btn">Login</button>
         </form>
+        <h3>Or</h3>
         <button className="login-gl-btn" onClick={handleLogin}>
           <img src={google} alt="" />
           Login with Google
         </button>
-        <h3>Or</h3>
         <button className="register-btn">
           <img src={gmail} alt="" />
           Register
