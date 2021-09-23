@@ -28,14 +28,42 @@ function AlbumExplorer() {
             }}
           >
             <Carousel plugins={["centered", "infinite", "arrows"]}>
-              <img src={portadaUno} />
-              <img src={portadaDos} />
-              <img src={portadaTres} />
-              <img src={portadaCuatro} />
-              <img src={portadaCinco} />
-              <img src={portadaSeis} />
-              <img src={portadaOcho} />
-              <img src={portadaNueve} />
+              <div>
+                <img src={portadaUno} />
+                <h2>Arctic Monkeys</h2>
+              </div>
+              <div>
+                <img src={portadaDos} />
+                <h2>Arctic Monkeys</h2>
+              </div>
+              <div>
+                <img src={portadaTres} />
+                <h2>Arctic Monkeys</h2>
+              </div>
+              <div>
+                <img src={portadaCuatro} />
+                <h2>Arctic Monkeys</h2>
+              </div>
+
+              <div>
+                <img src={portadaCinco} />
+                <h2>Arctic Monkeys</h2>
+              </div>
+
+              <div>
+                <img src={portadaSeis} />
+                <h2>Arctic Monkeys</h2>
+              </div>
+
+              <div>
+                <img src={portadaOcho} />
+                <h2>Gorillaz</h2>
+              </div>
+
+              <div>
+                <img src={portadaNueve} />
+                <h2>Linkin Park</h2>
+              </div>
             </Carousel>
             <div className="albums-section">
               <div className="album-list">
