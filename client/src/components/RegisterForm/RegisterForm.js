@@ -1,20 +1,25 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import Input from "../Input/index";
 import Button from "../Buttons/index";
 import { Formik } from "formik";
-// import { Link } from "react-router-dom";
 import FormSchema from "./FormSchema";
 import "./style/RegisterForm.scss";
+import { registerWithEmailAndPassword } from "../../redux/auth/action";
+
+import { getAuth } from "firebase/auth";
 
 function RegisterForm() {
   let history = useHistory();
+  const dispatch = useDispatch();
+
   return (
     <Formik
       onSubmit={(values) => {
-        history.push("/home-page");
         console.log(values);
         console.log("Form Submitted");
+        dispatch(registerWithEmailAndPassword(values.email, values.password));
       }}
       initialValues={{
         name: "",
@@ -48,7 +53,7 @@ function RegisterForm() {
               label=""
               value={values.name}
               placeholder="Name"
-              handleChange={handleChange}
+              onChange={handleChange}
               handleBlur={handleBlur}
               hasErrorMessage={touched.name}
               errorMessage={errors.name}
@@ -60,7 +65,9 @@ function RegisterForm() {
               label=""
               value={values.surname}
               placeholder="Surname"
-              handleChange={handleChange}
+              handleChange={(e) => {
+                handleChange(e);
+              }}
               handleBlur={handleBlur}
               hasErrorMessage={touched.surname}
               errorMessage={errors.surname}
@@ -72,7 +79,7 @@ function RegisterForm() {
               label=""
               value={values.password}
               placeholder="Password"
-              handleChange={handleChange}
+              onChange={handleChange}
               handleBlur={handleBlur}
               hasErrorMessage={touched.password}
               errorMessage={errors.password}
@@ -97,7 +104,9 @@ function RegisterForm() {
               label=""
               type="email"
               value={values.email}
-              onChange={handleChange}
+              handleChange={(e) => {
+                handleChange(e);
+              }}
               onBlur={handleBlur}
               hasErrorMessage={touched.email}
               errorMessage={errors.email}
@@ -109,6 +118,7 @@ function RegisterForm() {
                   name="checkboxOne"
                   value={values.checkboxOne}
                   onChange={handleChange}
+                  onBlur={handleBlur}
                 />
                 <span>I accept privacy polices</span>
               </label>

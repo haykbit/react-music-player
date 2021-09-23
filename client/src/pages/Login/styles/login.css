@@ -1,4 +1,4 @@
-.background {
+.loginBackground {
   position: relative;
   min-height: 100vh;
   display: -webkit-box;
@@ -10,10 +10,10 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-image: url("../../../assets/images/pexels-elevate-1267350 (1).jpg");
+  background-image: url("../../../assets/images/pexels-koolshooters-7142993.jpg");
   background-position: center;
   bottom: 1vh;
   background-repeat: no-repeat;
   background-size: cover;
 }
-/*# sourceMappingURL=register.css.map */
+/*# sourceMappingURL=login.css.map */
