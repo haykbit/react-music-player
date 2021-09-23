@@ -43,6 +43,10 @@ import FormSchema from "./FormSchema";
 import "./style/RegisterForm.scss";
 import { registerWithEmailAndPassword } from "../../redux/auth/action";
 
+import { getAuth } from "firebase/auth";
+
+const auth = getAuth();
+
 function RegisterForm() {
   const [form, setForm] = useState({ email: "", password: "" });
   const { email, password } = form;
@@ -52,14 +56,14 @@ function RegisterForm() {
 
   const handleRegisterSubmit = (event) => {
     //event.preventDefault();
-    console.log(event);
-    dispatch(registerWithEmailAndPassword(email, password));
-    console.log(event);
+    console.log(email, "EMAIL");
+    console.log(password, "PASS");
+    dispatch(registerWithEmailAndPassword(auth, email, password));
   };
 
   const handleRegisterChange = (event) => {
-    console.log(event, "CHANGE EVENT");
     setForm({ ...form, [event.target.name]: event.target.value });
+    console.log(form);
   };
 
   return (
@@ -121,7 +125,10 @@ function RegisterForm() {
               label=""
               value={values.surname}
               placeholder="Surname"
-              handleChange={handleChange}
+              handleChange={(e) => {
+                handleChange(e);
+                handleRegisterChange(e);
+              }}
               handleBlur={handleBlur}
               hasErrorMessage={touched.surname}
               errorMessage={errors.surname}
@@ -133,7 +140,10 @@ function RegisterForm() {
               label=""
               value={values.password}
               placeholder="Password"
-              handleChange={handleChange}
+              handleChange={(e) => {
+                handleChange(e);
+                handleRegisterChange(e);
+              }}
               handleBlur={handleBlur}
               hasErrorMessage={touched.password}
               errorMessage={errors.password}
@@ -158,7 +168,10 @@ function RegisterForm() {
               label=""
               type="email"
               value={values.email}
-              onChange={handleChange}
+              handleChange={(e) => {
+                handleChange(e);
+                handleRegisterChange(e);
+              }}
               onBlur={handleBlur}
               hasErrorMessage={touched.email}
               errorMessage={errors.email}
