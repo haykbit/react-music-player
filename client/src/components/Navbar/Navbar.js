@@ -1,12 +1,17 @@
 import { RiSettings4Line, RiMusic2Line, RiHistoryFill } from "react-icons/ri";
 import { MdFavoriteBorder } from "react-icons/md";
 import { GoListUnordered } from "react-icons/go";
+import { useHistory } from "react-router-dom";
 import portadaUno from "../../assets/images/portada-1.png";
 import userImage from "../../assets/images/profile.jpg";
 
 import "./style/navbar.scss";
 
 function Navbar() {
+  const history = useHistory();
+  const handleProfile = () => {
+    history.push("/profile");
+  };
   return (
     <>
       <div className="nav-container">
@@ -58,7 +63,7 @@ function Navbar() {
                   <RiHistoryFill className="list-icon" />
                   <h4>History</h4>
                 </li>
-                <li>
+                <li onClick={handleProfile}>
                   <RiSettings4Line className="list-icon" />
                   <h4>Settings</h4>
                 </li>

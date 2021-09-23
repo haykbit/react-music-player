@@ -10,6 +10,7 @@ function App() {
         <Switch>
           <Route path="/home-page" exact component={Home} />
           <Route path="/register" exact component={Register} />
+          {/* <Route path="/profile" exact component={Profile} /> */}
         </Switch>
       </Router>
     </>
