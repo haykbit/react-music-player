@@ -31,7 +31,7 @@ function Navbar() {
         <div className="nav-menu">
           <div className="menu-actions">
             <input type="checkbox" id="menu" />
-            <label for="menu" className="icon">
+            <label htmlFor="menu" className="icon">
               <div className="nav-list"></div>
             </label>
 

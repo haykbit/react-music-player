@@ -2,7 +2,6 @@ const db = require("../models");
 
 async function signIn(req, res, next) {
   const { uid, email } = req.user;
-
   try {
     const user = await db.User.findOne({ email: email });
 
@@ -11,7 +10,7 @@ async function signIn(req, res, next) {
     }
 
     const newUser = await db.User.create({
-      _id: uid,
+      firebase_id: uid,
       email: email,
     });
 

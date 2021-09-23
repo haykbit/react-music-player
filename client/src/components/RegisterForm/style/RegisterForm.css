@@ -1,11 +1,11 @@
 .register-box {
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[2];
-      grid-template-columns: repeat(2, 1fr);
+  -ms-grid-columns: (1fr) [2];
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 0px 25px;
   background-color: rgba(23, 23, 23, 0.85);
   border-radius: 25px;
@@ -15,7 +15,7 @@
   position: relative;
   overflow: hidden;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   padding: 90px;
 }
 
@@ -26,7 +26,7 @@
   outline: none;
   border: none;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   padding: 15px;
   font-size: 20px;
   color: #868686;
@@ -74,19 +74,21 @@ p {
 
 .button:hover {
   -webkit-transform: scale(1.05) perspective(1px);
-          transform: scale(1.05) perspective(1px);
+  transform: scale(1.05) perspective(1px);
 }
 
 .button:active {
-  -webkit-box-shadow: #2b2c2c 3px 3px 6px 0px inset, rgba(110, 107, 107, 0.5) -3px -3px 6px 1px inset;
-          box-shadow: #2b2c2c 3px 3px 6px 0px inset, rgba(110, 107, 107, 0.5) -3px -3px 6px 1px inset;
+  -webkit-box-shadow: #2b2c2c 3px 3px 6px 0px inset,
+    rgba(110, 107, 107, 0.5) -3px -3px 6px 1px inset;
+  box-shadow: #2b2c2c 3px 3px 6px 0px inset,
+    rgba(110, 107, 107, 0.5) -3px -3px 6px 1px inset;
 }
 
 .checkboxes {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[1];
-      grid-template-columns: repeat(1, 1fr);
+  -ms-grid-columns: (1fr) [1];
+  grid-template-columns: repeat(1, 1fr);
   grid-gap: 25px 0px;
 }
 
