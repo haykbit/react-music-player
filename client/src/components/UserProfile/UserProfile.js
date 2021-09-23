@@ -10,12 +10,13 @@ import "./style/userprofile.scss";
 function UserProfile() {
   return (
     <>
-      <div className="name">
-        <div className="name">
-          <div className="name">
-            <div className="name">H1</div>
-          </div>
+      <div className="profile-container">
+        <div className="profile-menu">
+          <ul>
+            <li></li>
+          </ul>
         </div>
+        <div className="profile-item"></div>
       </div>
     </>
   );
