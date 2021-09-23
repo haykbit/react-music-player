@@ -42,6 +42,10 @@
   border-radius: 5px;
 }
 
+.login-container .login-form input:focus {
+  outline: none;
+}
+
 .login-container h2 {
   color: #fff;
   margin: 0;
