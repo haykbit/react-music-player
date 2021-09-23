@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import imagenUno from "../../assets/images/portada-1.png";
+import imagenUno from "../../assets/images/icons/portada-1.png";
 import { login, loginWithEmailAndPassword } from "../../redux/auth/action";
-import google from "../../assets/images/search.png";
-import gmail from "../../assets/images/gmail.png";
+import google from "../../assets/images/icons/search.png";
+import gmail from "../../assets/images/icons/gmail.png";
 import "./style/loginform.scss";
 
 function LoginForm() {

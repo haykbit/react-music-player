@@ -2,8 +2,8 @@ import { RiSettings4Line, RiMusic2Line, RiHistoryFill } from "react-icons/ri";
 import { MdFavoriteBorder } from "react-icons/md";
 import { GoListUnordered } from "react-icons/go";
 import { useHistory } from "react-router-dom";
-import portadaUno from "../../assets/images/portada-1.png";
-import userImage from "../../assets/images/profile.jpg";
+import portadaUno from "../../assets/images/icons/portada-1.png";
+import userImage from "../../assets/images/icons/profile.jpg";
 
 import "./style/navbar.scss";
 
