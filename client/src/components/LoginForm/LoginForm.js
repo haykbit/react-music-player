@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import imagenUno from "../../assets/images/portada-1.png";
 import { login, loginWithEmailAndPassword } from "../../redux/auth/action";
 import google from "../../assets/images/search.png";
 import gmail from "../../assets/images/gmail.png";
@@ -41,11 +42,11 @@ function LoginForm() {
           />
           <button className="login-btn">Login</button>
         </form>
+        <h3>Or</h3>
         <button className="login-gl-btn" onClick={handleLoginWithGoogle}>
           <img src={google} alt="" />
           Login with Google
         </button>
-        <h3>Or</h3>
         <button className="register-btn">
           <img src={gmail} alt="" />
           Register
