@@ -15,6 +15,9 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   SIGN_OUT_SUCCESS,
+  SEND_PASSWORD_RESET_REQUEST,
+  SEND_PASSWORD_RESET_SUCCESS,
+  SEND_PASSWORD_RESET_FAIL,
 } from "./types";
 
 export const login = () => async (dispatch) => {
@@ -73,4 +76,18 @@ export const logOut = () => async (dispatch) => {
   dispatch({ type: SIGN_OUT_SUCCESS });
 };
 
-export const sendPasswordResetEmailToUser = () => {};
+export const sendPasswordResetEmailToUser = (email) => async (dispatch) => {
+  dispatch({ type: SEND_PASSWORD_RESET_REQUEST });
+  const firebaseResponse = await sendPasswordResetEmail(email);
+  try {
+    if (firebaseResponse.error) {
+      dispatch({
+        type: SEND_PASSWORD_RESET_FAIL,
+        payload: firebaseResponse.error.message,
+      });
+    }
+    dispatch({ type: SEND_PASSWORD_RESET_SUCCESS });
+  } catch (error) {
+    dispatch({ type: SEND_PASSWORD_RESET_FAIL, payload: error.message });
+  }
+};

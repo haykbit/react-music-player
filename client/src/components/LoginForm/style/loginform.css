@@ -23,6 +23,20 @@
   border-radius: 20px;
 }
 
+.login-container .login-section .forgotPassword {
+  color: #fff;
+  text-align: center;
+  margin: 5px;
+}
+
+.login-container .login-section .forgotPassword a {
+  color: #fff;
+}
+
+.login-container .login-section .forgotPassword a:hover {
+  color: #ee05e2;
+}
+
 .login-container .login-form {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -113,4 +127,4 @@
   background-color: #fff;
   color: #000;
 }
-/*# sourceMappingURL=loginform.css.map */
+/*# sourceMappingURL=LoginForm.css.map */

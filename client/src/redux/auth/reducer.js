@@ -5,7 +5,11 @@ import {
   LOAD_PROFILE,
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
+  REGISTER_FAIL,
   SIGN_OUT_SUCCESS,
+  SEND_PASSWORD_RESET_REQUEST,
+  SEND_PASSWORD_RESET_SUCCESS,
+  SEND_PASSWORD_RESET_FAIL,
 } from "./types";
 
 import INITIAL_STATE from "./state";
@@ -39,6 +43,27 @@ const reducer = (state = INITIAL_STATE, action) => {
       };
     case SIGN_OUT_SUCCESS:
       return state;
+    case SEND_PASSWORD_RESET_REQUEST:
+      return {
+        ...state,
+        passwordResetting: true,
+        passwordResetError: null,
+        passwordResetDone: false,
+      };
+    case SEND_PASSWORD_RESET_SUCCESS:
+      return {
+        ...state,
+        passwordResetting: false,
+        passwordResetError: null,
+        passwordResetDone: true,
+      };
+    case SEND_PASSWORD_RESET_FAIL:
+      return {
+        ...state,
+        passwordResetting: false,
+        passwordResetError: action.payload,
+        passwordResetDone: false,
+      };
     default:
       return state;
   }
