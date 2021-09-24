@@ -12,13 +12,12 @@ import Profile from "./pages/Profile";
 
 function App() {
   const history = useHistory();
-  const { loading, accessToken } = useSelector((state) => state);
-  // useEffect(() => {
-  //   if (!loading && !accessToken) {
-  //     history.push("/register");
-  //     history.push("/login");
-  //   }
-  // }, [loading, accessToken, history]);
+  const { loading, accessToken } = useSelector((state) => state.auth);
+  useEffect(() => {
+    if (!loading && !accessToken) {
+      history.push("/login");
+    }
+  }, [loading, accessToken, history]);
 
   return (
     <>

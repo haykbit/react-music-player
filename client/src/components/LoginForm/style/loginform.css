@@ -37,6 +37,10 @@
   color: #ee05e2;
 }
 
+.login-container .login-section .registerLink {
+  text-decoration: none;
+}
+
 .login-container .login-form {
   display: -webkit-box;
   display: -ms-flexbox;

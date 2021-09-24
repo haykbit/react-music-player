@@ -22,7 +22,7 @@ function Navbar() {
     if (!loading && !accessToken && signOutSuccess) {
       history.push("/login");
     }
-  }, [loading, accessToken, history]);
+  }, [loading, accessToken, signOutSuccess, history]);
   const handleProfile = () => {
     history.push("/profile");
   };

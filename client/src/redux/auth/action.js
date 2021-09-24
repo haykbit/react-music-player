@@ -43,7 +43,7 @@ export const registerWithEmailAndPassword =
   (email, password, user) => async (dispatch) => {
     try {
       dispatch({ type: REGISTER_REQUEST });
-      const res = await signUpWithEmailAndPassword(email, password);
+      await signUpWithEmailAndPassword(email, password);
 
       dispatch({
         type: REGISTER_SUCCESS,
