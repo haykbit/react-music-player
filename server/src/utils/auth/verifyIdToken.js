@@ -1,4 +1,4 @@
-const { auth } = require("../../firebase/firebase");
+const { auth } = require("./firebase");
 
 function verifyIdToken(token) {
   return auth.verifyIdToken(token);

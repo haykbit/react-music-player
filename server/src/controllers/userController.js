@@ -2,7 +2,7 @@ const db = require("../models");
 
 async function signIn(req, res, next) {
   const { uid, email } = req.user;
-
+  const { firstName, lastName } = req.body.user;
   try {
     const user = await db.User.findOne({ email: email });
 
@@ -11,8 +11,10 @@ async function signIn(req, res, next) {
     }
 
     const newUser = await db.User.create({
-      _id: uid,
+      firebase_id: uid,
       email: email,
+      firstName: firstName || "",
+      lastName: lastName || "",
     });
 
     res.sendStatus(201);
@@ -21,6 +23,21 @@ async function signIn(req, res, next) {
   }
 }
 
+async function getUserById(req, res, next) {
+  const { id: userId } = req.params;
+
+  try {
+    const user = await db.User.findOne({ firebase_id: userId }).lean();
+
+    res.status(200).send({
+      data: user,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 module.exports = {
   signIn: signIn,
+  getUserById: getUserById,
 };

@@ -1,12 +1,13 @@
 .register-box {
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[2];
       grid-template-columns: repeat(2, 1fr);
   grid-gap: 0px 25px;
+      grid-template-areas: "text space" "name surname" "password cpassword" "email checkboxes" "button info";
   background-color: rgba(23, 23, 23, 0.85);
   border-radius: 25px;
   bottom: 4vh;
@@ -17,6 +18,48 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 90px;
+}
+
+.name {
+  -ms-grid-row: 2;
+  -ms-grid-column: 1;
+  grid-area: name;
+}
+
+.password {
+  -ms-grid-row: 3;
+  -ms-grid-column: 1;
+  grid-area: password;
+}
+
+.surname {
+  -ms-grid-row: 2;
+  -ms-grid-column: 2;
+  grid-area: surname;
+}
+
+.cpassword {
+  -ms-grid-row: 3;
+  -ms-grid-column: 2;
+  grid-area: cpassword;
+}
+
+.email {
+  -ms-grid-row: 4;
+  -ms-grid-column: 1;
+  grid-area: email;
+}
+
+.info {
+  -ms-grid-row: 5;
+  -ms-grid-column: 2;
+  grid-area: info;
+}
+
+.space {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: space;
 }
 
 .register-inputs {
@@ -64,12 +107,18 @@ p {
   font-size: 40px;
   font-weight: 600;
   margin: 0;
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: text;
 }
 
 .button {
   background-color: #395fff;
   color: white;
   cursor: pointer;
+  -ms-grid-row: 5;
+  -ms-grid-column: 1;
+  grid-area: button;
 }
 
 .button:hover {
@@ -85,9 +134,12 @@ p {
 .checkboxes {
   display: -ms-grid;
   display: grid;
+  -ms-grid-row: 4;
+  -ms-grid-column: 2;
+  grid-area: checkboxes;
   -ms-grid-columns: (1fr)[1];
       grid-template-columns: repeat(1, 1fr);
-  grid-gap: 25px 0px;
+  grid-gap: 10px 0px;
 }
 
 input[type="checkbox"] {
@@ -104,5 +156,14 @@ label {
 
 span {
   bottom: 20vh;
+}
+
+.errorMessage {
+  color: #e92b2d;
+  font-weight: 600;
+  font-size: 12px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 2px;
 }
 /*# sourceMappingURL=RegisterForm.css.map */
