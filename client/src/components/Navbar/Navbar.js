@@ -1,7 +1,12 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/auth/action";
 import { RiSettings4Line, RiMusic2Line, RiHistoryFill } from "react-icons/ri";
 import { MdFavoriteBorder } from "react-icons/md";
 import { GoListUnordered } from "react-icons/go";
+import { IoLogOutOutline } from "react-icons/io5";
 import { useHistory } from "react-router-dom";
+
 import portadaUno from "../../assets/images/portada-1.png";
 import userImage from "../../assets/images/profile.jpg";
 
@@ -9,9 +14,20 @@ import "./style/navbar.scss";
 
 function Navbar() {
   const history = useHistory();
+  const dispatch = useDispatch();
+  const { loading, accessToken } = useSelector((state) => state.auth);
+  useEffect(() => {
+    if (!loading && !accessToken) {
+      history.push("/login");
+    }
+  }, [loading, accessToken, history]);
   const handleProfile = () => {
     history.push("/profile");
   };
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
   return (
     <>
       <div className="nav-container">
@@ -66,6 +82,10 @@ function Navbar() {
                 <li onClick={handleProfile}>
                   <RiSettings4Line className="list-icon" />
                   <h4>Settings</h4>
+                </li>
+                <li onClick={handleLogout}>
+                  <IoLogOutOutline className="list-icon" />
+                  <h4 className="logout">Logout</h4>
                 </li>
               </ul>
             </nav>
