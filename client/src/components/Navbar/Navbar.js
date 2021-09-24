@@ -11,7 +11,6 @@ import portadaUno from "../../assets/images/portada-1.png";
 import userImage from "../../assets/images/profile.jpg";
 
 import "./style/navbar.scss";
-import { signOut } from "../../services/auth";
 
 function Navbar() {
   const history = useHistory();
