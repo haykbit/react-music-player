@@ -23,6 +23,20 @@ async function signIn(req, res, next) {
   }
 }
 
+async function getUserById(req, res, next) {
+  const { id: userId } = req.params;
+
+  try {
+    const user = await db.User.findOne({ firebase_id: userId }).lean();
+
+    res.status(200).send({
+      data: user,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 async function updateUser(req, res, next) {
   const { id: userId } = req.params;
   const { firstName, lastName, email } = req.body;
@@ -47,5 +61,6 @@ async function updateUser(req, res, next) {
 
 module.exports = {
   signIn: signIn,
+  getUserById: getUserById,
   updateUser: updateUser,
 };

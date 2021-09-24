@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Input from "../Input/index";
 import Button from "../Buttons/index";
+import Checkbox from "../Input/Checkboxes/index";
 import { Formik } from "formik";
 import FormSchema from "./FormSchema";
 import "./style/RegisterForm.scss";
@@ -122,18 +123,21 @@ function RegisterForm() {
             />
             <div className="checkboxes">
               <label>
-                <input
-                  type="checkbox"
+                <Checkbox
                   name="checkboxOne"
-                  value={values.checkboxOne}
+                  className="checkboxOne"
+                  type="checkbox"
+                  value={values.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
+
                 <span>I accept privacy polices</span>
               </label>
               <label>
                 <input
                   type="checkbox"
+                  className="checkboxTwo"
                   name="checkboxTwo"
                   value={values.checkboxTwo}
                   onChange={handleChange}

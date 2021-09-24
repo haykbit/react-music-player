@@ -1,0 +1,68 @@
+.profile-container {
+  margin-left: 25px;
+  margin-top: 40px;
+
+  h2 {
+    color: #fff;
+    font-size: 40px;
+  }
+
+  h1 {
+    color: #fff;
+    padding: 20px;
+  }
+
+  .profile-content {
+    display: flex;
+  }
+
+  .lateral-menu {
+    width: 25%;
+
+    button {
+      color: #fff;
+      font-size: 18px;
+      margin-top: 20px;
+      padding: 12px;
+      width: 100px;
+      border: none;
+      border-radius: 5px;
+      background-color: #395fff;
+    }
+  }
+  .profile-menu {
+    background-color: #171717;
+    border-radius: 7px;
+    padding: 5%;
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      color: #fff;
+      font-size: 20px;
+      font-weight: 500;
+      padding: 20px 20px 20px 20px;
+      cursor: pointer;
+      background-color: #0f0f0f;
+      border-radius: 7px;
+      margin-bottom: 10px;
+    }
+  }
+  //First Page
+  // .profile-item {
+  //   display: none;
+  //   flex-direction: column;
+  //   background-color: #171717;
+  //   width: 80%;
+  //   height: 500px;
+  //   margin: 0px 20px 0px 20px;
+  //   border-radius: 7px;
+  //   border: none;
+  //   outline: none;
+  // }
+}
+
+//Second Page
