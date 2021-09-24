@@ -8,4 +8,8 @@ export {
   signOut,
   getCurrentUserToken,
   getCurrentUserEmail,
+  getCurrentUser,
+  updateUserEmail,
+  UpdateUserPassword,
+  reauthenticate,
 } from "./auth";
