@@ -42,7 +42,7 @@ async function updateUser(req, res, next) {
   const { firstName, lastName, email } = req.body;
 
   try {
-    const updatedUser = db.User.findOneAndUpdate(
+    const updatedUser = await db.User.findOneAndUpdate(
       { firebase_id: userId },
       {
         firstName: firstName,
@@ -52,7 +52,7 @@ async function updateUser(req, res, next) {
     );
 
     res.status(200).send({
-      data: updateUser,
+      data: updatedUser,
     });
   } catch (err) {
     console.log(err);
