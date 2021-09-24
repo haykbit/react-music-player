@@ -25,12 +25,12 @@ function ProfileInfo() {
         <div className="form-box">
           <form>
             <div>
-              <Input className="user-input" placeholder="Name" />
-              <Input className="user-input" placeholder="Surname" />
+              <input className="user-input" placeholder="Name" />
+              <input className="user-input" placeholder="Surname" />
             </div>
 
             <div>
-              <Input className="user-input" placeholder="Email" />
+              <input className="user-input" placeholder="Email" />
               <Button className="user-input password-button">
                 Reset Password
               </Button>
@@ -96,6 +96,36 @@ function ProfileInfo() {
             <div className="genre-checkbox-box">
               <label>
                 Blues
+                <input className="input-checkbox" type="checkbox"></input>
+              </label>
+            </div>
+            <div className="genre-checkbox-box">
+              <label>
+                Country
+                <input className="input-checkbox" type="checkbox"></input>
+              </label>
+            </div>
+            <div className="genre-checkbox-box">
+              <label>
+                Country
+                <input className="input-checkbox" type="checkbox"></input>
+              </label>
+            </div>
+            <div className="genre-checkbox-box">
+              <label>
+                Country
+                <input className="input-checkbox" type="checkbox"></input>
+              </label>
+            </div>
+            <div className="genre-checkbox-box">
+              <label>
+                Country
+                <input className="input-checkbox" type="checkbox"></input>
+              </label>
+            </div>
+            <div className="genre-checkbox-box">
+              <label>
+                Country
                 <input className="input-checkbox" type="checkbox"></input>
               </label>
             </div>

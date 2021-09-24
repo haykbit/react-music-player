@@ -1,0 +1,97 @@
+.user-info {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin: 5%;
+}
+
+.left-column {
+  width: 20%;
+  height: 100%;
+}
+
+.right-column {
+  width: 80%;
+  height: 80%;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+
+.right-column button {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+}
+
+.right-column .form-box input {
+  padding: 15px;
+  width: 40%;
+  border-radius: 5px;
+  margin: 10px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.right-column .form-box button {
+  padding: 15px;
+  width: 30%;
+  border-radius: 5px;
+  margin: 10px;
+  background-color: #395fff;
+}
+
+.right-column .genre-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin: 10px;
+  height: 50%;
+  overflow: hidden;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.right-column .genre-side {
+  overflow-y: scroll;
+  width: 40%;
+}
+
+.right-column .button-side .edit-btn {
+  padding: 15px;
+  border-radius: 5px;
+  margin: 10px;
+  background-color: #395fff;
+}
+
+.right-column ::-webkit-scrollbar {
+  width: 10px;
+}
+
+.right-column ::-webkit-scrollbar-track {
+  background: #0f0f0f;
+  border-radius: 20px;
+}
+
+.right-column ::-webkit-scrollbar-thumb {
+  background: rgba(53, 53, 53, 0.575);
+  border-radius: 20px;
+}
+
+.right-column ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.849);
+}
+/*# sourceMappingURL=profileInfo.css.map */
