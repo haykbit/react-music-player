@@ -11,13 +11,16 @@ import portadaUno from "../../assets/images/portada-1.png";
 import userImage from "../../assets/images/profile.jpg";
 
 import "./style/navbar.scss";
+import { signOut } from "../../services/auth";
 
 function Navbar() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { loading, accessToken } = useSelector((state) => state.auth);
+  const { loading, accessToken, signOutSuccess } = useSelector(
+    (state) => state.auth
+  );
   useEffect(() => {
-    if (!loading && !accessToken) {
+    if (!loading && !accessToken && signOutSuccess) {
       history.push("/login");
     }
   }, [loading, accessToken, history]);
