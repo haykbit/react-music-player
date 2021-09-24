@@ -78,16 +78,13 @@ export const logOut = () => async (dispatch) => {
 
 export const sendPasswordResetEmailToUser = (email) => async (dispatch) => {
   dispatch({ type: SEND_PASSWORD_RESET_REQUEST });
-  const firebaseResponse = await sendPasswordResetEmail(email);
   try {
-    if (firebaseResponse.error) {
-      dispatch({
-        type: SEND_PASSWORD_RESET_FAIL,
-        payload: firebaseResponse.error.message,
-      });
-    }
+    await sendPasswordResetEmail(email);
     dispatch({ type: SEND_PASSWORD_RESET_SUCCESS });
   } catch (error) {
-    dispatch({ type: SEND_PASSWORD_RESET_FAIL, payload: error.message });
+    dispatch({
+      type: SEND_PASSWORD_RESET_FAIL,
+      payload: error.message,
+    });
   }
 };
