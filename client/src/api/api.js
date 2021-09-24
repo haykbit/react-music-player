@@ -21,9 +21,14 @@ export async function getUserProfile(id) {
 }
 
 export async function updateUserProfile(id, user) {
+  const userToken = await getCurrentUserToken();
+
   return axios({
     method: "PATCH",
     url: `${process.env.REACT_APP_API_BASE_URL}/users/${id}`,
     data: { ...user },
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
   });
 }

@@ -18,6 +18,7 @@ if (!firebase.apps.length) {
 }
 
 export const auth = firebase.auth();
+const authUser = firebase.auth().currentUser;
 
 export function onAuthStateChanged(...props) {
   return auth.onAuthStateChanged(...props);
@@ -68,6 +69,16 @@ export function updateUserEmail(email) {
   return auth.currentUser.updateEmail(email);
 }
 
-export function UpdateUserPassword(user, newPassword) {
-  auth.updatePassword(user, newPassword);
+//TODO check this function
+export async function reauthenticate() {
+  const login = await auth.signInWithEmailAndPassword(
+    "admin@mail.com",
+    "Admin123$"
+  );
+  return authUser.reauthenticateWithCredential(login);
+}
+
+//TODO check this function
+export function updateUserPassword(user, newPassword) {
+  return authUser.updatePassword(user, newPassword);
 }
