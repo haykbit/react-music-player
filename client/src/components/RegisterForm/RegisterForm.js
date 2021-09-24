@@ -2,6 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import Input from "../Input/index";
 import Button from "../Buttons/index";
+import Checkbox from "../Input/Checkboxes/index";
 import { Formik } from "formik";
 // import { Link } from "react-router-dom";
 import FormSchema from "./FormSchema";
@@ -104,17 +105,23 @@ function RegisterForm() {
             />
             <div className="checkboxes">
               <label>
-                <input
-                  type="checkbox"
+                <Checkbox
                   name="checkboxOne"
-                  value={values.checkboxOne}
+                  className="checkboxOne"
+                  type="checkbox"
+                  value={values.email}
                   onChange={handleChange}
+                  onBlur={handleBlur}
+                  // hasErrorMessage={touched.checkboxOne}
+                  // errorMessage={errors.checkboxOne}
                 />
+
                 <span>I accept privacy polices</span>
               </label>
               <label>
                 <input
                   type="checkbox"
+                  className="checkboxTwo"
                   name="checkboxTwo"
                   value={values.checkboxTwo}
                   onChange={handleChange}
