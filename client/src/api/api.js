@@ -19,3 +19,11 @@ export async function getUserProfile(id) {
     url: `${process.env.REACT_APP_API_BASE_URL}/users/${id}`,
   });
 }
+
+export async function updateUserProfile(id, user) {
+  return axios({
+    method: "PATCH",
+    url: `${process.env.REACT_APP_API_BASE_URL}/users/${id}`,
+    data: { ...user },
+  });
+}

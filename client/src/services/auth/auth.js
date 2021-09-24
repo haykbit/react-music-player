@@ -59,3 +59,17 @@ export function getCurrentUserEmail() {
 
   return auth.currentUser.email;
 }
+
+export function getCurrentUser() {
+  return auth.currentUser;
+}
+
+export function updateUserEmail(user, email) {
+  auth.updateEmail(user, {
+    email: email,
+  });
+}
+
+export function UpdateUserPassword(user, newPassword) {
+  auth.updatePassword(user, newPassword);
+}
