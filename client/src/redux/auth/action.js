@@ -3,6 +3,7 @@ import {
   signUpWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  sendPasswordResetEmail,
 } from "../../services/auth";
 import { syncUserData } from "../../api/api";
 import {
@@ -22,28 +23,31 @@ export const login = () => async (dispatch) => {
     const res = await signInWithGoogle();
     const accessToken = res.credential.accessToken;
     const userProfile = {
-      name: res.additionalUserInfo.profile.name,
+      firstName: res.additionalUserInfo.profile.given_name,
+      lastName: res.additionalUserInfo.profile.family_name,
       email: res.additionalUserInfo.profile.email,
-      picture: res.additionalUserInfo.profile.picture,
+      // picture: res.additionalUserInfo.profile.picture,
     };
     dispatch({ type: LOGIN_SUCCESS, payload: accessToken });
     dispatch({ type: LOAD_PROFILE, payload: userProfile });
-    await syncUserData();
+    await syncUserData(userProfile);
   } catch (error) {}
 };
 
 export const registerWithEmailAndPassword =
-  (email, password) => async (dispatch) => {
+  (email, password, user) => async (dispatch) => {
     try {
       dispatch({ type: REGISTER_REQUEST });
       const res = await signUpWithEmailAndPassword(email, password);
-      console.log("email and password", res);
 
       dispatch({
         type: REGISTER_SUCCESS,
+        payload: { ...user, email },
       });
-      await syncUserData();
-    } catch (error) {}
+      await syncUserData(user);
+    } catch (error) {
+      console.log("ERROR!!!");
+    }
   };
 
 export const loginWithEmailAndPassword =
@@ -68,3 +72,5 @@ export const logOut = () => async (dispatch) => {
   await signOut();
   dispatch({ type: SIGN_OUT_SUCCESS });
 };
+
+export const sendPasswordResetEmailToUser = () => {};

@@ -20,7 +20,7 @@
 .login-container .login-section {
   padding: 3%;
   background-color: rgba(0, 0, 0, 0.86);
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
 .login-container .login-form {
@@ -36,17 +36,21 @@
 .login-container .login-form input {
   padding: 24px;
   width: 300px;
-  font-size: 20px;
+  font-size: 16px;
   margin-top: 10px;
   border: none;
   border-radius: 5px;
+}
+
+.login-container .login-form input:focus {
+  outline: none;
 }
 
 .login-container h2 {
   color: #fff;
   margin: 0;
   margin-bottom: 20px;
-  font-size: 60px;
+  font-size: 50px;
 }
 
 .login-container h3 {
@@ -63,6 +67,7 @@
   font-size: 20px;
   text-align: center;
   border: none;
+  cursor: pointer;
   border-radius: 7px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -73,6 +78,20 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
+}
+
+.login-container button:hover {
+  -webkit-transform: scale(0.99);
+          transform: scale(0.99);
+}
+
+.login-container button:active {
+  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 40px 60px -15px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 40px 60px -15px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
 .login-container button img {
@@ -83,6 +102,7 @@
 
 .login-container .login-btn {
   background-color: #395fff;
+  padding: 22px;
 }
 
 .login-container .login-gl-btn {
