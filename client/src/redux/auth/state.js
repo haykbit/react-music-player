@@ -5,7 +5,6 @@ const INITIAL_STATE = {
   error: null,
   registerSuccess: false,
   signOutSuccess: false,
-  passwordResetting: false,
   passwordResetDone: false,
 };
 

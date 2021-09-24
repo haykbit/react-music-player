@@ -75,21 +75,21 @@ const reducer = (state = INITIAL_STATE, action) => {
     case SEND_PASSWORD_RESET_REQUEST:
       return {
         ...state,
-        passwordResetting: true,
+        loading: true,
         passwordResetDone: false,
         error: null,
       };
     case SEND_PASSWORD_RESET_SUCCESS:
       return {
         ...state,
-        passwordResetting: false,
+        loading: false,
         passwordResetDone: true,
         error: null,
       };
     case SEND_PASSWORD_RESET_FAIL:
       return {
         ...state,
-        passwordResetting: false,
+        loading: false,
         passwordResetDone: false,
         error: action.payload,
       };
