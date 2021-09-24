@@ -23,6 +23,29 @@ async function signIn(req, res, next) {
   }
 }
 
+async function updateUser(req, res, next) {
+  const { id: userId } = req.params;
+  const { firstName, lastName, email } = req.body;
+
+  try {
+    const updatedUser = db.User.findOneAndUpdate(
+      { firebase_id: userId },
+      {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+      }
+    );
+
+    res.status(200).send({
+      data: updateUser,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 module.exports = {
   signIn: signIn,
+  updateUser: updateUser,
 };
