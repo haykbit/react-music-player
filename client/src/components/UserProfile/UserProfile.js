@@ -5,8 +5,6 @@ import portadaCuatro from "../../assets/images/portada-4.png";
 import { BsFillCaretRightFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 
-import ProfileCard from "../ProfileCard/index";
-
 import "./style/userprofile.scss";
 
 function UserProfile() {
@@ -28,11 +26,12 @@ function UserProfile() {
               <button>Home</button>
             </div>
           </div>
-          <ProfileCard />
-
-          <div className="payment-info"></div>
-          <div className="sub-info"></div>
-          <div className="upload-info"></div>
+          <div className="profile-item">
+            <div className="user-info"></div>
+            <div className="payment-info"></div>
+            <div className="sub-info"></div>
+            <div className="upload-info"></div>
+          </div>
         </div>
       </div>
     </>

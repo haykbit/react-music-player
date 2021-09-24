@@ -17,10 +17,8 @@ function RegisterForm() {
   useEffect(() => {
     if (registerState) {
       history.push("/login");
-    } else {
-      console.log("exist");
     }
-  }, [registerState]);
+  }, [registerState, history]);
   return (
     <Formik
       onSubmit={(values) => {
@@ -87,6 +85,7 @@ function RegisterForm() {
               type="password"
               name="password"
               label=""
+              autoComplete="on"
               value={values.password}
               placeholder="Password"
               onChange={handleChange}
@@ -99,6 +98,7 @@ function RegisterForm() {
               className="register-inputs cpassword"
               name="confirm"
               label=""
+              autoComplete="on"
               placeholder="Confirm password"
               type="password"
               value={values.confirm}

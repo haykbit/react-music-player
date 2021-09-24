@@ -51,18 +51,12 @@
       margin-bottom: 10px;
     }
   }
-  //First Page
-  // .profile-item {
-  //   display: none;
-  //   flex-direction: column;
-  //   background-color: #171717;
-  //   width: 80%;
-  //   height: 500px;
-  //   margin: 0px 20px 0px 20px;
-  //   border-radius: 7px;
-  //   border: none;
-  //   outline: none;
-  // }
-}
 
-//Second Page
+  .profile-item {
+    background-color: #171717;
+    width: 80%;
+    height: 500px;
+    margin: 0px 20px 0px 20px;
+    border-radius: 7px;
+  }
+}

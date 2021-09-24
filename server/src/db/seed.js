@@ -5,14 +5,14 @@ async function seedUsers() {
   try {
     db.User.insertMany([
       {
-        firstName: "John",
-        lastNaem: "Doe",
-        email: "jdoe@mail.com",
-        firebase_id: "i6uvFci1zlShHRk33QDBTSzoAJU2",
+        firstName: "Admin",
+        lastName: "Doe",
+        email: "admin@mail.com",
+        firebase_id: "2qVg13KMXjaxEyECGdSFAiyfN852",
       },
       {
         firstName: "Jane",
-        lastNaem: "Doette",
+        lastName: "Doette",
         email: "jdoette@mail.com",
         firebase_id: "QkVnUTPyCTelrls3YD56hzQMyhN2",
       },
@@ -25,7 +25,7 @@ async function seedUsers() {
 async function seedDatabase() {
   try {
     const userExists = await db.User.findOne({
-      firebase_id: "i6uvFci1zlShHRk33QDBTSzoAJU2",
+      firebase_id: "2qVg13KMXjaxEyECGdSFAiyfN852",
     }).lean();
     if (!userExists) {
       await mongoose.connection.collection("users").drop();
