@@ -1,3 +1,7 @@
+.payment-info {
+  display: none;
+}
+
 .payment-info .content {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -83,6 +87,7 @@
   border: none;
   color: #fff;
   background-color: #395fff;
+  cursor: pointer;
 }
 
 .payment-info .content .bottom-row .button-icon {

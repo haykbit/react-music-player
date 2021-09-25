@@ -1,6 +1,7 @@
 import React from "react";
 import ProfileInfo from "../ProfileInfo/index";
 import PaymentInfo from "../PaymentInfo/index";
+import SubscriptionInfo from "../SubscriptionInfo/SubscriptionInfo";
 
 import "./styles/profileCard.scss";
 
@@ -9,6 +10,7 @@ function ProfileCard() {
     <div className="profile-card">
       <ProfileInfo />
       <PaymentInfo />
+      <SubscriptionInfo />
     </div>
   );
 }
