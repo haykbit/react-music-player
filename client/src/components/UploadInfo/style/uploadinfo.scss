@@ -1,4 +1,4 @@
-.subscription-info {
+.upload-info {
   .content {
     display: flex;
     flex-direction: column;
@@ -8,6 +8,9 @@
       font-size: 18px;
       color: #fff;
       margin-bottom: 10px;
+      background-color: #0f0f0f;
+      padding: 20px;
+      border-radius: 5px;
     }
 
     h3 {
@@ -35,12 +38,12 @@
         color: #fff;
         background-color: #ff4949;
         margin-top: 40px;
-        margin-right: 10px;
         cursor: pointer;
       }
       .button-icon {
         color: rgb(255, 255, 255);
         width: 30px;
+        margin-right: 10px;
         height: 30px;
       }
     }

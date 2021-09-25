@@ -2,6 +2,35 @@
   margin-left: 25px;
   margin-top: 40px;
 
+  .profile-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #171717;
+    width: 80%;
+    height: 600px;
+    margin: 0px 20px 0px 20px;
+    border-radius: 7px;
+    border: none;
+    outline: none;
+
+    .profile-component {
+    }
+
+    .payment-component {
+    }
+
+    .sub-component {
+    }
+
+    .upload-component {
+    }
+
+    h2 {
+      margin-bottom: 40px;
+      margin-left: 5%;
+    }
+  }
+
   h2 {
     color: #fff;
     font-size: 40px;
@@ -27,6 +56,7 @@
       width: 100px;
       border: none;
       border-radius: 5px;
+      cursor: pointer;
       background-color: #395fff;
     }
   }

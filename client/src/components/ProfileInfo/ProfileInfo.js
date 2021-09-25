@@ -2,7 +2,6 @@ import React from "react";
 import "./styles/profileInfo.scss";
 import userImage from "../../assets/images/profile.jpg";
 import Button from "../Buttons/index";
-import Input from "../Buttons/index";
 
 function ProfileInfo() {
   return (

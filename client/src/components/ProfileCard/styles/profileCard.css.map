@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,aAAa,CAAC;EACZ,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,gBAAgB,EAAE,OAAO;EACzB,KAAK,EAAE,GAAG;EACV,MAAM,EAAE,KAAK;EACb,MAAM,EAAE,iBAAiB;EACzB,aAAa,EAAE,GAAG;EAClB,MAAM,EAAE,IAAI;EACZ,OAAO,EAAE,IAAI;CAMd;;AAfD,AAWE,aAXW,CAWX,EAAE,CAAC;EACD,aAAa,EAAE,IAAI;EACnB,WAAW,EAAE,EAAE;CAChB",
-    "sources": [
-        "profileCard.scss"
-    ],
-    "names": [],
-    "file": "profileCard.css"
-}

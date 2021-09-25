@@ -1,4 +1,4 @@
-.subscription-info .content {
+.upload-info .content {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -9,17 +9,20 @@
   margin-left: 5%;
 }
 
-.subscription-info .content p {
+.upload-info .content p {
   font-size: 18px;
   color: #fff;
   margin-bottom: 10px;
+  background-color: #0f0f0f;
+  padding: 20px;
+  border-radius: 5px;
 }
 
-.subscription-info .content h3 {
+.upload-info .content h3 {
   color: #fff;
 }
 
-.subscription-info .content .sub-info {
+.upload-info .content .sub-info {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -29,11 +32,11 @@
           flex-direction: row;
 }
 
-.subscription-info .content .sub-info div {
+.upload-info .content .sub-info div {
   margin-right: 20px;
 }
 
-.subscription-info .content .bottom-row .edit-btn {
+.upload-info .content .bottom-row .edit-btn {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -48,13 +51,13 @@
   color: #fff;
   background-color: #ff4949;
   margin-top: 40px;
-  margin-right: 10px;
   cursor: pointer;
 }
 
-.subscription-info .content .bottom-row .button-icon {
+.upload-info .content .bottom-row .button-icon {
   color: white;
   width: 30px;
+  margin-right: 10px;
   height: 30px;
 }
-/*# sourceMappingURL=subscriptioninfo.css.map */
+/*# sourceMappingURL=uploadinfo.css.map */

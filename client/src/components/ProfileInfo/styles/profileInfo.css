@@ -8,7 +8,6 @@
       -ms-flex-direction: column;
           flex-direction: column;
   margin: 5%;
-  display: none;
 }
 
 .user-info .content {
@@ -81,7 +80,7 @@
       -ms-flex-direction: row;
           flex-direction: row;
   margin: 10px;
-  height: 50%;
+  height: 40%;
   overflow: hidden;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
