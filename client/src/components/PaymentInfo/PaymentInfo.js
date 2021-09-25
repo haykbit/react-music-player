@@ -13,8 +13,8 @@ function PaymentInfo() {
         <Input className="payment-input" />
       </div>
       <div className="bottom-row">
-        <Button />
-        <Button />
+        <Button children="Button" />
+        <Button children="Button" />
       </div>
     </div>
   );

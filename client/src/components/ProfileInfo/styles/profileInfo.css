@@ -1,5 +1,10 @@
+.user-info-title {
+  margin-left: 5%;
+  margin-bottom: 0;
+}
+
 .user-info {
-  height: 100%;
+  height: 80%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -10,21 +15,31 @@
   margin: 5%;
 }
 
-.left-column {
+.user-info .left-column {
   width: 20%;
-  height: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 
-.right-column {
+.user-info .profile-picture {
+  width: 150px;
+  height: 150px;
+  background-size: contain;
+  border: 2px solid #fff;
+  border-radius: 100%;
+}
+
+.user-info .right-column {
   width: 80%;
-  height: 80%;
+  height: 100%;
   /* width */
   /* Track */
   /* Handle */
   /* Handle on hover */
 }
 
-.right-column button {
+.user-info .right-column button {
   color: #fff;
   font-size: 18px;
   font-weight: 500;
@@ -32,7 +47,7 @@
   cursor: pointer;
 }
 
-.right-column .form-box input {
+.user-info .right-column .form-box input {
   padding: 15px;
   width: 40%;
   border-radius: 5px;
@@ -41,7 +56,7 @@
   font-weight: 500;
 }
 
-.right-column .form-box button {
+.user-info .right-column .form-box button {
   padding: 15px;
   width: 30%;
   border-radius: 5px;
@@ -49,7 +64,7 @@
   background-color: #395fff;
 }
 
-.right-column .genre-box {
+.user-info .right-column .genre-box {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -65,33 +80,63 @@
           justify-content: space-between;
 }
 
-.right-column .genre-side {
+.user-info .right-column .genre-side {
+  background-color: #0f0f0f;
+  border-radius: 7px;
+  padding: 20px;
   overflow-y: scroll;
   width: 40%;
 }
 
-.right-column .button-side .edit-btn {
+.user-info .right-column .genre-side label {
+  font-size: 18px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.user-info .right-column .genre-side label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
+.user-info .right-column .button-side {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.user-info .right-column .button-side .edit-btn {
   padding: 15px;
   border-radius: 5px;
   margin: 10px;
   background-color: #395fff;
 }
 
-.right-column ::-webkit-scrollbar {
+.user-info .right-column ::-webkit-scrollbar {
   width: 10px;
 }
 
-.right-column ::-webkit-scrollbar-track {
+.user-info .right-column ::-webkit-scrollbar-track {
   background: #0f0f0f;
   border-radius: 20px;
 }
 
-.right-column ::-webkit-scrollbar-thumb {
+.user-info .right-column ::-webkit-scrollbar-thumb {
   background: rgba(53, 53, 53, 0.575);
   border-radius: 20px;
 }
 
-.right-column ::-webkit-scrollbar-thumb:hover {
+.user-info .right-column ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.849);
 }
 /*# sourceMappingURL=profileInfo.css.map */
