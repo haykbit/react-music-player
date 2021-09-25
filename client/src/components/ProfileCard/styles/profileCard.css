@@ -14,4 +14,9 @@
   border: none;
   outline: none;
 }
+
+.profile-card h2 {
+  margin-bottom: 40px;
+  margin-left: 5%;
+}
 /*# sourceMappingURL=profileCard.css.map */
