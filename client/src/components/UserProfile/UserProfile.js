@@ -25,6 +25,7 @@ function UserProfile() {
     setShow({ user: true });
   }, []);
 
+  //Optimeize
   const handleShowUser = () => {
     setShow({ user: true });
   };
