@@ -15,11 +15,12 @@
       color: #fff;
       text-align: center;
       margin: 5px;
-      a {
+      .recover-link {
         color: #fff;
-      &:hover {
-        color: rgb(238, 5, 226);
-      }
+        cursor: pointer;
+        &:hover {
+          color: rgb(238, 5, 226);
+        }
       }
     }
   }
