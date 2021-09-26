@@ -6,35 +6,63 @@ import { BsFillCaretRightFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 import Input from "../Input";
 import Button from "../Buttons/index";
-import {
-  updateUserEmail,
-  updateUserPassword,
-  getCurrentUser,
-  reauthenticate,
-} from "../../services/auth";
-import { updateUserProfile } from "../../api/api";
-import { useState } from "react";
+import { getCurrentUser, reauthenticate } from "../../services/auth";
+import { useState, useEffect } from "react";
+import { useHistory } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./style/userprofile.scss";
+import {
+  updateUserProfileInfo,
+  updateUserProfilePassword,
+} from "../../redux/user/action";
 
 function UserProfile() {
+  const authUserState = useSelector((state) => state.auth.user);
+  const history = useHistory();
+  const { loading, accessToken, signOutSuccess } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    if (!loading && !accessToken && signOutSuccess) {
+      setProfile({ email: "", firstName: "", lastName: "" });
+      history.push("/login");
+    }
+  }, [loading, accessToken, signOutSuccess, history]);
+
+  useEffect(() => {
+    setProfile({
+      email: authUserState.email,
+      firstName: authUserState.firstName,
+      lastName: authUserState.lastName,
+    });
+  }, []);
+  const dispatch = useDispatch();
+
   const [profile, setProfile] = useState({
     email: "",
-    password: "",
+    firstName: "",
+    lastName: "",
   });
 
-  async function handleEmailSubmit(e) {
+  const [password, setPassword] = useState("");
+  function handleUserInfoSubmit(e) {
     e.preventDefault();
-    // reauthenticate();
-    updateUserEmail(profile.email);
-    console.log(getCurrentUser());
-    const userId = getCurrentUser().uid;
-    updateUserProfile(userId, { email: profile.email });
-  }
 
-  function handleChange(e) {
+    const userId = getCurrentUser().uid;
+    dispatch(updateUserProfileInfo(userId, profile));
+  }
+  function handlePasswordSubmit(e) {
+    e.preventDefault();
+    dispatch(updateUserProfilePassword(password));
+  }
+  function handleProfileChange(e) {
     setProfile({ ...profile, [e.target.name]: e.target.value });
-    // console.log(e.target.value, "CHANGE");
+    console.log(e.target.value, "CHANGE");
+  }
+  function handlePasswordChange(e) {
+    setPassword(e.target.value);
   }
 
   return (
@@ -57,13 +85,31 @@ function UserProfile() {
           </div>
           <div className="profile-item">
             <div className="user-info">
-              <form onSubmit={handleEmailSubmit}>
+              <form onSubmit={handleUserInfoSubmit}>
                 <Input
                   name="email"
-                  onChange={(e) => handleChange(e)}
+                  onChange={(e) => handleProfileChange(e)}
                   value={profile.email}
                 />
-                <Button type="submit">Change email</Button>
+                <Input
+                  name="firstName"
+                  onChange={(e) => handleProfileChange(e)}
+                  value={profile.firstName}
+                />
+                <Input
+                  name="lastName"
+                  onChange={(e) => handleProfileChange(e)}
+                  value={profile.lastName}
+                />
+                <Button type="submit">Change Profile</Button>
+              </form>
+              <form onSubmit={handlePasswordSubmit}>
+                <Input
+                  name="password"
+                  onChange={(e) => handlePasswordChange(e)}
+                  value={password}
+                />
+                <Button type="submit">Change password</Button>
               </form>
             </div>
             <div className="payment-info"></div>

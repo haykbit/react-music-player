@@ -8,7 +8,7 @@ async function seedUsers() {
         firstName: "Admin",
         lastName: "Doe",
         email: "admin@mail.com",
-        firebase_id: "2qVg13KMXjaxEyECGdSFAiyfN852",
+        firebase_id: "I3wKx6kfyXZykQ77pAAMQK3vQ7s1",
       },
       {
         firstName: "Jane",
@@ -25,7 +25,7 @@ async function seedUsers() {
 async function seedDatabase() {
   try {
     const userExists = await db.User.findOne({
-      firebase_id: "2qVg13KMXjaxEyECGdSFAiyfN852",
+      firebase_id: "I3wKx6kfyXZykQ77pAAMQK3vQ7s1",
     }).lean();
     if (!userExists) {
       await mongoose.connection.collection("users").drop();
