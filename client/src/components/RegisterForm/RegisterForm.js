@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Input from "../Input/index";
 import Button from "../Buttons/index";
 import { Formik } from "formik";
@@ -8,18 +8,27 @@ import FormSchema from "./FormSchema";
 import "./style/RegisterForm.scss";
 import { registerWithEmailAndPassword } from "../../redux/auth/action";
 
-import { getAuth } from "firebase/auth";
-
 function RegisterForm() {
   let history = useHistory();
   const dispatch = useDispatch();
+  const registerState = useSelector((state) => state.auth.registerSuccess);
 
+  useEffect(() => {
+    if (registerState) {
+      history.push("/login");
+    } else {
+      console.log("exist");
+    }
+  }, [registerState]);
   return (
     <Formik
       onSubmit={(values) => {
-        console.log(values);
-        console.log("Form Submitted");
-        dispatch(registerWithEmailAndPassword(values.email, values.password));
+        dispatch(
+          registerWithEmailAndPassword(values.email, values.password, {
+            firstName: values.name,
+            lastName: values.surname,
+          })
+        );
       }}
       initialValues={{
         name: "",
