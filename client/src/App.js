@@ -1,8 +1,7 @@
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-
-import { Switch, Route } from "react-router-dom";
 
 import Login from "./pages/Login";
 import Home from "./pages/Home";
