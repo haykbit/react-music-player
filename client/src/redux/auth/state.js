@@ -2,9 +2,9 @@ const INITIAL_STATE = {
   accessToken: null,
   user: null,
   loading: false,
+  error: null,
   registerSuccess: false,
-  passwordResetting: false,
-  passwordResetError: null,
+  signOutSuccess: false,
   passwordResetDone: false,
 };
 

@@ -34,14 +34,16 @@ export const login = () => async (dispatch) => {
     dispatch({ type: LOGIN_SUCCESS, payload: accessToken });
     dispatch({ type: LOAD_PROFILE, payload: userProfile });
     await syncUserData(userProfile);
-  } catch (error) {}
+  } catch (error) {
+    dispatch({ type: LOGIN_FAIL, payload: error.message });
+  }
 };
 
 export const registerWithEmailAndPassword =
   (email, password, user) => async (dispatch) => {
     try {
       dispatch({ type: REGISTER_REQUEST });
-      const res = await signUpWithEmailAndPassword(email, password);
+      await signUpWithEmailAndPassword(email, password);
 
       dispatch({
         type: REGISTER_SUCCESS,
@@ -49,7 +51,7 @@ export const registerWithEmailAndPassword =
       });
       await syncUserData(user);
     } catch (error) {
-      console.log("ERROR!!!");
+      dispatch({ type: REGISTER_FAIL, payload: error.message });
     }
   };
 
@@ -68,10 +70,12 @@ export const loginWithEmailAndPassword =
       dispatch({ type: LOGIN_SUCCESS, payload: accessToken });
       dispatch({ type: LOAD_PROFILE, payload: userProfile });
       await syncUserData();
-    } catch (error) {}
+    } catch (error) {
+      dispatch({ type: LOGIN_FAIL, payload: error.message });
+    }
   };
 
-export const logOut = () => async (dispatch) => {
+export const logout = () => async (dispatch) => {
   await signOut();
   dispatch({ type: SIGN_OUT_SUCCESS });
 };

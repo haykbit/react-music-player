@@ -17,19 +17,41 @@ import INITIAL_STATE from "./state";
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case REGISTER_REQUEST:
-      return { ...state, loading: true };
+      return {
+        ...state,
+        loading: true,
+        signOutSuccess: false,
+        passwordResetDone: false,
+      };
     case REGISTER_SUCCESS:
       return {
         ...state,
         user: action.payload,
         loading: false,
         registerSuccess: true,
+        error: null,
+      };
+    case REGISTER_FAIL:
+      return {
+        ...state,
+        registerSuccess: false,
+        error: action.payload,
       };
     case LOGIN_REQUEST:
-      return { ...state, loading: true };
+      return {
+        ...state,
+        loading: true,
+        signOutSuccess: false,
+        passwordResetDone: false,
+      };
 
     case LOGIN_SUCCESS:
-      return { ...state, accessToken: action.payload, loading: false };
+      return {
+        ...state,
+        accessToken: action.payload,
+        loading: false,
+        error: null,
+      };
 
     case LOAD_PROFILE:
       return { ...state, user: action.payload };
@@ -42,27 +64,34 @@ const reducer = (state = INITIAL_STATE, action) => {
         error: action.payload,
       };
     case SIGN_OUT_SUCCESS:
-      return state;
+      return {
+        ...state,
+        accessToken: null,
+        loading: false,
+        user: null,
+        signOutSuccess: true,
+        error: null,
+      };
     case SEND_PASSWORD_RESET_REQUEST:
       return {
         ...state,
-        passwordResetting: true,
-        passwordResetError: null,
+        loading: true,
         passwordResetDone: false,
+        error: null,
       };
     case SEND_PASSWORD_RESET_SUCCESS:
       return {
         ...state,
-        passwordResetting: false,
-        passwordResetError: null,
+        loading: false,
         passwordResetDone: true,
+        error: null,
       };
     case SEND_PASSWORD_RESET_FAIL:
       return {
         ...state,
-        passwordResetting: false,
-        passwordResetError: action.payload,
+        loading: false,
         passwordResetDone: false,
+        error: action.payload,
       };
     default:
       return state;
