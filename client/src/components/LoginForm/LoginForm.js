@@ -69,10 +69,12 @@ function LoginForm() {
               <img src={google} alt="" />
               Login with Google
             </button>
-            <button className="register-btn">
-              <img src={gmail} alt="" />
-              Register
-            </button>
+            <Link to="/register" className="registerLink">
+              <button className="register-btn">
+                <img src={gmail} alt="" />
+                Register
+              </button>
+            </Link>
           </>
         )}
       </div>
