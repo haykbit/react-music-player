@@ -1,0 +1,94 @@
+.payment-info .content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-left: 5%;
+}
+
+.payment-info .content .top-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.payment-info .content input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 15px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  border-radius: 7px;
+  color: #fff;
+}
+
+.payment-info .content p {
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.payment-info .content .card-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.payment-info .content .card-info .payment-label {
+  margin-left: 50px;
+}
+
+.payment-info .content .card-info .payment-label input {
+  width: 50%;
+  text-align: center;
+}
+
+.payment-info .content .card-info input {
+  width: 100%;
+}
+
+.payment-info .content .ccv-input .ccv-label input {
+  width: 10%;
+  text-align: center;
+}
+
+.payment-info .content .bottom-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.payment-info .content .bottom-row .edit-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 15px;
+  border-radius: 5px;
+  padding: 12px;
+  font-size: 18px;
+  border: none;
+  color: #fff;
+  background-color: #395fff;
+  cursor: pointer;
+}
+
+.payment-info .content .bottom-row .button-icon {
+  color: white;
+  width: 30px;
+  height: 30px;
+}
+/*# sourceMappingURL=paymentInfo.css.map */

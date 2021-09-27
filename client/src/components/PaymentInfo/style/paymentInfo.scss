@@ -1,28 +1,75 @@
 .payment-info {
-  display: none;
-}
-.text-row {
-  height: 100px;
-  color: white;
-  font-size: 25px;
-  font-weight: 550;
-  box-sizing: border-box;
-  padding: 25px;
-}
-.top-row {
-  height: 200px;
-}
-.payment-input {
-  margin: 15px 10px 10px 5px;
-  height: 6vh;
-  width: 250px;
-  border-radius: 10px;
-  outline: none;
-  border: none;
-  box-sizing: border-box;
-  padding: 15px;
-  font-size: 20px;
-  color: white;
-  background-color: #0f0f0f;
-  font-weight: 600;
+  .content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5%;
+
+    .top-row {
+      display: flex;
+    }
+
+    input {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      font-size: 18px;
+      border-radius: 7px;
+      color: #fff;
+    }
+
+    p {
+      font-size: 18px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .card-info {
+      display: flex;
+
+      .payment-label {
+        margin-left: 50px;
+        input {
+          width: 50%;
+          text-align: center;
+        }
+      }
+
+      input {
+        width: 100%;
+      }
+    }
+
+    .ccv-input {
+      .ccv-label {
+        input {
+          width: 10%;
+          text-align: center;
+        }
+      }
+    }
+
+    .bottom-row {
+      display: flex;
+      align-items: flex-end;
+      .edit-btn {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        border-radius: 5px;
+        padding: 12px;
+        font-size: 18px;
+        border: none;
+        color: #fff;
+        background-color: #395fff;
+        cursor: pointer;
+      }
+      .button-icon {
+        color: rgb(255, 255, 255);
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
 }

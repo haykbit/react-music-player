@@ -1,0 +1,48 @@
+.subscription-info {
+  .content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5%;
+
+    p {
+      font-size: 18px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      color: #fff;
+    }
+
+    .sub-info {
+      display: flex;
+      flex-direction: row;
+
+      div {
+        margin-right: 20px;
+      }
+    }
+
+    .bottom-row {
+      .edit-btn {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        border-radius: 5px;
+        padding: 12px;
+        font-size: 18px;
+        border: none;
+        color: #fff;
+        background-color: #ff4949;
+        margin-top: 40px;
+        margin-right: 10px;
+        cursor: pointer;
+      }
+      .button-icon {
+        color: rgb(255, 255, 255);
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+}
