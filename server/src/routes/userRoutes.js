@@ -6,6 +6,7 @@ const userRouter = Router();
 
 userRouter.post("/login", authMiddleware, userController.signIn);
 userRouter.get("/:id", authMiddleware, userController.getUserById);
+userRouter.patch("/:id", authMiddleware, userController.updateUser);
 
 module.exports = {
   userRouter,

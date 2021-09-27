@@ -59,3 +59,25 @@ export function getCurrentUserEmail() {
 
   return auth.currentUser.email;
 }
+
+export function getCurrentUser() {
+  return auth.currentUser;
+}
+
+export function updateUserEmail(email) {
+  return auth.currentUser.updateEmail(email);
+}
+
+//TODO check this function
+export async function reauthenticate() {
+  const login = await auth.signInWithEmailAndPassword(
+    "admin@mail.com",
+    "Admin123$"
+  );
+  return auth.currentUser.reauthenticateWithCredential(login);
+}
+
+//TODO check this function
+export function updateUserPassword(newPassword) {
+  return auth.currentUser.updatePassword(newPassword);
+}
