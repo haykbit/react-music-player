@@ -1,6 +1,6 @@
 .album-container {
   margin-left: 25px;
-  margin-top: 40px;
+  margin-top: 85px;
 }
 
 .album-container h3 {
@@ -16,7 +16,7 @@
 
 .album-container h2 {
   color: #fff;
-  font-size: 50px;
+  font-size: 40px;
 }
 
 .album-container .album-list {
@@ -27,7 +27,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  width: 60%;
+  width: 100%;
 }
 
 .album-container .album-item {
@@ -40,6 +40,9 @@
           flex-direction: column;
   margin-right: 50px;
   margin-bottom: 40px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   cursor: pointer;
 }
 
@@ -57,5 +60,19 @@
 .album-container .album-item img:hover {
   -webkit-transform: scale(0.94);
           transform: scale(0.94);
+}
+
+.album-container .carousel-box div {
+  place-content: baseline;
+}
+
+.album-container .carousel-box .BrainhubCarousel__arrows {
+  border-radius: 50px;
+  background-color: rgba(31, 31, 31, 0.685);
+}
+
+.album-container .carousel-box .BrainhubCarousel__container {
+  width: 50%;
+  margin-right: 100px;
 }
 /*# sourceMappingURL=albumexplorer.css.map */

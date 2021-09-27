@@ -3,6 +3,12 @@
 /node_modules
 /.pnp
 .pnp.js
+<<<<<<< HEAD
+# testing
+/coverage
+# production
+/build
+=======
 yarn.lock
 
 # testing
@@ -11,6 +17,7 @@ yarn.lock
 # production
 /build
 
+>>>>>>> F01/user-authentication
 # misc
 .env
 .DS_Store
@@ -23,5 +30,9 @@ yarn-debug.log*
 yarn-error.log*
 yarn.lock
 .yarn-integrity
+<<<<<<< HEAD
+package-lock.json
+=======
 package-lock.json
 yarn.lock
+>>>>>>> F01/user-authentication
