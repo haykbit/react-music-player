@@ -58,7 +58,7 @@ function Navbar() {
                 </li>
                 <li>
                   <MdFavoriteBorder className="list-icon" />
-                  <h4>Favorit</h4>
+                  <h4>Favorite</h4>
                 </li>
                 <li>
                   <GoListUnordered className="list-icon" />
