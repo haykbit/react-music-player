@@ -1,6 +1,6 @@
 .album-container {
   margin-left: 25px;
-  margin-top: 40px;
+  margin-top: 85px;
 
   h3 {
     color: #fff;
@@ -15,13 +15,13 @@
 
   h2 {
     color: #fff;
-    font-size: 50px;
+    font-size: 40px;
   }
 
   .album-list {
     display: flex;
     flex-direction: row;
-    width: 60%;
+    width: 100%;
   }
 
   .album-item {
@@ -29,6 +29,7 @@
     flex-direction: column;
     margin-right: 50px;
     margin-bottom: 40px;
+    align-items: center;
     cursor: pointer;
 
     img {
@@ -41,6 +42,22 @@
       &:hover {
         transform: scale(0.94);
       }
+    }
+  }
+
+  .carousel-box {
+    div {
+      place-content: baseline;
+    }
+
+    .BrainhubCarousel__arrows {
+      border-radius: 50px;
+      background-color: rgba(31, 31, 31, 0.685);
+    }
+
+    .BrainhubCarousel__container {
+      width: 50%;
+      margin-right: 100px;
     }
   }
 }

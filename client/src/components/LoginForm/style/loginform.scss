@@ -11,6 +11,18 @@
     padding: 3%;
     background-color: rgba(0, 0, 0, 0.86);
     border-radius: 20px;
+    .forgotPassword {
+      color: #fff;
+      text-align: center;
+      margin: 5px;
+      .recover-link {
+        color: #fff;
+        cursor: pointer;
+        &:hover {
+          color: rgb(238, 5, 226);
+        }
+      }
+    }
   }
 
   .login-form {

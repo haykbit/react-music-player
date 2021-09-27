@@ -5,6 +5,7 @@ const { userController } = require("../controllers");
 const userRouter = Router();
 
 userRouter.post("/login", authMiddleware, userController.signIn);
+userRouter.get("/:id", authMiddleware, userController.getUserById);
 
 module.exports = {
   userRouter,
