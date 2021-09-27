@@ -10,24 +10,22 @@ import Profile from "./pages/Profile";
 
 function App() {
   const history = useHistory();
-  const { loading, accessToken } = useSelector((state) => state);
-  // useEffect(() => {
-  //   if (!loading && !accessToken) {
-  //     history.push("/register");
-  //     history.push("/login");
-  //   }
-  // }, [loading, accessToken, history]);
+  const { loading, accessToken } = useSelector((state) => state.auth);
+  useEffect(() => {
+    if (!loading && !accessToken) {
+      history.push("/login");
+    }
+  }, [loading, accessToken, history]);
 
   return (
     <>
-      <Router>
-        <Switch>
-          <Route path="/home-page" exact component={Home} />
-          <Route path="/register" exact component={Register} />
-          <Route path="/profile" exact component={Profile} />
-          <Route path="/login" exact component={Login} />
-        </Switch>
-      </Router>
+      <Switch>
+        <Route path="/home-page" exact component={Home} />
+        <Route path="/recover" exact component={Recover} />
+        <Route path="/register" exact component={Register} />
+        <Route path="/login" exact component={Login} />
+        <Route path="/profile" exact component={Profile} />
+      </Switch>
     </>
   );
 }
