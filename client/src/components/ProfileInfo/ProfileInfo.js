@@ -1,10 +1,68 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles/profileInfo.scss";
 import userImage from "../../assets/images/profile.jpg";
 import Button from "../Buttons/index";
+import { getCurrentUser } from "../../services/auth";
+import { useHistory } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  updateUserProfileInfo,
+  updateUserProfilePassword,
+} from "../../redux/user/action";
 
 function ProfileInfo() {
   const [isReadyOnly, setIsReadOnly] = useState(true);
+  const [password, setPassword] = useState("");
+  const [profile, setProfile] = useState({
+    email: "",
+    firstName: "",
+    lastName: "",
+  });
+
+  const { loading, accessToken, signOutSuccess } = useSelector(
+    (state) => state.auth
+  );
+  const authUserState = useSelector((state) => state.auth.user);
+
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!loading && !accessToken && signOutSuccess) {
+      setProfile({ email: "", firstName: "", lastName: "" });
+      history.push("/login");
+    }
+  }, [loading, accessToken, signOutSuccess, history]);
+
+  useEffect(() => {
+    setProfile({
+      email: authUserState.email,
+      firstName: authUserState.firstName,
+      lastName: authUserState.lastName,
+    });
+  }, []);
+
+  function handleUserInfoSubmit(e) {
+    e.preventDefault();
+    const userId = getCurrentUser().uid;
+    dispatch(updateUserProfileInfo(userId, profile));
+    setIsReadOnly((prevState) => !prevState);
+  }
+
+  function handlePasswordSubmit(e) {
+    e.preventDefault();
+    dispatch(updateUserProfilePassword(password));
+  }
+
+  function handleProfileChange(e) {
+    setProfile({ ...profile, [e.target.name]: e.target.value });
+    console.log(e.target.value, "CHANGE");
+  }
+
+  function handlePasswordChange(e) {
+    setPassword(e.target.value);
+  }
+
   return (
     <>
       <div className="user-info">
@@ -26,12 +84,15 @@ function ProfileInfo() {
 
           <div className="right-column">
             <div className="form-box">
-              <form>
+              <form onSubmit={handleUserInfoSubmit}>
                 <div>
                   <input
                     className="user-input"
                     placeholder="Name"
                     readOnly={isReadyOnly}
+                    name="firstName"
+                    onChange={(e) => handleProfileChange(e)}
+                    value={profile.firstName}
                   />
                   <input
                     className="user-input"
@@ -163,10 +224,7 @@ function ProfileInfo() {
                 ) : null}
 
                 {!isReadyOnly ? (
-                  <Button
-                    className="save-btn"
-                    onClick={() => setIsReadOnly((prevState) => !prevState)}
-                  >
+                  <Button className="save-btn" onClick={handleUserInfoSubmit}>
                     Save
                   </Button>
                 ) : null}
