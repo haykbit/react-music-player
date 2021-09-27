@@ -55,7 +55,7 @@
         width: 30%;
         border-radius: 5px;
         margin: 10px;
-        background-color: #395fff;
+        background-color: #2b008d;
       }
     }
     .genre-box {
@@ -90,6 +90,12 @@
       display: flex;
       align-items: flex-end;
       .edit-btn {
+        padding: 15px;
+        border-radius: 5px;
+        margin: 10px;
+        background-color: #ff3939;
+      }
+      .save-btn {
         padding: 15px;
         border-radius: 5px;
         margin: 10px;

@@ -1,12 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./styles/profileInfo.scss";
 import userImage from "../../assets/images/profile.jpg";
 import Button from "../Buttons/index";
 
 function ProfileInfo() {
-  const handleEdit = (e) => {
-    console.log(e.target);
-  };
+  const [isReadyOnly, setIsReadOnly] = useState(true);
   return (
     <>
       <div className="user-info">
@@ -30,16 +28,24 @@ function ProfileInfo() {
             <div className="form-box">
               <form>
                 <div>
-                  <input className="user-input" placeholder="Name" readOnly />
+                  <input
+                    className="user-input"
+                    placeholder="Name"
+                    readOnly={isReadyOnly}
+                  />
                   <input
                     className="user-input"
                     placeholder="Surname"
-                    readOnly
+                    readOnly={isReadyOnly}
                   />
                 </div>
 
                 <div>
-                  <input className="user-input" placeholder="Email" readOnly />
+                  <input
+                    className="user-input"
+                    placeholder="Email"
+                    readOnly={isReadyOnly}
+                  />
                   <Button className="user-input password-button">
                     Reset Password
                   </Button>
@@ -146,13 +152,24 @@ function ProfileInfo() {
                 </div>
               </div>
               <div className="button-side">
-                <Button
-                  className="edit-btn"
-                  label="Edit"
-                  onClick={() => handleEdit()}
-                >
-                  Edit
-                </Button>
+                {isReadyOnly ? (
+                  <Button
+                    className="edit-btn"
+                    label="Edit"
+                    onClick={() => setIsReadOnly((prevState) => !prevState)}
+                  >
+                    Edit
+                  </Button>
+                ) : null}
+
+                {!isReadyOnly ? (
+                  <Button
+                    className="save-btn"
+                    onClick={() => setIsReadOnly((prevState) => !prevState)}
+                  >
+                    Save
+                  </Button>
+                ) : null}
               </div>
             </div>
           </div>

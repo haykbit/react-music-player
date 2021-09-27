@@ -27,7 +27,7 @@ function UserProfile() {
 
   const handleShow = (value) => {
     console.log(value);
-    if (value == "profile") setShow({ user: true });
+    if (value === "profile") setShow({ user: true });
     if (value === "payment") setShow({ payment: true, user: false });
     if (value === "sub") setShow({ sub: true, user: false });
     if (value === "upload") setShow({ upload: true, user: false });
