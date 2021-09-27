@@ -27,12 +27,16 @@ function ProfileInfo() {
             <div className="form-box">
               <form>
                 <div>
-                  <input className="user-input" placeholder="Name" />
-                  <input className="user-input" placeholder="Surname" />
+                  <input className="user-input" placeholder="Name" readOnly />
+                  <input
+                    className="user-input"
+                    placeholder="Surname"
+                    readOnly
+                  />
                 </div>
 
                 <div>
-                  <input className="user-input" placeholder="Email" />
+                  <input className="user-input" placeholder="Email" readOnly />
                   <Button className="user-input password-button">
                     Reset Password
                   </Button>
