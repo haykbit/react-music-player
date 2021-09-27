@@ -6,11 +6,14 @@ import { Formik } from "formik";
 import RecoverySchema from "./RecoverySchema";
 import Input from "../Input";
 import Buttons from "../Buttons";
+import "./style/passwordRecovery.scss";
 
-function PasswordRecovery() {
+function PasswordRecovery(props) {
   const dispatch = useDispatch();
   const history = useHistory();
   const resetState = useSelector((state) => state.auth.passwordResetDone);
+
+  const { recoverOff } = props;
 
   useEffect(() => {
     if (resetState) {
@@ -23,6 +26,7 @@ function PasswordRecovery() {
       onSubmit={(values) => {
         try {
           dispatch(sendPasswordResetEmailToUser(values.email));
+          recoverOff();
         } catch (err) {
           console.log(err.response.data);
         }
@@ -42,8 +46,8 @@ function PasswordRecovery() {
         handleChange,
         handleBlur,
       }) => (
-        <div className="recoveryModal">
-          <form onSubmit={handleSubmit}>
+        <div className="recovery-section">
+          <form className="login-form" onSubmit={handleSubmit}>
             <Input
               className="reset-inputs email"
               name="email"
@@ -56,11 +60,16 @@ function PasswordRecovery() {
               hasErrorMessage={touched.email}
               errorMessage={errors.email}
             />
-            <p>
-              Please enter your email address to receive a recovery message.
+            <p className="recovery-message">
+              Enter your email address to receive a recovery link.
             </p>
-            <Buttons type="submit">Recover password</Buttons>
+            <Buttons className="login-btn" type="submit">
+              Recover password
+            </Buttons>
           </form>
+          <Buttons className="register-btn" onClick={recoverOff}>
+            Go back
+          </Buttons>
         </div>
       )}
     </Formik>
