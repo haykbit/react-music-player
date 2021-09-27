@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import imagenUno from "../../assets/images/portada-1.png";
 import { login, loginWithEmailAndPassword } from "../../redux/auth/action";
 import google from "../../assets/images/icons/search.png";
 import gmail from "../../assets/images/icons/gmail.png";

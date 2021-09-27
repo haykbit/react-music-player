@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./styles/profileInfo.scss";
-import userImage from "../../assets/images/profile.jpg";
+import userImage from "../../assets/images/icons/profile.jpg";
 import Button from "../Buttons/index";
 import { getCurrentUser } from "../../services/auth";
 import { useHistory } from "react-router";
