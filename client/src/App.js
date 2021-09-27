@@ -7,7 +7,6 @@ import { Switch, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
-import Recover from "./pages/Recover/Recover";
 import Profile from "./pages/Profile";
 
 function App() {
@@ -23,7 +22,6 @@ function App() {
     <>
       <Switch>
         <Route path="/home-page" exact component={Home} />
-        <Route path="/recover" exact component={Recover} />
         <Route path="/register" exact component={Register} />
         <Route path="/login" exact component={Login} />
         <Route path="/profile" exact component={Profile} />
