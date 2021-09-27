@@ -25,18 +25,12 @@ function UserProfile() {
     setShow({ user: true });
   }, []);
 
-  //Optimeize
-  const handleShowUser = () => {
-    setShow({ user: true });
-  };
-  const handleShowPayment = () => {
-    setShow({ payment: true, user: false });
-  };
-  const handleShowSub = () => {
-    setShow({ sub: true, user: false });
-  };
-  const handleShowUpload = () => {
-    setShow({ upload: true, user: false });
+  const handleShow = (value) => {
+    console.log(value);
+    if (value == "profile") setShow({ user: true });
+    if (value === "payment") setShow({ payment: true, user: false });
+    if (value === "sub") setShow({ sub: true, user: false });
+    if (value === "upload") setShow({ upload: true, user: false });
   };
   return (
     <>
@@ -46,10 +40,12 @@ function UserProfile() {
           <div className="lateral-menu">
             <div className="profile-menu">
               <ul>
-                <li onClick={() => handleShowUser()}>User information</li>
-                <li onClick={() => handleShowPayment()}>Payment information</li>
-                <li onClick={() => handleShowSub()}>Subscription</li>
-                <li onClick={() => handleShowUpload()}>Uploads</li>
+                <li onClick={() => handleShow("profile")}>User information</li>
+                <li onClick={() => handleShow("payment")}>
+                  Payment information
+                </li>
+                <li onClick={() => handleShow("sub")}>Subscription</li>
+                <li onClick={() => handleShow("upload")}>Uploads</li>
               </ul>
             </div>
             <div>

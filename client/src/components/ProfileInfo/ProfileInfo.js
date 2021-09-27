@@ -4,6 +4,9 @@ import userImage from "../../assets/images/profile.jpg";
 import Button from "../Buttons/index";
 
 function ProfileInfo() {
+  const handleEdit = (e) => {
+    console.log(e.target);
+  };
   return (
     <>
       <div className="user-info">
@@ -143,7 +146,11 @@ function ProfileInfo() {
                 </div>
               </div>
               <div className="button-side">
-                <Button className="edit-btn" label="Edit">
+                <Button
+                  className="edit-btn"
+                  label="Edit"
+                  onClick={() => handleEdit()}
+                >
                   Edit
                 </Button>
               </div>
