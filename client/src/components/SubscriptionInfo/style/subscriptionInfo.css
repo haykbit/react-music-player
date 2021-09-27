@@ -1,0 +1,60 @@
+.subscription-info .content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-left: 5%;
+}
+
+.subscription-info .content p {
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.subscription-info .content h3 {
+  color: #fff;
+}
+
+.subscription-info .content .sub-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.subscription-info .content .sub-info div {
+  margin-right: 20px;
+}
+
+.subscription-info .content .bottom-row .edit-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 15px;
+  border-radius: 5px;
+  padding: 12px;
+  font-size: 18px;
+  border: none;
+  color: #fff;
+  background-color: #ff4949;
+  margin-top: 40px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.subscription-info .content .bottom-row .button-icon {
+  color: white;
+  width: 30px;
+  height: 30px;
+}
+/*# sourceMappingURL=subscriptioninfo.css.map */

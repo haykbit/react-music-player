@@ -5,7 +5,7 @@ import {
   signOut,
   sendPasswordResetEmail,
 } from "../../services/auth";
-import { syncUserData } from "../../api/api";
+import { getUserProfile, syncUserData } from "../../api/api";
 import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
@@ -44,12 +44,17 @@ export const registerWithEmailAndPassword =
     try {
       dispatch({ type: REGISTER_REQUEST });
       await signUpWithEmailAndPassword(email, password);
+      const userProfile = {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: email,
+      };
 
       dispatch({
         type: REGISTER_SUCCESS,
         payload: { ...user, email },
       });
-      await syncUserData(user);
+      await syncUserData(userProfile);
     } catch (error) {
       dispatch({ type: REGISTER_FAIL, payload: error.message });
     }
@@ -60,16 +65,18 @@ export const loginWithEmailAndPassword =
     try {
       dispatch({ type: LOGIN_REQUEST });
       const res = await signInWithEmailAndPassword(email, password);
-
+      const user = await getUserProfile(res.user.uid);
       const userProfile = {
-        uid: res.user.uid,
-        email: res.user.email,
+        firstName: user.data.data.firstName,
+        lastName: user.data.data.lastName,
+        email: user.data.data.email,
+        // picture: res.additionalUserInfo.profile.picture,
       };
       const accessToken = res.user.multiFactor.user.accessToken;
 
       dispatch({ type: LOGIN_SUCCESS, payload: accessToken });
       dispatch({ type: LOAD_PROFILE, payload: userProfile });
-      await syncUserData();
+      await syncUserData(userProfile);
     } catch (error) {
       dispatch({ type: LOGIN_FAIL, payload: error.message });
     }

@@ -5,9 +5,10 @@ import { RiSettings4Line, RiMusic2Line, RiHistoryFill } from "react-icons/ri";
 import { MdFavoriteBorder } from "react-icons/md";
 import { GoListUnordered } from "react-icons/go";
 import { IoLogOutOutline } from "react-icons/io5";
+import { BiUserCircle } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
-import portadaUno from "../../assets/images/portada-1.png";
-import userImage from "../../assets/images/profile.jpg";
+import portadaUno from "../../assets/images/icons/portada-1.png";
+import userImage from "../../assets/images/icons/profile.jpg";
 
 import "./style/navbar.scss";
 
@@ -17,6 +18,7 @@ function Navbar() {
   const { loading, accessToken, signOutSuccess } = useSelector(
     (state) => state.auth
   );
+
   useEffect(() => {
     if (!loading && !accessToken && signOutSuccess) {
       history.push("/login");
@@ -64,13 +66,17 @@ function Navbar() {
                   ></div>
                   <h5>Laura Morales</h5>
                 </li>
+                <li onClick={handleProfile}>
+                  <BiUserCircle className="list-icon" />
+                  <h4>Profile</h4>
+                </li>
                 <li>
                   <RiMusic2Line className="list-icon" />
                   <h4>Playlists</h4>
                 </li>
                 <li>
                   <MdFavoriteBorder className="list-icon" />
-                  <h4>Favorit</h4>
+                  <h4>Favorite</h4>
                 </li>
                 <li>
                   <GoListUnordered className="list-icon" />
@@ -80,7 +86,7 @@ function Navbar() {
                   <RiHistoryFill className="list-icon" />
                   <h4>History</h4>
                 </li>
-                <li onClick={handleProfile}>
+                <li>
                   <RiSettings4Line className="list-icon" />
                   <h4>Settings</h4>
                 </li>

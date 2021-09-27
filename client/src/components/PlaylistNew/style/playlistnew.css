@@ -1,6 +1,6 @@
 .newlist-container {
   margin-left: 25px;
-  margin-top: 40px;
+  margin-top: 50px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -9,7 +9,7 @@
 
 .newlist-container h2 {
   color: #fff;
-  font-size: 30px;
+  font-size: 40px;
 }
 
 .newlist-container h1 {
