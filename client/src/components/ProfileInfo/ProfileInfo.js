@@ -9,6 +9,7 @@ import {
   updateUserProfileInfo,
   updateUserProfilePassword,
 } from "../../redux/user/action";
+import { getUserProfile } from "../../api/api";
 
 function ProfileInfo() {
   const [isReadyOnly, setIsReadOnly] = useState(true);
@@ -22,8 +23,6 @@ function ProfileInfo() {
   const { loading, accessToken, signOutSuccess } = useSelector(
     (state) => state.auth
   );
-  const authUserState = useSelector((state) => state.auth.user);
-
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -34,11 +33,14 @@ function ProfileInfo() {
     }
   }, [loading, accessToken, signOutSuccess, history]);
 
-  useEffect(() => {
+  useEffect(async () => {
+    const userId = getCurrentUser().uid;
+    const userData = await getUserProfile(userId);
+    const { email, firstName, lastName } = userData.data.data;
     setProfile({
-      email: authUserState.email,
-      firstName: authUserState.firstName,
-      lastName: authUserState.lastName,
+      email: email,
+      firstName: firstName,
+      lastName: lastName,
     });
   }, []);
 
@@ -56,7 +58,6 @@ function ProfileInfo() {
 
   function handleProfileChange(e) {
     setProfile({ ...profile, [e.target.name]: e.target.value });
-    console.log(e.target.value, "CHANGE");
   }
 
   function handlePasswordChange(e) {
@@ -98,6 +99,9 @@ function ProfileInfo() {
                     className="user-input"
                     placeholder="Surname"
                     readOnly={isReadyOnly}
+                    name="lastName"
+                    onChange={(e) => handleProfileChange(e)}
+                    value={profile.lastName}
                   />
                 </div>
 
@@ -106,11 +110,24 @@ function ProfileInfo() {
                     className="user-input"
                     placeholder="Email"
                     readOnly={isReadyOnly}
+                    name="email"
+                    onChange={(e) => handleProfileChange(e)}
+                    value={profile.email}
                   />
-                  <Button className="user-input password-button">
-                    Reset Password
-                  </Button>
+                  <Button type="submit">Change Profile</Button>
                 </div>
+              </form>
+              <form onSubmit={handlePasswordSubmit}>
+                <input
+                  name="password"
+                  placeholder="New Password"
+                  onChange={(e) => handlePasswordChange(e)}
+                  readOnly={isReadyOnly}
+                  value={password}
+                />
+                <Button className="user-input password-button" type="submit">
+                  Reset Password
+                </Button>
               </form>
             </div>
             <div className="genre-box">

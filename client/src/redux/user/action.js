@@ -8,6 +8,7 @@ import {
   UPDATE_PASSWORD_REQUEST,
   UPDATE_PASSWORD_SUCCESS,
   UPDATE_PASSWORD_FAIL,
+  RESET_USER_DATA,
 } from "./types";
 import { getUserProfile, updateUserProfile } from "../../api/api";
 import { updateUserEmail, updateUserPassword } from "../../services/auth";
@@ -45,4 +46,8 @@ export const updateUserProfilePassword = (password) => async (dispatch) => {
   } catch (error) {
     dispatch({ type: UPDATE_PASSWORD_FAIL, payload: error.message });
   }
+};
+
+export const resetUserData = () => (dispatch) => {
+  dispatch({ type: RESET_USER_DATA });
 };
