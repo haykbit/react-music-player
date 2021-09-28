@@ -13,7 +13,11 @@ import { getUserProfile } from "../../api/api";
 
 function ProfileInfo() {
   const [isReadyOnly, setIsReadOnly] = useState(true);
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState({
+    newPassword: "",
+    oldPassword: "",
+    showPasswordInputs: true,
+  });
   const [profile, setProfile] = useState({
     email: "",
     firstName: "",
@@ -33,15 +37,18 @@ function ProfileInfo() {
     }
   }, [loading, accessToken, signOutSuccess, history]);
 
-  useEffect(async () => {
-    const userId = getCurrentUser().uid;
-    const userData = await getUserProfile(userId);
-    const { email, firstName, lastName } = userData.data.data;
-    setProfile({
-      email: email,
-      firstName: firstName,
-      lastName: lastName,
-    });
+  useEffect(() => {
+    async function updateOnMount() {
+      const userId = getCurrentUser().uid;
+      const userData = await getUserProfile(userId);
+      const { email, firstName, lastName } = userData.data.data;
+      setProfile({
+        email: email,
+        firstName: firstName,
+        lastName: lastName,
+      });
+    }
+    updateOnMount();
   }, []);
 
   function handleUserInfoSubmit(e) {
@@ -53,7 +60,8 @@ function ProfileInfo() {
 
   function handlePasswordSubmit(e) {
     e.preventDefault();
-    dispatch(updateUserProfilePassword(password));
+    setPassword({ showPasswordInputs: true });
+    dispatch(updateUserProfilePassword(password.newPassword));
   }
 
   function handleProfileChange(e) {
@@ -61,7 +69,7 @@ function ProfileInfo() {
   }
 
   function handlePasswordChange(e) {
-    setPassword(e.target.value);
+    setPassword({ newPassword: e.target.value });
   }
 
   return (
@@ -117,18 +125,37 @@ function ProfileInfo() {
                   <Button type="submit">Change Profile</Button>
                 </div>
               </form>
-              <form onSubmit={handlePasswordSubmit}>
-                <input
-                  name="password"
-                  placeholder="New Password"
-                  onChange={(e) => handlePasswordChange(e)}
-                  readOnly={isReadyOnly}
-                  value={password}
-                />
-                <Button className="user-input password-button" type="submit">
-                  Reset Password
-                </Button>
-              </form>
+              <Button
+                className="user-input password-button"
+                onClick={() =>
+                  setPassword({
+                    showPasswordInputs: !password.showPasswordInputs,
+                  })
+                }
+              >
+                Reset Password
+              </Button>
+              <div hidden={password.showPasswordInputs}>
+                <form onSubmit={handlePasswordSubmit}>
+                  <input
+                    name="password"
+                    placeholder="New Password"
+                    onChange={(e) => handlePasswordChange(e)}
+                    readOnly={isReadyOnly}
+                    value={password.oldPassword}
+                  />
+                  <input
+                    name="password"
+                    placeholder="Repeat New Password"
+                    onChange={(e) => handlePasswordChange(e)}
+                    readOnly={isReadyOnly}
+                    value={password.newPassword}
+                  />
+                  <Button className="user-input password-button" type="submit">
+                    Save
+                  </Button>
+                </form>
+              </div>
             </div>
             <div className="genre-box">
               <div className="genre-side">
