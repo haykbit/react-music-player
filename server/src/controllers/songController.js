@@ -2,10 +2,10 @@ const db = require("../models");
 
 async function fetchSongs(req, res, next) {
     try {
-      const users = await db.Song.find().lean();
+      const songs = await db.Song.find().lean();
   
       res.status(200).send({
-        data: users,
+        data: songs,
       });
     } catch (error) {
       next(error);
