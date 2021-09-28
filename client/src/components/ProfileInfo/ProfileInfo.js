@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./styles/profileInfo.scss";
 import userImage from "../../assets/images/icons/profile.jpg";
 import Button from "../Buttons/index";
+import Input from "../Input/index";
+
 import { getCurrentUser } from "../../services/auth";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,11 +17,7 @@ import FormSchema from "./FormSchema";
 
 function ProfileInfo() {
   const [isReadyOnly, setIsReadOnly] = useState(true);
-  const [password, setPassword] = useState({
-    newPassword: "",
-    confirm: "",
-    showPasswordInputs: true,
-  });
+  const [openResetPassword, setOpenResetPassword] = useState(true);
   const [profile, setProfile] = useState({
     email: "",
     firstName: "",
@@ -62,10 +60,6 @@ function ProfileInfo() {
 
   function handleProfileChange(e) {
     setProfile({ ...profile, [e.target.name]: e.target.value });
-  }
-
-  function handlePasswordChange(e) {
-    setPassword({ ...password, [e.target.name]: e.target.value });
   }
 
   return (
@@ -123,20 +117,16 @@ function ProfileInfo() {
               </form>
               <Button
                 className="user-input password-button"
-                onClick={() =>
-                  setPassword({
-                    showPasswordInputs: !password.showPasswordInputs,
-                  })
-                }
+                onClick={() => setOpenResetPassword(!openResetPassword)}
               >
                 Reset Password
               </Button>
-              <div hidden={password.showPasswordInputs}>
+              <div hidden={openResetPassword}>
                 <Formik
                   onSubmit={(values) => {
-                    console.log("ENTRÓ");
-                    setPassword({ showPasswordInputs: true });
-                    dispatch(updateUserProfilePassword(password.newPassword));
+                    console.log(values.newPassword);
+                    setOpenResetPassword(true);
+                    dispatch(updateUserProfilePassword(values.newPassword));
                   }}
                   initialValues={{
                     newPassword: "",
@@ -155,28 +145,30 @@ function ProfileInfo() {
                     handleBlur,
                   }) => (
                     <form onSubmit={handleSubmit}>
-                      <input
+                      <Input
                         name="newPassword"
                         type="password"
                         placeholder="New Password"
-                        onChange={(e) => handlePasswordChange(e)}
+                        onChange={handleChange}
                         value={values.newPassword}
                         hasErrorMessage={touched.newPassword}
                         errorMessage={errors.newPassword}
+                        onBlur={handleBlur}
                       />
-                      <input
+                      <Input
                         name="confirm"
                         type="password"
                         placeholder="Repeat New Password"
-                        onChange={(e) => handlePasswordChange(e)}
+                        onChange={handleChange}
                         value={values.confirm}
                         hasErrorMessage={touched.confirm}
                         errorMessage={errors.confirm}
+                        onBlur={handleBlur}
                       />
                       <Button
                         className="user-input password-button"
                         submitButton
-                        //disabled={isValidating || !isValid}
+                        disabled={isValidating || !isValid}
                       >
                         Save
                       </Button>
