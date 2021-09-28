@@ -10,12 +10,14 @@ import {
   updateUserProfilePassword,
 } from "../../redux/user/action";
 import { getUserProfile } from "../../api/api";
+import { Formik } from "formik";
+import FormSchema from "./FormSchema";
 
 function ProfileInfo() {
   const [isReadyOnly, setIsReadOnly] = useState(true);
   const [password, setPassword] = useState({
     newPassword: "",
-    oldPassword: "",
+    confirm: "",
     showPasswordInputs: true,
   });
   const [profile, setProfile] = useState({
@@ -58,18 +60,12 @@ function ProfileInfo() {
     setIsReadOnly((prevState) => !prevState);
   }
 
-  function handlePasswordSubmit(e) {
-    e.preventDefault();
-    setPassword({ showPasswordInputs: true });
-    dispatch(updateUserProfilePassword(password.newPassword));
-  }
-
   function handleProfileChange(e) {
     setProfile({ ...profile, [e.target.name]: e.target.value });
   }
 
   function handlePasswordChange(e) {
-    setPassword({ newPassword: e.target.value });
+    setPassword({ ...password, [e.target.name]: e.target.value });
   }
 
   return (
@@ -136,28 +132,60 @@ function ProfileInfo() {
                 Reset Password
               </Button>
               <div hidden={password.showPasswordInputs}>
-                <form onSubmit={handlePasswordSubmit}>
-                  <input
-                    name="password"
-                    placeholder="New Password"
-                    onChange={(e) => handlePasswordChange(e)}
-                    readOnly={isReadyOnly}
-                    value={password.oldPassword}
-                  />
-                  <input
-                    name="password"
-                    placeholder="Repeat New Password"
-                    onChange={(e) => handlePasswordChange(e)}
-                    readOnly={isReadyOnly}
-                    value={password.newPassword}
-                  />
-                  <Button className="user-input password-button" type="submit">
-                    Save
-                  </Button>
-                </form>
+                <Formik
+                  onSubmit={(values) => {
+                    console.log("ENTRÓ");
+                    setPassword({ showPasswordInputs: true });
+                    dispatch(updateUserProfilePassword(password.newPassword));
+                  }}
+                  initialValues={{
+                    newPassword: "",
+                    confirm: "",
+                  }}
+                  validationSchema={FormSchema}
+                >
+                  {({
+                    errors,
+                    values,
+                    touched,
+                    isValidating,
+                    isValid,
+                    handleSubmit,
+                    handleChange,
+                    handleBlur,
+                  }) => (
+                    <form onSubmit={handleSubmit}>
+                      <input
+                        name="newPassword"
+                        type="password"
+                        placeholder="New Password"
+                        onChange={(e) => handlePasswordChange(e)}
+                        value={values.newPassword}
+                        hasErrorMessage={touched.newPassword}
+                        errorMessage={errors.newPassword}
+                      />
+                      <input
+                        name="confirm"
+                        type="password"
+                        placeholder="Repeat New Password"
+                        onChange={(e) => handlePasswordChange(e)}
+                        value={values.confirm}
+                        hasErrorMessage={touched.confirm}
+                        errorMessage={errors.confirm}
+                      />
+                      <Button
+                        className="user-input password-button"
+                        submitButton
+                        //disabled={isValidating || !isValid}
+                      >
+                        Save
+                      </Button>
+                    </form>
+                  )}
+                </Formik>
               </div>
             </div>
-            <div className="genre-box">
+            {/* <div className="genre-box">
               <div className="genre-side">
                 <div className="genre-checkbox-box">
                   <label>
@@ -273,7 +301,7 @@ function ProfileInfo() {
                   </Button>
                 ) : null}
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
