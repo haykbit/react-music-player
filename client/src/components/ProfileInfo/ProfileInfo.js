@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./styles/profileInfo.scss";
 import ImageUploadIcon from "../../assets/images/icons/uploadImage.png";
-// import userImage from "../../assets/images/icons/profile.jpg";
 import closeIcon from "../../assets/images/icons/closeIcon.png";
 import Button from "../Buttons/index";
 import Input from "../Input/index";
@@ -19,7 +18,7 @@ import FormSchema from "./FormSchema";
 
 function ProfileInfo() {
   const [isDisabled, setIsDisabled] = useState(true);
-
+  const [isReadyOnly, setIsReadOnly] = useState(true);
   const [openResetPassword, setOpenResetPassword] = useState(true);
   const [profile, setProfile] = useState({
     email: "",
@@ -204,7 +203,6 @@ function ProfileInfo() {
                         hasErrorMessage={touched.newPassword}
                         errorMessage={errors.newPassword}
                         onBlur={handleBlur}
-                        className="user-input"
                       />
                       <Input
                         className="new-password-input"
@@ -216,7 +214,6 @@ function ProfileInfo() {
                         hasErrorMessage={touched.confirm}
                         errorMessage={errors.confirm}
                         onBlur={handleBlur}
-                        className="user-input"
                       />
                       <Button
                         className="user-input password-button"
@@ -230,7 +227,7 @@ function ProfileInfo() {
                 </Formik>
               </div>
             </div>
-            {/* <div className="genre-box">
+            <div className="genre-box">
               <div className="genre-side">
                 <div className="genre-checkbox-box">
                   <label>
@@ -346,7 +343,7 @@ function ProfileInfo() {
                   </Button>
                 ) : null}
               </div>
-            </div> */}
+            </div>
           </div>
         </div>
       </div>
