@@ -13,7 +13,7 @@ import {
 } from "../../redux/user/action";
 
 function ProfileInfo() {
-  const [isReadyOnly, setIsReadOnly] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(true);
 
   const [password, setPassword] = useState("");
   const [profile, setProfile] = useState({
@@ -49,7 +49,7 @@ function ProfileInfo() {
     e.preventDefault();
     const userId = getCurrentUser().uid;
     dispatch(updateUserProfileInfo(userId, profile));
-    setIsReadOnly((prevState) => !prevState);
+    setIsDisabled((prevState) => !prevState);
   }
 
   function handlePasswordSubmit(e) {
@@ -93,7 +93,7 @@ function ProfileInfo() {
                 <>
                   <label htmlFor="input-upload">
                     <div
-                      className="profile-picture"
+                      className="profile-picture-uploaded"
                       style={{
                         backgroundRepeat: "no-repeat",
                         backgroundImage: `url(${ImageUploadIcon})`,
@@ -138,7 +138,7 @@ function ProfileInfo() {
                   <input
                     className="user-input"
                     placeholder="Name"
-                    readOnly={isReadyOnly}
+                    disabled={isDisabled}
                     name="firstName"
                     onChange={(e) => handleProfileChange(e)}
                     value={profile.firstName}
@@ -146,7 +146,7 @@ function ProfileInfo() {
                   <input
                     className="user-input"
                     placeholder="Surname"
-                    readOnly={isReadyOnly}
+                    disabled={isDisabled}
                   />
                 </div>
 
@@ -154,7 +154,7 @@ function ProfileInfo() {
                   <input
                     className="user-input"
                     placeholder="Email"
-                    readOnly={isReadyOnly}
+                    disabled={isDisabled}
                   />
                   <Button className="user-input password-button">
                     Reset Password
@@ -262,17 +262,17 @@ function ProfileInfo() {
                 </div>
               </div>
               <div className="button-side">
-                {isReadyOnly ? (
+                {isDisabled ? (
                   <Button
                     className="edit-btn"
                     label="Edit"
-                    onClick={() => setIsReadOnly((prevState) => !prevState)}
+                    onClick={() => setIsDisabled((prevState) => !prevState)}
                   >
                     Edit
                   </Button>
                 ) : null}
 
-                {!isReadyOnly ? (
+                {!isDisabled ? (
                   <Button className="save-btn" onClick={handleUserInfoSubmit}>
                     Save
                   </Button>
