@@ -61,9 +61,9 @@ const songSchema = new mongoose.Schema({
             message: 'Please select correct category for song'
         }
     },
-    author: {
+    band: {
         type: String,
-        required: [true, 'Please enter name author']
+        required: [true, 'Please enter band name']
     },
     numOfReviews: {
         type: Number,
@@ -88,8 +88,8 @@ const songSchema = new mongoose.Schema({
     ],
     author: {
         type: mongoose.Schema.ObjectId,
-        ref: 'Author',
-        required: true
+        ref: 'User',
+        required: true,
     },
     createdAt: {
         type: Date,

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const db = require("../models");
-let ObjectId = require('mongodb').ObjectID
+let ObjectId = require('mongodb').ObjectID;
 
 
 async function seedUsers() {
@@ -28,7 +28,7 @@ async function seedSongs() {
   try {
     db.Song.insertMany([
       {
-        name : "Permision to dance on stage",
+        name : "IDOL",
         description : "Best K-pop band",
         ratings : 4.5,
         images : [{
@@ -40,26 +40,29 @@ async function seedSongs() {
         url : "https://res.cloudinary.com/einartech/video/upload/v1632827814/music/TesseracT_-_Nocturne_P_O_R_T_A_L_S_128_kbps_tlj08b.mp3"
     }],
         category : "K-pop",
-        author : "BTS",
+        band: "BTS",
         numOfReviews : 32,
-        reviews: []
+        reviews: [],
+        author:"6152f26da11b50c0d609bdf3"
     },
     {
-      name : "IDOL",
+      name : "Permision to dance on stage",
       description : "Best K-pop band",
       ratings : 4.5,
       images : [{
-          public_id : "upload/v1632827962",
-          url : "https://res.cloudinary.com/einartech/image/upload/v1632827962/music/download_yynaha.jpg"
-      }],
-      multimedia : [{
-        public_id : "upload/v1632827814",
-        url : "https://res.cloudinary.com/einartech/video/upload/v1632827814/music/TesseracT_-_Nocturne_P_O_R_T_A_L_S_128_kbps_tlj08b.mp3"
+        public_id : "upload/v1632827962",
+        url : "https://res.cloudinary.com/einartech/image/upload/v1632827962/music/download_yynaha.jpg"
     }],
+    multimedia : [{
+      public_id : "upload/v1632827814",
+      url : "https://res.cloudinary.com/einartech/video/upload/v1632827814/music/TesseracT_-_Nocturne_P_O_R_T_A_L_S_128_kbps_tlj08b.mp3"
+  }],
       category : "K-pop",
-      author : "bts",
+      band: "BTS",
       numOfReviews : 32,
-      reviews: []
+      reviews: [],
+      author:"6152f26da11b50c0d609bdf3"
+
   }
 
     ]);
@@ -82,17 +85,13 @@ async function seedDatabase() {
     }
   } catch (err) {
      console.log(err);
-    console.log("user errorr")
+    console.log("user errorr");
   }
 
   //Song
   try {
-    var id = new ObjectId();
-    console.log(id)
-
-
     const songExists = await db.Song.findOne({
-      _id:id,
+      id:"_id:6152f26da11b50c0d609bdf2"
     }).lean();
    
     if(!songExists) {
@@ -101,7 +100,6 @@ async function seedDatabase() {
     }
   } catch (err) {
      console.log(err);
-    console.log("song erdror")
 
   }
 }
