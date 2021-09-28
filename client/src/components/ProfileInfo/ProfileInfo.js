@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./styles/profileInfo.scss";
-import userImage from "../../assets/images/icons/profile.jpg";
+import ImageUploadIcon from "../../assets/images/icons/uploadImage.png";
+// import userImage from "../../assets/images/icons/profile.jpg";
+import closeIcon from "../../assets/images/icons/closeIcon.png";
 import Button from "../Buttons/index";
 import { getCurrentUser } from "../../services/auth";
 import { useHistory } from "react-router";
@@ -12,6 +14,7 @@ import {
 
 function ProfileInfo() {
   const [isReadyOnly, setIsReadOnly] = useState(true);
+
   const [password, setPassword] = useState("");
   const [profile, setProfile] = useState({
     email: "",
@@ -63,6 +66,22 @@ function ProfileInfo() {
     setPassword(e.target.value);
   }
 
+  const [image, setImage] = useState("");
+  const [isUploaded, setIsUploaded] = useState(false);
+
+  function handleImageChange(e) {
+    if (e.target.files && e.target.files[0]) {
+      let reader = new FileReader();
+
+      reader.onload = function (e) {
+        setImage(e.target.result);
+        setIsUploaded(true);
+      };
+
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  }
+
   return (
     <>
       <div className="user-info">
@@ -70,15 +89,45 @@ function ProfileInfo() {
         <div className="content">
           <div className="left-column">
             <div className="profile-picture-box">
-              <div
-                className="profile-picture"
-                style={{
-                  backgroundRepeat: "no-repeat",
-                  backgroundImage: `url(${userImage})`,
-                }}
-              >
-                {" "}
-              </div>
+              {!isUploaded ? (
+                <>
+                  <label htmlFor="input-upload">
+                    <div
+                      className="profile-picture"
+                      style={{
+                        backgroundRepeat: "no-repeat",
+                        backgroundImage: `url(${ImageUploadIcon})`,
+                      }}
+                    >
+                      <input
+                        id="input-upload"
+                        className="input-upload"
+                        type="file"
+                        accept=".jpg, .jpeg, .png"
+                        onChange={handleImageChange}
+                      />
+                    </div>
+                  </label>
+                </>
+              ) : (
+                <div className="image-preview">
+                  <img
+                    className="close-icon"
+                    src={closeIcon}
+                    alt="CloseIcon"
+                    onClick={() => {
+                      setIsUploaded(false);
+                      setImage(null);
+                    }}
+                  />
+                  <img
+                    src={image}
+                    alt="uploaded-img"
+                    id="uploaded-image"
+                    className="profile-picture"
+                  />
+                </div>
+              )}
             </div>
           </div>
 

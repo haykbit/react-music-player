@@ -26,6 +26,25 @@
     background-size: contain;
     border: 2px solid #fff;
     border-radius: 100%;
+    background-repeat: "no-repeat";
+    cursor: pointer;
+
+    input {
+      display: none;
+    }
+  }
+  .close-icon {
+    width: 15px;
+    height: 15px;
+    background: #000;
+    border-radius: 15px;
+    opacity: 0.8;
+    position: absolute;
+    z-index: 10;
+    cursor: pointer;
+    :hover {
+      opacity: 1;
+    }
   }
 
   .right-column {
