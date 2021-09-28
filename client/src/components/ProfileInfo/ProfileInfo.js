@@ -20,7 +20,6 @@ import FormSchema from "./FormSchema";
 function ProfileInfo() {
   const [isDisabled, setIsDisabled] = useState(true);
 
-  const [password, setPassword] = useState("");
   const [openResetPassword, setOpenResetPassword] = useState(true);
   const [profile, setProfile] = useState({
     email: "",
@@ -204,6 +203,7 @@ function ProfileInfo() {
                         hasErrorMessage={touched.newPassword}
                         errorMessage={errors.newPassword}
                         onBlur={handleBlur}
+                        className="user-input"
                       />
                       <Input
                         name="confirm"
@@ -214,6 +214,7 @@ function ProfileInfo() {
                         hasErrorMessage={touched.confirm}
                         errorMessage={errors.confirm}
                         onBlur={handleBlur}
+                        className="user-input"
                       />
                       <Button
                         className="user-input password-button"
