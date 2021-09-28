@@ -27,6 +27,18 @@ const songSchema = new mongoose.Schema({
             },
         }
     ],
+    multimedia: [
+        {
+            public_id: {
+                type: String,
+                required: true
+            },
+            url: {
+                type: String,
+                required: true
+            },
+        }
+    ],
     category: {
         type: String,
         required: [true, 'Please select category for this song'],
@@ -51,7 +63,7 @@ const songSchema = new mongoose.Schema({
     },
     author: {
         type: String,
-        required: [true, 'Please enter product author']
+        required: [true, 'Please enter name author']
     },
     numOfReviews: {
         type: Number,

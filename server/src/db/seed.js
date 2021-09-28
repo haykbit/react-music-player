@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const db = require("../models");
+let ObjectId = require('mongodb').ObjectID
+
 
 async function seedUsers() {
   try {
@@ -26,18 +28,39 @@ async function seedSongs() {
   try {
     db.Song.insertMany([
       {
-        name : "SongNAme",
-        description : "It talks about dady issues",
+        name : "Permision to dance on stage",
+        description : "Best K-pop band",
         ratings : 4.5,
         images : [{
-            public_id : "products/dsvbpny402gelwugv2le",
-            url : "https://res.cloudinary.com/bookit/image/upload/v1608062030/products/dsvbpny402gelwugv2le.jpg"
-        }],
+          public_id : "upload/v1632827962",
+          url : "https://res.cloudinary.com/einartech/image/upload/v1632827962/music/download_yynaha.jpg"
+      }],
+      multimedia : [{
+        public_id : "upload/v1632827814",
+        url : "https://res.cloudinary.com/einartech/video/upload/v1632827814/music/TesseracT_-_Nocturne_P_O_R_T_A_L_S_128_kbps_tlj08b.mp3"
+    }],
         category : "K-pop",
-        author : "Pepe Author",
+        author : "BTS",
         numOfReviews : 32,
         reviews: []
-    }
+    },
+    {
+      name : "IDOL",
+      description : "Best K-pop band",
+      ratings : 4.5,
+      images : [{
+          public_id : "upload/v1632827962",
+          url : "https://res.cloudinary.com/einartech/image/upload/v1632827962/music/download_yynaha.jpg"
+      }],
+      multimedia : [{
+        public_id : "upload/v1632827814",
+        url : "https://res.cloudinary.com/einartech/video/upload/v1632827814/music/TesseracT_-_Nocturne_P_O_R_T_A_L_S_128_kbps_tlj08b.mp3"
+    }],
+      category : "K-pop",
+      author : "bts",
+      numOfReviews : 32,
+      reviews: []
+  }
 
     ]);
   } catch (err) {
@@ -47,23 +70,39 @@ async function seedSongs() {
 
 
 async function seedDatabase() {
+  //User
   try {
     const userExists = await db.User.findOne({
       firebase_id: "I3wKx6kfyXZykQ77pAAMQK3vQ7s1",
     }).lean();
-    const songExists = await db.Sing.findOne({ id:"_id"}).lean();
-
-
+   
     if (!userExists) {
       await mongoose.connection.collection("users").drop();
       seedUsers();
     }
-    if (!songExists) {
+  } catch (err) {
+     console.log(err);
+    console.log("user errorr")
+  }
+
+  //Song
+  try {
+    var id = new ObjectId();
+    console.log(id)
+
+
+    const songExists = await db.Song.findOne({
+      _id:id,
+    }).lean();
+   
+    if(!songExists) {
       await mongoose.connection.collection("songs").drop();
       seedSongs();
     }
   } catch (err) {
-    console.log(err);
+     console.log(err);
+    console.log("song erdror")
+
   }
 }
 
