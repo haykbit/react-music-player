@@ -9,6 +9,7 @@ import {
   UPDATE_PASSWORD_REQUEST,
   UPDATE_PASSWORD_SUCCESS,
   UPDATE_PASSWORD_FAIL,
+  RESET_USER_DATA,
 } from "./types";
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -77,6 +78,12 @@ const reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         error: action.payload,
+      };
+    case RESET_USER_DATA:
+      return {
+        ...state,
+        userProfile: null,
+        profileUpdated: false,
       };
     default:
       return { ...state };

@@ -4,6 +4,8 @@ import ImageUploadIcon from "../../assets/images/icons/uploadImage.png";
 // import userImage from "../../assets/images/icons/profile.jpg";
 import closeIcon from "../../assets/images/icons/closeIcon.png";
 import Button from "../Buttons/index";
+import Input from "../Input/index";
+
 import { getCurrentUser } from "../../services/auth";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,11 +13,15 @@ import {
   updateUserProfileInfo,
   updateUserProfilePassword,
 } from "../../redux/user/action";
+import { getUserProfile } from "../../api/api";
+import { Formik } from "formik";
+import FormSchema from "./FormSchema";
 
 function ProfileInfo() {
   const [isDisabled, setIsDisabled] = useState(true);
 
   const [password, setPassword] = useState("");
+  const [openResetPassword, setOpenResetPassword] = useState(true);
   const [profile, setProfile] = useState({
     email: "",
     firstName: "",
@@ -25,8 +31,6 @@ function ProfileInfo() {
   const { loading, accessToken, signOutSuccess } = useSelector(
     (state) => state.auth
   );
-  const authUserState = useSelector((state) => state.auth.user);
-
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -38,11 +42,17 @@ function ProfileInfo() {
   }, [loading, accessToken, signOutSuccess, history]);
 
   useEffect(() => {
-    setProfile({
-      email: authUserState.email,
-      firstName: authUserState.firstName,
-      lastName: authUserState.lastName,
-    });
+    async function updateOnMount() {
+      const userId = getCurrentUser().uid;
+      const userData = await getUserProfile(userId);
+      const { email, firstName, lastName } = userData.data.data;
+      setProfile({
+        email: email,
+        firstName: firstName,
+        lastName: lastName,
+      });
+    }
+    updateOnMount();
   }, []);
 
   function handleUserInfoSubmit(e) {
@@ -52,18 +62,8 @@ function ProfileInfo() {
     setIsDisabled((prevState) => !prevState);
   }
 
-  function handlePasswordSubmit(e) {
-    e.preventDefault();
-    dispatch(updateUserProfilePassword(password));
-  }
-
   function handleProfileChange(e) {
     setProfile({ ...profile, [e.target.name]: e.target.value });
-    console.log(e.target.value, "CHANGE");
-  }
-
-  function handlePasswordChange(e) {
-    setPassword(e.target.value);
   }
 
   const [image, setImage] = useState("");
@@ -147,6 +147,9 @@ function ProfileInfo() {
                     className="user-input"
                     placeholder="Surname"
                     disabled={isDisabled}
+                    name="lastName"
+                    onChange={(e) => handleProfileChange(e)}
+                    value={profile.lastName}
                   />
                 </div>
 
@@ -155,14 +158,76 @@ function ProfileInfo() {
                     className="user-input"
                     placeholder="Email"
                     disabled={isDisabled}
+                    name="email"
+                    onChange={(e) => handleProfileChange(e)}
+                    value={profile.email}
                   />
-                  <Button className="user-input password-button">
-                    Reset Password
-                  </Button>
+                  <Button type="submit">Change Profile</Button>
                 </div>
               </form>
+              <Button
+                className="user-input password-button"
+                onClick={() => setOpenResetPassword(!openResetPassword)}
+              >
+                Reset Password
+              </Button>
+              <div hidden={openResetPassword}>
+                <Formik
+                  onSubmit={(values) => {
+                    console.log(values.newPassword);
+                    setOpenResetPassword(true);
+                    dispatch(updateUserProfilePassword(values.newPassword));
+                  }}
+                  initialValues={{
+                    newPassword: "",
+                    confirm: "",
+                  }}
+                  validationSchema={FormSchema}
+                >
+                  {({
+                    errors,
+                    values,
+                    touched,
+                    isValidating,
+                    isValid,
+                    handleSubmit,
+                    handleChange,
+                    handleBlur,
+                  }) => (
+                    <form onSubmit={handleSubmit}>
+                      <Input
+                        name="newPassword"
+                        type="password"
+                        placeholder="New Password"
+                        onChange={handleChange}
+                        value={values.newPassword}
+                        hasErrorMessage={touched.newPassword}
+                        errorMessage={errors.newPassword}
+                        onBlur={handleBlur}
+                      />
+                      <Input
+                        name="confirm"
+                        type="password"
+                        placeholder="Repeat New Password"
+                        onChange={handleChange}
+                        value={values.confirm}
+                        hasErrorMessage={touched.confirm}
+                        errorMessage={errors.confirm}
+                        onBlur={handleBlur}
+                      />
+                      <Button
+                        className="user-input password-button"
+                        submitButton
+                        disabled={isValidating || !isValid}
+                      >
+                        Save
+                      </Button>
+                    </form>
+                  )}
+                </Formik>
+              </div>
             </div>
-            <div className="genre-box">
+            {/* <div className="genre-box">
               <div className="genre-side">
                 <div className="genre-checkbox-box">
                   <label>
@@ -278,7 +343,7 @@ function ProfileInfo() {
                   </Button>
                 ) : null}
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
