@@ -18,6 +18,8 @@ app.use(
 );
 
 app.use("/users", userRouter);
+app.use("/songs", userRouter);
+
 
 app.get("/", (req, res) => {
   res.status(200).send({
