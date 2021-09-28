@@ -4,12 +4,12 @@ import "firebase/compat/auth";
 if (!firebase.apps.length) {
   // Paste your config object here ⬇️
   const firebaseConfig = {
-    apiKey: process.env.REACT_APP_FIREBASE_KEY,
-    authDomain: process.env.REACT_APP_FIREBASE_DOMAIN,
-    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.REACT_APP_FIREBASE__STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
-    appId: process.env.REACT_APP_FIREBASE_APP_ID,
+    apiKey: "AIzaSyAsZpYrusF96Gt77BHnHFPrLlToAExcsTQ",
+    authDomain:"spotify-auth-f0e80.firebaseapp.com",
+    projectId: "spotify-auth-f0e80",
+    storageBucket: "spotify-auth-f0e80.appspot.com",
+    messagingSenderId:"745853095855",
+    appId: "1:745853095855:web:011c29ad955dc5df19295a",
   };
   firebase.initializeApp(firebaseConfig);
 } else {
@@ -18,6 +18,7 @@ if (!firebase.apps.length) {
 }
 
 export const auth = firebase.auth();
+
 
 export function onAuthStateChanged(...props) {
   return auth.onAuthStateChanged(...props);
@@ -58,26 +59,4 @@ export function getCurrentUserEmail() {
   }
 
   return auth.currentUser.email;
-}
-
-export function getCurrentUser() {
-  return auth.currentUser;
-}
-
-export function updateUserEmail(email) {
-  return auth.currentUser.updateEmail(email);
-}
-
-//TODO check this function
-export async function reauthenticate() {
-  const login = await auth.signInWithEmailAndPassword(
-    "admin@mail.com",
-    "Admin123$"
-  );
-  return auth.currentUser.reauthenticateWithCredential(login);
-}
-
-//TODO check this function
-export function updateUserPassword(newPassword) {
-  return auth.currentUser.updatePassword(newPassword);
 }
