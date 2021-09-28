@@ -20,3 +20,11 @@ yarn-error.log*
 yarn.lock
 .yarn-integrity
 package-lock.json
+
+# Einar config avoid
+/react-music-player/server/src/config/config.js
+/react-music-player/client/src/services/auth/auth.js
+
+# Erase the cache of git and add this to your changes please.
+# git rm -r --cached Ex: git rm -r .gitignore --cached 
+# .git add .
