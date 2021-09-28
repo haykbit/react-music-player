@@ -11,11 +11,11 @@ import Profile from "./pages/Profile";
 function App() {
   const history = useHistory();
   const { loading, accessToken } = useSelector((state) => state.auth);
-  useEffect(() => {
-    if (!loading && !accessToken) {
-      history.push("/login");
-    }
-  }, [loading, accessToken, history]);
+  // useEffect(() => {
+  //   if (!loading && !accessToken) {
+  //     history.push("/login");
+  //   }
+  // }, [loading, accessToken, history]);
 
   return (
     <>
