@@ -73,7 +73,6 @@
 
     .form-box {
       input {
-        // display: flex;
         align-items: center;
         padding: 15px;
         margin-right: 10px;
@@ -90,10 +89,13 @@
 
       button {
         padding: 15px;
-        width: 30%;
+        width: 270px;
         border-radius: 5px;
-        margin: 10px;
+        margin: 0;
         background-color: #2b008d;
+      }
+      .password-button {
+        margin-bottom: 10px;
       }
     }
     .genre-box {

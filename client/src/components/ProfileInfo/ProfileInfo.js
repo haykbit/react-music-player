@@ -196,6 +196,7 @@ function ProfileInfo() {
                   }) => (
                     <form onSubmit={handleSubmit}>
                       <Input
+                        className="new-password-input"
                         name="newPassword"
                         type="password"
                         placeholder="New Password"
@@ -206,6 +207,7 @@ function ProfileInfo() {
                         onBlur={handleBlur}
                       />
                       <Input
+                        className="new-password-input"
                         name="confirm"
                         type="password"
                         placeholder="Repeat New Password"
