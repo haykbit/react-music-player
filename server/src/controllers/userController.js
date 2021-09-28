@@ -33,7 +33,7 @@ async function getUserById(req, res, next) {
       data: user,
     });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   }
 }
 
