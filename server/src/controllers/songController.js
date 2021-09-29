@@ -11,6 +11,21 @@ async function fetchSongs(req, res, next) {
     }
   }
 
+async function getSongById(req, res, next) {
+
+
+  try {
+    const song = await db.Song.findOne({ name: "IDOL" }).lean();
+
+    res.status(200).send({
+      data: song,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
   module.exports = {
     fetchSongs: fetchSongs,
+    getSongById:getSongById,
   };

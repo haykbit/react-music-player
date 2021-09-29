@@ -7,7 +7,7 @@ const songRouter = Router();
 //http://localhost:4000/songs/
 // songRouter.get("/all",authMiddleware,songController.fetchSongs);
 songRouter.get("/all",songController.fetchSongs);
-
+songRouter.get("/one",songController.getSongById);
 
 
 module.exports = {
