@@ -5,7 +5,7 @@ const songSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please enter song name'],
         trim: true,
-        maxLength: [100, 'Product name cannot exceed 100 characters']
+        maxLength: [100, 'Song name cannot exceed 100 characters']
     },
     description: {
         type: String,
