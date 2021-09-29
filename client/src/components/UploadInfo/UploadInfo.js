@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style/uploadinfo.scss";
 import Button from "../Buttons/index";
 import { BiEdit } from "react-icons/bi";
+import { uploadSongs } from "../../services/cloudinary";
 
 function UploadInfo() {
+  const [song, setSong] = useState("");
+
+  async function uploadSong() {
+    console.log(song, "SONG FILE");
+    await uploadSongs(song);
+  }
+
   return (
     <div className="upload-info">
       <div className="text-row">
@@ -27,6 +35,15 @@ function UploadInfo() {
             <BiEdit className="button-icon" />
             Delete all songs
           </Button>
+        </div>
+
+        <div>
+          <input
+            type="file"
+            onChange={(e) => setSong(e.target.files[0])}
+            //TODO create function to upload more than one song at a time
+          ></input>
+          <button onClick={uploadSong}>Upload</button>
         </div>
       </div>
     </div>
