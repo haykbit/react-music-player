@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
+const { Schema } = require("mongoose");
 
-const songSchema = new mongoose.Schema({
+const SongSchema = new Schema({
     name: {
         type: String,
         required: [true, 'Please enter song name'],
@@ -97,7 +98,7 @@ const songSchema = new mongoose.Schema({
     }
 })
 
-const Song = mongoose.model('Song', songSchema);
+const Song = mongoose.model('Song', SongSchema);
 module.exports = {
     Song: Song,
   };

@@ -5,7 +5,7 @@ const cors = require("cors");
 
 const { config } = require("./config");
 
-const { userRouter } = require("./routes");
+const { userRouter,songRouter } = require("./routes");
 
 const app = express();
 
@@ -18,7 +18,7 @@ app.use(
 );
 
 app.use("/users", userRouter);
-app.use("/songs", userRouter);
+app.use("/songs", songRouter);
 
 
 app.get("/", (req, res) => {

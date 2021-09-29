@@ -4,7 +4,7 @@ const { userController } = require("../controllers");
 
 const userRouter = Router();
 
-http://localhost:4000/users/
+//http://localhost:4000/users/
 userRouter.post("/login", authMiddleware, userController.signIn);
 userRouter.get("/:id", authMiddleware, userController.getUserById);
 userRouter.patch("/:id", authMiddleware, userController.updateUser);

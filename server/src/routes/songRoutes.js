@@ -1,13 +1,15 @@
 const Router = require("express").Router;
-const { authMiddleware } = require("../middleware");
-const { userController } = require("../controllers");
+// const { authMiddleware } = require("../middleware");
+const { songController } = require("../controllers");
 
-const userRouter = Router();
+const songRouter = Router();
 
-http://localhost:4000/songs/
-userRouter.get("/all", authMiddleware, userController.fetchSongs);
+//http://localhost:4000/songs/
+// songRouter.get("/all",authMiddleware,songController.fetchSongs);
+songRouter.get("/all",songController.fetchSongs);
+
 
 
 module.exports = {
-  userRouter,
+  songRouter,
 };
