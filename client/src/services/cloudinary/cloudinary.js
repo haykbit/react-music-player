@@ -11,9 +11,10 @@ export const uploadSongs = async (file) => {
   formData.append("cloud_name", process.env.REACT_APP_CLOUDINARY_CLOUD_NAME);
   console.log(...formData, "DATA TO UPLOAD");
   try {
-    const songs = await axios.post(process.env.REACT_APP_CLOUDINARY_SONGS_API, {
-      ...formData,
-    });
+    const songs = await axios.post(
+      process.env.REACT_APP_CLOUDINARY_SONGS_API,
+      formData
+    );
     console.log(songs, "RESPONSE");
   } catch (err) {
     console.log(err.response.data);
