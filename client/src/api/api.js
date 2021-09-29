@@ -36,3 +36,15 @@ export async function updateUserProfile(id, user) {
     },
   });
 }
+
+export async function uploadSongsData(song) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "POST",
+    url: `${process.env.REACT_APP_API_BASE_URL}/songs`,
+    data: { song },
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
