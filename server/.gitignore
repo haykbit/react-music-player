@@ -37,11 +37,3 @@ package-lock.json
 yarn.lock
 >>>>>>> F01/user-authentication
 
-# Einar config avoid
-server/src/config/config.js
-client/src/services/auth/auth.js
-
-# Erase the cache of git and add this to your changes please.
-# git rm -r --cached server/src/config/config.js 
-# git rm -r --cached client/src/services/auth/auth.js 
-# .git add .
