@@ -1,10 +1,13 @@
 const db = require("../models");
 
 async function createSong(req, res, next) {
-  const { title, genre, artist, duration, url } = req.body;
-  const { _id } = req.user;
-
+  const { title, genre, artist, duration, url } = req.body.song;
+  const { uid } = req.user;
   try {
+    await db.Song.create({
+      url,
+      owner: uid,
+    });
   } catch (error) {
     next(error);
   }
@@ -17,8 +20,20 @@ async function getSongById(req, res, next) {
     next(error);
   }
 }
+async function getSongsByUser(req, res, next) {
+  const { ownerId } = req.params;
+  try {
+    const songs = await db.Song.find({ owner: ownerId });
+    res.status(200).send({
+      data: songs,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
 
 module.exports = {
   createSong,
   getSongById,
+  getSongsByUser,
 };

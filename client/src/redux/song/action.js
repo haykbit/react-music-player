@@ -1,3 +1,5 @@
+import { uploadSongsData } from "../../api/api";
+import { uploadSongs } from "../../services/cloudinary";
 import {
   POST_SONG_REQUEST,
   POST_SONG_SUCCESS,
@@ -10,4 +12,13 @@ import {
   UPDATE_SONG_FAIL,
 } from "./types";
 
-export const uploadSong = () => async (dispatch) => {};
+export const uploadSongFile = (song) => async (dispatch) => {
+  dispatch({ type: POST_SONG_REQUEST });
+  try {
+    const songData = await uploadSongs(song);
+    dispatch({ type: POST_SONG_SUCCESS });
+    await uploadSongsData(songData);
+  } catch (error) {
+    dispatch({ type: POST_SONG_FAIL, payload: error.message });
+  }
+};

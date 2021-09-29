@@ -172,7 +172,6 @@ function ProfileInfo() {
               <div hidden={openResetPassword}>
                 <Formik
                   onSubmit={(values) => {
-                    console.log(values.newPassword);
                     setOpenResetPassword(true);
                     dispatch(updateUserProfilePassword(values.newPassword));
                   }}
