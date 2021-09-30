@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { onAuthStateChanged } from "./services/auth";
 
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -10,12 +11,13 @@ import Profile from "./pages/Profile";
 
 function App() {
   const history = useHistory();
-  const { loading, accessToken } = useSelector((state) => state.auth);
+  const { loading } = useSelector((state) => state.auth);
   useEffect(() => {
-    if (!loading && !accessToken) {
+    const user = onAuthStateChanged();
+    if (!loading && !user) {
       history.push("/login");
     }
-  }, [loading, accessToken, history]);
+  }, [loading, history]);
 
   return (
     <>

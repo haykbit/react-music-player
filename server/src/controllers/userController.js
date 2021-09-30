@@ -50,7 +50,7 @@ async function updateUser(req, res, next) {
       data: updatedUser,
     });
   } catch (err) {
-    console.log(err);
+    console.log(err.message);
   }
 }
 

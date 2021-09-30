@@ -40,9 +40,10 @@ function ProfileInfo() {
   }, [loading, accessToken, signOutSuccess, history]);
 
   useEffect(() => {
+    const userId = JSON.parse(localStorage.getItem("user"));
     async function updateOnMount() {
-      const userId = getCurrentUser().uid;
-      const userData = await getUserProfile(userId);
+      const userData = await getUserProfile(userId.uid);
+      console.log(userData, "USER DATA");
       const { email, firstName, lastName } = userData.data.data;
       setProfile({
         email: email,

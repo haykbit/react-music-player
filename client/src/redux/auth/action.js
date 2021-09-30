@@ -29,8 +29,10 @@ export const login = () => async (dispatch) => {
       firstName: res.additionalUserInfo.profile.given_name,
       lastName: res.additionalUserInfo.profile.family_name,
       email: res.additionalUserInfo.profile.email,
+      uid: res.user.multiFactor.user.uid,
       // picture: res.additionalUserInfo.profile.picture,
     };
+    localStorage.setItem("user", JSON.stringify(userProfile));
     dispatch({ type: LOGIN_SUCCESS, payload: accessToken });
     dispatch({ type: LOAD_PROFILE, payload: userProfile });
     await syncUserData(userProfile);
@@ -70,8 +72,10 @@ export const loginWithEmailAndPassword =
         firstName: user.data.data.firstName,
         lastName: user.data.data.lastName,
         email: user.data.data.email,
+        uid: res.user.uid,
         // picture: res.additionalUserInfo.profile.picture,
       };
+      localStorage.setItem("user", JSON.stringify(userProfile));
       const accessToken = res.user.multiFactor.user.accessToken;
 
       dispatch({ type: LOGIN_SUCCESS, payload: accessToken });
