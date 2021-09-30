@@ -12,8 +12,10 @@ async function fetchSongs(req, res, next) {
 }
 
 async function getSongById(req, res, next) {
+  const { id: songId } = req.params;
+
   try {
-    const song = await db.Song.findOne({ name: "IDOL" }).lean();
+    const song = await db.Song.findOne({ _id: songId }).lean();
 
     res.status(200).send({
       data: song,
@@ -23,7 +25,25 @@ async function getSongById(req, res, next) {
   }
 }
 
+async function updateSong(req, res, next) {
+  const { id: songId } = req.params;
+  const { name, band } = req.body;
+  try {
+    const updatedSong = await db.Song.findOneAndUpdate(
+      { _id: songId },
+      { $set: { name: name || "", band: band || "" } }
+    );
+
+    res.status(200).send({
+      data: updatedSong,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 module.exports = {
   fetchSongs: fetchSongs,
   getSongById: getSongById,
+  updateSong: updateSong,
 };

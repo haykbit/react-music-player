@@ -6,7 +6,8 @@ const songRouter = Router();
 
 //http://localhost:4000/songs/
 songRouter.get("/all", songController.fetchSongs);
-songRouter.get("/one", songController.getSongById);
+songRouter.get("/:id", songController.getSongById);
+songRouter.patch("/:id", songController.updateSong);
 
 module.exports = {
   songRouter,
