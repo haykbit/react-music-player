@@ -1,15 +1,16 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import "./style/uploadinfo.scss";
 import Button from "../Buttons/index";
 import { BiEdit } from "react-icons/bi";
-import { uploadSongs } from "../../services/cloudinary";
+import { uploadSongFile } from "../../redux/song/action";
 
 function UploadInfo() {
   const [song, setSong] = useState("");
+  const dispatch = useDispatch();
 
-  async function uploadSong() {
-    console.log(song, "SONG FILE");
-    await uploadSongs(song);
+  function uploadSong() {
+    dispatch(uploadSongFile(song));
   }
 
   return (

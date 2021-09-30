@@ -6,11 +6,11 @@ const SongSchema = new Schema(
     title: {
       type: String,
       trim: true,
-      required: [true, "The title is required!"],
+      //   required: [true, "The title is required!"],
     },
     genre: {
       type: String,
-      required: [true, "Please select category for this song"],
+      //   required: [true, "Please select category for this song"],
       enum: [
         "Country",
         "Electronic dance music (EDM) ",
@@ -40,7 +40,7 @@ const SongSchema = new Schema(
       required: [true, "The URL is required!"],
     },
     owner: {
-      type: Schema.Types.ObjectId,
+      type: String,
       ref: "user",
     },
     //   image: {
