@@ -22,6 +22,11 @@ const UserSchema = new Schema(
         message: (props) => `${props.value} is not a valid email`,
       },
     },
+    likedSongs: {
+      type: mongoose.Schema.ObjectId,
+      ref: "Song",
+      required: false,
+    },
     firebase_id: {
       type: String,
       unique: true,

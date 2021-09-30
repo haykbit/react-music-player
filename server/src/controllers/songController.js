@@ -25,6 +25,18 @@ async function getSongById(req, res, next) {
   }
 }
 
+// async function getLikedSongByUser(req, res, next) {
+//   try {
+//     const song = await db.User.likedSongs.find().lean();
+
+//     res.status(200).send({
+//       data: song,
+//     });
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
+
 async function updateSong(req, res, next) {
   const { id: songId } = req.params;
   const { name, band } = req.body;
@@ -46,4 +58,5 @@ module.exports = {
   fetchSongs: fetchSongs,
   getSongById: getSongById,
   updateSong: updateSong,
+  // getLikedSongByUser: getLikedSongByUser,
 };

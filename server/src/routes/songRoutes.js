@@ -8,6 +8,7 @@ const songRouter = Router();
 songRouter.get("/all", songController.fetchSongs);
 songRouter.get("/:id", songController.getSongById);
 songRouter.patch("/:id", songController.updateSong);
+// songRouter.get("/liked", songController.getLikedSongByUser);
 
 module.exports = {
   songRouter,

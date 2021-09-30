@@ -8,6 +8,8 @@ const userRouter = Router();
 userRouter.post("/login", authMiddleware, userController.signIn);
 userRouter.get("/:id", authMiddleware, userController.getUserById);
 userRouter.patch("/:id", authMiddleware, userController.updateUser);
+// userRouter.get("/likedsongs", authMiddleware, userController.getLikedSongsByUser);
+userRouter.get("/likedsongs", userController.getLikedSongsByUser);
 
 module.exports = {
   userRouter,

@@ -54,8 +54,22 @@ async function updateUser(req, res, next) {
   }
 }
 
+async function getLikedSongsByUser(req, res, next) {
+  try {
+    // const song = await db.User.likedSongs.find().lean();
+
+    // res.status(200).send({
+    //   data: song,
+    // });
+    console.log("in!!");
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 module.exports = {
   signIn: signIn,
   getUserById: getUserById,
   updateUser: updateUser,
+  getLikedSongsByUser: getLikedSongsByUser,
 };
