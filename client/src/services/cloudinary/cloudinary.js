@@ -26,7 +26,10 @@ export const uploadImages = async (file) => {
   );
   formData.append("resource_type", "image");
   formData.append("cloud_name", process.env.REACT_APP_CLOUDINARY_CLOUD_NAME);
-  const images = await axios.post(process.env.CLOUDINARY_IMAGE_URL, formData);
+  const images = await axios.post(
+    process.env.REACT_APP_CLOUDINARY_IMAGES_API,
+    formData
+  );
   //TODO check images variable to get secure_url and return it
   return images.data;
 };

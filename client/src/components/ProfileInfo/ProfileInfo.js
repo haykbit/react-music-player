@@ -45,6 +45,7 @@ function ProfileInfo() {
       const userId = getCurrentUser().uid;
       const userData = await getUserProfile(userId);
       const { email, firstName, lastName, profileImage } = userData.data.data;
+
       setProfile({
         email: email,
         firstName: firstName,
@@ -57,8 +58,6 @@ function ProfileInfo() {
 
   function handleUserInfoSubmit(e) {
     e.preventDefault();
-    console.log(profile);
-
     const userId = getCurrentUser().uid;
     dispatch(updateUserProfileInfo(userId, profile));
     setIsDisabled((prevState) => !prevState);
@@ -72,21 +71,17 @@ function ProfileInfo() {
   const [isUploaded, setIsUploaded] = useState(false);
 
   function handleImageChange(e) {
-    // console.log(e.target.files[0]);
-    // setProfile({ ...profile, profileImage: e.target.files[0] });
+    setProfile({ ...profile, profileImage: e.target.files[0] });
 
-    if (e.target.files && e.target.files[0]) {
-      let reader = new FileReader();
+    let reader = new FileReader();
 
-      reader.onload = function (e) {
-        setImage(e.target.result);
-        setIsUploaded(true);
-      };
+    reader.onload = function (e) {
+      setImage(e.target.result);
+      setIsUploaded(true);
+    };
 
-      reader.readAsDataURL(e.target.files[0]);
-    }
+    reader.readAsDataURL(e.target.files[0]);
   }
-
   return (
     <>
       <div className="user-info">
@@ -100,8 +95,11 @@ function ProfileInfo() {
                     <div
                       className="profile-picture-uploaded"
                       style={{
-                        backgroundRepeat: "no-repeat",
-                        backgroundImage: `url(${ImageUploadIcon})`,
+                        backgroundImage: `url(${
+                          profile.profileImage
+                            ? profile.profileImage
+                            : ImageUploadIcon
+                        })`,
                       }}
                     >
                       <input

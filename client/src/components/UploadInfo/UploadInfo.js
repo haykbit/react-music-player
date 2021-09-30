@@ -10,7 +10,6 @@ function UploadInfo() {
   const dispatch = useDispatch();
 
   function uploadSong() {
-    console.log(song, "SONG FILE");
     dispatch(uploadSongFile(song));
   }
 

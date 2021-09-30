@@ -16,6 +16,11 @@ async function createSong(req, res, next) {
 async function getSongById(req, res, next) {
   const { _id } = req.params;
   try {
+    const song = await db.Song.findOne({ id: _id }).lean();
+
+    res.status(200).send({
+      data: song,
+    });
   } catch (error) {
     next(error);
   }
