@@ -1,21 +1,21 @@
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import React, { useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-import Login from './pages/Login'
-import Home from './pages/Home'
-import Register from './pages/Register'
-import Profile from './pages/Profile'
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import Register from "./pages/Register";
+import Profile from "./pages/Profile";
 
 function App() {
-  const history = useHistory()
-  const { loading, accessToken } = useSelector((state) => state.auth)
+  const history = useHistory();
+  const { loading, accessToken } = useSelector((state) => state.auth);
   useEffect(() => {
     if (!loading && !accessToken) {
-      history.push('/login')
+      history.push("/login");
     }
-  }, [loading, accessToken, history])
+  }, [loading, accessToken, history]);
 
   return (
     <>
@@ -26,7 +26,7 @@ function App() {
         <Route path="/profile" exact component={Profile} />
       </Switch>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

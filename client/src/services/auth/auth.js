@@ -1,5 +1,5 @@
-import firebase from 'firebase/compat/app'
-import 'firebase/compat/auth'
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 
 if (!firebase.apps.length) {
   // Paste your config object here ⬇️
@@ -10,74 +10,74 @@ if (!firebase.apps.length) {
     storageBucket: process.env.REACT_APP_FIREBASE__STORAGE_BUCKET,
     messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
     appId: process.env.REACT_APP_FIREBASE_APP_ID,
-  }
-  firebase.initializeApp(firebaseConfig)
+  };
+  firebase.initializeApp(firebaseConfig);
 } else {
   // if already initialized, use that one
-  firebase.app()
+  firebase.app();
 }
 
-export const auth = firebase.auth()
+export const auth = firebase.auth();
 
 export function onAuthStateChanged(...props) {
-  return auth.onAuthStateChanged(...props)
+  return auth.onAuthStateChanged(...props);
 }
 
 export function signInWithGoogle() {
-  const GoogleAuthProvider = new firebase.auth.GoogleAuthProvider()
-  return auth.signInWithPopup(GoogleAuthProvider)
+  const GoogleAuthProvider = new firebase.auth.GoogleAuthProvider();
+  return auth.signInWithPopup(GoogleAuthProvider);
 }
 
 export function signInWithEmailAndPassword(email, password) {
-  return auth.signInWithEmailAndPassword(email, password)
+  return auth.signInWithEmailAndPassword(email, password);
 }
 
 export function signUpWithEmailAndPassword(email, password) {
-  return auth.createUserWithEmailAndPassword(email, password)
+  return auth.createUserWithEmailAndPassword(email, password);
 }
 
 export function sendPasswordResetEmail(email) {
-  return auth.sendPasswordResetEmail(email)
+  return auth.sendPasswordResetEmail(email);
 }
 
 export function signOut() {
-  return auth.signOut()
+  return auth.signOut();
 }
 
 export function getCurrentUserToken() {
   if (!auth.currentUser) {
-    return null
+    return null;
   }
 
-  return auth.currentUser.getIdToken()
+  return auth.currentUser.getIdToken();
 }
 
 export function getCurrentUserEmail() {
   if (!auth.currentUser) {
-    return null
+    return null;
   }
 
-  return auth.currentUser.email
+  return auth.currentUser.email;
 }
 
 export function getCurrentUser() {
-  return auth.currentUser
+  return auth.currentUser;
 }
 
 export function updateUserEmail(email) {
-  return auth.currentUser.updateEmail(email)
+  return auth.currentUser.updateEmail(email);
 }
 
 //TODO check this function
 export async function reauthenticate() {
   const login = await auth.signInWithEmailAndPassword(
-    'admin@mail.com',
-    'Admin123$',
-  )
-  return auth.currentUser.reauthenticateWithCredential(login)
+    "admin@mail.com",
+    "Admin123$"
+  );
+  return auth.currentUser.reauthenticateWithCredential(login);
 }
 
 //TODO check this function
 export function updateUserPassword(newPassword) {
-  return auth.currentUser.updatePassword(newPassword)
+  return auth.currentUser.updatePassword(newPassword);
 }

@@ -1,7 +1,7 @@
-const { userRouter } = require('./userRoutes')
-const { songRouter } = require('./songRoutes')
+const { userRouter } = require("./userRoutes");
+const { songRouter } = require("./songRoutes");
 
 module.exports = {
   userRouter,
   songRouter,
-}
+};
