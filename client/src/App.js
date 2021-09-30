@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
+import Playlists from "./pages/Playlists";
 
 function App() {
   const history = useHistory();
@@ -24,6 +25,7 @@ function App() {
         <Route path="/register" exact component={Register} />
         <Route path="/login" exact component={Login} />
         <Route path="/profile" exact component={Profile} />
+        <Route path="/playlist" exact component={Playlists} />
       </Switch>
     </>
   );
