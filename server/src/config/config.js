@@ -1,6 +1,6 @@
-const dotenv = require("dotenv");
+const dotenv = require('dotenv')
 
-dotenv.config();
+dotenv.config()
 
 const {
   MONGO_DB_URL_TEST,
@@ -19,9 +19,9 @@ const {
   FB_CERT_TOKEN_URI,
   FB_CERT_AUTH_PROVIDER_X509_CERT_URL,
   FB_CERT_CLIENT_X509_CERT_URL,
-} = process.env;
+} = process.env
 
-const ENV = NODE_ENV || "development";
+const ENV = NODE_ENV || 'development'
 
 const CONFIG = {
   production: {
@@ -101,8 +101,8 @@ const CONFIG = {
       },
     },
   },
-};
+}
 
 module.exports = {
   config: CONFIG[ENV],
-};
+}

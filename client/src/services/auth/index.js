@@ -12,4 +12,4 @@ export {
   updateUserEmail,
   updateUserPassword,
   reauthenticate,
-} from "./auth";
+} from './auth'

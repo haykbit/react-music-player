@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
-const { Schema } = require("mongoose");
-const { isEmail } = require("validator");
+const mongoose = require('mongoose')
+const { Schema } = require('mongoose')
+const { isEmail } = require('validator')
 
 const UserSchema = new Schema(
   {
@@ -27,11 +27,11 @@ const UserSchema = new Schema(
       unique: true,
     },
   },
-  { timestamp: true }
-);
+  { timestamp: true },
+)
 
-const User = mongoose.model("User", UserSchema);
+const User = mongoose.model('User', UserSchema)
 
 module.exports = {
   User: User,
-};
+}

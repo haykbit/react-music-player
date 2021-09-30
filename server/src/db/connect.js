@@ -1,9 +1,9 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
-const { config } = require("../config");
+const { config } = require('../config')
 
 const connect = () => {
-  return mongoose.connect(config.db.url);
-};
+  return mongoose.connect(config.db.url)
+}
 
-module.exports = connect;
+module.exports = connect

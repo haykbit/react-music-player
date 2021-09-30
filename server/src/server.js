@@ -1,30 +1,29 @@
-const express = require("express");
-const helmet = require("helmet");
-const { json } = require("body-parser");
-const cors = require("cors");
+const express = require('express')
+const helmet = require('helmet')
+const { json } = require('body-parser')
+const cors = require('cors')
 
-const { config } = require("./config");
+const { config } = require('./config')
 
-const { userRouter,songRouter } = require("./routes");
+const { userRouter, songRouter } = require('./routes')
 
-const app = express();
+const app = express()
 
-app.use(helmet());
-app.use(json());
+app.use(helmet())
+app.use(json())
 app.use(
   cors({
     origin: config.client.URL,
-  })
-);
+  }),
+)
 
-app.use("/users", userRouter);
-app.use("/songs", songRouter);
+app.use('/users', userRouter)
+app.use('/songs', songRouter)
 
-
-app.get("/", (req, res) => {
+app.get('/', (req, res) => {
   res.status(200).send({
-    data: "root page!",
-  });
-});
+    data: 'root page!',
+  })
+})
 
-module.exports = app;
+module.exports = app

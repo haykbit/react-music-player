@@ -1,7 +1,7 @@
-const { auth } = require("./firebase");
+const { auth } = require('./firebase')
 
 function verifyIdToken(token) {
-  return auth.verifyIdToken(token);
+  return auth.verifyIdToken(token)
 }
 
-module.exports = verifyIdToken;
+module.exports = verifyIdToken
