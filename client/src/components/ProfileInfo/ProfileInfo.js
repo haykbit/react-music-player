@@ -24,6 +24,7 @@ function ProfileInfo() {
     email: "",
     firstName: "",
     lastName: "",
+    profileImage: "",
   });
 
   const { loading, accessToken, signOutSuccess } = useSelector(
@@ -43,11 +44,12 @@ function ProfileInfo() {
     async function updateOnMount() {
       const userId = getCurrentUser().uid;
       const userData = await getUserProfile(userId);
-      const { email, firstName, lastName } = userData.data.data;
+      const { email, firstName, lastName, profileImage } = userData.data.data;
       setProfile({
         email: email,
         firstName: firstName,
         lastName: lastName,
+        profileImage: profileImage || "",
       });
     }
     updateOnMount();
@@ -55,6 +57,8 @@ function ProfileInfo() {
 
   function handleUserInfoSubmit(e) {
     e.preventDefault();
+    console.log(profile);
+
     const userId = getCurrentUser().uid;
     dispatch(updateUserProfileInfo(userId, profile));
     setIsDisabled((prevState) => !prevState);
@@ -68,6 +72,9 @@ function ProfileInfo() {
   const [isUploaded, setIsUploaded] = useState(false);
 
   function handleImageChange(e) {
+    // console.log(e.target.files[0]);
+    // setProfile({ ...profile, profileImage: e.target.files[0] });
+
     if (e.target.files && e.target.files[0]) {
       let reader = new FileReader();
 
