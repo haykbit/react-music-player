@@ -26,6 +26,8 @@ function ProfileInfo() {
     lastName: "",
     profileImage: "",
   });
+  const [image, setImage] = useState("");
+  const [isUploaded, setIsUploaded] = useState(false);
 
   const { loading, accessToken, signOutSuccess, authObserverSuccess, user } =
     useSelector((state) => state.auth);
@@ -61,16 +63,13 @@ function ProfileInfo() {
   function handleUserInfoSubmit(e) {
     e.preventDefault();
     const userId = getCurrentUser().uid;
-    dispatch(updateUserProfileInfo(userId, profile));
+    dispatch(updateUserProfileInfo(userId, profile, image));
     setIsDisabled((prevState) => !prevState);
   }
 
   function handleProfileChange(e) {
     setProfile({ ...profile, [e.target.name]: e.target.value });
   }
-
-  const [image, setImage] = useState("");
-  const [isUploaded, setIsUploaded] = useState(false);
 
   function handleImageChange(e) {
     setProfile({ ...profile, profileImage: e.target.files[0] });
