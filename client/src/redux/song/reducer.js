@@ -10,6 +10,12 @@ import {
   UPDATE_SONG_REQUEST,
   UPDATE_SONG_SUCCESS,
   UPDATE_SONG_FAIL,
+  LIKE_SONG_REQUEST,
+  LIKE_SONG_SUCCESS,
+  LIKE_SONG_FAIL,
+  GET_MY_LIKED_SONGS_REQUEST,
+  GET_MY_LIKED_SONGS_SUCCESS,
+  GET_MY_LIKED_SONGS_FAIL,
 } from "./types";
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -84,6 +90,7 @@ const reducer = (state = INITIAL_STATE, action) => {
         songData: null,
         songUpdated: false,
       };
+
     default:
       return { ...state };
   }

@@ -47,6 +47,13 @@ const SongSchema = new Schema(
     //       type: String,
 
     //   },
+    likes: {
+      type: Number,
+    },
+    likedBy: {
+      type: [{ type: Schema.Types.ObjectId, ref: "user" }],
+      default: [],
+    },
   },
   {
     timestamps: true,

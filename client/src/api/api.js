@@ -48,3 +48,26 @@ export async function uploadSongsData(song) {
     },
   });
 }
+
+export async function likeSong(songId) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "POST",
+    url: `${process.env.REACT_APP_API_BASE_URL}/songs/like`,
+    songId,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
+export async function getLikedSongs() {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/songs/mine/liked`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}

@@ -13,7 +13,9 @@ function App() {
   const history = useHistory();
   const dispatch = useDispatch();
   const userStorage = JSON.parse(localStorage.getItem("user"));
-  const { loading, authObserverSuccess } = useSelector((state) => state.auth);
+  const { loading, authObserverSuccess, user } = useSelector(
+    (state) => state.auth
+  );
 
   useEffect(() => {
     dispatch(authObserverLoading());

@@ -29,6 +29,18 @@ const UserSchema = new Schema(
     profileImage: {
       type: String,
     },
+    mySongs: {
+      type: [{ type: Schema.Types.ObjectId, ref: "song" }],
+      default: [],
+    },
+    myFavoriteSongs: {
+      type: [{ type: Schema.Types.ObjectId, ref: "song" }],
+      default: [],
+    },
+    artist: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamp: true }
 );
