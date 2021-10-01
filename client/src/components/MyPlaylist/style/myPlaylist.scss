@@ -45,6 +45,38 @@
 
           font-size: 20px;
         }
+
+        .upload-button {
+          background-image: linear-gradient(
+            to left,
+            #ff4343,
+            #ff2a7c,
+            #eb3db3,
+            #b65fe2,
+            #527aff
+          );
+        }
+        .upload-button {
+          font-weight: 600;
+          margin-top: 40px;
+          width: 130px;
+          height: 50px;
+          box-sizing: border-box;
+          padding: 15px;
+          text-align: center;
+          text-transform: uppercase;
+          transition: 0.5s;
+          background-size: 200% auto;
+          color: white;
+          border-radius: 10px;
+          display: block;
+        }
+
+        .upload-button:hover {
+          background-position: right center; /* change the direction of the change here */
+          color: #fff;
+          text-decoration: none;
+        }
       }
     }
     .song-stack {

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style/myPlaylist.scss";
+import Modal from "../Modal";
 import portadaUno from "../../assets/images/icons/portada-1.png";
 import PlaylistStack from "../PlaylistStack/PlaylistStack";
 import portadaDos from "../../assets/images/albums/arctic-album-1.jpeg";
@@ -11,6 +12,8 @@ import portadaOcho from "../../assets/images/albums/gorillaz-demon-days.png";
 import portadaNueve from "../../assets/images/albums/linkin-p-papercut.jpeg";
 
 function Myplaylist() {
+  const [modal, setModal] = useState(false);
+  const Toggle = () => setModal(!modal);
   return (
     <>
       <div className="my-playlist-body">
@@ -28,6 +31,10 @@ function Myplaylist() {
               <div className="playlist-name">My Uploaded Songs</div>
               <div className="playlist-genre">Sebastian Elias</div>
               <div className="song-number">140 songs</div>
+              <button onClick={() => Toggle()} className="upload-button">
+                Upload
+              </button>
+              <Modal show={modal} close={Toggle} />
             </div>
           </div>
           <div className="song-stack">

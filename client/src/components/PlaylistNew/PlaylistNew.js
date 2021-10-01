@@ -4,18 +4,24 @@ import portadaTres from "../../assets/images/icons/portada-3.png";
 import portadaCuatro from "../../assets/images/icons/portada-4.png";
 import { BsFillCaretRightFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
+// import useRightClickMenu from "../../hooks/index";
+// import RightClickMenu from "../RightClickMenu";
 
 import "./style/playlistnew.scss";
 
 function PlaylistNew() {
+  // const { x, y, showMenu } = useRightClickMenu();
   return (
     <>
       <div className="newlist-container">
         <section className="new-spain">
           <h2 className="recomend-title">New songs Spain</h2>
+
           <div className="song-list">
             {/*SONG ITEM*/}
-            <div className="song-item">
+
+            <div className="song-item" id="song-item">
+              {/* <RightClickMenu x={x} y={y} showMenu={showMenu} /> */}
               <div className="song-info">
                 <div className="song-cover"></div>
                 <div className="song-name">
