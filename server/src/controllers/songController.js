@@ -25,18 +25,6 @@ async function getSongById(req, res, next) {
   }
 }
 
-// async function getLikedSongByUser(req, res, next) {
-//   try {
-//     const song = await db.User.likedSongs.find().lean();
-
-//     res.status(200).send({
-//       data: song,
-//     });
-//   } catch (err) {
-//     console.log(err);
-//   }
-// }
-
 async function updateSong(req, res, next) {
   const { id: songId } = req.params;
   const { name, band } = req.body;
@@ -44,6 +32,7 @@ async function updateSong(req, res, next) {
     const updatedSong = await db.Song.findOneAndUpdate(
       { _id: songId },
       { $set: { name: name || "", band: band || "" } }
+      //Here add more following the schema
     );
 
     res.status(200).send({
@@ -58,5 +47,4 @@ module.exports = {
   fetchSongs: fetchSongs,
   getSongById: getSongById,
   updateSong: updateSong,
-  // getLikedSongByUser: getLikedSongByUser,
 };

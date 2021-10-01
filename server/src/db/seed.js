@@ -9,14 +9,12 @@ async function seedUsers() {
         firstName: "Admin",
         lastName: "Doe",
         email: "admin@mail.com",
-        likedSongs: "61548a78cb1bfa61acb8df84",
         firebase_id: "I3wKx6kfyXZykQ77pAAMQK3vQ7s1",
       },
       {
         firstName: "Jane",
         lastName: "Doette",
         email: "jdoette@mail.com",
-        likedSongs: "61548a78cb1bfa61acb8df84",
         firebase_id: "QkVnUTPyCTelrls3YD56hzQMyhN2",
       },
     ]);
