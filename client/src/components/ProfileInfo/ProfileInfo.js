@@ -27,9 +27,8 @@ function ProfileInfo() {
     profileImage: "",
   });
 
-  const { loading, accessToken, signOutSuccess } = useSelector(
-    (state) => state.auth
-  );
+  const { loading, accessToken, signOutSuccess, authObserverSuccess, user } =
+    useSelector((state) => state.auth);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -41,20 +40,23 @@ function ProfileInfo() {
   }, [loading, accessToken, signOutSuccess, history]);
 
   useEffect(() => {
-    const userId = JSON.parse(localStorage.getItem("user"));
-    async function updateOnMount() {
-      const userData = await getUserProfile(userId.uid);
-      console.log(userData, "USER DATA");
-      const { email, firstName, lastName, profileImage } = userData.data.data;
-      setProfile({
-        email: email,
-        firstName: firstName,
-        lastName: lastName,
-        profileImage: profileImage || "",
-      });
+    if (!loading && authObserverSuccess) {
+      updateOnMount();
     }
-    updateOnMount();
-  }, []);
+  }, [loading]);
+
+  async function updateOnMount() {
+    console.log(user, "REDUX USER");
+    const userData = await getUserProfile(user.uid);
+    console.log(userData, "USER DATA");
+    const { email, firstName, lastName, profileImage } = userData.data.data;
+    setProfile({
+      email: email,
+      firstName: firstName,
+      lastName: lastName,
+      profileImage: profileImage || "",
+    });
+  }
 
   function handleUserInfoSubmit(e) {
     e.preventDefault();
