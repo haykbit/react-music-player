@@ -13,10 +13,21 @@ async function createSong(req, res, next) {
   }
 }
 
-async function getSongById(req, res, next) {
-  const { _id } = req.params;
+async function fetchSongs(req, res, next) {
   try {
-    const song = await db.Song.findOne({ id: _id }).lean();
+    const songs = await db.Song.find().lean();
+    res.status(200).send({
+      data: songs,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function getSongById(req, res, next) {
+  const { id } = req.params;
+  try {
+    const song = await db.Song.findOne({ _id: id }).lean();
 
     res.status(200).send({
       data: song,
@@ -25,6 +36,7 @@ async function getSongById(req, res, next) {
     next(error);
   }
 }
+
 async function getSongsByUser(req, res, next) {
   const { ownerId } = req.params;
   try {
@@ -37,8 +49,28 @@ async function getSongsByUser(req, res, next) {
   }
 }
 
+async function updateSong(req, res, next) {
+  const { id } = req.params;
+  const { name, band } = req.body;
+  try {
+    const updatedSong = await db.Song.findOneAndUpdate(
+      { _id: id },
+      { $set: { name: name || "", artist: artist || "" } }
+      //Here add more following the schema
+    );
+
+    res.status(200).send({
+      data: updatedSong,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 module.exports = {
   createSong,
   getSongById,
   getSongsByUser,
+  fetchSongs,
+  updateSong,
 };
