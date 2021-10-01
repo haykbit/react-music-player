@@ -20,11 +20,7 @@ if (!firebase.apps.length) {
 export const auth = firebase.auth();
 
 export function onAuthStateChanged() {
-  return auth.onAuthStateChanged((user) => {
-    if (!user) {
-      localStorage.removeItem("user");
-    }
-  });
+  return auth.onAuthStateChanged();
 }
 
 export function signInWithGoogle() {
