@@ -86,6 +86,7 @@ const reducer = (state = INITIAL_STATE, action) => {
         user: null,
         signOutSuccess: true,
         error: null,
+        authObserverSuccess: false,
       };
     case SEND_PASSWORD_RESET_REQUEST:
       return {
