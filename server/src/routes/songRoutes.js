@@ -6,10 +6,10 @@ const songRouter = Router();
 
 songRouter.post("/", authMiddleware, songController.createSong);
 songRouter.patch("/like/:id", songController.likeSong);
+songRouter.patch("/cancel-like/:id", songController.cancelLikeSong);
 
 songRouter.get("/:id", songController.getSongById);
-songRouter.get("/mysongs/:ownerId", songController.getSongsByUser);
-// songRouter.get("/mine/liked", songController.getMyLikedSongs);
+songRouter.get("/my-songs/:ownerId", songController.getSongsByUser);
 
 module.exports = {
   songRouter,

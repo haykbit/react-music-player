@@ -49,12 +49,12 @@ export async function uploadSongsData(song) {
   });
 }
 
-export async function likeSong(songId) {
+export async function likeSong(songId, userId) {
   const userToken = await getCurrentUserToken();
   return axios({
     method: "POST",
-    url: `${process.env.REACT_APP_API_BASE_URL}/songs/like`,
-    songId,
+    url: `${process.env.REACT_APP_API_BASE_URL}/songs/like/${songId}`,
+    userId,
     headers: {
       Authorization: `Bearer ${userToken}`,
     },

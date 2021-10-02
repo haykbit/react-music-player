@@ -61,8 +61,26 @@ async function updateUser(req, res, next) {
   }
 }
 
+async function getMyFavoriteSongs(req, res, next) {
+  const { id: userId } = req.params;
+  try {
+    const user = await db.User.findById(userId);
+    const myFavSongs = user.myFavoriteSongs;
+    const songsData = await db.Song.find({
+      _id: { $in: myFavSongs },
+    });
+    console.log(songsData);
+    res.status(200).send({
+      data: songsData,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
   signIn: signIn,
   getUserById: getUserById,
   updateUser: updateUser,
+  getMyFavoriteSongs,
 };
