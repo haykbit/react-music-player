@@ -12,6 +12,7 @@ import {
   SEND_PASSWORD_RESET_FAIL,
   LOADING_OBSERVER,
   LOADING_OBSERVER_SUCCESS,
+  AUTH_RESET,
 } from "./types";
 
 import INITIAL_STATE from "./state";
@@ -106,6 +107,10 @@ const reducer = (state = INITIAL_STATE, action) => {
         loading: false,
         passwordResetDone: false,
         error: action.payload,
+      };
+    case AUTH_RESET:
+      return {
+        INITIAL_STATE,
       };
     default:
       return state;

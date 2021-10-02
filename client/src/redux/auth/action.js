@@ -21,6 +21,7 @@ import {
   SEND_PASSWORD_RESET_FAIL,
   LOADING_OBSERVER,
   LOADING_OBSERVER_SUCCESS,
+  AUTH_RESET,
 } from "./types";
 
 export const authObserverLoading = () => (dispatch) => {
@@ -84,6 +85,7 @@ export const registerWithEmailAndPassword =
         payload: { ...user, email },
       });
       await syncUserData(userProfile);
+      dispatch({ type: AUTH_RESET });
     } catch (error) {
       dispatch({ type: REGISTER_FAIL, payload: error.message });
     }
