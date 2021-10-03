@@ -25,6 +25,7 @@ function Navbar() {
   });
   const { loading, accessToken, signOutSuccess, authObserverSuccess } =
     useSelector((state) => state.auth);
+  const userState = useSelector((state) => state.user.userProfile);
   async function setProfileData() {
     const userStorage = JSON.parse(localStorage.getItem("user"));
     const userData = await getUserProfile(userStorage.uid);
@@ -42,7 +43,7 @@ function Navbar() {
     if (!loading && authObserverSuccess) {
       setProfileData();
     }
-  }, []);
+  }, [userState]);
   const handleProfile = () => {
     history.push("/profile");
   };

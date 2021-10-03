@@ -50,7 +50,6 @@ async function likeSong(req, res, next) {
   try {
     const checkSong = await db.Song.findById(songId);
     const checkUser = await db.User.findOne({ firebase_id: userId });
-    console.log(checkSong);
     if (
       !checkSong.likedBy.includes(userId) &&
       !checkUser.myFavoriteSongs.includes(songId)
