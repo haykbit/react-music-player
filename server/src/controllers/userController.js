@@ -78,6 +78,27 @@ async function getMyFavoriteSongs(req, res, next) {
   }
 }
 
+//TODO get my songs
+async function getMySongs(req, res, next) {
+  const { id: userId } = req.params;
+  try {
+    const user = await db.User.findById(userId);
+    const mySongs = user.mySongs;
+    const mySongsData = await db.Song.find({
+      _id: { $in: mySongs },
+    });
+    console.log(songsData);
+    res.status(200).send({
+      data: mySongsData,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+//TODO delete my songs
+
+//TODO edit my songs
+
 module.exports = {
   signIn: signIn,
   getUserById: getUserById,

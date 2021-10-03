@@ -54,6 +54,9 @@ const SongSchema = new Schema(
       type: [{ type: Schema.Types.ObjectId, ref: "user" }],
       default: [],
     },
+    played: {
+      type: Number,
+    },
   },
   {
     timestamps: true,
