@@ -1,27 +1,16 @@
-import portadaUno from "../../assets/images/icons/portada-1.png";
-import portadaDos from "../../assets/images/icons/portada-2.png";
-import portadaTres from "../../assets/images/icons/portada-3.png";
-import portadaCuatro from "../../assets/images/icons/portada-4.png";
+import React from "react";
 import { BsFillCaretRightFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
-// import useRightClickMenu from "../../hooks/index";
-// import RightClickMenu from "../RightClickMenu";
+import "./style/playlistStack.scss";
 
-import "./style/playlistnew.scss";
-
-function PlaylistNew() {
-  // const { x, y, showMenu } = useRightClickMenu();
+function PlaylistStack() {
   return (
     <>
-      <div className="newlist-container">
+      <div className="song-container">
         <section className="new-spain">
-          <h2 className="recomend-title">New songs Spain</h2>
-
-          <div className="song-list">
+          <div className="song-list-playlist">
             {/*SONG ITEM*/}
-
-            <div className="song-item" id="song-item">
-              {/* <RightClickMenu x={x} y={y} showMenu={showMenu} /> */}
+            <div className="song-item-playlist">
               <div className="song-info">
                 <div className="song-cover"></div>
                 <div className="song-name">
@@ -47,7 +36,7 @@ function PlaylistNew() {
               </div>
             </div>
 
-            <div className="song-item">
+            <div className="song-item-playlist">
               <div className="song-info">
                 <div className="song-cover"></div>
                 <div className="song-name">
@@ -75,7 +64,7 @@ function PlaylistNew() {
             </div>
 
             {/*SONG ITEM*/}
-            <div className="song-item">
+            <div className="song-item-playlist">
               <div className="song-info">
                 <div className="song-cover"></div>
                 <div className="song-name">
@@ -100,13 +89,7 @@ function PlaylistNew() {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-        <section className="new-world">
-          <h2 className="recomend-title">New songs Europe</h2>
-          <div className="song-list">
-            {/*SONG ITEM*/}
-            <div className="song-item">
+            <div className="song-item-playlist">
               <div className="song-info">
                 <div className="song-cover"></div>
                 <div className="song-name">
@@ -131,8 +114,7 @@ function PlaylistNew() {
                 </div>
               </div>
             </div>
-
-            <div className="song-item">
+            <div className="song-item-playlist">
               <div className="song-info">
                 <div className="song-cover"></div>
                 <div className="song-name">
@@ -141,7 +123,6 @@ function PlaylistNew() {
                 </div>
               </div>
 
-              {/*SONG ITEM*/}
               <div className="song-actions">
                 <div className="song-play">
                   <button>
@@ -158,9 +139,57 @@ function PlaylistNew() {
                 </div>
               </div>
             </div>
+            <div className="song-item-playlist">
+              <div className="song-info">
+                <div className="song-cover"></div>
+                <div className="song-name">
+                  <h3>Coldplay</h3>
+                  <h5>Noches en vela</h5>
+                </div>
+              </div>
 
-            {/*SONG ITEM*/}
-            <div className="song-item">
+              <div className="song-actions">
+                <div className="song-play">
+                  <button>
+                    <BsFillCaretRightFill className="play-icon" />
+                  </button>
+                </div>
+                <div className="song-time">
+                  <h4>4:23</h4>
+                </div>
+                <div className="song-like">
+                  <button>
+                    <FaRegHeart className="like-icon" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="song-item-playlist">
+              <div className="song-info">
+                <div className="song-cover"></div>
+                <div className="song-name">
+                  <h3>Coldplay</h3>
+                  <h5>Noches en vela</h5>
+                </div>
+              </div>
+
+              <div className="song-actions">
+                <div className="song-play">
+                  <button>
+                    <BsFillCaretRightFill className="play-icon" />
+                  </button>
+                </div>
+                <div className="song-time">
+                  <h4>4:23</h4>
+                </div>
+                <div className="song-like">
+                  <button>
+                    <FaRegHeart className="like-icon" />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="song-item-playlist">
               <div className="song-info">
                 <div className="song-cover"></div>
                 <div className="song-name">
@@ -192,4 +221,4 @@ function PlaylistNew() {
   );
 }
 
-export default PlaylistNew;
+export default PlaylistStack;
