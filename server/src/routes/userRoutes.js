@@ -8,6 +8,7 @@ userRouter.post("/login", authMiddleware, userController.signIn);
 userRouter.get("/:id", authMiddleware, userController.getUserById);
 userRouter.patch("/:id", authMiddleware, userController.updateUser);
 userRouter.get("/myFavoriteSongs/:id", userController.getMyFavoriteSongs);
+userRouter.get("/mySongs/:id", userController.getMySongs);
 
 module.exports = {
   userRouter,

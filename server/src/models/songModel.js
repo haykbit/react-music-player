@@ -51,7 +51,8 @@ const SongSchema = new Schema(
       type: Number,
     },
     likedBy: {
-      type: [{ type: Schema.Types.ObjectId, ref: "user" }],
+      // type: [{ type: Schema.Types.ObjectId, ref: "user" }],
+      type: Array,
       default: [],
     },
     played: {

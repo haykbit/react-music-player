@@ -27,6 +27,7 @@ export async function getUserProfile(id) {
 
 export async function updateUserProfile(id, profile, profileImage) {
   const userToken = await getCurrentUserToken();
+  console.log(profileImage, "api profileImage")
   return axios({
     method: "PATCH",
     url: `${process.env.REACT_APP_API_BASE_URL}/users/${id}`,
@@ -61,11 +62,12 @@ export async function likeSong(songId, userId) {
   });
 }
 
-export async function getLikedSongs() {
+export async function getLikedSongs(id) {
+  //get user id argument
   const userToken = await getCurrentUserToken();
   return axios({
     method: "GET",
-    url: `${process.env.REACT_APP_API_BASE_URL}/songs/mine/liked`,
+    url: `${process.env.REACT_APP_API_BASE_URL}/songs//myFavoriteSongs/${id}`,
     headers: {
       Authorization: `Bearer ${userToken}`,
     },

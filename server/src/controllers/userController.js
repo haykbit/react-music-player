@@ -40,6 +40,7 @@ async function getUserById(req, res, next) {
 async function updateUser(req, res, next) {
   const { id: userId } = req.params;
   const { firstName, lastName, email, profileImage } = req.body;
+  console.log(req.body)
   try {
     const updatedUser = await db.User.findOneAndUpdate(
       { firebase_id: userId },
@@ -64,7 +65,7 @@ async function updateUser(req, res, next) {
 async function getMyFavoriteSongs(req, res, next) {
   const { id: userId } = req.params;
   try {
-    const user = await db.User.findById(userId);
+    const user = await db.User.findOne({ firebase_id: userId });
     const myFavSongs = user.myFavoriteSongs;
     const songsData = await db.Song.find({
       _id: { $in: myFavSongs },
@@ -82,12 +83,11 @@ async function getMyFavoriteSongs(req, res, next) {
 async function getMySongs(req, res, next) {
   const { id: userId } = req.params;
   try {
-    const user = await db.User.findById(userId);
+    const user = await db.User.findOne({ firebase_id: userId });
     const mySongs = user.mySongs;
     const mySongsData = await db.Song.find({
       _id: { $in: mySongs },
     });
-    console.log(songsData);
     res.status(200).send({
       data: mySongsData,
     });
@@ -104,4 +104,5 @@ module.exports = {
   getUserById: getUserById,
   updateUser: updateUser,
   getMyFavoriteSongs,
+  getMySongs,
 };

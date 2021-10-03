@@ -26,30 +26,36 @@ export const displayUserProfile =
     }
   };
 
-export const updateUserProfileInfo =
-  (userId, profile, image) => async (dispatch) => {
-    dispatch({ type: UPDATE_PROFILE_REQUEST });
-    try {
-      const { email, profileImage } = profile;
-      if (email) {
-        await updateUserEmail(email);
-      }
-      if (image) {
-        const imageData = await uploadImages(image);
-        dispatch({
-          type: UPDATE_PROFILE_SUCCESS,
-          payload: { ...profile, profileImage: imageData.url },
-        });
-      }
+export const updateUserProfileInfo = (userId, profile) => async (dispatch) => {
+  dispatch({ type: UPDATE_PROFILE_REQUEST });
+  try {
+    const { email, profileImageURL, profileImageFile } = profile;
+    if (email) {
+      await updateUserEmail(email);
       dispatch({
         type: UPDATE_PROFILE_SUCCESS,
         payload: { ...profile },
       });
-      await updateUserProfile(userId, profile, profileImage);
-    } catch (error) {
-      dispatch({ type: UPDATE_PROFILE_FAIL, payload: error.message });
     }
-  };
+    if (profileImageFile) {
+      const imageData = await uploadImages(profileImageFile);
+      dispatch({
+        type: UPDATE_PROFILE_SUCCESS,
+        payload: { ...profile, profileImageURL: imageData.url },
+      });
+      console.log(profile, "profile");
+      await updateUserProfile(userId, profile, imageData.url);
+    } else {
+      await updateUserProfile(userId, profile);
+      dispatch({
+        type: UPDATE_PROFILE_SUCCESS,
+        payload: { ...profile },
+      });
+    }
+  } catch (error) {
+    dispatch({ type: UPDATE_PROFILE_FAIL, payload: error.message });
+  }
+};
 
 export const updateUserProfilePassword = (password) => async (dispatch) => {
   dispatch({ type: UPDATE_PASSWORD_REQUEST });
