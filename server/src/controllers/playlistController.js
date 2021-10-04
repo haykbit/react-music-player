@@ -38,7 +38,22 @@ async function getPlaylistById(req, res, next) {
   }
 }
 
+async function removePlaylistById(req, res, next) {
+  const { id: playlistId } = req.params;
+
+  try {
+    const playlist = await db.Playlist.deleteOne({ _id: playlistId }).lean();
+
+    res.status(200).send({
+      data: playlist,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 module.exports = {
   fetchPlaylists: fetchPlaylists,
   getPlaylistById: getPlaylistById,
+  removePlaylistById: removePlaylistById,
 };
