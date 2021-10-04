@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsFillCaretRightFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
+import { IoMdMore } from "react-icons/io";
+import RightClickMenu from "../RightClickMenu";
 
 function IndividualSong() {
+
+ 
+  };
   return (
     <div className="song-item-playlist">
       <div className="song-info">
@@ -12,7 +17,12 @@ function IndividualSong() {
           <h5>Noches en vela</h5>
         </div>
       </div>
-
+      <div>
+        <button className="context-menu" >
+          <IoMdMore />
+        </button>
+        <RightClickMenu />
+      </div>
       <div className="song-actions">
         <div className="song-play">
           <button>
