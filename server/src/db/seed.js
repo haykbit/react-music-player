@@ -27,48 +27,67 @@ async function seedSongs() {
   try {
     db.Song.insertMany([
       {
-        name: "IDOL",
-        description: "Best K-pop band",
-        ratings: 4.5,
-        images: [
-          {
-            public_id: "upload/v1632827962",
-            url: "https://res.cloudinary.com/einartech/image/upload/v1632827962/music/download_yynaha.jpg",
-          },
-        ],
-        multimedia: [
+        title: "idol",
+        artist: "BTS",
+        genre: "K-pop",
+        duration: 3.5,
+        url: [
           {
             public_id: "upload/v1632827814",
             url: "https://res.cloudinary.com/einartech/video/upload/v1632827814/music/TesseracT_-_Nocturne_P_O_R_T_A_L_S_128_kbps_tlj08b.mp3",
           },
         ],
-        category: "K-pop",
-        band: "BTS",
-        numOfReviews: 32,
-        reviews: [],
-        author: "6152f26da11b50c0d609bdf3",
+        album: "fake1234fake1234fake1234",
+        private: false,
+        owner: "6152f26da11b50c0d609bdf3",
+        popularity: 32,
+        included_lists: [
+          {
+            playlist: "fake1234fake1234fake1234",
+          },
+        ],
       },
       {
-        name: "Permision to dance on stage",
-        description: "Best K-pop band",
-        ratings: 4.5,
-        images: [
-          {
-            public_id: "upload/v1632827962",
-            url: "https://res.cloudinary.com/einartech/image/upload/v1632827962/music/download_yynaha.jpg",
-          },
-        ],
-        multimedia: [
+        title: "Serindipity",
+        artist: "BTS",
+        genre: "K-pop",
+        duration: 3.5,
+        url: [
           {
             public_id: "upload/v1632827814",
             url: "https://res.cloudinary.com/einartech/video/upload/v1632827814/music/TesseracT_-_Nocturne_P_O_R_T_A_L_S_128_kbps_tlj08b.mp3",
           },
         ],
-        category: "K-pop",
-        band: "BTS",
-        numOfReviews: 32,
-        reviews: [],
-        author: "6152f26da11b50c0d609bdf3",
+        album: "fake1234fake1234fake1234",
+        private: false,
+        owner: "6152f26da11b50c0d609bdf3",
+        popularity: 32,
+        included_lists: [
+          {
+            playlist: "fake1234fake1234fake1234",
+          },
+        ],
+      },
+      {
+        title: "test",
+        artist: "test",
+        genre: "K-pop",
+        duration: 3.5,
+        url: [
+          {
+            public_id: "upload/v1632827814",
+            url: "https://res.cloudinary.com/einartech/video/upload/v1632827814/music/TesseracT_-_Nocturne_P_O_R_T_A_L_S_128_kbps_tlj08b.mp3",
+          },
+        ],
+        album: "fake1234fake1234fake1234",
+        private: false,
+        owner: "6152f26da11b50c0d609bdf3",
+        popularity: 32,
+        included_lists: [
+          {
+            playlist: "fake1234fake1234fake1234",
+          },
+        ],
       },
     ]);
   } catch (err) {

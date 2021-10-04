@@ -27,12 +27,11 @@ async function getSongById(req, res, next) {
 
 async function updateSong(req, res, next) {
   const { id: songId } = req.params;
-  const { name, band } = req.body;
+  const { title, artist, genre } = req.body;
   try {
     const updatedSong = await db.Song.findOneAndUpdate(
       { _id: songId },
-      { $set: { name: name || "", band: band || "" } }
-      //Here add more following the schema
+      { $set: { title: title || "", artist: artist || "", genre: genre || "" } }
     );
 
     res.status(200).send({
@@ -43,8 +42,23 @@ async function updateSong(req, res, next) {
   }
 }
 
+async function removeSongById(req, res, next) {
+  const { id: songId } = req.params;
+
+  try {
+    const song = await db.Song.deleteOne({ _id: songId }).lean();
+
+    res.status(200).send({
+      data: song,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 module.exports = {
   fetchSongs: fetchSongs,
   getSongById: getSongById,
   updateSong: updateSong,
+  removeSongById: removeSongById,
 };

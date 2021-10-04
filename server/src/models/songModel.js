@@ -2,47 +2,21 @@ const mongoose = require("mongoose");
 const { Schema } = require("mongoose");
 
 const SongSchema = new Schema({
-  name: {
+  title: {
     type: String,
-    required: [true, "Please enter song name"],
+    required: [true, "Please enter title song"],
     trim: true,
-    maxLength: [100, "Song name cannot exceed 100 characters"],
+    maxLength: [30, "Song title cannot exceed 30 characters"],
   },
-  description: {
+  artist: {
     type: String,
-    required: [true, "Please enter song description"],
+    required: [true, "Please enter artist song"],
+    trim: true,
+    maxLength: [30, "Song artist cannot exceed 30 characters"],
   },
-  ratings: {
-    type: Number,
-    default: 0,
-  },
-  images: [
-    {
-      public_id: {
-        type: String,
-        required: true,
-      },
-      url: {
-        type: String,
-        required: true,
-      },
-    },
-  ],
-  multimedia: [
-    {
-      public_id: {
-        type: String,
-        required: true,
-      },
-      url: {
-        type: String,
-        required: true,
-      },
-    },
-  ],
-  category: {
+  genre: {
     type: String,
-    required: [true, "Please select category for this song"],
+    required: [true, "Please select genre for this song"],
     enum: {
       values: [
         "Country",
@@ -59,39 +33,58 @@ const SongSchema = new Schema({
         "Rock",
         "Techno",
       ],
-      message: "Please select correct category for song",
+      message: "Please select correct genre for song",
     },
   },
-  band: {
-    type: String,
-    required: [true, "Please enter band name"],
-  },
-  numOfReviews: {
+  duration: {
     type: Number,
     default: 0,
   },
-  reviews: [
+  url: [
     {
-      user: {
-        type: mongoose.Schema.ObjectId,
-        ref: "User",
-        required: true,
-      },
-      name: {
+      public_id: {
         type: String,
         required: true,
       },
-      rating: {
-        type: Number,
+      url: {
+        type: String,
         required: true,
       },
     },
   ],
-  author: {
+  album: {
+    type: String,
+  },
+  // album: {
+  //   type: mongoose.Schema.ObjectId,
+  //   ref: "Album",
+  //   required: false,
+  // },
+  private: {
+    type: Boolean,
+    required: true,
+  },
+  owner: {
     type: mongoose.Schema.ObjectId,
     ref: "User",
     required: true,
   },
+  popularity: {
+    type: Number,
+    default: 0,
+  },
+  included_lists: {
+    playlist: {
+      type: String,
+    },
+  },
+  // included_lists: {
+  //   playlist: {
+  //     type: mongoose.Schema.ObjectId,
+  //     ref: "Playlist",
+  //   },
+  // },
+
   createdAt: {
     type: Date,
     default: Date.now,

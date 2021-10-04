@@ -8,6 +8,7 @@ const songRouter = Router();
 songRouter.get("/all", authMiddleware, songController.fetchSongs);
 songRouter.get("/:id", authMiddleware, songController.getSongById);
 songRouter.patch("/:id", authMiddleware, songController.updateSong);
+songRouter.delete("/:id", authMiddleware, songController.removeSongById);
 
 module.exports = {
   songRouter,
