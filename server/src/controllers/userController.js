@@ -2,7 +2,6 @@ const db = require("../models");
 
 async function signIn(req, res, next) {
   const { uid, email } = req.user;
-  //const { firstName, lastName } = req.body.user;
   try {
     const user = await db.User.findOne({ email: email });
 

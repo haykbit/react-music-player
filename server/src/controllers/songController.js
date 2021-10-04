@@ -25,6 +25,7 @@ async function getSongById(req, res, next) {
     next(error);
   }
 }
+
 async function getSongsByUser(req, res, next) {
   const { ownerId } = req.params;
   try {
@@ -37,8 +38,26 @@ async function getSongsByUser(req, res, next) {
   }
 }
 
+async function updateSong(req, res, next) {
+  const { id } = req.params;
+  const { title, artist } = req.body;
+  try {
+    const updatedSong = await db.Song.findOneAndUpdate(
+      { _id: id },
+      { $set: { title: title || "", artist: artist || "" } }
+    );
+
+    res.status(200).send({
+      data: updatedSong,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 module.exports = {
   createSong,
   getSongById,
   getSongsByUser,
+  updateSong,
 };
