@@ -19,8 +19,13 @@ if (!firebase.apps.length) {
 
 export const auth = firebase.auth()
 
+<<<<<<< HEAD
 export function onAuthStateChanged(...props) {
   return auth.onAuthStateChanged(...props)
+=======
+export function onAuthStateChanged(callback) {
+  return auth.onAuthStateChanged(callback);
+>>>>>>> 39d92839db6d7d0b55026b6a0124c42d3d0f754c
 }
 
 export function signInWithGoogle() {

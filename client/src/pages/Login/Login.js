@@ -5,13 +5,15 @@ import { useSelector } from "react-redux";
 import LoginForm from "../../components/LoginForm";
 import "./styles/login.scss";
 function Login() {
-  const access = useSelector((state) => state.auth.accessToken);
+  const access = useSelector((state) => state.auth.authObserverSuccess);
   const history = useHistory();
+
   useEffect(() => {
     if (access) {
       history.push("/home-page");
     }
   }, [access, history]);
+
   return (
     <div className="loginBackground">
       <LoginForm />

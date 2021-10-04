@@ -35,11 +35,12 @@
   .profile-picture-uploaded {
     width: 150px;
     height: 150px;
-    background-size: contain;
+    background-size: cover;
     border: 2px solid #fff;
     border-radius: 100%;
     background-repeat: "no-repeat";
     cursor: pointer;
+    background-position: center;
 
     input {
       display: none;

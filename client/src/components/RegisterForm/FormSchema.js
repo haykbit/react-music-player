@@ -18,7 +18,6 @@ const FormSchema = Yup.object().shape({
         let regExp = new RegExp(
           "^(?=.*\\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$"
         );
-        // console.log(regExp.test(val), regExp, val);
         return regExp.test(val);
       }
     ),
