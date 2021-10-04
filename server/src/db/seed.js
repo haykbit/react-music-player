@@ -36,6 +36,7 @@ async function seedUsers() {
         firebase_id: "zuvAukoB7ogMj7DHaimzKqEFI3C3",
       },
     ]);
+    console.log("Seed Users OK");
   } catch (err) {
     console.log(err);
   }
@@ -49,15 +50,10 @@ async function seedSongs() {
         artist: "BTS",
         genre: "K-pop",
         duration: 3.5,
-        url: [
-          {
-            public_id: "upload/v1632827814",
-            url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
-          },
-        ],
+        url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
         album: "fake1234fake1234fake1234",
         private: false,
-        owner: "6152f26da11b50c0d609bdf3",
+        owner: "615b22fb93c39b954c27c9da",
         popularity: 32,
         included_lists: [
           {
@@ -70,15 +66,10 @@ async function seedSongs() {
         artist: "BTS",
         genre: "K-pop",
         duration: 3.5,
-        url: [
-          {
-            public_id: "upload/v1632827814",
-            url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1633001063/k73nlagzz8cxif3bvhqh.mp3",
-          },
-        ],
+        url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1633001063/k73nlagzz8cxif3bvhqh.mp3",
         album: "fake1234fake1234fake1234",
-        // private: false,
-        owner: "hNgne9CGnvbcwHokxnXgCRjUVVO2",
+        private: true,
+        owner: "615b22fb93c39b954c27c9da",
         popularity: 32,
         included_lists: [
           {
@@ -91,15 +82,10 @@ async function seedSongs() {
         artist: "test",
         genre: "K-pop",
         duration: 3.5,
-        url: [
-          {
-            public_id: "upload/v1632827814",
-            url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1633001063/test.mp3",
-          },
-        ],
+        url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1633001063/test.mp3",
         album: "fake1234fake1234fake1234",
-        // private: false,
-        owner: "6152f26da11b50c0d609bdf3",
+        private: false,
+        owner: "615b22fb93c39b954c27c9da",
         popularity: 32,
         included_lists: [
           {
@@ -108,13 +94,53 @@ async function seedSongs() {
         ],
       },
     ]);
+    console.log("Seed Songs OK");
+  } catch (err) {
+    console.log(err);
+  }
+}
+async function seedPlaylist() {
+  try {
+    db.Playlist.insertMany([
+      {
+        title: "Sports Playlist",
+        description: "Music to Work Out",
+        songs: "615ad1292f1cffd00bd0defc",
+        genre: "Techno",
+        private: "false",
+        owner: "615aca9b4b01f8a52a4e3dc0",
+        playlist_image: [
+          {
+            public_id: "upload/v1632827814",
+            url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
+          },
+        ],
+        popularity: 10,
+      },
+      {
+        title: "Sleep Playlist",
+        description: "Music to Relax",
+        songs: "615ad1292f1cffd00bd0defe",
+        genre: "Oldies",
+        private: "false",
+        owner: "615aca9b4b01f8a52a4e3dc0",
+        playlist_image: [
+          {
+            public_id: "upload/v1632827814",
+            url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
+          },
+        ],
+        popularity: 15,
+      },
+    ]);
+    console.log("Seed Playlist OK");
   } catch (err) {
     console.log(err);
   }
 }
 
 async function seedDatabase() {
-  //User
+  console.log("Start seeding");
   try {
     const userExists = await db.User.findOne({
       email: "admin@mail.com",
@@ -122,6 +148,10 @@ async function seedDatabase() {
 
     const songExists = await db.Song.findOne({
       url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
+    }).lean();
+
+    const playlistExists = await db.Playlist.findOne({
+      title: "testlldsfg",
     }).lean();
 
     if (!userExists) {
@@ -133,23 +163,14 @@ async function seedDatabase() {
       mongoose.connection.collection("songs").drop();
       seedSongs();
     }
-  } catch (err) {
-    console.log(err);
-  }
-
-  //Song
-  try {
-    const songExists = await db.Song.findOne({
-      id: "_id:6152f26da11b50c0d609bdf2",
-    }).lean();
-
-    if (!songExists) {
-      await mongoose.connection.collection("songs").drop();
-      seedSongs();
+    if (!playlistExists) {
+      mongoose.connection.collection("playlists").drop();
+      seedPlaylist();
     }
   } catch (err) {
     console.log(err);
   }
+  console.log("Seed ended");
 }
 
 module.exports = seedDatabase;

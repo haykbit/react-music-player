@@ -1,18 +1,23 @@
 const mongoose = require("mongoose");
 const { Schema } = require("mongoose");
 
-const SongSchema = new Schema({
+const PlaylistSchema = new Schema({
   title: {
     type: String,
-    required: [true, "Please enter title song"],
+    required: [true, "Please enter title to the playlist"],
     trim: true,
-    maxLength: [30, "Song title cannot exceed 30 characters"],
+    maxLength: [20, "Playlist title cannot exceed 30 characters"],
   },
-  artist: {
+  description: {
     type: String,
-    required: [true, "Please enter artist song"],
+    required: [true, "Please enter description to the playlist"],
     trim: true,
-    maxLength: [30, "Song artist cannot exceed 30 characters"],
+    maxLength: [30, "Playlist description cannot exceed 30 characters"],
+  },
+  songs: {
+    type: mongoose.Schema.ObjectId,
+    ref: "Song",
+    required: true,
   },
   genre: {
     type: String,
@@ -36,22 +41,6 @@ const SongSchema = new Schema({
       message: "Please select correct genre for song",
     },
   },
-  duration: {
-    type: Number,
-    default: 0,
-  },
-  url: {
-    type: String,
-    required: true,
-  },
-  album: {
-    type: String,
-  },
-  // album: {
-  //   type: mongoose.Schema.ObjectId,
-  //   ref: "Album",
-  //   required: false,
-  // },
   private: {
     type: Boolean,
     required: true,
@@ -60,22 +49,24 @@ const SongSchema = new Schema({
     type: mongoose.Schema.ObjectId,
     ref: "User",
     required: true,
+    //Owner name?
   },
+  playlist_image: [
+    {
+      public_id: {
+        type: String,
+        required: true,
+      },
+      url: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
   popularity: {
     type: Number,
     default: 0,
   },
-  included_lists: {
-    playlist: {
-      type: String,
-    },
-  },
-  // included_lists: {
-  //   playlist: {
-  //     type: mongoose.Schema.ObjectId,
-  //     ref: "Playlist",
-  //   },
-  // },
 
   createdAt: {
     type: Date,
@@ -83,7 +74,7 @@ const SongSchema = new Schema({
   },
 });
 
-const Song = mongoose.model("Song", SongSchema);
+const Playlist = mongoose.model("Playlist", PlaylistSchema);
 module.exports = {
-  Song: Song,
+  Playlist: Playlist,
 };
