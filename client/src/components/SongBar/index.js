@@ -1,1 +1,1 @@
-export { default } from "./SongBar";
+export { default } from "./AudioPlayer";

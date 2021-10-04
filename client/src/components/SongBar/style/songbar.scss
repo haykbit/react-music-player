@@ -1,8 +1,9 @@
-.music-controlls {
+.audio-player {
   display: flex;
   align-items: center;
   width: 100%;
   height: 90px;
+  color: #fff;
   background-color: #0b0b0b;
   box-shadow: 4px -8px 32px 0px rgba(0, 0, 0, 0.75);
   position: fixed;
@@ -11,27 +12,42 @@
 
   button {
     cursor: pointer;
+    background-color: transparent;
+    border: none;
   }
 
-  .song-item {
+  .audio-controls {
+    display: flex;
+    margin: 0px 20px 0px 70px;
+  }
+
+  .track-info {
     display: flex;
     align-items: center;
     margin-left: 20px;
 
+    .progress {
+      width: 900px;
+      margin: 0px 20px 0px 20px;
+    }
+
+    .volume {
+      width: 100px;
+      margin: 0px 20px 0px 20px;
+    }
+
+    .next,
+    .prev {
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
     img {
-      width: 50px;
-      height: 50px;
-      border-radius: 10px;
-    }
-
-    h3 {
-      margin: 0;
-      font-weight: 800;
-    }
-
-    h5 {
-      margin: 0;
-      font-weight: 400;
+      width: 60px;
+      height: 60px;
+      border-radius: 7px;
     }
 
     .song-info {
@@ -39,123 +55,15 @@
       flex-direction: column;
       margin-left: 20px;
       color: #fff;
-    }
-  }
 
-  .actions-left {
-    display: flex;
-    margin-left: 50px;
-    .action-button {
-      cursor: pointer;
-      img {
-        width: 15px;
-        height: 15px;
+      h4 {
+        margin: 0;
+        font-size: 30px;
       }
-    }
-
-    .play-button {
-      cursor: pointer;
-      img {
-        width: 50px;
-      }
-    }
-
-    .pause-button {
-      cursor: pointer;
-      img {
-        width: 50px;
-      }
-    }
-
-    button {
-      background-color: transparent;
-      border: none;
-    }
-  }
-
-  .bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    height: 7px;
-    border-radius: 50px;
-    background-image: linear-gradient(
-      to left,
-      #ff4343,
-      #ff2a7c,
-      #eb3db3,
-      #b65fe2,
-      #527aff
-    );
-  }
-
-  .bar-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 50%;
-    height: 100%;
-    margin-left: 20px;
-
-    h4 {
-      color: #fff;
-      margin: 20px;
-    }
-  }
-
-  .actions-right {
-    display: flex;
-    align-items: center;
-    margin-left: 30px;
-
-    img {
-      width: 50px;
-      height: 50px;
-    }
-
-    .sound-bar {
-      display: flex;
-      width: 100px;
-      height: 7px;
-      margin-left: 15px;
-      background-color: rgba(207, 207, 207, 0.637);
-      border-radius: 50px;
-
-      .line {
-        width: 40px;
-        height: 7px;
-        background-color: rgb(255, 255, 255);
-        border-radius: 50px;
-      }
-    }
-
-    .config {
-      margin-left: 40px;
-      img {
-        width: 30px;
-        height: 30px;
-      }
-      button {
-        background-color: transparent;
-        border: none;
-        width: 30px;
-        height: 30px;
-      }
-    }
-
-    .close {
-      margin-left: 40px;
-      img {
-        width: 20px;
-        height: 20px;
-      }
-      button {
-        background-color: transparent;
-        border: none;
-        width: 20px;
-        height: 20px;
-        border-radius: 20px;
+      h6 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 500;
       }
     }
   }
