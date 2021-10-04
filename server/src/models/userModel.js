@@ -26,6 +26,9 @@ const UserSchema = new Schema(
       type: String,
       unique: true,
     },
+    profileImage: {
+      type: String,
+    },
   },
   { timestamp: true }
 );
