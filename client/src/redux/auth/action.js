@@ -58,7 +58,6 @@ export const login = () => async (dispatch) => {
       lastName: res.additionalUserInfo.profile.family_name,
       email: res.additionalUserInfo.profile.email,
       uid: res.user.multiFactor.user.uid,
-      // picture: res.additionalUserInfo.profile.picture,
     };
     localStorage.setItem("user", JSON.stringify(userProfile));
     dispatch({ type: LOGIN_SUCCESS, payload: accessToken });
@@ -102,7 +101,6 @@ export const loginWithEmailAndPassword =
         lastName: user.data.data.lastName,
         email: user.data.data.email,
         uid: user.data.data.firebase_id,
-        // picture: res.additionalUserInfo.profile.picture,
       };
       localStorage.setItem("user", JSON.stringify(userProfile));
       const accessToken = res.user.multiFactor.user.accessToken;
