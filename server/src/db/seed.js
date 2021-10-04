@@ -77,7 +77,7 @@ async function seedSongs() {
           },
         ],
         album: "fake1234fake1234fake1234",
-        private: false,
+        // private: false,
         owner: "hNgne9CGnvbcwHokxnXgCRjUVVO2",
         popularity: 32,
         included_lists: [
@@ -98,7 +98,7 @@ async function seedSongs() {
           },
         ],
         album: "fake1234fake1234fake1234",
-        private: false,
+        // private: false,
         owner: "6152f26da11b50c0d609bdf3",
         popularity: 32,
         included_lists: [
