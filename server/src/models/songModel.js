@@ -60,10 +60,10 @@ const SongSchema = new Schema({
   //   ref: "Album",
   //   required: false,
   // },
-  private: {
-    type: Boolean,
-    required: true,
-  },
+  // private: {
+  //   type: Boolean,
+  //   required: true,
+  // },
   owner: {
     type: mongoose.Schema.ObjectId,
     ref: "User",

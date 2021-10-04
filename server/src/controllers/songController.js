@@ -13,10 +13,22 @@ async function createSong(req, res, next) {
   }
 }
 
-async function getSongById(req, res, next) {
-  const { _id } = req.params;
+async function fetchSongs(req, res, next) {
   try {
-    const song = await db.Song.findOne({ id: _id }).lean();
+    const song = await db.Song.find().lean();
+
+    res.status(200).send({
+      data: song,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function getSongById(req, res, next) {
+  const { id } = req.params;
+  try {
+    const song = await db.Song.findOne({ _id: id }).lean();
 
     res.status(200).send({
       data: song,
@@ -57,9 +69,23 @@ async function removeSongById(req, res, next) {
   }
 }
 
+async function getSongsByUser(req, res, next) {
+  const { ownerId } = req.params;
+  try {
+    const songs = await db.Song.find({ owner: ownerId });
+    res.status(200).send({
+      data: songs,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
   fetchSongs: fetchSongs,
   getSongById: getSongById,
   updateSong: updateSong,
   removeSongById: removeSongById,
+  createSong: createSong,
+  getSongsByUser: getSongsByUser,
 };
