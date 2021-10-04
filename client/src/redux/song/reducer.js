@@ -4,9 +4,9 @@ import {
   POST_SONG_REQUEST,
   POST_SONG_SUCCESS,
   POST_SONG_FAIL,
-  GET_SONG_REQUEST,
-  GET_SONG_SUCCESS,
-  GET_SONG_FAIL,
+  GET_MY_SONGS_REQUEST,
+  GET_MY_SONGS_SUCCESS,
+  GET_MY_SONGS_FAIL,
   UPDATE_SONG_REQUEST,
   UPDATE_SONG_SUCCESS,
   UPDATE_SONG_FAIL,
@@ -44,25 +44,28 @@ const reducer = (state = INITIAL_STATE, action) => {
         error: action.payload,
         songData: null,
       };
-    case GET_SONG_REQUEST:
+    case GET_MY_SONGS_REQUEST:
       return {
         ...state,
+        getSongsSuccess: false,
         loading: true,
         error: null,
         songData: null,
       };
-    case GET_SONG_SUCCESS:
+    case GET_MY_SONGS_SUCCESS:
       return {
         ...state,
         loading: false,
         error: null,
+        getSongsSuccess: true,
         songData: action.payload,
       };
-    case GET_SONG_FAIL:
+    case GET_MY_SONGS_FAIL:
       return {
         ...state,
         loading: false,
         error: action.payload,
+        getSongsSuccess: false,
         songData: null,
       };
     case UPDATE_SONG_REQUEST:

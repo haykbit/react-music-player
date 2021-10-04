@@ -5,9 +5,9 @@ import {
   POST_SONG_REQUEST,
   POST_SONG_SUCCESS,
   POST_SONG_FAIL,
-  GET_SONG_REQUEST,
-  GET_SONG_SUCCESS,
-  GET_SONG_FAIL,
+  GET_MY_SONGS_REQUEST,
+  GET_MY_SONGS_SUCCESS,
+  GET_MY_SONGS_FAIL,
   UPDATE_SONG_REQUEST,
   UPDATE_SONG_SUCCESS,
   UPDATE_SONG_FAIL,
@@ -39,6 +39,8 @@ export const likeSongs = (songId) => async (dispatch) => {
     dispatch({ type: LIKE_SONG_FAIL, payload: error.message });
   }
 };
+
+export const getMySongsData = () => async (dispatch) => {};
 
 export const displayMyLikedSongs = (songId) => async (dispatch) => {
   dispatch({ type: GET_MY_LIKED_SONGS_REQUEST });

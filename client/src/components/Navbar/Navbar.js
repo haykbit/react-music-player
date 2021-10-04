@@ -43,7 +43,7 @@ function Navbar() {
     if (!loading && authObserverSuccess) {
       setProfileData();
     }
-  }, [userState]);
+  }, [userState, loading]);
   const handleProfile = () => {
     history.push("/profile");
   };
