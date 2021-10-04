@@ -132,6 +132,21 @@ async function seedPlaylist() {
         ],
         popularity: 15,
       },
+      {
+        title: "Test Playlist",
+        description: "Music to Test",
+        songs: "615ad1292f1cffd00bd0defe",
+        genre: "Oldies",
+        private: "false",
+        owner: "615aca9b4b01f8a52a4e3dc0",
+        playlist_image: [
+          {
+            public_id: "upload/v1632827814",
+            url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
+          },
+        ],
+        popularity: 15,
+      },
     ]);
     console.log("Seed Playlist OK");
   } catch (err) {
