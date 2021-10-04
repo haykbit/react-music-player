@@ -10,12 +10,27 @@ import {
   SEND_PASSWORD_RESET_REQUEST,
   SEND_PASSWORD_RESET_SUCCESS,
   SEND_PASSWORD_RESET_FAIL,
+  LOADING_OBSERVER,
+  LOADING_OBSERVER_SUCCESS,
+  AUTH_RESET,
 } from "./types";
 
 import INITIAL_STATE from "./state";
 
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case LOADING_OBSERVER:
+      return {
+        ...state,
+        loading: true,
+        signOutSuccess: false,
+      };
+    case LOADING_OBSERVER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        authObserverSuccess: true,
+      };
     case REGISTER_REQUEST:
       return {
         ...state,
@@ -71,6 +86,7 @@ const reducer = (state = INITIAL_STATE, action) => {
         user: null,
         signOutSuccess: true,
         error: null,
+        authObserverSuccess: false,
       };
     case SEND_PASSWORD_RESET_REQUEST:
       return {
@@ -92,6 +108,10 @@ const reducer = (state = INITIAL_STATE, action) => {
         loading: false,
         passwordResetDone: false,
         error: action.payload,
+      };
+    case AUTH_RESET:
+      return {
+        INITIAL_STATE,
       };
     default:
       return state;

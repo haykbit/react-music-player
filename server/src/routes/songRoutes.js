@@ -4,10 +4,13 @@ const { songController } = require("../controllers");
 
 const songRouter = Router();
 
-songRouter.post("/", authMiddleware, songController.createSong);
-songRouter.get("/all", authMiddleware, songController.fetchSongs);
-songRouter.get("/mysongs/:ownerId", songController.getSongsByUser);
 songRouter.get("/:id", authMiddleware, songController.getSongById);
+songRouter.get(
+  "/mysongs/:ownerId",
+  authMiddleware,
+  songController.getSongsByUser
+);
+songRouter.post("/", authMiddleware, songController.createSong);
 songRouter.patch("/:id", authMiddleware, songController.updateSong);
 
 module.exports = {
