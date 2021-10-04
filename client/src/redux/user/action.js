@@ -12,6 +12,7 @@ import {
 } from "./types";
 import { getUserProfile, updateUserProfile } from "../../api/api";
 import { updateUserEmail, updateUserPassword } from "../../services/auth";
+import { uploadImages } from "../../services/cloudinary";
 
 export const displayUserProfile =
   ({ userId }) =>
@@ -28,11 +29,15 @@ export const displayUserProfile =
 export const updateUserProfileInfo = (userId, profile) => async (dispatch) => {
   dispatch({ type: UPDATE_PROFILE_REQUEST });
   try {
-    const { email } = profile;
+    const { email, profileImage } = profile;
 
     await updateUserEmail(email);
-    dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: profile });
-    await updateUserProfile(userId, profile);
+    const imageData = await uploadImages(profileImage);
+    dispatch({
+      type: UPDATE_PROFILE_SUCCESS,
+      payload: { ...profile, profileImage: imageData.url },
+    });
+    await updateUserProfile(userId, profile, imageData.url);
   } catch (error) {
     dispatch({ type: UPDATE_PROFILE_FAIL, payload: error.message });
   }

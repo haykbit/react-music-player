@@ -24,11 +24,11 @@ function ProfileInfo() {
     email: "",
     firstName: "",
     lastName: "",
+    profileImage: "",
   });
 
-  const { loading, accessToken, signOutSuccess } = useSelector(
-    (state) => state.auth
-  );
+  const { loading, accessToken, signOutSuccess, authObserverSuccess, user } =
+    useSelector((state) => state.auth);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -40,18 +40,23 @@ function ProfileInfo() {
   }, [loading, accessToken, signOutSuccess, history]);
 
   useEffect(() => {
-    async function updateOnMount() {
-      const userId = getCurrentUser().uid;
-      const userData = await getUserProfile(userId);
-      const { email, firstName, lastName } = userData.data.data;
-      setProfile({
-        email: email,
-        firstName: firstName,
-        lastName: lastName,
-      });
+    if (!loading && authObserverSuccess) {
+      updateOnMount();
     }
-    updateOnMount();
-  }, []);
+  }, [loading]);
+
+  async function updateOnMount() {
+    console.log(user, "REDUX USER");
+    const userData = await getUserProfile(user.uid);
+    console.log(userData, "USER DATA");
+    const { email, firstName, lastName, profileImage } = userData.data.data;
+    setProfile({
+      email: email,
+      firstName: firstName,
+      lastName: lastName,
+      profileImage: profileImage || "",
+    });
+  }
 
   function handleUserInfoSubmit(e) {
     e.preventDefault();
@@ -68,18 +73,17 @@ function ProfileInfo() {
   const [isUploaded, setIsUploaded] = useState(false);
 
   function handleImageChange(e) {
-    if (e.target.files && e.target.files[0]) {
-      let reader = new FileReader();
+    setProfile({ ...profile, profileImage: e.target.files[0] });
 
-      reader.onload = function (e) {
-        setImage(e.target.result);
-        setIsUploaded(true);
-      };
+    let reader = new FileReader();
 
-      reader.readAsDataURL(e.target.files[0]);
-    }
+    reader.onload = function (e) {
+      setImage(e.target.result);
+      setIsUploaded(true);
+    };
+
+    reader.readAsDataURL(e.target.files[0]);
   }
-
   return (
     <>
       <div className="user-info">
@@ -93,8 +97,11 @@ function ProfileInfo() {
                     <div
                       className="profile-picture-uploaded"
                       style={{
-                        backgroundRepeat: "no-repeat",
-                        backgroundImage: `url(${ImageUploadIcon})`,
+                        backgroundImage: `url(${
+                          profile.profileImage
+                            ? profile.profileImage
+                            : ImageUploadIcon
+                        })`,
                       }}
                     >
                       <input
@@ -172,7 +179,6 @@ function ProfileInfo() {
               <div hidden={openResetPassword}>
                 <Formik
                   onSubmit={(values) => {
-                    console.log(values.newPassword);
                     setOpenResetPassword(true);
                     dispatch(updateUserProfilePassword(values.newPassword));
                   }}
