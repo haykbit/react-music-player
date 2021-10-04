@@ -14,7 +14,7 @@ playlistRouter.delete(
   playlistController.removePlaylistById
 );
 
-// songRouter.patch("/:id", authMiddleware, songController.updateSong);
+playlistRouter.patch("/:id", authMiddleware, playlistController.updatePlaylist);
 
 // songRouter.get(
 //   "/mysongs/:ownerId",

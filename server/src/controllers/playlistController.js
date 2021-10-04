@@ -52,8 +52,36 @@ async function removePlaylistById(req, res, next) {
   }
 }
 
+async function updatePlaylist(req, res, next) {
+  const { id: playlistId } = req.params;
+  const { title, description, songs, genre, private, playlist_image } =
+    req.body;
+  try {
+    const updatedPlaylist = await db.Playlist.findOneAndUpdate(
+      { _id: playlistId },
+      {
+        $set: {
+          title: title || "",
+          description: description || "",
+          songs: songs || "",
+          genre: genre || "",
+          private: private || "",
+          playlist_image: playlist_image || "",
+        },
+      }
+    );
+
+    res.status(200).send({
+      data: updatedPlaylist,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 module.exports = {
   fetchPlaylists: fetchPlaylists,
   getPlaylistById: getPlaylistById,
   removePlaylistById: removePlaylistById,
+  updatePlaylist: updatePlaylist,
 };
