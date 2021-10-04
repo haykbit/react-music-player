@@ -1,6 +1,10 @@
-import { uploadSongsData, likeSong, getLikedSongs } from "../../api/api";
+import {
+  uploadSongsData,
+  likeSong,
+  getLikedSongs,
+  getMySongsData,
+} from "../../api/api";
 import { uploadSongs } from "../../services/cloudinary";
-import { GET_MY_PLAYLIST_FAIL } from "../playList/types";
 import {
   POST_SONG_REQUEST,
   POST_SONG_SUCCESS,
@@ -30,7 +34,7 @@ export const uploadSongFile = (song) => async (dispatch) => {
   }
 };
 
-export const likeSongs = (songId) => async (dispatch) => {
+export const dispatchLikeSong = (songId) => async (dispatch) => {
   dispatch({ type: LIKE_SONG_REQUEST });
   try {
     await likeSong(songId);
@@ -40,14 +44,32 @@ export const likeSongs = (songId) => async (dispatch) => {
   }
 };
 
-export const getMySongsData = () => async (dispatch) => {};
+export const cancelLikedSongs = (songId) => async (dispatch) => {
+  dispatch({ type: LIKE_SONG_REQUEST });
+  try {
+    await likeSong(songId);
+    dispatch({ type: LIKE_SONG_SUCCESS });
+  } catch (error) {
+    dispatch({ type: LIKE_SONG_FAIL, payload: error.message });
+  }
+};
 
-export const displayMyLikedSongs = (songId) => async (dispatch) => {
+export const dispatchMySongsData = () => async (dispatch) => {
+  dispatch({ type: GET_MY_SONGS_REQUEST });
+  try {
+    dispatch({ type: GET_MY_SONGS_SUCCESS });
+  } catch (error) {
+    dispatch({ type: GET_MY_SONGS_FAIL, payload: error.message });
+  }
+};
+
+export const displayMyLikedSongs = () => async (dispatch) => {
   dispatch({ type: GET_MY_LIKED_SONGS_REQUEST });
   try {
-    const myLikedSongs = await likeSong(songId);
-    dispatch({ type: GET_MY_LIKED_SONGS_SUCCESS, payload: myLikedSongs });
+    const myLikedSongs = await getLikedSongs();
+    dispatch({ type: GET_MY_LIKED_SONGS_SUCCESS });
+    return myLikedSongs;
   } catch (error) {
-    dispatch({ type: GET_MY_PLAYLIST_FAIL, payload: error.message });
+    dispatch({ type: GET_MY_LIKED_SONGS_FAIL, payload: error.message });
   }
 };

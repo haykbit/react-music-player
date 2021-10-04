@@ -27,7 +27,7 @@ export async function getUserProfile(id) {
 
 export async function updateUserProfile(id, profile, profileImage) {
   const userToken = await getCurrentUserToken();
-  console.log(profileImage, "api profileImage")
+  console.log(profileImage, "api profileImage");
   return axios({
     method: "PATCH",
     url: `${process.env.REACT_APP_API_BASE_URL}/users/${id}`,
@@ -50,24 +50,35 @@ export async function uploadSongsData(song) {
   });
 }
 
-export async function likeSong(songId, userId) {
+export async function likeSong(songId) {
   const userToken = await getCurrentUserToken();
   return axios({
     method: "POST",
     url: `${process.env.REACT_APP_API_BASE_URL}/songs/like/${songId}`,
-    userId,
     headers: {
       Authorization: `Bearer ${userToken}`,
     },
   });
 }
 
-export async function getLikedSongs(id) {
+export async function getLikedSongs() {
   //get user id argument
   const userToken = await getCurrentUserToken();
   return axios({
     method: "GET",
-    url: `${process.env.REACT_APP_API_BASE_URL}/songs//myFavoriteSongs/${id}`,
+    url: `${process.env.REACT_APP_API_BASE_URL}/songs/myFavoriteSongs`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
+export async function getMySongsData(id) {
+  //get user id argument
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/users/mySongs/${id}`,
     headers: {
       Authorization: `Bearer ${userToken}`,
     },

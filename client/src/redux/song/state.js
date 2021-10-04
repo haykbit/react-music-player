@@ -6,6 +6,8 @@ const INITIAL_STATE = {
   getSongsSuccess: false,
   songUpdated: false,
   myLikedSongs: null,
+  likSongSuccess: false,
+  cancelLikedSuccess: false,
 };
 
 export default INITIAL_STATE;

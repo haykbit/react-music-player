@@ -47,6 +47,8 @@ async function getSongsByUser(req, res, next) {
 
 async function likeSong(req, res, next) {
   const { id: songId } = req.params;
+  // const { uid } = req.user;
+
   const { id: userId } = req.body;
   try {
     const checkSong = await db.Song.findById(songId);

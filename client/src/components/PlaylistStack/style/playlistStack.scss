@@ -81,6 +81,10 @@
           &:hover {
             color: rgb(255, 71, 71);
           }
+
+          &.liked {
+ color: rgb(255, 71, 71);
+          }
         }
         button {
           width: 40px;
