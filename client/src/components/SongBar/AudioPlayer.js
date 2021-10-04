@@ -44,12 +44,12 @@ const AudioPlayer = () => {
   const { title, artist, color, image, audioSrc } = tracks[trackIndex];
 
   // Refs
-  let audioRef = new Audio(audioSrc);
+  const audioRef = useRef(new Audio(audioSrc));
   const intervalRef = useRef();
   const isReady = useRef(false);
 
   // Destructure for conciseness
-  const { duration } = audioRef;
+  const { duration } = audioRef.current;
 
   const currentPercentage = duration
     ? `${(trackProgress / duration) * 100}%`
@@ -63,10 +63,10 @@ const AudioPlayer = () => {
     clearInterval(intervalRef.current);
 
     intervalRef.current = setInterval(() => {
-      if (audioRef.ended) {
+      if (audioRef.current.ended) {
         toNextTrack();
       } else {
-        setTrackProgress(audioRef.currentTime);
+        setTrackProgress(audioRef.current.currentTime);
       }
     }, [1000]);
   };
@@ -74,13 +74,13 @@ const AudioPlayer = () => {
   const onScrub = (value) => {
     // Clear any timers already running
     clearInterval(intervalRef.current);
-    audioRef.currentTime = value;
-    setTrackProgress(audioRef.currentTime);
+    audioRef.current.currentTime = value;
+    setTrackProgress(audioRef.current.currentTime);
   };
 
   const volumeControll = (e) => {
     setVolumeLevel(e);
-    audioRef.volume(e);
+    audioRef.current.volume(e);
   };
 
   const onScrubEnd = () => {
@@ -111,22 +111,22 @@ const AudioPlayer = () => {
 
   useEffect(() => {
     if (isPlaying) {
-      audioRef.play();
+      audioRef.current.play();
       startTimer();
     } else {
-      audioRef.pause();
+      audioRef.current.pause();
     }
   }, [isPlaying]);
 
   // Restart state for next song
   useEffect(() => {
-    audioRef.pause();
+    audioRef.current.pause();
 
-    audioRef = new Audio(audioSrc);
-    setTrackProgress(audioRef.currentTime);
+    audioRef.current = new Audio(audioSrc);
+    setTrackProgress(audioRef.current.currentTime);
 
     if (isReady.current) {
-      audioRef.play();
+      audioRef.current.play();
       setIsPlaying(true);
       startTimer();
     } else {
@@ -138,7 +138,7 @@ const AudioPlayer = () => {
   useEffect(() => {
     // Pause and clean up on unmount
     return () => {
-      audioRef.pause();
+      audioRef.current.pause();
       clearInterval(intervalRef.current);
     };
   }, []);
