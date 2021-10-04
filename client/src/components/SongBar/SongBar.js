@@ -1,15 +1,37 @@
-import "./style/songbar.scss";
+import React, { useState } from "react";
+
 import imageSong from "../../assets/images/albums/arctic-album-3.jpeg";
-import bar from "../../assets/images/icons/bar-image.jpeg";
-import play from "../../assets/images/icons/play.png";
-import pause from "../../assets/images/icons/pause.png";
+import playImage from "../../assets/images/icons/play.png";
+import pauseImage from "../../assets/images/icons/pause.png";
 import backArrow from "../../assets/images/icons/back-arrow.png";
 import forwardArrow from "../../assets/images/icons/forward-arrow.png";
 import sound from "../../assets/images/icons/sound.png";
 import config from "../../assets/images/icons/config.png";
 import close from "../../assets/images/icons/close.png";
+import "./style/songbar.scss";
 
 function SongBar() {
+  let url = [
+    { song: "http://streaming.tdiradio.com:8000/house.mp3" },
+    { song: "http://streaming.tdiradio.com:8000/house.mp3" },
+    { song: "http://streaming.tdiradio.com:8000/house.mp3" },
+    { song: "http://streaming.tdiradio.com:8000/house.mp3" },
+    { song: "http://streaming.tdiradio.com:8000/house.mp3" },
+  ];
+  const [song, setSong] = useState({});
+  const [musicState, setMusicState] = useState({ play: false, pause: true });
+  const [audio, setAudio] = useState();
+
+  const play = () => {
+    setMusicState({ play: true, pause: false });
+    audio.play();
+  };
+
+  const pause = () => {
+    setMusicState({ play: false, pause: true });
+    audio.pause();
+  };
+
   return (
     <>
       <div className="music-controlls">
@@ -24,9 +46,15 @@ function SongBar() {
           <button className="action-button" onClick={() => console.log("back")}>
             <img src={backArrow} alt="" width="10px" height="10px" />
           </button>
-          <button className="play-button" onClick={() => console.log("play")}>
-            <img src={play} alt="" />
-          </button>
+          {musicState.play == true ? (
+            <button className="pause-button" onClick={pause}>
+              <img src={pauseImage} alt="" />
+            </button>
+          ) : (
+            <button className="play-button" onClick={play}>
+              <img src={playImage} alt="" />
+            </button>
+          )}
           <button
             className="action-button"
             onClick={() => console.log("front")}
