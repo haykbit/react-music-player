@@ -23,12 +23,12 @@ function Navbar() {
     lastName: "",
     profileImage: "",
   });
-  const { loading, accessToken, signOutSuccess, authObserverSuccess } =
+  const { loading, accessToken, signOutSuccess, authObserverSuccess, user } =
     useSelector((state) => state.auth);
   const userState = useSelector((state) => state.user.userProfile);
   async function setProfileData() {
-    const userStorage = JSON.parse(localStorage.getItem("user"));
-    const userData = await getUserProfile(userStorage.uid);
+    // const userStorage = JSON.parse(localStorage.getItem("user"));
+    const userData = await getUserProfile(user.uid);
     const { profileImage, firstName, lastName } = userData.data.data;
     setNavProfile({ firstName, lastName, profileImage });
   }
