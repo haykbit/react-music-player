@@ -47,9 +47,7 @@ async function getSongsByUser(req, res, next) {
 
 async function likeSong(req, res, next) {
   const { id: songId } = req.params;
-  // const { uid } = req.user;
-
-  const { id: userId } = req.body;
+  const { userId } = req.body;
   try {
     const checkSong = await db.Song.findById(songId);
     const checkUser = await db.User.findOne({ firebase_id: userId });
@@ -86,7 +84,7 @@ async function likeSong(req, res, next) {
 
 async function cancelLikeSong(req, res, next) {
   const { id: songId } = req.params;
-  const { id: userId } = req.body;
+  const { userId } = req.body;
   try {
     const checkSong = await db.Song.findById(songId);
     const checkUser = await db.User.findOne({ firebase_id: userId });

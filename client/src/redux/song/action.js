@@ -2,6 +2,7 @@ import {
   uploadSongsData,
   likeSong,
   getLikedSongs,
+  cancelLikeSong,
   getMySongsData,
 } from "../../api/api";
 import { uploadSongs } from "../../services/cloudinary";
@@ -21,6 +22,9 @@ import {
   GET_MY_LIKED_SONGS_REQUEST,
   GET_MY_LIKED_SONGS_SUCCESS,
   GET_MY_LIKED_SONGS_FAIL,
+  CANCEL_LIKED_SONG_REQUEST,
+  CANCEL_LIKED_SONG_SUCCESS,
+  CANCEL_LIKED_SONG_FAIL,
 } from "./types";
 
 export const uploadSongFile = (song) => async (dispatch) => {
@@ -34,23 +38,23 @@ export const uploadSongFile = (song) => async (dispatch) => {
   }
 };
 
-export const dispatchLikeSong = (songId) => async (dispatch) => {
+export const dispatchLikeSong = (songId, userId) => async (dispatch) => {
   dispatch({ type: LIKE_SONG_REQUEST });
   try {
-    await likeSong(songId);
+    await likeSong(songId, userId);
     dispatch({ type: LIKE_SONG_SUCCESS });
   } catch (error) {
     dispatch({ type: LIKE_SONG_FAIL, payload: error.message });
   }
 };
 
-export const cancelLikedSongs = (songId) => async (dispatch) => {
-  dispatch({ type: LIKE_SONG_REQUEST });
+export const cancelLikedSongs = (songId, userId) => async (dispatch) => {
+  dispatch({ type: CANCEL_LIKED_SONG_REQUEST });
   try {
-    await likeSong(songId);
-    dispatch({ type: LIKE_SONG_SUCCESS });
+    await cancelLikeSong(songId, userId);
+    dispatch({ type: CANCEL_LIKED_SONG_SUCCESS });
   } catch (error) {
-    dispatch({ type: LIKE_SONG_FAIL, payload: error.message });
+    dispatch({ type: CANCEL_LIKED_SONG_FAIL, payload: error.message });
   }
 };
 
@@ -63,12 +67,10 @@ export const dispatchMySongsData = () => async (dispatch) => {
   }
 };
 
-export const displayMyLikedSongs = () => async (dispatch) => {
+export const getMyLikedSongs = () => async (dispatch) => {
   dispatch({ type: GET_MY_LIKED_SONGS_REQUEST });
   try {
-    const myLikedSongs = await getLikedSongs();
     dispatch({ type: GET_MY_LIKED_SONGS_SUCCESS });
-    return myLikedSongs;
   } catch (error) {
     dispatch({ type: GET_MY_LIKED_SONGS_FAIL, payload: error.message });
   }

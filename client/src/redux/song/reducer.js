@@ -111,7 +111,7 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: false,
         error: null,
-        likSongSuccess: true,
+        likeSongSuccess: true,
         cancelLikedSuccess: false,
       };
     case LIKE_SONG_FAIL:
@@ -119,7 +119,7 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: false,
         error: action.payload,
-        likSongSuccess: false,
+        likeSongSuccess: false,
         cancelLikedSuccess: false,
       };
     case CANCEL_LIKED_SONG_REQUEST:
@@ -127,7 +127,7 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: true,
         error: null,
-        likSongSuccess: false,
+        likeSongSuccess: false,
         cancelLikedSuccess: false,
         uploadSongSuccess: false,
         songData: null,
@@ -145,6 +145,28 @@ const reducer = (state = INITIAL_STATE, action) => {
         loading: false,
         error: action.payload,
         cancelLikedSuccess: false,
+      };
+    case GET_MY_LIKED_SONGS_REQUEST:
+      return {
+        ...state,
+        myLikedSongsSuccess: false,
+        loading: true,
+        error: null,
+        songData: null,
+      };
+    case GET_MY_LIKED_SONGS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        myLikedSongsSuccess: true,
+      };
+    case GET_MY_LIKED_SONGS_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        myLikedSongsSuccess: false,
       };
     default:
       return { ...state };

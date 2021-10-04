@@ -1,0 +1,11 @@
+.context-menu-container {
+  height: 250px;
+  width: 150px;
+  border-radius: 10px;
+  background-color: red;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  position: absolute;
+}

@@ -31,6 +31,7 @@ function App() {
         <Route path="/login" exact component={Login} />
         <Route path="/profile" exact component={Profile} />
         <Route path="/playlist" exact component={Playlists} />
+        {/* <Route path="/favorite" exact component={Favorite} /> */}
       </Switch>
     </>
   );

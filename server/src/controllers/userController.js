@@ -69,7 +69,6 @@ async function getMyFavoriteSongs(req, res, next) {
     const songsData = await db.Song.find({
       _id: { $in: myFavSongs },
     });
-    console.log(songsData);
     res.status(200).send({
       data: songsData,
     });

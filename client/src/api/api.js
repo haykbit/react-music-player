@@ -50,23 +50,34 @@ export async function uploadSongsData(song) {
   });
 }
 
-export async function likeSong(songId) {
+export async function likeSong(songId, userId) {
   const userToken = await getCurrentUserToken();
   return axios({
-    method: "POST",
+    method: "PATCH",
     url: `${process.env.REACT_APP_API_BASE_URL}/songs/like/${songId}`,
+    data: { userId },
     headers: {
       Authorization: `Bearer ${userToken}`,
     },
   });
 }
-
-export async function getLikedSongs() {
+export async function cancelLikeSong(songId, userId) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "PATCH",
+    url: `${process.env.REACT_APP_API_BASE_URL}/songs/cancel-like/${songId}`,
+    data: { userId },
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+export async function getLikedSongs(id) {
   //get user id argument
   const userToken = await getCurrentUserToken();
   return axios({
     method: "GET",
-    url: `${process.env.REACT_APP_API_BASE_URL}/songs/myFavoriteSongs`,
+    url: `${process.env.REACT_APP_API_BASE_URL}/users/myFavoriteSongs/${id}`,
     headers: {
       Authorization: `Bearer ${userToken}`,
     },

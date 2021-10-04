@@ -5,8 +5,8 @@ const INITIAL_STATE = {
   uploadSongSuccess: false,
   getSongsSuccess: false,
   songUpdated: false,
-  myLikedSongs: null,
-  likSongSuccess: false,
+  myLikedSongsSuccess: false,
+  likeSongSuccess: false,
   cancelLikedSuccess: false,
 };
 
