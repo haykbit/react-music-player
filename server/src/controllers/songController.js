@@ -1,5 +1,18 @@
 const db = require("../models");
 
+async function createSong(req, res, next) {
+  const { title, genre, artist, duration, url } = req.body.song;
+  const { uid } = req.user;
+  try {
+    await db.Song.create({
+      url,
+      owner: uid,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 async function fetchSongs(req, res, next) {
   try {
     const songs = await db.Song.find().lean();
@@ -12,26 +25,37 @@ async function fetchSongs(req, res, next) {
 }
 
 async function getSongById(req, res, next) {
-  const { id: songId } = req.params;
-
+  const { id } = req.params;
   try {
-    const song = await db.Song.findOne({ _id: songId }).lean();
+    const song = await db.Song.findOne({ _id: id }).lean();
 
     res.status(200).send({
       data: song,
     });
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function getSongsByUser(req, res, next) {
+  const { ownerId } = req.params;
+  try {
+    const songs = await db.Song.find({ owner: ownerId });
+    res.status(200).send({
+      data: songs,
+    });
+  } catch (error) {
+    next(error);
   }
 }
 
 async function updateSong(req, res, next) {
-  const { id: songId } = req.params;
+  const { id } = req.params;
   const { name, band } = req.body;
   try {
     const updatedSong = await db.Song.findOneAndUpdate(
-      { _id: songId },
-      { $set: { name: name || "", band: band || "" } }
+      { _id: id },
+      { $set: { name: name || "", artist: artist || "" } }
       //Here add more following the schema
     );
 
@@ -44,7 +68,9 @@ async function updateSong(req, res, next) {
 }
 
 module.exports = {
-  fetchSongs: fetchSongs,
-  getSongById: getSongById,
-  updateSong: updateSong,
+  createSong,
+  getSongById,
+  getSongsByUser,
+  fetchSongs,
+  updateSong,
 };

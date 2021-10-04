@@ -38,18 +38,25 @@ async function getUserById(req, res, next) {
 
 async function updateUser(req, res, next) {
   const { id: userId } = req.params;
-  const { firstName, lastName, email } = req.body;
+  const { firstName, lastName, email, profileImage } = req.body;
   try {
     const updatedUser = await db.User.findOneAndUpdate(
       { firebase_id: userId },
-      { $set: { email, firstName: firstName || "", lastName: lastName || "" } }
+      {
+        $set: {
+          email,
+          firstName: firstName || "",
+          lastName: lastName || "",
+          profileImage: profileImage || "",
+        },
+      }
     );
 
     res.status(200).send({
       data: updatedUser,
     });
   } catch (err) {
-    console.log(err);
+    console.log(err.message);
   }
 }
 

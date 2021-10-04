@@ -1,50 +1,17 @@
 const mongoose = require("mongoose");
 const { Schema } = require("mongoose");
 
-const SongSchema = new Schema({
-  name: {
-    type: String,
-    required: [true, "Please enter song name"],
-    trim: true,
-    maxLength: [100, "Song name cannot exceed 100 characters"],
-  },
-  description: {
-    type: String,
-    required: [true, "Please enter song description"],
-  },
-  ratings: {
-    type: Number,
-    default: 0,
-  },
-  images: [
-    {
-      public_id: {
-        type: String,
-        required: true,
-      },
-      url: {
-        type: String,
-        required: true,
-      },
+const SongSchema = new Schema(
+  {
+    title: {
+      type: String,
+      trim: true,
+      //   required: [true, "The title is required!"],
     },
-  ],
-  multimedia: [
-    {
-      public_id: {
-        type: String,
-        required: true,
-      },
-      url: {
-        type: String,
-        required: true,
-      },
-    },
-  ],
-  category: {
-    type: String,
-    required: [true, "Please select category for this song"],
-    enum: {
-      values: [
+    genre: {
+      type: String,
+      //   required: [true, "Please select category for this song"],
+      enum: [
         "Country",
         "Electronic dance music (EDM) ",
         "Hip-hop",
@@ -59,46 +26,35 @@ const SongSchema = new Schema({
         "Rock",
         "Techno",
       ],
-      message: "Please select correct category for song",
     },
-  },
-  band: {
-    type: String,
-    required: [true, "Please enter band name"],
-  },
-  numOfReviews: {
-    type: Number,
-    default: 0,
-  },
-  reviews: [
-    {
-      user: {
-        type: mongoose.Schema.ObjectId,
-        ref: "User",
-        required: true,
-      },
-      name: {
-        type: String,
-        required: true,
-      },
-      rating: {
-        type: Number,
-        required: true,
-      },
+    artist: {
+      //TODO: We need to see about artist model and use of the object id
+      type: String,
+      default: "Jordi Anonymous",
     },
-  ],
-  author: {
-    type: mongoose.Schema.ObjectId,
-    ref: "User",
-    required: true,
+    duration: {
+      type: Number,
+    },
+    url: {
+      type: String,
+      required: [true, "The URL is required!"],
+    },
+    owner: {
+      type: String,
+      ref: "user",
+    },
+    //   image: {
+    //       type: String,
+
+    //   },
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
 const Song = mongoose.model("Song", SongSchema);
+
 module.exports = {
   Song: Song,
 };

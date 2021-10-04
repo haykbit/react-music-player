@@ -15,7 +15,7 @@ function App() {
     if (!loading && !accessToken) {
       history.push("/login");
     }
-  }, [loading, accessToken, history]);
+  }, [loading, history, accessToken]);
 
   return (
     <>
