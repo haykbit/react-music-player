@@ -12,7 +12,6 @@ import Playlists from "./pages/Playlists";
 
 function App() {
   const history = useHistory();
-  const { loading, accessToken } = useSelector((state) => state.auth);
   // useEffect(() => {
   //   if (!loading && !accessToken) {
   //     history.push("/login");

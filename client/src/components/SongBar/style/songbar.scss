@@ -20,7 +20,7 @@
     width: 50px;
     height: 50px;
     color: #fff;
-    margin-left: 60px;
+    margin-left: 30px;
   }
 
   .add-icon {
@@ -38,7 +38,7 @@
 
   .audio-controls {
     display: flex;
-    margin: 0px 20px 0px 70px;
+    margin: 0px 20px 0px 0px;
   }
 
   .track-info {
@@ -73,7 +73,8 @@
     .song-info {
       display: flex;
       flex-direction: column;
-      margin-left: 20px;
+      margin: 0px 40px 0px 20px;
+      width: 150px;
       color: #fff;
 
       h4 {
@@ -84,6 +85,15 @@
         margin: 0;
         font-size: 20px;
         font-weight: 500;
+      }
+    }
+
+    .track-bar {
+      display: flex;
+      width: 620px;
+
+      h4 {
+        width: 40px;
       }
     }
   }

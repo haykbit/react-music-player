@@ -26,7 +26,7 @@
   width: 50px;
   height: 50px;
   color: #fff;
-  margin-left: 60px;
+  margin-left: 30px;
 }
 
 .audio-player .add-icon {
@@ -50,7 +50,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 0px 20px 0px 70px;
+  margin: 0px 20px 0px 0px;
 }
 
 .audio-player .track-info {
@@ -64,7 +64,7 @@
 }
 
 .audio-player .track-info .progress {
-  width: 900px;
+  width: 520px;
   margin: 0px 20px 0px 20px;
 }
 
@@ -93,7 +93,8 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-left: 20px;
+  margin: 0px 40px 0px 20px;
+  width: 150px;
   color: #fff;
 }
 
@@ -106,5 +107,16 @@
   margin: 0;
   font-size: 20px;
   font-weight: 500;
+}
+
+.audio-player .track-info .track-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 620px;
+}
+
+.audio-player .track-info .track-bar h4 {
+  width: 40px;
 }
 /*# sourceMappingURL=songbar.css.map */

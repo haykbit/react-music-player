@@ -39,7 +39,7 @@ const AudioPlayer = () => {
   // State
   const [trackIndex, setTrackIndex] = useState(0);
   const [trackProgress, setTrackProgress] = useState(0);
-  const [volumeLevel, setVolumeLevel] = useState(0.5);
+  const [volumeLevel, setVolumeLevel] = useState("0.50");
   const [isPlaying, setIsPlaying] = useState(false);
 
   // Destructure for conciseness
@@ -182,28 +182,30 @@ const AudioPlayer = () => {
           onNextClick={toNextTrack}
           onPlayPauseClick={setIsPlaying}
         />
-        <h4>{fancyTimeFormat(duration)}</h4>
-        <input
-          type="range"
-          value={trackProgress}
-          step="1"
-          min="0"
-          max={duration ? duration : `${duration}`}
-          className="progress"
-          onChange={(e) => onScrub(e.target.value)}
-          onMouseUp={onScrubEnd}
-          onKeyUp={onScrubEnd}
-          style={{ background: trackStyling }}
-        />
-        <h4>{fancyTimeFormat(trackProgress)}</h4>
+        <div className="track-bar">
+          <h4>{fancyTimeFormat(duration)}</h4>
+          <input
+            type="range"
+            value={trackProgress}
+            step="1"
+            min="0"
+            max={duration ? duration : `${duration}`}
+            className="progress"
+            onChange={(e) => onScrub(e.target.value)}
+            onMouseUp={onScrubEnd}
+            onKeyUp={onScrubEnd}
+            style={{ background: trackStyling }}
+          />
+          <h4>{fancyTimeFormat(trackProgress)}</h4>
+        </div>
         <MdPlaylistAdd className="add-icon" />
         <GiSoundWaves className="volume-icon" />
         <input
           type="range"
           value={volumeLevel}
-          step="0.1"
-          min="0"
-          max="1"
+          step="0.05"
+          min="0.00"
+          max="1.00"
           className="volume"
           onChange={(e) => volumeControll(e.target.value)}
           style={{ background: trackStyling }}

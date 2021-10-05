@@ -1,5 +1,4 @@
 .album-container {
-  margin-left: 25px;
   margin-top: 85px;
   margin-bottom: 130px;
 }
@@ -79,5 +78,10 @@
 .album-container .carousel-box .BrainhubCarousel__container {
   width: 100%;
   margin-right: 100px;
+}
+
+.album-container .carousel-box .BrainhubCarousel__track .BrainhubCarousel__track--draggable {
+  -webkit-transform: none !important;
+          transform: none !important;
 }
 /*# sourceMappingURL=albumexplorer.css.map */

@@ -24,7 +24,6 @@ function AlbumExplorer() {
             <Carousel
               plugins={[
                 "centered",
-                "infinite",
                 "arrows",
                 {
                   resolve: slidesToShowPlugin,
