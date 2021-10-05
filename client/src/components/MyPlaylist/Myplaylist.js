@@ -14,7 +14,6 @@ import portadaNueve from "../../assets/images/albums/linkin-p-papercut.jpeg";
 function Myplaylist() {
   const [modal, setModal] = useState(false);
   const Toggle = () => setModal(!modal);
-
   return (
     <>
       <div className="my-playlist-body">

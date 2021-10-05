@@ -1,30 +1,20 @@
 import React from "react";
 import "./style/rightClickMenu.scss";
 
-function RightClickMenu() {
+function RightClickMenu({ show, close }) {
   return (
-    <div className="context-menu-container">
-      {/* <div className={styles.div}>Button 1</div>
-      <div className={{ ...styles.div, ...styles.margin }}>Button 2</div>
-      <div className={styles.div}>Button 3</div> */}
-    </div>
+    <>
+      {show ? (
+        <div className="context-menu-container" onClick={() => close()}>
+          <div className="context-menu" onClick={(e) => e.stopPropagation()}>
+            <li>Add to favorites</li>
+            <li>Edit</li>
+            <li>Delete</li>
+          </div>
+        </div>
+      ) : null}
+    </>
   );
 }
-
-// const styles = {
-//   div: {
-//     flex: 1,
-//     display: "flex",
-//     alignItems: "center",
-//     justifyContent: "center",
-//     backgroundColor: "#FE8F8F",
-//     color: "#FFEDD3",
-//     fontWeight: "bold",
-//     cursor: "pointer",
-//   },
-//   margin: {
-//     margin: "10px 0",
-//   },
-// };
 
 export default RightClickMenu;

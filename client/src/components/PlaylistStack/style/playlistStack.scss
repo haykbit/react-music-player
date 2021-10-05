@@ -83,7 +83,7 @@
           }
 
           &.liked {
- color: rgb(255, 71, 71);
+            color: rgb(255, 71, 71);
           }
         }
         button {
@@ -101,6 +101,7 @@
       background-color: transparent;
       border: none;
       font-size: larger;
+      cursor: pointer;
     }
   }
 }

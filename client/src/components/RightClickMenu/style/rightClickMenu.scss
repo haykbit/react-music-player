@@ -2,10 +2,24 @@
   height: 250px;
   width: 150px;
   border-radius: 10px;
-  background-color: red;
+  background-color: #313131;
   color: white;
   display: flex;
   flex-direction: column;
   padding: 10px;
   position: absolute;
+  box-sizing: border-box;
+  padding: 15px;
+
+  .context-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    li {
+      cursor: pointer;
+      list-style: none;
+      border-bottom: 1px solid white;
+      margin: 10px;
+    }
+  }
 }
