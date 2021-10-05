@@ -53,16 +53,16 @@ function IndividualSong({ song }) {
       <div className="song-info">
         <div className="song-cover"></div>
         <div className="song-name">
-          <h3>{song._id}</h3>
+          <h3>{song.title}</h3>
           <h5>{song.artist}</h5>
         </div>
       </div>
-      {/* <div>
-        <button className="context-menu">
+      <div>
+        <button className="context-menu-btn">
           <IoMdMore />
         </button>
         <RightClickMenu />
-      </div> */}
+      </div>
       <div className="song-actions">
         <div className="song-play">
           <button>
