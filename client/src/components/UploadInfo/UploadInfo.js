@@ -1,18 +1,9 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 import "./style/uploadinfo.scss";
 import Button from "../Buttons/index";
 import { BiEdit } from "react-icons/bi";
-import { uploadSongFile } from "../../redux/song/action";
 
 function UploadInfo() {
-  const [song, setSong] = useState("");
-  const dispatch = useDispatch();
-
-  function uploadSong() {
-    dispatch(uploadSongFile(song));
-  }
-
   return (
     <div className="upload-info">
       <div className="text-row">
@@ -36,15 +27,6 @@ function UploadInfo() {
             <BiEdit className="button-icon" />
             Delete all songs
           </Button>
-        </div>
-
-        <div>
-          <input
-            type="file"
-            onChange={(e) => setSong(e.target.files[0])}
-            //TODO create function to upload more than one song at a time
-          ></input>
-          <button onClick={uploadSong}>Upload</button>
         </div>
       </div>
     </div>

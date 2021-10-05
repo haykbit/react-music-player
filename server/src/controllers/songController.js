@@ -1,10 +1,14 @@
 const db = require("../models");
 
 async function createSong(req, res, next) {
-  const { title, genre, artist, duration, url } = req.body.song;
+  const { duration, url } = req.body.song;
+  const { title, genre, artist } = req.body.metadata;
   const { uid } = req.user;
   try {
     const newSong = await db.Song.create({
+      title,
+      artist,
+      genre,
       url,
       duration,
       owner: uid,
