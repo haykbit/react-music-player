@@ -5,9 +5,8 @@ import { IoMdMore } from "react-icons/io";
 import RightClickMenu from "../RightClickMenu";
 
 function IndividualSong() {
-
- 
-  };
+  const [contextMenu, setConetextMenu] = useState(false);
+  const Toggle = () => setConetextMenu(!contextMenu);
   return (
     <div className="song-item-playlist">
       <div className="song-info">
@@ -18,10 +17,12 @@ function IndividualSong() {
         </div>
       </div>
       <div>
-        <button className="context-menu" >
-          <IoMdMore />
+        <button onClick={() => Toggle()} className="context-menu-btn">
+          <label>
+            <IoMdMore />
+          </label>
         </button>
-        <RightClickMenu />
+        <RightClickMenu show={contextMenu} close={Toggle} />
       </div>
       <div className="song-actions">
         <div className="song-play">
@@ -29,6 +30,7 @@ function IndividualSong() {
             <BsFillCaretRightFill className="play-icon" />
           </button>
         </div>
+        c , ç
         <div className="song-time">
           <h4>4:23</h4>
         </div>
