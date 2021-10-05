@@ -22,6 +22,30 @@
   border: none;
 }
 
+.audio-player .volume-icon {
+  width: 50px;
+  height: 50px;
+  color: #fff;
+  margin-left: 60px;
+}
+
+.audio-player .add-icon {
+  width: 40px;
+  height: 40px;
+  color: white;
+  margin-left: 20px;
+  cursor: pointer;
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
+}
+
+.audio-player .add-icon:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
 .audio-player .audio-controls {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -55,9 +79,9 @@
   height: 20px;
 }
 
-.audio-player .track-info img {
-  width: 60px;
-  height: 60px;
+.audio-player .track-info .artwork {
+  width: 70px;
+  height: 70px;
   border-radius: 7px;
 }
 

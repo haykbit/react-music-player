@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import { GiSoundWaves } from "react-icons/gi";
+import { MdPlaylistAdd } from "react-icons/md";
 
 import AudioControls from "./AudioControls";
 import imageSong from "../../assets/images/albums/arctic-album-3.jpeg";
@@ -37,7 +39,7 @@ const AudioPlayer = () => {
   // State
   const [trackIndex, setTrackIndex] = useState(0);
   const [trackProgress, setTrackProgress] = useState(0);
-  const [volumeLevel, setVolumeLevel] = useState(5);
+  const [volumeLevel, setVolumeLevel] = useState(0.5);
   const [isPlaying, setIsPlaying] = useState(false);
 
   // Destructure for conciseness
@@ -76,11 +78,12 @@ const AudioPlayer = () => {
     clearInterval(intervalRef.current);
     audioRef.current.currentTime = value;
     setTrackProgress(audioRef.current.currentTime);
+    audioRef.current.volume = 0;
   };
 
   const volumeControll = (e) => {
     setVolumeLevel(e);
-    audioRef.current.volume(e);
+    audioRef.current.volume = e;
   };
 
   const onScrubEnd = () => {
@@ -89,6 +92,7 @@ const AudioPlayer = () => {
       setIsPlaying(true);
     }
     startTimer();
+    audioRef.current.volume = volumeLevel;
   };
 
   const toPrevTrack = () => {
@@ -192,12 +196,14 @@ const AudioPlayer = () => {
           style={{ background: trackStyling }}
         />
         <h4>{fancyTimeFormat(trackProgress)}</h4>
+        <MdPlaylistAdd className="add-icon" />
+        <GiSoundWaves className="volume-icon" />
         <input
           type="range"
           value={volumeLevel}
-          step="1"
+          step="0.1"
           min="0"
-          max="10"
+          max="1"
           className="volume"
           onChange={(e) => volumeControll(e.target.value)}
           style={{ background: trackStyling }}

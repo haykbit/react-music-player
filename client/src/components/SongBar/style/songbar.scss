@@ -16,6 +16,26 @@
     border: none;
   }
 
+  .volume-icon {
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    margin-left: 60px;
+  }
+
+  .add-icon {
+    width: 40px;
+    height: 40px;
+    color: rgb(255, 255, 255);
+    margin-left: 20px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .add-icon:hover {
+    transform: scale(1.1);
+  }
+
   .audio-controls {
     display: flex;
     margin: 0px 20px 0px 70px;
@@ -44,9 +64,9 @@
       }
     }
 
-    img {
-      width: 60px;
-      height: 60px;
+    .artwork {
+      width: 70px;
+      height: 70px;
       border-radius: 7px;
     }
 
