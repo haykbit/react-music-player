@@ -32,6 +32,9 @@ function Navbar() {
     dispatch(logout());
     dispatch(resetUserData());
   };
+  const handlePlaylist = () => {
+    history.push("/playlist");
+  };
 
   return (
     <>
@@ -72,7 +75,7 @@ function Navbar() {
                   <BiUserCircle className="list-icon" />
                   <h4>Profile</h4>
                 </li>
-                <li>
+                <li onClick={handlePlaylist}>
                   <RiMusic2Line className="list-icon" />
                   <h4>Playlists</h4>
                 </li>
