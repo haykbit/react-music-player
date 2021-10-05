@@ -1,18 +1,5 @@
 const db = require("../models");
 
-// async function createSong(req, res, next) {
-//     const { title, genre, artist, duration, url } = req.body.song;
-//     const { uid } = req.user;
-//     try {
-//       await db.Song.create({
-//         url,
-//         owner: uid,
-//       });
-//     } catch (error) {
-//       next(error);
-//     }
-//   }
-
 async function fetchPlaylists(req, res, next) {
   try {
     const playlist = await db.Playlist.find().lean();
