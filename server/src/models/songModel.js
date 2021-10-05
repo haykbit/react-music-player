@@ -13,7 +13,7 @@ const SongSchema = new Schema(
       //   required: [true, "Please select category for this song"],
       enum: [
         "Country",
-        "Electronic dance music (EDM) ",
+        "Electronic dance music (EDM)",
         "Hip-hop",
         "Indie rock",
         "Jazz",
@@ -25,6 +25,10 @@ const SongSchema = new Schema(
         "Rhythm & blues (R&B)",
         "Rock",
         "Techno",
+        "Folk",
+        "Ska",
+        "Reggae",
+        "Punk",
       ],
     },
     artist: {

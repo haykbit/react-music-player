@@ -27,12 +27,12 @@ import {
   CANCEL_LIKED_SONG_FAIL,
 } from "./types";
 
-export const uploadSongFile = (song) => async (dispatch) => {
+export const uploadSongFile = (song, metadata) => async (dispatch) => {
   dispatch({ type: POST_SONG_REQUEST });
   try {
     const songData = await uploadSongs(song);
     dispatch({ type: POST_SONG_SUCCESS });
-    await uploadSongsData(songData);
+    await uploadSongsData(songData, metadata);
   } catch (error) {
     dispatch({ type: POST_SONG_FAIL, payload: error.message });
   }
