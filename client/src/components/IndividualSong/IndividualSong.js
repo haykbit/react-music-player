@@ -10,10 +10,13 @@ import RightClickMenu from "../RightClickMenu";
 function IndividualSong({ song }) {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-  const { likeSongSuccess, loading } = useSelector((state) => state.song);
+  const { loading } = useSelector((state) => state.song);
 
   const [liked, setLiked] = useState(false);
   const [myFavoriteSongs, setMyFavoriteSongs] = useState([]);
+
+  const [contextMenu, setConetextMenu] = useState(false);
+  const Toggle = () => setConetextMenu(!contextMenu);
 
   useEffect(() => {
     getMyFavSongs();
@@ -57,12 +60,14 @@ function IndividualSong({ song }) {
           <h5>{song.artist}</h5>
         </div>
       </div>
-      {/* <div>
-        <button className="context-menu">
-          <IoMdMore />
+      <div>
+        <button onClick={() => Toggle()} className="context-menu-btn">
+          <label>
+            <IoMdMore />
+          </label>
         </button>
-        <RightClickMenu />
-      </div> */}
+        <RightClickMenu show={contextMenu} close={Toggle} />
+      </div>
       <div className="song-actions">
         <div className="song-play">
           <button>
