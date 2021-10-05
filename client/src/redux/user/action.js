@@ -43,10 +43,9 @@ export const updateUserProfileInfo = (userId, profile) => async (dispatch) => {
         type: UPDATE_PROFILE_SUCCESS,
         payload: { ...profile, profileImageURL: imageData.url },
       });
-      console.log(profile, "profile");
       await updateUserProfile(userId, profile, imageData.url);
     } else {
-      await updateUserProfile(userId, profile);
+      await updateUserProfile(userId, profile, profileImageURL);
       dispatch({
         type: UPDATE_PROFILE_SUCCESS,
         payload: { ...profile },
