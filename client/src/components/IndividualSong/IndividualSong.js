@@ -66,7 +66,12 @@ function IndividualSong({ song }) {
             <IoMdMore />
           </label>
         </button>
-        <RightClickMenu show={contextMenu} close={Toggle} song={song} />
+        <RightClickMenu
+          show={contextMenu}
+          close={Toggle}
+          handleLike={handleLikeClick}
+          song={song}
+        />
       </div>
       <div className="song-actions">
         <div className="song-play">

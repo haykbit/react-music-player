@@ -4,7 +4,7 @@ import "./style/rightClickMenu.scss";
 import Modal from "../Modal";
 import DeleteConfirmation from "../DeleteConfirmation";
 
-function RightClickMenu({ show, close, song }) {
+function RightClickMenu({ show, close, handleLike, song }) {
   const [modals, setModals] = useState({
     editModal: false,
     deleteModal: false,
@@ -31,10 +31,12 @@ function RightClickMenu({ show, close, song }) {
       {show ? (
         <div className="context-menu-container" onClick={() => close()}>
           <div className="context-menu" onClick={(e) => e.stopPropagation()}>
-            <li>Add to favorites</li>
-            <li onClick={editHandle}>Edit</li>
+            <li onClick={() => handleLike()}>Add to favorites</li>
             {song.owner === userUid ? (
-              <li onClick={deleteHandle}>Delete</li>
+              <>
+                <li onClick={editHandle}>Edit</li>
+                <li onClick={deleteHandle}>Delete</li>
+              </>
             ) : (
               ""
             )}
