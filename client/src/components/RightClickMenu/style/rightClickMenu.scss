@@ -14,9 +14,11 @@
   .context-menu {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     li {
+      cursor: pointer;
       list-style: none;
-      border-bottom: 1px solid black;
+      border-bottom: 1px solid white;
       margin: 10px;
     }
   }
