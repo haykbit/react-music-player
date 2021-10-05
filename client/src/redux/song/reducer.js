@@ -53,7 +53,7 @@ const reducer = (state = INITIAL_STATE, action) => {
         getSongsSuccess: false,
         loading: true,
         error: null,
-        songData: null,
+        // songData: null,
       };
     case GET_MY_SONGS_SUCCESS:
       return {
@@ -61,7 +61,7 @@ const reducer = (state = INITIAL_STATE, action) => {
         loading: false,
         error: null,
         getSongsSuccess: true,
-        songData: action.payload,
+        // songData: action.payload,
       };
     case GET_MY_SONGS_FAIL:
       return {
@@ -69,7 +69,7 @@ const reducer = (state = INITIAL_STATE, action) => {
         loading: false,
         error: action.payload,
         getSongsSuccess: false,
-        songData: null,
+        // songData: null,
       };
     case UPDATE_SONG_REQUEST:
       return {
