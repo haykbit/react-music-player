@@ -4,6 +4,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   sendPasswordResetEmail,
+  onAuthStateChanged,
 } from "../../services/auth";
 import { getUserProfile, syncUserData } from "../../api/api";
 import {
@@ -18,7 +19,34 @@ import {
   SEND_PASSWORD_RESET_REQUEST,
   SEND_PASSWORD_RESET_SUCCESS,
   SEND_PASSWORD_RESET_FAIL,
+  LOADING_OBSERVER,
+  LOADING_OBSERVER_SUCCESS,
+  AUTH_RESET,
 } from "./types";
+
+export const authObserverLoading = () => (dispatch) => {
+  try {
+    dispatch({ type: LOADING_OBSERVER });
+    return onAuthStateChanged((user) => {
+      if (user) {
+        const userProfile = {
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          uid: user.uid,
+        };
+        dispatch({ type: LOAD_PROFILE, payload: userProfile });
+        dispatch({ type: LOADING_OBSERVER_SUCCESS });
+        return user;
+      } else {
+        localStorage.removeItem("user");
+        return null;
+      }
+    });
+  } catch (error) {
+    console.log(error.response.data);
+  }
+};
 
 export const login = () => async (dispatch) => {
   try {
@@ -29,8 +57,10 @@ export const login = () => async (dispatch) => {
       firstName: res.additionalUserInfo.profile.given_name,
       lastName: res.additionalUserInfo.profile.family_name,
       email: res.additionalUserInfo.profile.email,
+      uid: res.user.multiFactor.user.uid,
       // picture: res.additionalUserInfo.profile.picture,
     };
+    localStorage.setItem("user", JSON.stringify(userProfile));
     dispatch({ type: LOGIN_SUCCESS, payload: accessToken });
     dispatch({ type: LOAD_PROFILE, payload: userProfile });
     await syncUserData(userProfile);
@@ -55,6 +85,7 @@ export const registerWithEmailAndPassword =
         payload: { ...user, email },
       });
       await syncUserData(userProfile);
+      dispatch({ type: AUTH_RESET });
     } catch (error) {
       dispatch({ type: REGISTER_FAIL, payload: error.message });
     }
@@ -70,8 +101,10 @@ export const loginWithEmailAndPassword =
         firstName: user.data.data.firstName,
         lastName: user.data.data.lastName,
         email: user.data.data.email,
+        uid: user.data.data.firebase_id,
         // picture: res.additionalUserInfo.profile.picture,
       };
+      localStorage.setItem("user", JSON.stringify(userProfile));
       const accessToken = res.user.multiFactor.user.accessToken;
 
       dispatch({ type: LOGIN_SUCCESS, payload: accessToken });
@@ -84,6 +117,7 @@ export const loginWithEmailAndPassword =
 
 export const logout = () => async (dispatch) => {
   await signOut();
+  localStorage.removeItem("user");
   dispatch({ type: SIGN_OUT_SUCCESS });
 };
 

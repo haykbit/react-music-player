@@ -5,8 +5,8 @@
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   margin: 5%;
 }
 
@@ -34,8 +34,42 @@
   width: 150px;
   height: 150px;
   background-size: contain;
+  border: 3px solid #fff;
+  border-radius: 100%;
+  background-repeat: "no-repeat";
+}
+
+.user-info .profile-picture input {
+  display: none;
+}
+
+.user-info .profile-picture-uploaded {
+  width: 150px;
+  height: 150px;
+  background-size: cover;
   border: 2px solid #fff;
   border-radius: 100%;
+  background-repeat: "no-repeat";
+  cursor: pointer;
+  background-position: center;
+}
+
+.user-info .profile-picture-uploaded input {
+  display: none;
+}
+
+.user-info .close-icon {
+  width: 30px;
+  height: 30px;
+  z-index: 10;
+  position: relative;
+  margin-left: 15px;
+  background: transparent;
+  border-radius: 15px;
+  opacity: 0.8;
+  position: absolute;
+  z-index: 10;
+  cursor: pointer;
 }
 
 .user-info .right-column {
@@ -56,17 +90,26 @@
 }
 
 .user-info .right-column .form-box input {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   padding: 15px;
-  width: 40%;
-  border-radius: 5px;
-  margin: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
   font-size: 18px;
-  font-weight: 500;
+  border-radius: 7px;
+  background-color: #585858;
+  color: white;
+}
+
+.user-info .right-column .form-box input:focus {
+  background-color: #fff;
+  color: #0f0f0f;
 }
 
 .user-info .right-column .form-box button {
   padding: 15px;
-  width: 30%;
+  width: 270px;
   border-radius: 5px;
   margin: 10px;
   background-color: #2b008d;
@@ -78,14 +121,14 @@
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   margin: 10px;
   height: 40%;
   overflow: hidden;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
 }
 
 .user-info .right-column .genre-side {
@@ -102,11 +145,11 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 .user-info .right-column .genre-side label input[type="checkbox"] {
@@ -119,8 +162,8 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+  -ms-flex-align: end;
+  align-items: flex-end;
 }
 
 .user-info .right-column .button-side .edit-btn {

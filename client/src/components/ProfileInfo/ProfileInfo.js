@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./styles/profileInfo.scss";
-import userImage from "../../assets/images/icons/profile.jpg";
+import ImageUploadIcon from "../../assets/images/icons/uploadImage.png";
+import closeIcon from "../../assets/images/icons/closeIcon.png";
 import Button from "../Buttons/index";
+import Input from "../Input/index";
+
 import { getCurrentUser } from "../../services/auth";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,21 +12,23 @@ import {
   updateUserProfileInfo,
   updateUserProfilePassword,
 } from "../../redux/user/action";
+import { getUserProfile } from "../../api/api";
+import { Formik } from "formik";
+import FormSchema from "./FormSchema";
 
 function ProfileInfo() {
+  const [isDisabled, setIsDisabled] = useState(true);
   const [isReadyOnly, setIsReadOnly] = useState(true);
-  const [password, setPassword] = useState("");
+  const [openResetPassword, setOpenResetPassword] = useState(true);
   const [profile, setProfile] = useState({
     email: "",
     firstName: "",
     lastName: "",
+    profileImage: "",
   });
 
-  const { loading, accessToken, signOutSuccess } = useSelector(
-    (state) => state.auth
-  );
-  const authUserState = useSelector((state) => state.auth.user);
-
+  const { loading, accessToken, signOutSuccess, authObserverSuccess, user } =
+    useSelector((state) => state.auth);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -35,34 +40,50 @@ function ProfileInfo() {
   }, [loading, accessToken, signOutSuccess, history]);
 
   useEffect(() => {
+    if (!loading && authObserverSuccess) {
+      updateOnMount();
+    }
+  }, [loading]);
+
+  async function updateOnMount() {
+    console.log(user, "REDUX USER");
+    const userData = await getUserProfile(user.uid);
+    console.log(userData, "USER DATA");
+    const { email, firstName, lastName, profileImage } = userData.data.data;
     setProfile({
-      email: authUserState.email,
-      firstName: authUserState.firstName,
-      lastName: authUserState.lastName,
+      email: email,
+      firstName: firstName,
+      lastName: lastName,
+      profileImage: profileImage || "",
     });
-  }, []);
+  }
 
   function handleUserInfoSubmit(e) {
     e.preventDefault();
     const userId = getCurrentUser().uid;
     dispatch(updateUserProfileInfo(userId, profile));
-    setIsReadOnly((prevState) => !prevState);
-  }
-
-  function handlePasswordSubmit(e) {
-    e.preventDefault();
-    dispatch(updateUserProfilePassword(password));
+    setIsDisabled((prevState) => !prevState);
   }
 
   function handleProfileChange(e) {
     setProfile({ ...profile, [e.target.name]: e.target.value });
-    console.log(e.target.value, "CHANGE");
   }
 
-  function handlePasswordChange(e) {
-    setPassword(e.target.value);
-  }
+  const [image, setImage] = useState("");
+  const [isUploaded, setIsUploaded] = useState(false);
 
+  function handleImageChange(e) {
+    setProfile({ ...profile, profileImage: e.target.files[0] });
+
+    let reader = new FileReader();
+
+    reader.onload = function (e) {
+      setImage(e.target.result);
+      setIsUploaded(true);
+    };
+
+    reader.readAsDataURL(e.target.files[0]);
+  }
   return (
     <>
       <div className="user-info">
@@ -70,15 +91,48 @@ function ProfileInfo() {
         <div className="content">
           <div className="left-column">
             <div className="profile-picture-box">
-              <div
-                className="profile-picture"
-                style={{
-                  backgroundRepeat: "no-repeat",
-                  backgroundImage: `url(${userImage})`,
-                }}
-              >
-                {" "}
-              </div>
+              {!isUploaded ? (
+                <>
+                  <label htmlFor="input-upload">
+                    <div
+                      className="profile-picture-uploaded"
+                      style={{
+                        backgroundImage: `url(${
+                          profile.profileImage
+                            ? profile.profileImage
+                            : ImageUploadIcon
+                        })`,
+                      }}
+                    >
+                      <input
+                        id="input-upload"
+                        className="input-upload"
+                        type="file"
+                        accept=".jpg, .jpeg, .png"
+                        onChange={handleImageChange}
+                      />
+                    </div>
+                  </label>
+                </>
+              ) : (
+                <div className="image-preview">
+                  <img
+                    className="close-icon"
+                    src={closeIcon}
+                    alt="CloseIcon"
+                    onClick={() => {
+                      setIsUploaded(false);
+                      setImage(null);
+                    }}
+                  />
+                  <img
+                    src={image}
+                    alt="uploaded-img"
+                    id="uploaded-image"
+                    className="profile-picture"
+                  />
+                </div>
+              )}
             </div>
           </div>
 
@@ -89,7 +143,7 @@ function ProfileInfo() {
                   <input
                     className="user-input"
                     placeholder="Name"
-                    readOnly={isReadyOnly}
+                    disabled={isDisabled}
                     name="firstName"
                     onChange={(e) => handleProfileChange(e)}
                     value={profile.firstName}
@@ -97,7 +151,10 @@ function ProfileInfo() {
                   <input
                     className="user-input"
                     placeholder="Surname"
-                    readOnly={isReadyOnly}
+                    disabled={isDisabled}
+                    name="lastName"
+                    onChange={(e) => handleProfileChange(e)}
+                    value={profile.lastName}
                   />
                 </div>
 
@@ -105,13 +162,76 @@ function ProfileInfo() {
                   <input
                     className="user-input"
                     placeholder="Email"
-                    readOnly={isReadyOnly}
+                    disabled={isDisabled}
+                    name="email"
+                    onChange={(e) => handleProfileChange(e)}
+                    value={profile.email}
                   />
-                  <Button className="user-input password-button">
-                    Reset Password
-                  </Button>
+                  <Button type="submit">Change Profile</Button>
                 </div>
               </form>
+              <Button
+                className="user-input password-button"
+                onClick={() => setOpenResetPassword(!openResetPassword)}
+              >
+                Reset Password
+              </Button>
+              <div hidden={openResetPassword}>
+                <Formik
+                  onSubmit={(values) => {
+                    setOpenResetPassword(true);
+                    dispatch(updateUserProfilePassword(values.newPassword));
+                  }}
+                  initialValues={{
+                    newPassword: "",
+                    confirm: "",
+                  }}
+                  validationSchema={FormSchema}
+                >
+                  {({
+                    errors,
+                    values,
+                    touched,
+                    isValidating,
+                    isValid,
+                    handleSubmit,
+                    handleChange,
+                    handleBlur,
+                  }) => (
+                    <form onSubmit={handleSubmit}>
+                      <Input
+                        className="new-password-input"
+                        name="newPassword"
+                        type="password"
+                        placeholder="New Password"
+                        onChange={handleChange}
+                        value={values.newPassword}
+                        hasErrorMessage={touched.newPassword}
+                        errorMessage={errors.newPassword}
+                        onBlur={handleBlur}
+                      />
+                      <Input
+                        className="new-password-input"
+                        name="confirm"
+                        type="password"
+                        placeholder="Repeat New Password"
+                        onChange={handleChange}
+                        value={values.confirm}
+                        hasErrorMessage={touched.confirm}
+                        errorMessage={errors.confirm}
+                        onBlur={handleBlur}
+                      />
+                      <Button
+                        className="user-input password-button"
+                        submitButton
+                        disabled={isValidating || !isValid}
+                      >
+                        Save
+                      </Button>
+                    </form>
+                  )}
+                </Formik>
+              </div>
             </div>
             <div className="genre-box">
               <div className="genre-side">
@@ -213,17 +333,17 @@ function ProfileInfo() {
                 </div>
               </div>
               <div className="button-side">
-                {isReadyOnly ? (
+                {isDisabled ? (
                   <Button
                     className="edit-btn"
                     label="Edit"
-                    onClick={() => setIsReadOnly((prevState) => !prevState)}
+                    onClick={() => setIsDisabled((prevState) => !prevState)}
                   >
                     Edit
                   </Button>
                 ) : null}
 
-                {!isReadyOnly ? (
+                {!isDisabled ? (
                   <Button className="save-btn" onClick={handleUserInfoSubmit}>
                     Save
                   </Button>
