@@ -1,0 +1,103 @@
+.song-container {
+  width: 100%;
+}
+
+.song-list-playlist {
+  .song-item-playlist {
+    width: 100%;
+    height: 65px;
+    background-color: #fff;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: #171717;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .song-info {
+      display: flex;
+      width: 80%;
+    }
+
+    h3,
+    h4,
+    h5 {
+      color: #fff;
+      margin: 3px;
+      font-weight: 500;
+    }
+
+    .song-name {
+      margin-left: 10px;
+    }
+
+    .song-cover {
+      width: 50px;
+      height: 50px;
+      background-color: #fff;
+      border-radius: 5px;
+      margin-left: 8px;
+    }
+
+    .song-actions {
+      width: 150px;
+      height: 40px;
+      background-color: #0f0f0f;
+      border-radius: 50px;
+      margin-right: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .song-play {
+        .play-icon {
+          width: 22px;
+          height: 18px;
+          color: #fff;
+          margin-top: 3px;
+        }
+        button {
+          width: 40px;
+          height: 40px;
+          border-radius: 50px;
+          border: none;
+          background-color: #363636;
+          cursor: pointer;
+          transition: transform 0.2s;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+      }
+
+      .song-like {
+        .like-icon {
+          width: 25px;
+          height: 25px;
+          color: #fff;
+          margin-top: 3px;
+
+          &:hover {
+            color: rgb(255, 71, 71);
+          }
+        }
+        button {
+          width: 40px;
+          height: 40px;
+          border: none;
+          background-color: transparent;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .context-menu-btn {
+      color: #fff;
+      background-color: transparent;
+      border: none;
+      font-size: larger;
+      cursor: pointer;
+    }
+  }
+}

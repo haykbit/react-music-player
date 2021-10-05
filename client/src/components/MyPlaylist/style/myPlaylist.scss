@@ -1,0 +1,138 @@
+.my-playlist-body {
+  height: 100%;
+  display: flex;
+
+  .left-side {
+    display: flex;
+    height: 100%;
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+
+    .playlist-title {
+      display: flex;
+      height: 35vh;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 20px;
+
+      .album-column {
+        height: 100%;
+        width: 350px;
+        border-radius: 20px;
+      }
+      .text-column {
+        height: 100%;
+        width: 60%;
+        color: white;
+        margin-left: 40px;
+        font-weight: 700;
+        display: flex;
+        flex-direction: column;
+
+        .playlist-name {
+          width: 100%;
+          height: 30%;
+
+          font-size: 30px;
+        }
+        .playlist-genre {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          height: 30%;
+
+          font-size: 20px;
+        }
+
+        .upload-button {
+          background-image: linear-gradient(
+            to left,
+            #ff4343,
+            #ff2a7c,
+            #eb3db3,
+            #b65fe2,
+            #527aff
+          );
+        }
+        .upload-button {
+          font-weight: 600;
+          margin-top: 40px;
+          width: 130px;
+          height: 50px;
+          box-sizing: border-box;
+          padding: 15px;
+          text-align: center;
+          text-transform: uppercase;
+          transition: 0.5s;
+          background-size: 200% auto;
+          color: white;
+          border-radius: 10px;
+          display: block;
+        }
+
+        .upload-button:hover {
+          background-position: right center; /* change the direction of the change here */
+          color: #fff;
+          text-decoration: none;
+        }
+      }
+    }
+    .song-stack {
+      height: 100%;
+      width: 100%;
+      // background-color: red;
+      box-sizing: border-box;
+      padding: 10px;
+    }
+  }
+
+  .right-side {
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    width: 500px;
+    box-sizing: border-box;
+    padding: 20px;
+
+    .relevant-title {
+      display: flex;
+      height: 10vh;
+      width: 100%;
+      font-size: 25px;
+      font-weight: 600;
+      color: white;
+    }
+    .relevant-songs {
+      display: flex;
+      align-items: center;
+      height: 300px;
+      width: 400px;
+      margin: 5px;
+      box-sizing: border-box;
+      padding: 35px;
+      .number {
+        width: 10%;
+        color: white;
+        font-size: 80px;
+        margin-right: 15px;
+      }
+      .album-image {
+        width: 50%;
+        height: 100%;
+        border-radius: 5px;
+      }
+      .relevant-song-name {
+        width: 35%;
+        color: white;
+        margin-left: 15px;
+
+        .relevant-song-artist {
+          color: #5f5f5f;
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+}

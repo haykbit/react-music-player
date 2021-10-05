@@ -25,12 +25,24 @@ export async function getUserProfile(id) {
   });
 }
 
-export async function updateUserProfile(id, user) {
+export async function updateUserProfile(id, profile, profileImage) {
   const userToken = await getCurrentUserToken();
   return axios({
     method: "PATCH",
     url: `${process.env.REACT_APP_API_BASE_URL}/users/${id}`,
-    data: user,
+    data: { ...profile, profileImage },
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
+export async function uploadSongsData(song) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "POST",
+    url: `${process.env.REACT_APP_API_BASE_URL}/songs`,
+    data: { song },
     headers: {
       Authorization: `Bearer ${userToken}`,
     },

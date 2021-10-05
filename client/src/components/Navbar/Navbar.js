@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/auth/action";
+import { resetUserData } from "../../redux/user/action";
 import { RiSettings4Line, RiMusic2Line, RiHistoryFill } from "react-icons/ri";
 import { MdFavoriteBorder } from "react-icons/md";
 import { GoListUnordered } from "react-icons/go";
@@ -29,6 +30,10 @@ function Navbar() {
   };
   const handleLogout = () => {
     dispatch(logout());
+    dispatch(resetUserData());
+  };
+  const handlePlaylist = () => {
+    history.push("/playlist");
   };
 
   return (
@@ -70,7 +75,7 @@ function Navbar() {
                   <BiUserCircle className="list-icon" />
                   <h4>Profile</h4>
                 </li>
-                <li>
+                <li onClick={handlePlaylist}>
                   <RiMusic2Line className="list-icon" />
                   <h4>Playlists</h4>
                 </li>
