@@ -60,9 +60,9 @@ export const login = () => async (dispatch) => {
       uid: res.user.multiFactor.user.uid,
     };
     localStorage.setItem("user", JSON.stringify(userProfile));
+    await syncUserData(userProfile);
     dispatch({ type: LOGIN_SUCCESS, payload: accessToken });
     dispatch({ type: LOAD_PROFILE, payload: userProfile });
-    await syncUserData(userProfile);
   } catch (error) {
     dispatch({ type: LOGIN_FAIL, payload: error.message });
   }

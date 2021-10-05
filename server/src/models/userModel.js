@@ -31,9 +31,6 @@ const UserSchema = new Schema(
       type: String,
       unique: true,
     },
-    profileImage: {
-      type: String,
-    },
     mySongs: {
       type: [{ type: Schema.Types.ObjectId, ref: "song" }],
       default: [],
