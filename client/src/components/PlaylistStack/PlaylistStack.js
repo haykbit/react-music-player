@@ -12,13 +12,15 @@ function PlaylistStack() {
   const { user, loading, authObserverSuccess } = useSelector(
     (state) => state.auth
   );
-  const { uploadSongSuccess } = useSelector((state) => state.song);
+  const { uploadSongSuccess, deleteSongSuccess } = useSelector(
+    (state) => state.song
+  );
   const [mySongsData, setMySongsData] = useState([]);
   useEffect(() => {
     if (!loading && authObserverSuccess) {
       songData();
     }
-  }, [loading, uploadSongSuccess]);
+  }, [loading, uploadSongSuccess, deleteSongSuccess]);
 
   async function songData() {
     const mySongs = await getMySongsData(user.uid);

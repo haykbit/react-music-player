@@ -19,6 +19,9 @@ import {
   GET_MY_LIKED_SONGS_REQUEST,
   GET_MY_LIKED_SONGS_SUCCESS,
   GET_MY_LIKED_SONGS_FAIL,
+  DELETE_SONG_REQUEST,
+  DELETE_SONG_SUCCESS,
+  DELETE_SONG_FAIL,
 } from "./types";
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -167,6 +170,30 @@ const reducer = (state = INITIAL_STATE, action) => {
         loading: false,
         error: action.payload,
         myLikedSongsSuccess: false,
+      };
+    case DELETE_SONG_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+        deleteSongSuccess: false,
+        songData: null,
+      };
+    case DELETE_SONG_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        deleteSongSuccess: true,
+        songData: null,
+      };
+    case DELETE_SONG_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        deleteSongSuccess: false,
+        songData: null,
       };
     default:
       return { ...state };

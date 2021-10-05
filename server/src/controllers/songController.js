@@ -142,6 +142,15 @@ async function updateSong(req, res, next) {
   }
 }
 
+async function deleteSong(req, res, next) {
+  const { id } = req.params;
+  try {
+    await db.Song.deleteOne({ _id: id });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 module.exports = {
   createSong,
   getSongById,
@@ -149,4 +158,5 @@ module.exports = {
   likeSong,
   cancelLikeSong,
   updateSong,
+  deleteSong,
 };
