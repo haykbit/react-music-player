@@ -67,6 +67,11 @@ function IndividualSong({ song }) {
           </label>
         </button>
         <RightClickMenu show={contextMenu} close={Toggle} />
+
+        {/* <button className="context-menu-btn">
+          <IoMdMore />
+        </button>
+        <RightClickMenu /> */}
       </div>
       <div className="song-actions">
         <div className="song-play">
