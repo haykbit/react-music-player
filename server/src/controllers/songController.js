@@ -24,6 +24,18 @@ async function createSong(req, res, next) {
   }
 }
 
+async function fetchSongs(req, res, next) {
+  try {
+    const song = await db.Song.find().lean();
+
+    res.status(200).send({
+      data: song,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 async function getSongById(req, res, next) {
   const { id } = req.params;
   try {
@@ -32,8 +44,8 @@ async function getSongById(req, res, next) {
     res.status(200).send({
       data: song,
     });
-  } catch (error) {
-    next(error);
+  } catch (err) {
+    console.log(err);
   }
 }
 
@@ -127,11 +139,11 @@ async function cancelLikeSong(req, res, next) {
 
 async function updateSong(req, res, next) {
   const { id } = req.params;
-  const { title, artist } = req.body;
+  const { title, artist, genre } = req.body;
   try {
     const updatedSong = await db.Song.findOneAndUpdate(
       { _id: id },
-      { $set: { title: title || "", artist: artist || "" } }
+      { $set: { title: title || "", artist: artist || "", genre: genre || "" } }
     );
 
     res.status(200).send({
@@ -153,6 +165,7 @@ async function deleteSong(req, res, next) {
 
 module.exports = {
   createSong,
+  fetchSongs,
   getSongById,
   getSongsByUser,
   likeSong,

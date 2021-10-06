@@ -5,7 +5,7 @@ const cors = require("cors");
 
 const { config } = require("./config");
 
-const { userRouter, songRouter } = require("./routes");
+const { userRouter, songRouter, playlistRouter } = require("./routes");
 
 const app = express();
 
@@ -19,6 +19,7 @@ app.use(
 
 app.use("/users", userRouter);
 app.use("/songs", songRouter);
+app.use("/playlists", playlistRouter);
 
 app.get("/", (req, res) => {
   res.status(200).send({
