@@ -1,17 +1,24 @@
 const mongoose = require("mongoose");
 const { Schema } = require("mongoose");
 
-const SongSchema = new Schema(
-  {
-    title: {
-      type: String,
-      trim: true,
-      //   required: [true, "The title is required!"],
-    },
-    genre: {
-      type: String,
-      //   required: [true, "Please select category for this song"],
-      enum: [
+const SongSchema = new Schema({
+  title: {
+    type: String,
+    required: [true, "Please enter title song"],
+    trim: true,
+    maxLength: [30, "Song title cannot exceed 30 characters"],
+  },
+  artist: {
+    type: String,
+    required: [true, "Please enter artist song"],
+    trim: true,
+    maxLength: [30, "Song artist cannot exceed 30 characters"],
+  },
+  genre: {
+    type: String,
+    required: [true, "Please select genre for this song"],
+    enum: {
+      values: [
         "Country",
         "Electronic dance music (EDM)",
         "Hip-hop",
@@ -30,46 +37,62 @@ const SongSchema = new Schema(
         "Reggae",
         "Punk",
       ],
-    },
-    artist: {
-      //TODO: We need to see about artist model and use of the object id
-      type: String,
-      default: "Jordi Anonymous",
-    },
-    duration: {
-      type: Number,
-    },
-    url: {
-      type: String,
-      required: [true, "The URL is required!"],
-    },
-    owner: {
-      type: String,
-      ref: "user",
-    },
-    //   image: {
-    //       type: String,
-
-    //   },
-    likes: {
-      type: Number,
-    },
-    likedBy: {
-      // type: [{ type: Schema.Types.ObjectId, ref: "user" }],
-      type: Array,
-      default: [],
-    },
-    played: {
-      type: Number,
+      message: "Please select correct genre for song",
     },
   },
-  {
-    timestamps: true,
-  }
-);
+  duration: {
+    type: Number,
+    default: 0,
+  },
+  url: {
+    type: String,
+    required: true,
+  },
+  album: {
+    type: String,
+  },
+  // album: {
+  //   type: mongoose.Schema.ObjectId,
+  //   ref: "Album",
+  //   required: false,
+  // },
+  private: {
+    type: Boolean,
+    required: true,
+  },
+  owner: {
+    type: mongoose.Schema.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  popularity: {
+    type: Number,
+    default: 0,
+  },
+  includedLists: {
+    type: [{ type: Schema.Types.ObjectId, ref: "Playlist" }],
+    required: true,
+    default: [],
+  },
+
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  likes: {
+    type: Number,
+  },
+  likedBy: {
+    type: [{ type: Schema.Types.ObjectId, ref: "user" }],
+    type: Array,
+    default: [],
+  },
+  played: {
+    type: Number,
+  },
+});
 
 const Song = mongoose.model("Song", SongSchema);
-
 module.exports = {
   Song: Song,
 };
