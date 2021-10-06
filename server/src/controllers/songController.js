@@ -144,8 +144,16 @@ async function updateSong(req, res, next) {
 
 async function deleteSong(req, res, next) {
   const { id } = req.params;
+  const { userId } = req.body;
   try {
     await db.Song.deleteOne({ _id: id });
+    await db.User.findOneAndUpdate(
+      { firebase_id: userId },
+      {
+        $pull: { mySongs: id },
+      },
+      { new: true }
+    );
   } catch (err) {
     console.log(err);
   }

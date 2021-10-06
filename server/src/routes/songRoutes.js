@@ -14,7 +14,7 @@ songRouter.get(
   songController.getSongsByUser
 );
 songRouter.patch("/:id", authMiddleware, songController.updateSong);
-songRouter.delete("/:id", authMiddleware, songController.deleteSong);
+songRouter.put("/:id", authMiddleware, songController.deleteSong);
 
 module.exports = {
   songRouter,

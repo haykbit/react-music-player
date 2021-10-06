@@ -46,7 +46,7 @@ async function seedSongs() {
     db.Song.insertMany([
       {
         title: "Admin Song - Don't modify",
-        genre: "Electronic dance music (EDM) ",
+        genre: "Electronic dance music (EDM)",
         artist: "Admin",
         duration: 187,
         url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
@@ -54,7 +54,7 @@ async function seedSongs() {
       },
       {
         title: "Plume",
-        genre: "Electronic dance music (EDM) ",
+        genre: "Electronic dance music (EDM)",
         artist: "Caravan Palace",
         duration: 187,
         url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1633001063/k73nlagzz8cxif3bvhqh.mp3",
