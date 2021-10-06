@@ -20,7 +20,7 @@ const SongSchema = new Schema({
     enum: {
       values: [
         "Country",
-        "Electronic dance music (EDM) ",
+        "Electronic dance music (EDM)",
         "Hip-hop",
         "Indie rock",
         "Jazz",
@@ -32,6 +32,10 @@ const SongSchema = new Schema({
         "Rhythm & blues (R&B)",
         "Rock",
         "Techno",
+        "Folk",
+        "Ska",
+        "Reggae",
+        "Punk",
       ],
       message: "Please select correct genre for song",
     },
@@ -80,6 +84,18 @@ const SongSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now,
+    //   },
+    likes: {
+      type: Number,
+    },
+    likedBy: {
+      // type: [{ type: Schema.Types.ObjectId, ref: "user" }],
+      type: Array,
+      default: [],
+    },
+    played: {
+      type: Number,
+    },
   },
 });
 

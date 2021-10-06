@@ -6,16 +6,18 @@ const songRouter = Router();
 
 //http://localhost:4000/songs/
 songRouter.get("/all", authMiddleware, songController.fetchSongs);
+songRouter.post("/", authMiddleware, songController.createSong);
+songRouter.patch("/like/:id", songController.likeSong);
+songRouter.patch("/cancel-like/:id", songController.cancelLikeSong);
 songRouter.get("/:id", authMiddleware, songController.getSongById);
 songRouter.patch("/:id", authMiddleware, songController.updateSong);
-songRouter.delete("/:id", authMiddleware, songController.removeSongById);
+songRouter.delete("/:id", authMiddleware, songController.deleteSong);
 
 songRouter.get(
   "/mysongs/:ownerId",
   authMiddleware,
   songController.getSongsByUser
 );
-songRouter.post("/", authMiddleware, songController.createSong);
 
 module.exports = {
   songRouter,

@@ -241,6 +241,9 @@ nav i {
   border: 2px solid #fff;
   border-radius: 50px;
   cursor: pointer;
+  background-size: cover;
+  background-repeat: "no-repeat";
+  background-position: center;
 }
 
 .user-icon-li {

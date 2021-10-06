@@ -46,6 +46,37 @@ async function seedSongs() {
   try {
     db.Song.insertMany([
       {
+        title: "Admin Song - Don't modify",
+        artist: "Admin",
+        genre: "Electronic dance music (EDM) ",
+        duration: 187,
+        url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
+        album: "fake1234fake1234fake1234",
+        owner: "hNgne9CGnvbcwHokxnXgCRjUVVO2",
+        popularity: 32,
+        included_lists: [
+          {
+            playlist: "fake1234fake1234fake1234",
+          },
+        ],
+      },
+      {
+        title: "Plume",
+        artist: "Caravan Palace",
+        genre: "Electronic dance music (EDM) ",
+        duration: 187,
+        url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1633001063/k73nlagzz8cxif3bvhqh.mp3",
+        album: "fake1234fake1234fake1234",
+        private: false,
+        owner: "615b22fb93c39b954c27c9da",
+        popularity: 32,
+        included_lists: [
+          {
+            playlist: "fake1234fake1234fake1234",
+          },
+        ],
+      },
+      {
         title: "idol",
         artist: "BTS",
         genre: "K-pop",
