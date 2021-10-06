@@ -32,6 +32,7 @@ function ProfileInfo() {
 
   const { loading, accessToken, signOutSuccess, authObserverSuccess, user } =
     useSelector((state) => state.auth);
+
   const history = useHistory();
   const dispatch = useDispatch();
 

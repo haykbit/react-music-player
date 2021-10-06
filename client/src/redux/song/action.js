@@ -80,10 +80,10 @@ export const getMyLikedSongs = () => async (dispatch) => {
   }
 };
 
-export const deleteSong = (songId) => async (dispatch) => {
+export const deleteSong = (songId, userId) => async (dispatch) => {
   dispatch({ type: DELETE_SONG_REQUEST });
   try {
-    removeSongData(songId);
+    removeSongData(songId, userId);
     dispatch({ type: DELETE_SONG_SUCCESS });
   } catch (error) {
     dispatch({ type: DELETE_SONG_FAIL, payload: error.message });

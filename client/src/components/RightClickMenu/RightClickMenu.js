@@ -46,6 +46,7 @@ function RightClickMenu({ show, close, handleLike, song }) {
             show={modals.deleteModal}
             close={ToggleDeleteModal}
             songId={song._id}
+            userId={userUid}
           />
         </div>
       ) : null}

@@ -1,5 +1,10 @@
 const INITIAL_STATE = {
-  songData: null,
+  songData: {
+    title: "",
+    artist: "",
+    duration: 0,
+    url: "",
+  },
   loading: false,
   error: null,
   playSuccess: false,

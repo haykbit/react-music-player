@@ -3,11 +3,11 @@ import { useDispatch } from "react-redux";
 import "./style/DeleteConfirmation.scss";
 import { deleteSong } from "../../redux/song/action";
 
-const DeleteConfirmation = ({ show, close, songId }) => {
+const DeleteConfirmation = ({ show, close, songId, userId }) => {
   const dispatch = useDispatch();
 
-  function deleteSelectedSong(songId) {
-    dispatch(deleteSong(songId));
+  function deleteSelectedSong() {
+    dispatch(deleteSong(songId, userId));
     close();
   }
 

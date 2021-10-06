@@ -118,13 +118,14 @@ const AudioPlayer = () => {
 
   useEffect(() => {
     if (isPlaying) {
+      console.log(audioRef);
       audioRef.current.play();
       startTimer();
     } else {
       audioRef.current.pause();
     }
   }, [isPlaying]);
-  //TODO useEffect for setting songData
+
   // Restart state for next song
   useEffect(() => {
     audioRef.current.pause();
@@ -168,53 +169,59 @@ const AudioPlayer = () => {
     return ret;
   }
   return (
-    <div className="audio-player">
-      <div className="track-info">
-        <img
-          className="artwork"
-          // src={image}
-          alt={`${title} by ${artist}`}
-        />
-        <div className="song-info">
-          <h4 className="title">{title}</h4>
-          <h6 className="artist">{artist}</h6>
+    <>
+      {url ? (
+        <div className="audio-player">
+          <div className="track-info">
+            <img
+              className="artwork"
+              // src={image}
+              alt={`${title} by ${artist}`}
+            />
+            <div className="song-info">
+              <h4 className="title">{title}</h4>
+              <h6 className="artist">{artist}</h6>
+            </div>
+            <AudioControls
+              isPlaying={isPlaying}
+              onPrevClick={toPrevTrack}
+              onNextClick={toNextTrack}
+              onPlayPauseClick={setIsPlaying}
+            />
+            <div className="track-bar">
+              <h4>{fancyTimeFormat(duration)}</h4>
+              <input
+                type="range"
+                value={trackProgress}
+                step="1"
+                min="0"
+                max={duration ? duration : `${duration}`}
+                className="progress"
+                onChange={(e) => onScrub(e.target.value)}
+                onMouseUp={onScrubEnd}
+                onKeyUp={onScrubEnd}
+                style={{ background: trackStyling }}
+              />
+              <h4>{fancyTimeFormat(trackProgress)}</h4>
+            </div>
+            <MdPlaylistAdd className="add-icon" />
+            <GiSoundWaves className="volume-icon" />
+            <input
+              type="range"
+              value={volumeLevel}
+              step="0.05"
+              min="0.00"
+              max="1.00"
+              className="volume"
+              onChange={(e) => volumeControl(e.target.value)}
+              style={{ background: trackStyling }}
+            />
+          </div>
         </div>
-        <AudioControls
-          isPlaying={isPlaying}
-          onPrevClick={toPrevTrack}
-          onNextClick={toNextTrack}
-          onPlayPauseClick={setIsPlaying}
-        />
-        <div className="track-bar">
-          <h4>{fancyTimeFormat(duration)}</h4>
-          <input
-            type="range"
-            value={trackProgress}
-            step="1"
-            min="0"
-            max={duration ? duration : `${duration}`}
-            className="progress"
-            onChange={(e) => onScrub(e.target.value)}
-            onMouseUp={onScrubEnd}
-            onKeyUp={onScrubEnd}
-            style={{ background: trackStyling }}
-          />
-          <h4>{fancyTimeFormat(trackProgress)}</h4>
-        </div>
-        <MdPlaylistAdd className="add-icon" />
-        <GiSoundWaves className="volume-icon" />
-        <input
-          type="range"
-          value={volumeLevel}
-          step="0.05"
-          min="0.00"
-          max="1.00"
-          className="volume"
-          onChange={(e) => volumeControl(e.target.value)}
-          style={{ background: trackStyling }}
-        />
-      </div>
-    </div>
+      ) : (
+        ""
+      )}
+    </>
   );
 };
 
