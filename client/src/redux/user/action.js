@@ -29,15 +29,29 @@ export const displayUserProfile =
 export const updateUserProfileInfo = (userId, profile) => async (dispatch) => {
   dispatch({ type: UPDATE_PROFILE_REQUEST });
   try {
-    const { email, profileImage } = profile;
-
-    await updateUserEmail(email);
-    const imageData = await uploadImages(profileImage);
-    dispatch({
-      type: UPDATE_PROFILE_SUCCESS,
-      payload: { ...profile, profileImage: imageData.url },
-    });
-    await updateUserProfile(userId, profile, imageData.url);
+    const { email, profileImageURL, profileImageFile } = profile;
+    if (email) {
+      await updateUserEmail(email);
+      dispatch({
+        type: UPDATE_PROFILE_SUCCESS,
+        payload: { ...profile },
+      });
+    }
+    if (profileImageFile) {
+      const imageData = await uploadImages(profileImageFile);
+      dispatch({
+        type: UPDATE_PROFILE_SUCCESS,
+        payload: { ...profile, profileImageURL: imageData.url },
+      });
+      console.log(profile, "profile");
+      await updateUserProfile(userId, profile, imageData.url);
+    } else {
+      await updateUserProfile(userId, profile);
+      dispatch({
+        type: UPDATE_PROFILE_SUCCESS,
+        payload: { ...profile },
+      });
+    }
   } catch (error) {
     dispatch({ type: UPDATE_PROFILE_FAIL, payload: error.message });
   }

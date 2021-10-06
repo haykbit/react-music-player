@@ -24,8 +24,11 @@ function ProfileInfo() {
     email: "",
     firstName: "",
     lastName: "",
-    profileImage: "",
+    profileImageURL: "",
+    profileImageFile: "",
   });
+  const [image, setImage] = useState("");
+  const [isUploaded, setIsUploaded] = useState(false);
 
   const { loading, accessToken, signOutSuccess, authObserverSuccess, user } =
     useSelector((state) => state.auth);
@@ -50,11 +53,12 @@ function ProfileInfo() {
     const userData = await getUserProfile(user.uid);
     console.log(userData, "USER DATA");
     const { email, firstName, lastName, profileImage } = userData.data.data;
+    console.log(profileImage, "profile");
     setProfile({
       email: email,
       firstName: firstName,
       lastName: lastName,
-      profileImage: profileImage || "",
+      profileImageURL: profileImage || "",
     });
   }
 
@@ -69,11 +73,8 @@ function ProfileInfo() {
     setProfile({ ...profile, [e.target.name]: e.target.value });
   }
 
-  const [image, setImage] = useState("");
-  const [isUploaded, setIsUploaded] = useState(false);
-
   function handleImageChange(e) {
-    setProfile({ ...profile, profileImage: e.target.files[0] });
+    setProfile({ ...profile, profileImageFile: e.target.files[0] });
 
     let reader = new FileReader();
 
@@ -98,8 +99,8 @@ function ProfileInfo() {
                       className="profile-picture-uploaded"
                       style={{
                         backgroundImage: `url(${
-                          profile.profileImage
-                            ? profile.profileImage
+                          profile.profileImageURL
+                            ? profile.profileImageURL
                             : ImageUploadIcon
                         })`,
                       }}

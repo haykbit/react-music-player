@@ -1,7 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/auth/action";
 import { resetUserData } from "../../redux/user/action";
+import { getUserProfile } from "../../api/api";
+
 import { RiSettings4Line, RiMusic2Line, RiHistoryFill } from "react-icons/ri";
 import { MdFavoriteBorder } from "react-icons/md";
 import { GoListUnordered } from "react-icons/go";
@@ -9,22 +11,39 @@ import { IoLogOutOutline } from "react-icons/io5";
 import { BiUserCircle } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
 import portadaUno from "../../assets/images/icons/portada-1.png";
-import userImage from "../../assets/images/icons/profile.jpg";
+// import userImage from "../../assets/images/icons/profile.jpg";
 
 import "./style/navbar.scss";
 
 function Navbar() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { loading, accessToken, signOutSuccess } = useSelector(
-    (state) => state.auth
-  );
+  const [navProfile, setNavProfile] = useState({
+    firstName: "",
+    lastName: "",
+    profileImage: "",
+  });
+  const { loading, accessToken, signOutSuccess, authObserverSuccess, user } =
+    useSelector((state) => state.auth);
+  const userState = useSelector((state) => state.user.userProfile);
+  async function setProfileData() {
+    // const userStorage = JSON.parse(localStorage.getItem("user"));
+    const userData = await getUserProfile(user.uid);
+    const { profileImage, firstName, lastName } = userData.data.data;
+    setNavProfile({ firstName, lastName, profileImage });
+  }
 
   useEffect(() => {
     if (!loading && !accessToken && signOutSuccess) {
       history.push("/login");
     }
   }, [loading, accessToken, signOutSuccess, history]);
+
+  useEffect(() => {
+    if (!loading && authObserverSuccess) {
+      setProfileData();
+    }
+  }, [userState, loading]);
   const handleProfile = () => {
     history.push("/profile");
   };
@@ -65,11 +84,12 @@ function Navbar() {
                   <div
                     className="user-icon"
                     style={{
-                      backgroundImage: `url(${userImage})`,
-                      backgroundSize: "contain",
+                      backgroundImage: `url(${navProfile.profileImage})`,
                     }}
                   ></div>
-                  <h5>Laura Morales</h5>
+                  <h5>
+                    {navProfile.firstName} {navProfile.lastName}
+                  </h5>
                 </li>
                 <li onClick={handleProfile}>
                   <BiUserCircle className="list-icon" />

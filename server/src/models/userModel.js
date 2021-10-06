@@ -12,6 +12,11 @@ const UserSchema = new Schema(
       type: String,
       trim: true,
     },
+    profileImage: {
+      type: String,
+      default:
+        "https://res.cloudinary.com/dzaxp8xwy/image/upload/v1633277832/vehkjqmyzfz9brcqmcto.jpg",
+    },
     email: {
       type: String,
       unique: true,
@@ -28,6 +33,18 @@ const UserSchema = new Schema(
     },
     profileImage: {
       type: String,
+    },
+    mySongs: {
+      type: [{ type: Schema.Types.ObjectId, ref: "song" }],
+      default: [],
+    },
+    myFavoriteSongs: {
+      type: [{ type: Schema.Types.ObjectId, ref: "song" }],
+      default: [],
+    },
+    artist: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamp: true }
