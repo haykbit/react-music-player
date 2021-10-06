@@ -26,10 +26,9 @@ async function getPlaylistById(req, res, next) {
 }
 
 async function removePlaylistById(req, res, next) {
-  const { id: playlistId } = req.params;
-
+  const { id } = req.params;
   try {
-    const playlist = await db.Playlist.deleteOne({ _id: playlistId }).lean();
+    const playlist = await db.Playlist.deleteOne({ _id: id }).lean();
 
     res.status(200).send({
       data: playlist,
@@ -40,12 +39,11 @@ async function removePlaylistById(req, res, next) {
 }
 
 async function updatePlaylist(req, res, next) {
-  const { id: playlistId } = req.params;
-  const { title, description, songs, genre, private, playlist_image } =
-    req.body;
+  const { id } = req.params;
+  const { title, description, songs, genre, private, playlistImage } = req.body;
   try {
     const updatedPlaylist = await db.Playlist.findOneAndUpdate(
-      { _id: playlistId },
+      { _id: id },
       {
         $set: {
           title: title || "",
@@ -53,7 +51,7 @@ async function updatePlaylist(req, res, next) {
           songs: songs || "",
           genre: genre || "",
           private: private || "",
-          playlist_image: playlist_image || "",
+          playlistImage: playlistImage || "",
         },
       }
     );

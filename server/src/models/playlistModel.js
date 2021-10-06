@@ -6,7 +6,7 @@ const PlaylistSchema = new Schema({
     type: String,
     required: [true, "Please enter title to the playlist"],
     trim: true,
-    maxLength: [20, "Playlist title cannot exceed 30 characters"],
+    maxLength: [20, "Playlist title cannot exceed 20 characters"],
   },
   description: {
     type: String,
@@ -14,10 +14,11 @@ const PlaylistSchema = new Schema({
     trim: true,
     maxLength: [30, "Playlist description cannot exceed 30 characters"],
   },
+
   songs: {
-    type: mongoose.Schema.ObjectId,
-    ref: "Song",
+    type: [{ type: Schema.Types.ObjectId, ref: "Song" }],
     required: true,
+    default: [],
   },
   genre: {
     type: String,
