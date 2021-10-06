@@ -55,11 +55,7 @@ async function seedSongs() {
         private: false,
         owner: "615d7975e1b282b490fa251c",
         popularity: 32,
-        included_lists: [
-          {
-            playlist: "fake1234fake1234fake1234",
-          },
-        ],
+        includedLists: [],
       },
       {
         title: "Plume",
@@ -71,11 +67,7 @@ async function seedSongs() {
         private: false,
         owner: "615b22fb93c39b954c27c9da",
         popularity: 32,
-        included_lists: [
-          {
-            playlist: "fake1234fake1234fake1234",
-          },
-        ],
+        includedLists: [],
       },
       {
         title: "idol",
@@ -87,11 +79,7 @@ async function seedSongs() {
         private: false,
         owner: "615b22fb93c39b954c27c9da",
         popularity: 32,
-        included_lists: [
-          {
-            playlist: "fake1234fake1234fake1234",
-          },
-        ],
+        includedLists: [],
       },
       {
         title: "Serindipity",
@@ -103,11 +91,7 @@ async function seedSongs() {
         private: true,
         owner: "615b22fb93c39b954c27c9da",
         popularity: 32,
-        included_lists: [
-          {
-            playlist: "fake1234fake1234fake1234",
-          },
-        ],
+        includedLists: [],
       },
       {
         title: "test",
@@ -119,11 +103,7 @@ async function seedSongs() {
         private: false,
         owner: "615b22fb93c39b954c27c9da",
         popularity: 32,
-        included_lists: [
-          {
-            playlist: "fake1234fake1234fake1234",
-          },
-        ],
+        includedLists: [],
       },
     ]);
     console.log("Seed Songs OK");
@@ -140,8 +120,8 @@ async function seedPlaylist() {
         songs: [],
         genre: "Techno",
         private: "false",
-        owner: "615aca9b4b01f8a52a4e3dc0",
-        playlist_image: [
+        owner: [],
+        playlistImage: [
           {
             public_id: "upload/v1632827814",
             url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
@@ -155,8 +135,8 @@ async function seedPlaylist() {
         songs: [],
         genre: "Oldies",
         private: "false",
-        owner: "615aca9b4b01f8a52a4e3dc0",
-        playlist_image: [
+        owner: [],
+        playlistImage: [
           {
             public_id: "upload/v1632827814",
             url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
@@ -170,8 +150,8 @@ async function seedPlaylist() {
         songs: [],
         genre: "Oldies",
         private: "false",
-        owner: "615aca9b4b01f8a52a4e3dc0",
-        playlist_image: [
+        owner: [],
+        playlistImage: [
           {
             public_id: "upload/v1632827814",
             url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
@@ -185,8 +165,8 @@ async function seedPlaylist() {
         songs: [],
         genre: "Oldies",
         private: "false",
-        owner: "615b25bdc75fadd05963c9d4",
-        playlist_image: [
+        owner: [],
+        playlistImage: [
           {
             public_id: "upload/v1632827814",
             url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",

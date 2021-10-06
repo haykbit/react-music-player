@@ -69,33 +69,26 @@ const SongSchema = new Schema({
     type: Number,
     default: 0,
   },
-  included_lists: {
-    playlist: {
-      type: String,
-    },
+  includedLists: {
+    type: [{ type: Schema.Types.ObjectId, ref: "Playlist" }],
+    required: true,
+    default: [],
   },
-  // included_lists: {
-  //   playlist: {
-  //     type: mongoose.Schema.ObjectId,
-  //     ref: "Playlist",
-  //   },
-  // },
 
   createdAt: {
     type: Date,
     default: Date.now,
-    //   },
-    likes: {
-      type: Number,
-    },
-    likedBy: {
-      // type: [{ type: Schema.Types.ObjectId, ref: "user" }],
-      type: Array,
-      default: [],
-    },
-    played: {
-      type: Number,
-    },
+  },
+  likes: {
+    type: Number,
+  },
+  likedBy: {
+    type: [{ type: Schema.Types.ObjectId, ref: "user" }],
+    type: Array,
+    default: [],
+  },
+  played: {
+    type: Number,
   },
 });
 

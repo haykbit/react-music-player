@@ -47,12 +47,11 @@ const PlaylistSchema = new Schema({
     required: true,
   },
   owner: {
-    type: mongoose.Schema.ObjectId,
-    ref: "User",
+    type: [{ type: Schema.Types.ObjectId, ref: "User" }],
     required: true,
-    //Owner name?
+    default: [],
   },
-  playlist_image: [
+  playlistImage: [
     {
       public_id: {
         type: String,
