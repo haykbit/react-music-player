@@ -56,9 +56,6 @@ const AudioPlayer = () => {
   const currentPercentage = duration
     ? `${(trackProgress / duration) * 100}%`
     : "0%";
-  const trackStyling = `
-    -webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${currentPercentage}, #fff), color-stop(${currentPercentage}, #777))
-  `;
 
   const startTimer = () => {
     // Clear any timers already running
@@ -194,7 +191,6 @@ const AudioPlayer = () => {
             onChange={(e) => onScrub(e.target.value)}
             onMouseUp={onScrubEnd}
             onKeyUp={onScrubEnd}
-            style={{ background: trackStyling }}
           />
           <h4>{fancyTimeFormat(trackProgress)}</h4>
         </div>
@@ -208,7 +204,6 @@ const AudioPlayer = () => {
           max="1.00"
           className="volume"
           onChange={(e) => volumeControll(e.target.value)}
-          style={{ background: trackStyling }}
         />
       </div>
     </div>

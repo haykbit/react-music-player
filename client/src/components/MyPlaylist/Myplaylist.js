@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import "./style/myPlaylist.scss";
+
 import Modal from "../Modal";
-import portadaUno from "../../assets/images/icons/portada-1.png";
 import PlaylistStack from "../PlaylistStack/PlaylistStack";
+
+import { FiUploadCloud } from "react-icons/fi";
+
+import portadaUno from "../../assets/images/icons/portada-1.png";
 import portadaDos from "../../assets/images/albums/arctic-album-1.jpeg";
 import portadaTres from "../../assets/images/albums/arctic-album-2.jpeg";
 import portadaCuatro from "../../assets/images/albums/arctic-album-3.jpeg";
-import portadaCinco from "../../assets/images/albums/arctic-album-4.jpg";
-import portadaSeis from "../../assets/images/albums/arctic-album-5.jpg";
-import portadaOcho from "../../assets/images/albums/gorillaz-demon-days.png";
-import portadaNueve from "../../assets/images/albums/linkin-p-papercut.jpeg";
+
+import "./style/myPlaylist.scss";
 
 function Myplaylist() {
   const [modal, setModal] = useState(false);
@@ -28,10 +29,11 @@ function Myplaylist() {
               }}
             ></div>
             <div className="text-column">
-              <div className="playlist-name">My Uploaded Songs</div>
-              <div className="playlist-genre">Sebastian Elias</div>
-              <div className="song-number">140 songs</div>
+              <h1 className="playlist-name">My Uploaded Songs</h1>
+              <h3 className="playlist-genre">Sebastian Elias</h3>
+              <p className="song-number">140 songs</p>
               <button onClick={() => Toggle()} className="upload-button">
+                <FiUploadCloud className="upload-icon" />
                 Upload
               </button>
               <Modal show={modal} close={Toggle} />

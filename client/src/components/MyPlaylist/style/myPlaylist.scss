@@ -5,7 +5,7 @@
   .left-side {
     display: flex;
     height: 100%;
-    width: 700px;
+    width: 60%;
     display: flex;
     flex-direction: column;
     margin-left: 30px;
@@ -18,7 +18,7 @@
       padding: 20px;
 
       .album-column {
-        height: 100%;
+        height: 300px;
         width: 350px;
         border-radius: 20px;
       }
@@ -27,9 +27,19 @@
         width: 60%;
         color: white;
         margin-left: 40px;
-        font-weight: 700;
         display: flex;
         flex-direction: column;
+
+        h1 {
+          font-size: 30px;
+          font-weight: 700;
+          margin: 0;
+        }
+
+        h3 {
+          font-weight: 500;
+          margin: 0;
+        }
 
         .playlist-name {
           width: 100%;
@@ -47,36 +57,38 @@
         }
 
         .upload-button {
-          background-image: linear-gradient(
-            to left,
-            #ff4343,
-            #ff2a7c,
-            #eb3db3,
-            #b65fe2,
-            #527aff
-          );
-          cursor: pointer;
-        }
-        .upload-button {
-          font-weight: 600;
-          margin-top: 40px;
           width: 130px;
-          height: 50px;
-          box-sizing: border-box;
           padding: 15px;
-          text-align: center;
-          text-transform: uppercase;
-          transition: 0.5s;
-          background-size: 200% auto;
-          color: white;
+          margin-top: 40px;
+          background-color: #171717;
+          color: #fff;
           border-radius: 10px;
-          display: block;
+          font-weight: 600;
+          border: none;
+          text-align: center;
+          cursor: pointer;
+          z-index: 1;
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
+
+          .upload-icon {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            color: #fff;
+          }
         }
 
         .upload-button:hover {
-          background-position: right center; /* change the direction of the change here */
-          color: #fff;
-          text-decoration: none;
+          svg {
+            color: rgb(0, 119, 255);
+          }
+        }
+
+        .upload-button:active {
+          box-shadow: 0px 0px 0px 3px rgb(0, 119, 255);
+          transform: scale(0.97);
         }
       }
     }
@@ -93,7 +105,7 @@
     display: flex;
     flex-direction: column;
     height: 90vh;
-    width: 500px;
+    width: 40%;
     box-sizing: border-box;
     padding: 20px;
 
@@ -109,10 +121,10 @@
       display: flex;
       align-items: center;
       height: 300px;
-      width: 400px;
+      width: 100%;
       margin: 5px;
       box-sizing: border-box;
-      padding: 35px;
+      padding: 35px 0px;
       .number {
         width: 10%;
         color: white;
@@ -120,8 +132,8 @@
         margin-right: 15px;
       }
       .album-image {
-        width: 50%;
-        height: 100%;
+        width: 200px;
+        height: 200px;
         border-radius: 5px;
       }
       .relevant-song-name {
