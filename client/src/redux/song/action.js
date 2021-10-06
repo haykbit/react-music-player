@@ -35,8 +35,8 @@ export const uploadSongFile = (song, metadata) => async (dispatch) => {
   dispatch({ type: POST_SONG_REQUEST });
   try {
     const songData = await uploadSongs(song);
-    dispatch({ type: POST_SONG_SUCCESS });
     await uploadSongsData(songData, metadata);
+    dispatch({ type: POST_SONG_SUCCESS });
   } catch (error) {
     dispatch({ type: POST_SONG_FAIL, payload: error.message });
   }
@@ -83,7 +83,7 @@ export const getMyLikedSongs = () => async (dispatch) => {
 export const deleteSong = (songId, userId) => async (dispatch) => {
   dispatch({ type: DELETE_SONG_REQUEST });
   try {
-    removeSongData(songId, userId);
+    await removeSongData(songId, userId);
     dispatch({ type: DELETE_SONG_SUCCESS });
   } catch (error) {
     dispatch({ type: DELETE_SONG_FAIL, payload: error.message });
