@@ -2,9 +2,9 @@ const INITIAL_STATE = {
   songData: null,
   loading: false,
   error: null,
-  playSuccess,
-  playNextSuccess,
-  playPrevSuccess,
+  playSuccess: false,
+  playNextSuccess: false,
+  playPrevSuccess: false,
 };
 
-export default PLAY_STATE;
+export default INITIAL_STATE;

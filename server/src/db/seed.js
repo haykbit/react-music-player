@@ -67,7 +67,6 @@ async function seedSongs() {
 }
 
 async function seedDatabase() {
-  //User
   try {
     const userExists = await db.User.findOne({
       email: "admin@mail.com",
@@ -84,20 +83,6 @@ async function seedDatabase() {
 
     if (!songExists) {
       mongoose.connection.collection("songs").drop();
-      seedSongs();
-    }
-  } catch (err) {
-    console.log(err);
-  }
-
-  //Song
-  try {
-    const songExists = await db.Song.findOne({
-      id: "_id:6152f26da11b50c0d609bdf2",
-    }).lean();
-
-    if (!songExists) {
-      await mongoose.connection.collection("songs").drop();
       seedSongs();
     }
   } catch (err) {
