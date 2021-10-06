@@ -29,7 +29,6 @@ function Navbar() {
   async function setProfileData() {
     // const userStorage = JSON.parse(localStorage.getItem("user"));
     const userData = await getUserProfile(user.uid);
-    console.log(userData, "Navbar");
     const { profileImage, firstName, lastName } = userData.data.data;
     setNavProfile({ firstName, lastName, profileImage });
   }

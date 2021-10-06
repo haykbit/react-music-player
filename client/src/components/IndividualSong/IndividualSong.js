@@ -10,7 +10,7 @@ import RightClickMenu from "../RightClickMenu";
 function IndividualSong({ song }) {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-  const { loading } = useSelector((state) => state.song);
+  const { likeSongSuccess, loading } = useSelector((state) => state.song);
 
   const [liked, setLiked] = useState(false);
   const [myFavoriteSongs, setMyFavoriteSongs] = useState([]);
