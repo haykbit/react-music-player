@@ -48,11 +48,12 @@ async function seedSongs() {
       {
         title: "Admin Song - Don't modify",
         artist: "Admin",
-        genre: "Electronic dance music (EDM) ",
+        genre: "Electronic dance music (EDM)",
         duration: 187,
         url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
         album: "fake1234fake1234fake1234",
-        owner: "hNgne9CGnvbcwHokxnXgCRjUVVO2",
+        private: false,
+        owner: "615d7975e1b282b490fa251c",
         popularity: 32,
         included_lists: [
           {
@@ -63,7 +64,7 @@ async function seedSongs() {
       {
         title: "Plume",
         artist: "Caravan Palace",
-        genre: "Electronic dance music (EDM) ",
+        genre: "Electronic dance music (EDM)",
         duration: 187,
         url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1633001063/k73nlagzz8cxif3bvhqh.mp3",
         album: "fake1234fake1234fake1234",
@@ -136,7 +137,7 @@ async function seedPlaylist() {
       {
         title: "Sports Playlist",
         description: "Music to Work Out",
-        songs: "615ad1292f1cffd00bd0defc",
+        songs: [],
         genre: "Techno",
         private: "false",
         owner: "615aca9b4b01f8a52a4e3dc0",
@@ -151,7 +152,7 @@ async function seedPlaylist() {
       {
         title: "Sleep Playlist",
         description: "Music to Relax",
-        songs: "615ad1292f1cffd00bd0defe",
+        songs: [],
         genre: "Oldies",
         private: "false",
         owner: "615aca9b4b01f8a52a4e3dc0",
@@ -166,7 +167,7 @@ async function seedPlaylist() {
       {
         title: "Test Playlist",
         description: "Music to Test",
-        songs: "615ad1292f1cffd00bd0defe",
+        songs: [],
         genre: "Oldies",
         private: "false",
         owner: "615aca9b4b01f8a52a4e3dc0",
@@ -179,9 +180,9 @@ async function seedPlaylist() {
         popularity: 15,
       },
       {
-        title: "Test Multiple Playlist",
+        title: "Multiple Playlist",
         description: "Music to Test",
-        songs: "615ad1292f1cffd00bd0defe",
+        songs: [],
         genre: "Oldies",
         private: "false",
         owner: "615b25bdc75fadd05963c9d4",
@@ -203,6 +204,7 @@ async function seedPlaylist() {
 async function seedDatabase() {
   console.log("Start seeding");
   try {
+    //Const
     const userExists = await db.User.findOne({
       email: "admin@mail.com",
     }).lean();
@@ -212,8 +214,10 @@ async function seedDatabase() {
     }).lean();
 
     const playlistExists = await db.Playlist.findOne({
-      title: "testlldsfg",
+      title: "testPlaylist",
     }).lean();
+
+    //Conditions
 
     if (!userExists) {
       mongoose.connection.collection("users").drop();
