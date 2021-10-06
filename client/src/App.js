@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,6 +12,11 @@ import Playlists from "./pages/Playlists";
 
 function App() {
   const history = useHistory();
+  // useEffect(() => {
+  //   if (!loading && !accessToken) {
+  //     history.push("/login");
+  //   }
+  // }, [loading, accessToken, history]);
   const dispatch = useDispatch();
   const userStorage = JSON.parse(localStorage.getItem("user"));
   const { loading, authObserverSuccess } = useSelector((state) => state.auth);
@@ -31,6 +36,7 @@ function App() {
         <Route path="/login" exact component={Login} />
         <Route path="/profile" exact component={Profile} />
         <Route path="/playlist" exact component={Playlists} />
+        {/* <Route path="/favorite" exact component={Favorite} /> */}
       </Switch>
     </>
   );

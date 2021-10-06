@@ -26,5 +26,9 @@
     {
       "name": "Einar"
     }
-  ]
+  ],
+  "dependencies": {
+    "@emotion/styled": "^11.3.0",
+    "react-beautiful-dnd": "^13.1.0"
+  }
 }
