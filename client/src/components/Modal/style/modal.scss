@@ -29,6 +29,7 @@
       button {
         border-radius: 5px;
         width: 120px;
+        cursor: pointer;
       }
       input {
         height: 40px;
@@ -58,6 +59,9 @@
         cursor: pointer;
         background-repeat: no-repeat;
         background-size: contain;
+      }
+      input {
+        display: none;
       }
     }
   }
