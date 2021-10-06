@@ -22,7 +22,7 @@ const PlaylistSchema = new Schema({
   },
   genre: {
     type: String,
-    required: [true, "Please select genre for this song"],
+    required: [true, "Please select genre for this playlist"],
     enum: {
       values: [
         "Country",
@@ -39,7 +39,7 @@ const PlaylistSchema = new Schema({
         "Rock",
         "Techno",
       ],
-      message: "Please select correct genre for song",
+      message: "Please select correct genre for playlist",
     },
   },
   private: {
