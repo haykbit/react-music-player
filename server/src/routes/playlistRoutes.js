@@ -8,20 +8,13 @@ const playlistRouter = Router();
 
 playlistRouter.get("/all", authMiddleware, playlistController.fetchPlaylists);
 playlistRouter.get("/:id", authMiddleware, playlistController.getPlaylistById);
+playlistRouter.patch("/:id", authMiddleware, playlistController.updatePlaylist);
+
 playlistRouter.delete(
   "/:id",
   authMiddleware,
   playlistController.removePlaylistById
 );
-
-playlistRouter.patch("/:id", authMiddleware, playlistController.updatePlaylist);
-
-// songRouter.get(
-//   "/mysongs/:ownerId",
-//   authMiddleware,
-//   songController.getSongsByUser
-// );
-// songRouter.post("/", authMiddleware, songController.createSong);
 
 module.exports = {
   playlistRouter,
