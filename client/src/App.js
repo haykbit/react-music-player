@@ -12,6 +12,11 @@ import Playlists from "./pages/Playlists";
 
 function App() {
   const history = useHistory();
+  // useEffect(() => {
+  //   if (!loading && !accessToken) {
+  //     history.push("/login");
+  //   }
+  // }, [loading, accessToken, history]);
   const dispatch = useDispatch();
   const userStorage = JSON.parse(localStorage.getItem("user"));
   const { loading, authObserverSuccess } = useSelector((state) => state.auth);

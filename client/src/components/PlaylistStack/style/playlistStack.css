@@ -100,6 +100,7 @@
   color: #ff4747;
 }
 
+
 .song-list-playlist .song-item-playlist .song-actions .song-like .like-icon.liked {
   color: #ff4747;
 }
@@ -111,4 +112,13 @@
   background-color: transparent;
   cursor: pointer;
 }
+
+.song-list-playlist .song-item-playlist .context-menu-btn {
+  color: #fff;
+  background-color: transparent;
+  border: none;
+  font-size: larger;
+  cursor: pointer;
+}
+
 /*# sourceMappingURL=playlistStack.css.map */

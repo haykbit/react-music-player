@@ -15,19 +15,24 @@ function AlbumExplorer() {
   return (
     <>
       <div className="album-container">
-        <h2 className="album-title">Album explorer</h2>
-
         <div className="carousel-box">
           <div
             style={{
-              display: "flex",
-              justifyContent: "center",
-              flexFlow: "row",
-              alignContent: "center",
               textAlign: "center",
             }}
           >
-            <Carousel plugins={["centered", "infinite", "arrows"]}>
+            <Carousel
+              plugins={[
+                "centered",
+                "arrows",
+                {
+                  resolve: slidesToShowPlugin,
+                  options: {
+                    numberOfSlides: 2,
+                  },
+                },
+              ]}
+            >
               <div>
                 <img src={portadaUno} />
                 <h2>Arctic Monkeys</h2>
@@ -65,56 +70,6 @@ function AlbumExplorer() {
                 <h2>Linkin Park</h2>
               </div>
             </Carousel>
-            <div className="albums-section">
-              <div className="album-list">
-                <div className="album-item">
-                  <img src={portadaUno} alt="" />
-                  <h3>Album name</h3>
-                  <h5>Group</h5>
-                </div>
-                <div className="album-item">
-                  <img src={portadaDos} alt="" />
-                  <h3>Album name</h3>
-                  <h5>Group</h5>
-                </div>
-                <div className="album-item">
-                  <img src={portadaTres} alt="" />
-                  <h3>Album name</h3>
-                  <h5>Group</h5>
-                </div>
-              </div>
-
-              <div className="album-list">
-                <div className="album-item">
-                  <img src={portadaCuatro} alt="" />
-                  <h3>Album name</h3>
-                  <h5>Group</h5>
-                </div>
-                <div className="album-item">
-                  <img src={portadaCinco} alt="" />
-                  <h3>Album name</h3>
-                  <h5>Group</h5>
-                </div>
-                <div className="album-item">
-                  <img src={portadaSeis} alt="" />
-                  <h3>Album name</h3>
-                  <h5>Group</h5>
-                </div>
-              </div>
-
-              <div className="album-list">
-                <div className="album-item">
-                  <img src={portadaOcho} alt="" />
-                  <h3>Album name</h3>
-                  <h5>Group</h5>
-                </div>
-                <div className="album-item">
-                  <img src={portadaNueve} alt="" />
-                  <h3>Album name</h3>
-                  <h5>Group</h5>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

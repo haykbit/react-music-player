@@ -47,6 +47,7 @@ function PlaylistNew() {
               </div>
             </div>
 
+            {/*SONG ITEM*/}
             <div className="song-item">
               <div className="song-info">
                 <div className="song-cover"></div>
@@ -56,7 +57,87 @@ function PlaylistNew() {
                 </div>
               </div>
 
-              {/*SONG ITEM*/}
+              <div className="song-actions">
+                <div className="song-play">
+                  <button>
+                    <BsFillCaretRightFill className="play-icon" />
+                  </button>
+                </div>
+                <div className="song-time">
+                  <h4>4:23</h4>
+                </div>
+                <div className="song-like">
+                  <button>
+                    <FaRegHeart className="like-icon" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/*SONG ITEM*/}
+            <div className="song-item">
+              <div className="song-info">
+                <div className="song-cover"></div>
+                <div className="song-name">
+                  <h3>Coldplay</h3>
+                  <h5>Noches en vela</h5>
+                </div>
+              </div>
+
+              <div className="song-actions">
+                <div className="song-play">
+                  <button>
+                    <BsFillCaretRightFill className="play-icon" />
+                  </button>
+                </div>
+                <div className="song-time">
+                  <h4>4:23</h4>
+                </div>
+                <div className="song-like">
+                  <button>
+                    <FaRegHeart className="like-icon" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/*SONG ITEM*/}
+            <div className="song-item">
+              <div className="song-info">
+                <div className="song-cover"></div>
+                <div className="song-name">
+                  <h3>Coldplay</h3>
+                  <h5>Noches en vela</h5>
+                </div>
+              </div>
+
+              <div className="song-actions">
+                <div className="song-play">
+                  <button>
+                    <BsFillCaretRightFill className="play-icon" />
+                  </button>
+                </div>
+                <div className="song-time">
+                  <h4>4:23</h4>
+                </div>
+                <div className="song-like">
+                  <button>
+                    <FaRegHeart className="like-icon" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/*SONG ITEM*/}
+            <div className="song-item">
+              <div className="song-info">
+                <div className="song-cover"></div>
+                <div className="song-name">
+                  <h3>Coldplay</h3>
+                  <h5>Noches en vela</h5>
+                </div>
+              </div>
+
               <div className="song-actions">
                 <div className="song-play">
                   <button>
@@ -105,6 +186,87 @@ function PlaylistNew() {
         <section className="new-world">
           <h2 className="recomend-title">New songs Europe</h2>
           <div className="song-list">
+            {/*SONG ITEM*/}
+            <div className="song-item">
+              <div className="song-info">
+                <div className="song-cover"></div>
+                <div className="song-name">
+                  <h3>Coldplay</h3>
+                  <h5>Noches en vela</h5>
+                </div>
+              </div>
+
+              <div className="song-actions">
+                <div className="song-play">
+                  <button>
+                    <BsFillCaretRightFill className="play-icon" />
+                  </button>
+                </div>
+                <div className="song-time">
+                  <h4>4:23</h4>
+                </div>
+                <div className="song-like">
+                  <button>
+                    <FaRegHeart className="like-icon" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/*SONG ITEM*/}
+            <div className="song-item">
+              <div className="song-info">
+                <div className="song-cover"></div>
+                <div className="song-name">
+                  <h3>Coldplay</h3>
+                  <h5>Noches en vela</h5>
+                </div>
+              </div>
+
+              <div className="song-actions">
+                <div className="song-play">
+                  <button>
+                    <BsFillCaretRightFill className="play-icon" />
+                  </button>
+                </div>
+                <div className="song-time">
+                  <h4>4:23</h4>
+                </div>
+                <div className="song-like">
+                  <button>
+                    <FaRegHeart className="like-icon" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/*SONG ITEM*/}
+            <div className="song-item">
+              <div className="song-info">
+                <div className="song-cover"></div>
+                <div className="song-name">
+                  <h3>Coldplay</h3>
+                  <h5>Noches en vela</h5>
+                </div>
+              </div>
+
+              <div className="song-actions">
+                <div className="song-play">
+                  <button>
+                    <BsFillCaretRightFill className="play-icon" />
+                  </button>
+                </div>
+                <div className="song-time">
+                  <h4>4:23</h4>
+                </div>
+                <div className="song-like">
+                  <button>
+                    <FaRegHeart className="like-icon" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
             {/*SONG ITEM*/}
             <div className="song-item">
               <div className="song-info">

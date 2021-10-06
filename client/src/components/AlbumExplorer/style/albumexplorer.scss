@@ -1,6 +1,6 @@
 .album-container {
-  margin-left: 25px;
   margin-top: 85px;
+  margin-bottom: 130px;
 
   h3 {
     color: #fff;
@@ -15,7 +15,6 @@
 
   h2 {
     color: #fff;
-    font-size: 40px;
   }
 
   .album-list {
@@ -46,18 +45,24 @@
   }
 
   .carousel-box {
+    margin-top: 100px;
     div {
       place-content: baseline;
     }
 
     .BrainhubCarousel__arrows {
       border-radius: 50px;
+      margin: -70px 20px 0px 20px;
       background-color: rgba(31, 31, 31, 0.685);
     }
 
     .BrainhubCarousel__container {
-      width: 50%;
+      width: 100%;
       margin-right: 100px;
+    }
+
+    .BrainhubCarousel__track .BrainhubCarousel__track--draggable {
+      transform: none !important;
     }
   }
 }
