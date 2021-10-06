@@ -36,6 +36,7 @@ const AudioPlayer = () => {
       color: "#5f9fff",
     },
   ];
+  // TODO get song data from now playing
   // State
   const [trackIndex, setTrackIndex] = useState(0);
   const [trackProgress, setTrackProgress] = useState(0);
@@ -81,7 +82,7 @@ const AudioPlayer = () => {
     audioRef.current.volume = 0;
   };
 
-  const volumeControll = (e) => {
+  const volumeControl = (e) => {
     setVolumeLevel(e);
     audioRef.current.volume = e;
   };
@@ -207,7 +208,7 @@ const AudioPlayer = () => {
           min="0.00"
           max="1.00"
           className="volume"
-          onChange={(e) => volumeControll(e.target.value)}
+          onChange={(e) => volumeControl(e.target.value)}
           style={{ background: trackStyling }}
         />
       </div>

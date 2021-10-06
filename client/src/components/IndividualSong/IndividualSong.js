@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { dispatchLikeSong, cancelLikedSongs } from "../../redux/song/action";
+import { getSongPlayNow } from "../../redux/player/action";
 import { getLikedSongs } from "../../api/api";
 import { BsFillCaretRightFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
@@ -51,6 +52,11 @@ function IndividualSong({ song }) {
     }
     return hours + ":" + minutes + ":" + seconds.toFixed(0);
   }
+
+  function handlePlayClick() {
+    dispatch(getSongPlayNow(song));
+    //TODO store the data as a songNowPlayed
+  }
   return (
     <div className="song-item-playlist">
       <div className="song-info">
@@ -75,7 +81,7 @@ function IndividualSong({ song }) {
       </div>
       <div className="song-actions">
         <div className="song-play">
-          <button>
+          <button onClick={handlePlayClick}>
             <BsFillCaretRightFill className="play-icon" />
           </button>
         </div>
