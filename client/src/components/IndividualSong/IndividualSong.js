@@ -54,8 +54,8 @@ function IndividualSong({ song }) {
   }
 
   function handlePlayClick() {
+    //TODO add hidden or not condition
     dispatch(getSongPlayNow(song));
-    //TODO store the data as a songNowPlayed
   }
   return (
     <div className="song-item-playlist">

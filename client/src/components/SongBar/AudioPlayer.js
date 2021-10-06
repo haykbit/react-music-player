@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { GiSoundWaves } from "react-icons/gi";
 import { MdPlaylistAdd } from "react-icons/md";
-
+import { useSelector } from "react-redux";
 import AudioControls from "./AudioControls";
 import imageSong from "../../assets/images/albums/arctic-album-3.jpeg";
 import imageSong1 from "../../assets/images/albums/arctic-album-2.jpeg";
@@ -13,6 +13,8 @@ import song3 from "../../assets/music/ReturningHome.mp3";
 import "./style/songbar.scss";
 
 const AudioPlayer = () => {
+  const { songData } = useSelector((state) => state.player);
+
   const tracks = [
     {
       title: "Cali",
@@ -44,15 +46,15 @@ const AudioPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   // Destructure for conciseness
-  const { title, artist, color, image, audioSrc } = tracks[trackIndex];
+  const { title, artist, url, duration } = songData;
 
   // Refs
-  const audioRef = useRef(new Audio(audioSrc));
+  const audioRef = useRef(new Audio(url));
   const intervalRef = useRef();
   const isReady = useRef(false);
 
   // Destructure for conciseness
-  const { duration } = audioRef.current;
+  // const { duration } = audioRef.current;
 
   const currentPercentage = duration
     ? `${(trackProgress / duration) * 100}%`
@@ -122,12 +124,12 @@ const AudioPlayer = () => {
       audioRef.current.pause();
     }
   }, [isPlaying]);
-
+  //TODO useEffect for setting songData
   // Restart state for next song
   useEffect(() => {
     audioRef.current.pause();
 
-    audioRef.current = new Audio(audioSrc);
+    audioRef.current = new Audio(url);
     setTrackProgress(audioRef.current.currentTime);
 
     if (isReady.current) {
@@ -170,8 +172,8 @@ const AudioPlayer = () => {
       <div className="track-info">
         <img
           className="artwork"
-          src={image}
-          alt={`track artwork for ${title} by ${artist}`}
+          // src={image}
+          alt={`${title} by ${artist}`}
         />
         <div className="song-info">
           <h4 className="title">{title}</h4>
