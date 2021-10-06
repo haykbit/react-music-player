@@ -40,7 +40,7 @@ async function removePlaylistById(req, res, next) {
 
 async function updatePlaylist(req, res, next) {
   const { id } = req.params;
-  const { title, description, songs, genre, private, playlistImage } = req.body;
+  const { title, description, genre, private } = req.body;
   try {
     const updatedPlaylist = await db.Playlist.findOneAndUpdate(
       { _id: id },
@@ -48,10 +48,8 @@ async function updatePlaylist(req, res, next) {
         $set: {
           title: title || "",
           description: description || "",
-          songs: songs || "",
           genre: genre || "",
           private: private || "",
-          playlistImage: playlistImage || "",
         },
       }
     );
