@@ -62,45 +62,46 @@ async function updatePlaylist(req, res, next) {
   }
 }
 async function addSong(req, res, next) {
-  // const { id: songId } = req.params;
-  // const { id: playlistId } = req.params;
-  // const { userId } = req.body;
-  console.log("Hiiddd");
+  const { id: songId } = req.params;
+  const { id: playlistId } = req.params;
+  const { userId } = req.body;
 
-  // try {
-  //   const checkSong = await db.Song.findById(songId);
-  //   const checkUser = await db.User.findOne({ firebase_id: userId });
-  //   const checkSong = await db.Song.findById(songId);
+  try {
+    //CONST
+    const checkSong = await db.Song.findById(songId);
+    const checkPlaylist = await db.Playlist.findById(playlistId);
+    const checkUser = await db.User.findOne({ firebase_id: userId });
 
-  //   if (
-  //     !checkSong.likedBy.includes(userId) &&
-  //     !checkUser.myFavoriteSongs.includes(songId)
-  //   ) {
-  //     const song = await db.Song.findOneAndUpdate(
-  //       { _id: songId },
-  //       {
-  //         $inc: {
-  //           likes: 1,
-  //         },
-  //         $push: {
-  //           likedBy: userId,
-  //         },
-  //       }
-  //     );
-  //     await db.User.findOneAndUpdate(
-  //       { firebase_id: userId },
-  //       {
-  //         $push: { myFavoriteSongs: [{ _id: songId }] },
-  //       }
-  //     );
-  //   }
+    if (
+      !checkSong.songs.includes(userId) &&
+      !checkPlaylist.songs.includes(userId) &&
+      !checkUser.myPlaylists.includes(songId)
+    ) {
+      await db.Playlist.findOneAndUpdate(
+        { _id: playlistId },
+        {
+          $inc: {
+            songsOfPlaylist: 1,
+          },
+          $push: {
+            songs: userId,
+          },
+        }
+      );
+      await db.User.findOneAndUpdate(
+        { firebase_id: userId },
+        {
+          $push: { myPlaylists: [{ _id: playlistId }] },
+        }
+      );
+    }
 
-  //   res.status(200).send({
-  //     message: "OK",
-  //   });
-  // } catch (error) {
-  //   next(error);
-  // }
+    res.status(200).send({
+      message: "OK",
+    });
+  } catch (error) {
+    next(error);
+  }
 }
 
 module.exports = {

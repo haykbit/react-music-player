@@ -20,6 +20,9 @@ const PlaylistSchema = new Schema({
     required: true,
     default: [],
   },
+  songsOfPlaylist: {
+    type: Number,
+  },
   genre: {
     type: String,
     required: [true, "Please select genre for this playlist"],
