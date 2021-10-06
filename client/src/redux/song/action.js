@@ -4,6 +4,7 @@ import {
   getLikedSongs,
   cancelLikeSong,
   getMySongsData,
+  removeSongData,
 } from "../../api/api";
 import { uploadSongs } from "../../services/cloudinary";
 import {
@@ -25,6 +26,9 @@ import {
   CANCEL_LIKED_SONG_REQUEST,
   CANCEL_LIKED_SONG_SUCCESS,
   CANCEL_LIKED_SONG_FAIL,
+  DELETE_SONG_REQUEST,
+  DELETE_SONG_SUCCESS,
+  DELETE_SONG_FAIL,
 } from "./types";
 
 export const uploadSongFile = (song, metadata) => async (dispatch) => {
@@ -73,5 +77,15 @@ export const getMyLikedSongs = () => async (dispatch) => {
     dispatch({ type: GET_MY_LIKED_SONGS_SUCCESS });
   } catch (error) {
     dispatch({ type: GET_MY_LIKED_SONGS_FAIL, payload: error.message });
+  }
+};
+
+export const deleteSong = (songId) => async (dispatch) => {
+  dispatch({ type: DELETE_SONG_REQUEST });
+  try {
+    removeSongData(songId);
+    dispatch({ type: DELETE_SONG_SUCCESS });
+  } catch (error) {
+    dispatch({ type: DELETE_SONG_FAIL, payload: error.message });
   }
 };

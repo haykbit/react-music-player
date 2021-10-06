@@ -95,3 +95,15 @@ export async function getMySongsData(id) {
     },
   });
 }
+
+export async function removeSongData(id) {
+  const userToken = await getCurrentUserToken();
+
+  return axios({
+    method: "DELETE",
+    url: `${process.env.REACT_APP_API_BASE_URL}/songs/${id}`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}

@@ -15,6 +15,9 @@ function IndividualSong({ song }) {
   const [liked, setLiked] = useState(false);
   const [myFavoriteSongs, setMyFavoriteSongs] = useState([]);
 
+  const [contextMenu, setContextMenu] = useState(false);
+  const Toggle = () => setContextMenu(!contextMenu);
+
   useEffect(() => {
     getMyFavSongs();
   }, [loading]);
@@ -58,10 +61,17 @@ function IndividualSong({ song }) {
         </div>
       </div>
       <div>
-        <button className="context-menu-btn">
-          <IoMdMore />
+        <button onClick={() => Toggle()} className="context-menu-btn">
+          <label>
+            <IoMdMore />
+          </label>
         </button>
-        <RightClickMenu />
+        <RightClickMenu
+          show={contextMenu}
+          close={Toggle}
+          handleLike={handleLikeClick}
+          song={song}
+        />
       </div>
       <div className="song-actions">
         <div className="song-play">
