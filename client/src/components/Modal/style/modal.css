@@ -1,0 +1,104 @@
+.modal-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal-container .modal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 35vw;
+  height: auto;
+  padding: 2rem;
+  border-radius: 20px;
+  background-color: rgba(47, 47, 47, 0.9);
+  -webkit-box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+}
+
+.modal-container .modal .modal-input-box,
+.modal-container .modal .modal-button-box,
+.modal-container .modal .modal-title,
+.modal-container .modal .modal-image-box {
+  height: 50px;
+  margin: 5px;
+}
+
+.modal-container .modal .modal-input-box button,
+.modal-container .modal .modal-button-box button,
+.modal-container .modal .modal-title button,
+.modal-container .modal .modal-image-box button {
+  border-radius: 5px;
+  width: 120px;
+}
+
+.modal-container .modal .modal-input-box input,
+.modal-container .modal .modal-button-box input,
+.modal-container .modal .modal-title input,
+.modal-container .modal .modal-image-box input {
+  height: 40px;
+  width: 300px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.modal-container .modal .modal-input-box,
+.modal-container .modal .modal-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal-container .modal .modal-button-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.modal-container .modal .modal-image-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal-container .modal .modal-image-box .upload-icon {
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+/*# sourceMappingURL=modal.css.map */

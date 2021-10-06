@@ -27,6 +27,7 @@ export async function getUserProfile(id) {
 
 export async function updateUserProfile(id, profile, profileImage) {
   const userToken = await getCurrentUserToken();
+  console.log(profileImage, "api profileImage");
   return axios({
     method: "PATCH",
     url: `${process.env.REACT_APP_API_BASE_URL}/users/${id}`,
@@ -37,12 +38,70 @@ export async function updateUserProfile(id, profile, profileImage) {
   });
 }
 
-export async function uploadSongsData(song) {
+export async function uploadSongsData(song, metadata) {
   const userToken = await getCurrentUserToken();
   return axios({
     method: "POST",
     url: `${process.env.REACT_APP_API_BASE_URL}/songs`,
-    data: { song },
+    data: { song, metadata },
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
+export async function likeSong(songId, userId) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "PATCH",
+    url: `${process.env.REACT_APP_API_BASE_URL}/songs/like/${songId}`,
+    data: { userId },
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+export async function cancelLikeSong(songId, userId) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "PATCH",
+    url: `${process.env.REACT_APP_API_BASE_URL}/songs/cancel-like/${songId}`,
+    data: { userId },
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+export async function getLikedSongs(id) {
+  //get user id argument
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/users/myFavoriteSongs/${id}`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
+export async function getMySongsData(id) {
+  //get user id argument
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/users/mySongs/${id}`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
+export async function removeSongData(id) {
+  const userToken = await getCurrentUserToken();
+
+  return axios({
+    method: "DELETE",
+    url: `${process.env.REACT_APP_API_BASE_URL}/songs/${id}`,
     headers: {
       Authorization: `Bearer ${userToken}`,
     },

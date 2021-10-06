@@ -15,7 +15,7 @@ function PlaylistCarrusel() {
             <div className="scroll">
               {/* ITEM 1 */}
               <div className="item-container">
-                <a href="#" className="fill-div">
+                <a href="/home-page" className="fill-div">
                   <div
                     className="list-item"
                     style={{
@@ -33,7 +33,7 @@ function PlaylistCarrusel() {
 
               {/* ITEM 2 */}
               <div className="item-container">
-                <a href="#" className="fill-div">
+                <a href="/home-page" className="fill-div">
                   <div
                     className="list-item"
                     style={{
@@ -49,7 +49,7 @@ function PlaylistCarrusel() {
                 </a>
               </div>
               <div className="item-container">
-                <a href="#" className="fill-div">
+                <a href="/home-page" className="fill-div">
                   <div
                     className="list-item"
                     style={{
@@ -66,7 +66,7 @@ function PlaylistCarrusel() {
               </div>
               {/* ITEM 3 */}
               <div className="item-container">
-                <a href="#" className="fill-div">
+                <a href="/home-page" className="fill-div">
                   <div
                     className="list-item"
                     style={{
@@ -83,7 +83,7 @@ function PlaylistCarrusel() {
               </div>
               {/* ITEM 4 */}
               <div className="item-container">
-                <a href="#" className="fill-div">
+                <a href="/home-page" className="fill-div">
                   <div
                     className="list-item"
                     style={{
@@ -100,7 +100,7 @@ function PlaylistCarrusel() {
               </div>
               {/* ITEM 5 */}
               <div className="item-container">
-                <a href="#" className="fill-div">
+                <a href="/home-page" className="fill-div">
                   <div
                     className="list-item"
                     style={{
@@ -117,7 +117,7 @@ function PlaylistCarrusel() {
               </div>
               {/* ITEM 6 */}
               <div className="item-container">
-                <a href="#" className="fill-div">
+                <a href="/home-page" className="fill-div">
                   <div
                     className="list-item"
                     style={{
@@ -134,7 +134,7 @@ function PlaylistCarrusel() {
               </div>
               {/* ITEM 6 */}
               <div className="item-container">
-                <a href="#" className="fill-div">
+                <a href="/home-page" className="fill-div">
                   <div
                     className="list-item"
                     style={{
@@ -151,7 +151,7 @@ function PlaylistCarrusel() {
               </div>
               {/* ITEM 6 */}
               <div className="item-container">
-                <a href="#" className="fill-div">
+                <a href="/home-page" className="fill-div">
                   <div
                     className="list-item"
                     style={{
@@ -168,7 +168,7 @@ function PlaylistCarrusel() {
               </div>
               {/* ITEM 6 */}
               <div className="item-container">
-                <a href="#" className="fill-div">
+                <a href="/home-page" className="fill-div">
                   <div
                     className="list-item"
                     style={{
@@ -185,7 +185,7 @@ function PlaylistCarrusel() {
               </div>
               {/* ITEM 6 */}
               <div className="item-container">
-                <a href="#" className="fill-div">
+                <a href="/home-page" className="fill-div">
                   <div
                     className="list-item"
                     style={{
@@ -202,7 +202,7 @@ function PlaylistCarrusel() {
               </div>
               {/* ITEM 6 */}
               <div className="item-container">
-                <a href="#" className="fill-div">
+                <a href="/home-page" className="fill-div">
                   <div
                     className="list-item"
                     style={{
@@ -219,7 +219,7 @@ function PlaylistCarrusel() {
               </div>
               {/* ITEM 6 */}
               <div className="item-container">
-                <a href="#" className="fill-div">
+                <a href="/home-page" className="fill-div">
                   <div
                     className="list-item"
                     style={{
@@ -236,7 +236,7 @@ function PlaylistCarrusel() {
               </div>
               {/* ITEM 6 */}
               <div className="item-container">
-                <a href="#" className="fill-div">
+                <a href="/home-page" className="fill-div">
                   <div
                     className="list-item"
                     style={{
@@ -253,7 +253,7 @@ function PlaylistCarrusel() {
               </div>
               {/* ITEM 6 */}
               <div className="item-container">
-                <a href="#" className="fill-div">
+                <a href="/home-page" className="fill-div">
                   <div
                     className="list-item"
                     style={{
@@ -270,7 +270,7 @@ function PlaylistCarrusel() {
               </div>
               {/* ITEM 6 */}
               <div className="item-container">
-                <a href="#" className="fill-div">
+                <a href="/home-page" className="fill-div">
                   <div
                     className="list-item"
                     style={{
@@ -287,7 +287,7 @@ function PlaylistCarrusel() {
               </div>
               {/* ITEM 6 */}
               <div className="item-container">
-                <a href="#" className="fill-div">
+                <a href="/home-page" className="fill-div">
                   <div
                     className="list-item"
                     style={{
@@ -304,7 +304,7 @@ function PlaylistCarrusel() {
               </div>
               {/* ITEM 6 */}
               <div className="item-container">
-                <a href="#" className="fill-div">
+                <a href="/home-page" className="fill-div">
                   <div
                     className="list-item"
                     style={{
@@ -321,7 +321,7 @@ function PlaylistCarrusel() {
               </div>
               {/* ITEM 6 */}
               <div className="item-container">
-                <a href="#" className="fill-div">
+                <a href="/home-page" className="fill-div">
                   <div
                     className="list-item"
                     style={{
