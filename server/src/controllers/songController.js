@@ -19,6 +19,9 @@ async function createSong(req, res, next) {
         $push: { mySongs: [{ _id: newSong._id }] },
       }
     );
+    res.status(200).send({
+      message: "OK",
+    });
   } catch (error) {
     next(error);
   }
@@ -154,6 +157,9 @@ async function deleteSong(req, res, next) {
       },
       { new: true }
     );
+    res.status(200).send({
+      message: "OK",
+    });
   } catch (err) {
     console.log(err);
   }
