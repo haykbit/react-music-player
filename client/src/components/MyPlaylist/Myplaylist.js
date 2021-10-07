@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import Modal from "../Modal";
+import DragDropList from "../DragDropList/DragDropList";
 import PlaylistStack from "../PlaylistStack/PlaylistStack";
 
 import { FiUploadCloud } from "react-icons/fi";
@@ -40,7 +41,7 @@ function Myplaylist() {
             </div>
           </div>
           <div className="song-stack">
-            <PlaylistStack />
+            <DragDropList />
           </div>
         </div>
         <div className="right-side">

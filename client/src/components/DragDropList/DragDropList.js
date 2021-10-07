@@ -1,49 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { dispatchMySongsData } from "../../redux/song/action";
+import { getMySongsData } from "../../api/api";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import IndividualSong from "../IndividualSong/index";
+
 import imageSong from "../../assets/images/albums/arctic-album-3.jpeg";
 import imageSong1 from "../../assets/images/albums/arctic-album-2.jpeg";
 import imageSong2 from "../../assets/images/albums/arctic-album-1.jpeg";
 import "./style/dragdrop.scss";
 
-const finalSpaceCharacters = [
-  {
-    id: "gary",
-    name: "Gary Goodspeed",
-    thumb: imageSong,
-  },
-  {
-    id: "cato",
-    name: "Little Cato",
-    thumb: imageSong1,
-  },
-  {
-    id: "kvn",
-    name: "KVN",
-    thumb: imageSong2,
-  },
-  {
-    id: "mooncake",
-    name: "Mooncake",
-    thumb: imageSong,
-  },
-  {
-    id: "quinn",
-    name: "Quinn Ergon",
-    thumb: imageSong1,
-  },
-];
-
 function DragDropList() {
-  const [characters, updateCharacters] = useState(finalSpaceCharacters);
+  const [mySongsData, setMySongsData] = useState([]);
 
   function handleOnDragEnd(result) {
     if (!result.destination) return;
 
-    const items = Array.from(characters);
+    const items = Array.from(mySongsData);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
-    updateCharacters(items);
+    setMySongsData(items);
+  }
+
+  const dispatch = useDispatch();
+  const { user, loading, authObserverSuccess } = useSelector(
+    (state) => state.auth
+  );
+  const { uploadSongSuccess, deleteSongSuccess } = useSelector(
+    (state) => state.song
+  );
+
+  useEffect(() => {
+    if (!loading && authObserverSuccess) {
+      songData();
+    }
+    console.log(mySongsData);
+  }, [loading, uploadSongSuccess, deleteSongSuccess]);
+
+  async function songData() {
+    const mySongs = await getMySongsData(user.uid);
+    setMySongsData(mySongs.data.data);
+    dispatch(dispatchMySongsData());
   }
 
   return (
@@ -57,19 +55,26 @@ function DragDropList() {
                 {...provided.droppableProps}
                 ref={provided.innerRef}
               >
-                {characters.map(({ id, name, thumb }, index) => {
+                {mySongsData.map((song, index) => {
                   return (
-                    <Draggable key={id} draggableId={id} index={index}>
+                    <Draggable
+                      key={song._id}
+                      draggableId={song._id}
+                      index={index}
+                    >
                       {(provided) => (
                         <li
                           ref={provided.innerRef}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}
                         >
-                          <div className="characters-thumb">
-                            <img src={thumb} alt={`${name} Thumb`} />
+                          <div className="song-container">
+                            <section className="new-spain">
+                              <div className="song-list-playlist">
+                                <IndividualSong song={song} key={song._id} />
+                              </div>
+                            </section>
                           </div>
-                          <p>{name}</p>
                         </li>
                       )}
                     </Draggable>

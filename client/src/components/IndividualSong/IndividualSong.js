@@ -4,6 +4,7 @@ import { dispatchLikeSong, cancelLikedSongs } from "../../redux/song/action";
 import { getLikedSongs } from "../../api/api";
 import { BsFillCaretRightFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import { IoMdMore } from "react-icons/io";
 import RightClickMenu from "../RightClickMenu";
 
@@ -42,14 +43,22 @@ function IndividualSong({ song }) {
       dispatch(cancelLikedSongs(song._id, user.uid));
     }
   }
-  function format(time) {
-    let hours = Math.floor(time / 60 / 60);
-    let minutes = Math.floor(time / 60) - hours * 60;
-    let seconds = time % 60;
-    if (parseInt(hours) === 0) {
-      return minutes + ":" + seconds.toFixed(0);
+  function fancyTimeFormat(duration) {
+    // Hours, minutes and seconds
+    var hrs = ~~(duration / 3600);
+    var mins = ~~((duration % 3600) / 60);
+    var secs = ~~duration % 60;
+
+    // Output like "1:01" or "4:03:59" or "123:03:59"
+    var ret = "";
+
+    if (hrs > 0) {
+      ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
     }
-    return hours + ":" + minutes + ":" + seconds.toFixed(0);
+
+    ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+    ret += "" + secs;
+    return ret;
   }
   return (
     <div className="song-item-playlist">
@@ -60,19 +69,6 @@ function IndividualSong({ song }) {
           <h5>{song.artist}</h5>
         </div>
       </div>
-      <div>
-        <button onClick={() => Toggle()} className="context-menu-btn">
-          <label>
-            <IoMdMore />
-          </label>
-        </button>
-        <RightClickMenu
-          show={contextMenu}
-          close={Toggle}
-          handleLike={handleLikeClick}
-          song={song}
-        />
-      </div>
       <div className="song-actions">
         <div className="song-play">
           <button>
@@ -80,13 +76,28 @@ function IndividualSong({ song }) {
           </button>
         </div>
         <div className="song-time">
-          <h4>{format(song.duration)}</h4>
+          <h4>{fancyTimeFormat(song.duration)}</h4>
         </div>
         <div className="song-like">
           <button onClick={handleLikeClick}>
-            <FaRegHeart className={`like-icon ${handleClassName()}`} />
+            {liked ? (
+              <FaHeart className={`like-icon ${handleClassName()}`} />
+            ) : (
+              <FaRegHeart className={`like-icon ${handleClassName()}`} />
+            )}
           </button>
         </div>
+      </div>
+      <div className="context-container">
+        <button onClick={() => Toggle()} className="context-menu-btn">
+          <IoMdMore className="more-icon" />
+        </button>
+        <RightClickMenu
+          show={contextMenu}
+          close={Toggle}
+          handleLike={handleLikeClick}
+          song={song}
+        />
       </div>
     </div>
   );
