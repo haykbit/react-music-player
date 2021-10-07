@@ -9,7 +9,7 @@ const playlistRouter = Router();
 playlistRouter.get("/all", authMiddleware, playlistController.fetchPlaylists);
 playlistRouter.get("/:id", authMiddleware, playlistController.getPlaylistById);
 playlistRouter.patch("/:id", authMiddleware, playlistController.updatePlaylist);
-playlistRouter.get("/add", authMiddleware, playlistController.addSong);
+playlistRouter.get("/add/:id", authMiddleware, playlistController.addSong);
 
 playlistRouter.delete(
   "/:id",

@@ -74,7 +74,7 @@ async function addSong(req, res, next) {
 
     if (
       !checkSong.songs.includes(userId) &&
-      !checkPlaylist.songs.includes(userId) &&
+      !checkPlaylist.songs.includes(songId) &&
       !checkUser.myPlaylists.includes(songId)
     ) {
       await db.Playlist.findOneAndUpdate(
