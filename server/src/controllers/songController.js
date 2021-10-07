@@ -130,11 +130,18 @@ async function cancelLikeSong(req, res, next) {
 
 async function updateSong(req, res, next) {
   const { id } = req.params;
-  const { title, artist } = req.body;
+  const { title, artist, genre, album } = req.body.songData;
   try {
     const updatedSong = await db.Song.findOneAndUpdate(
       { _id: id },
-      { $set: { title: title || "", artist: artist || "" } }
+      {
+        $set: {
+          title: title || "",
+          artist: artist || "",
+          genre: genre || "",
+          album: album || "",
+        },
+      }
     );
 
     res.status(200).send({
