@@ -15,7 +15,10 @@ function IndividualSong({ song }) {
 
   const [liked, setLiked] = useState(false);
   const [myFavoriteSongs, setMyFavoriteSongs] = useState([]);
-
+  const [modals, setModals] = useState({
+    editModal: false,
+    deleteModal: false,
+  });
   const [contextMenu, setContextMenu] = useState(false);
   const Toggle = () => setContextMenu(!contextMenu);
 
@@ -53,6 +56,12 @@ function IndividualSong({ song }) {
     return hours + ":" + minutes + ":" + seconds.toFixed(0);
   }
 
+  const ToggleEditModal = () => {
+    setModals({ ...modals, editModal: !modals.editModal });
+  };
+  const ToggleDeleteModal = () =>
+    setModals({ ...modals, deleteModal: !modals.deleteModal });
+
   function handlePlayClick() {
     //TODO add hidden or not condition
     dispatch(getSongPlayNow(song));
@@ -76,6 +85,9 @@ function IndividualSong({ song }) {
           show={contextMenu}
           close={Toggle}
           handleLike={handleLikeClick}
+          ToggleEditModal={ToggleEditModal}
+          ToggleDeleteModal={ToggleDeleteModal}
+          modals={modals}
           song={song}
         />
       </div>

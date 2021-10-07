@@ -5,6 +5,7 @@ import {
   cancelLikeSong,
   getMySongsData,
   removeSongData,
+  editSongData,
 } from "../../api/api";
 import { uploadSongs } from "../../services/cloudinary";
 import {
@@ -87,5 +88,15 @@ export const deleteSong = (songId, userId) => async (dispatch) => {
     dispatch({ type: DELETE_SONG_SUCCESS });
   } catch (error) {
     dispatch({ type: DELETE_SONG_FAIL, payload: error.message });
+  }
+};
+
+export const editSong = (songId, songData) => async (dispatch) => {
+  dispatch({ type: UPDATE_SONG_REQUEST });
+  try {
+    await editSongData(songId, songData);
+    dispatch({ type: UPDATE_SONG_SUCCESS });
+  } catch (error) {
+    dispatch({ type: UPDATE_SONG_FAIL, payload: error.message });
   }
 };

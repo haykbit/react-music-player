@@ -1,4 +1,4 @@
-.modal-container {
+.edit-modal-container {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -8,20 +8,19 @@
   justify-content: center;
   align-items: center;
 
-  .modal {
+  .edit-modal {
     display: flex;
     flex-direction: column;
     width: 35vw;
     height: auto;
     padding: 2rem;
     border-radius: 20px;
-    background-color: rgba(203, 123, 250, 0.9);
-    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+    background-color: rgba(252, 153, 178, 0.9);
+    box-shadow: 0 0 1rem 0 rgba(176, 192, 192, 0.2);
 
-    .modal-input-box,
-    .modal-button-box,
-    .modal-title,
-    .modal-image-box {
+    .edit-modal-input-box,
+    .edit-modal-button-box,
+    .edit-modal-title {
       //   outline: 1px solid white;
       height: 50px;
       margin: 5px;
@@ -32,11 +31,10 @@
         cursor: pointer;
       }
       .submit {
-        background-color: rgba(2, 138, 250, 0.801);;
+          background-color: rgba(2, 138, 250, 0.801);
       }
-      .modal-close {
-       background-color: rgba(165, 161, 159, 0.863);
-
+      .edit-modal-close {
+          background-color: rgba(165, 161, 159, 0.863);
       }
       input, select {
         height: 40px;
@@ -46,30 +44,16 @@
         border-radius: 5px;
       }
     }
-    .modal-input-box,
-    .modal-title {
+    .edit-modal-input-box,
+    .edit-modal-title {
       display: flex;
       justify-content: center;
       align-items: center;
     }
-    .modal-button-box {
+    .edit-modal-button-box {
       display: flex;
       justify-content: space-between;
     }
-    .modal-image-box {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      .upload-icon {
-        height: 30px;
-        width: 30px;
-        cursor: pointer;
-        background-repeat: no-repeat;
-        background-size: contain;
-      }
-      input {
-        display: none;
-      }
-    }
+    
   }
 }

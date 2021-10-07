@@ -14,14 +14,19 @@ const DeleteConfirmation = ({ show, close, songId, userId }) => {
   return (
     <>
       {show ? (
-        <div className="modal-container" onClick={() => close()}>
-          <div className="modal" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-title">
+        <div className="delete-modal-container" onClick={() => close()}>
+          <div className="delete-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="delete-modal-title">
               Are you sure you want to delete this song permanently?
             </div>
-            <div className="modal-button-box">
-              <button onClick={() => close()}>Cancel</button>
-              <button onClick={() => deleteSelectedSong(songId)}>
+            <div className="delete-modal-button-box">
+              <button className="close" onClick={() => close()}>
+                Cancel
+              </button>
+              <button
+                className="submit"
+                onClick={() => deleteSelectedSong(songId)}
+              >
                 Confirm
               </button>
             </div>

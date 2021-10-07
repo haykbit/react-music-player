@@ -107,3 +107,15 @@ export async function removeSongData(id, userId) {
     },
   });
 }
+
+export async function editSongData(id, songData) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "PATCH",
+    url: `${process.env.REACT_APP_API_BASE_URL}/songs/${id}`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+    data: { songData },
+  });
+}
