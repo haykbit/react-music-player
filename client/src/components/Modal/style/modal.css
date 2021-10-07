@@ -13,6 +13,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  z-index: 2;
 }
 
 .modal-container .modal {
@@ -46,6 +47,7 @@
 .modal-container .modal .modal-image-box button {
   border-radius: 5px;
   width: 120px;
+  cursor: pointer;
 }
 
 .modal-container .modal .modal-input-box input,
@@ -100,5 +102,9 @@
   cursor: pointer;
   background-repeat: no-repeat;
   background-size: contain;
+}
+
+.modal-container .modal .modal-image-box input {
+  display: none;
 }
 /*# sourceMappingURL=modal.css.map */

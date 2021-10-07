@@ -1,13 +1,13 @@
 import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
-import Myplaylist from "../../components/MyPlaylist/Myplaylist";
+import MyPlaylistUpload from "../../components/MyPlaylistUpload/MyPlaylistUpload";
 import "./style/playlist.scss";
 
 function Playlists() {
   return (
     <>
       <Navbar />
-      <Myplaylist />
+      <MyPlaylistUpload />
     </>
   );
 }

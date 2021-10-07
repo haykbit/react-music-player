@@ -10,7 +10,7 @@
   display: -ms-flexbox;
   display: flex;
   height: 100%;
-  width: 700px;
+  width: 60%;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -25,13 +25,16 @@
   display: flex;
   height: 35vh;
   width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 20px;
 }
 
 .my-playlist-body .left-side .playlist-title .album-column {
-  height: 100%;
+  height: 300px;
   width: 350px;
   border-radius: 20px;
 }
@@ -41,7 +44,6 @@
   width: 60%;
   color: white;
   margin-left: 40px;
-  font-weight: 700;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -49,6 +51,17 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+.my-playlist-body .left-side .playlist-title .text-column h1 {
+  font-size: 30px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.my-playlist-body .left-side .playlist-title .text-column h3 {
+  font-weight: 500;
+  margin: 0;
 }
 
 .my-playlist-body .left-side .playlist-title .text-column .playlist-name {
@@ -70,33 +83,44 @@
 }
 
 .my-playlist-body .left-side .playlist-title .text-column .upload-button {
-  background-image: -webkit-gradient(linear, right top, left top, from(#ff4343), color-stop(#ff2a7c), color-stop(#eb3db3), color-stop(#b65fe2), to(#527aff));
-  background-image: linear-gradient(to left, #ff4343, #ff2a7c, #eb3db3, #b65fe2, #527aff);
-}
-
-.my-playlist-body .left-side .playlist-title .text-column .upload-button {
-  font-weight: 600;
-  margin-top: 40px;
   width: 130px;
-  height: 50px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
   padding: 15px;
-  text-align: center;
-  text-transform: uppercase;
-  -webkit-transition: 0.5s;
-  transition: 0.5s;
-  background-size: 200% auto;
-  color: white;
+  margin-top: 40px;
+  background-color: #171717;
+  color: #fff;
   border-radius: 10px;
-  display: block;
+  font-weight: 600;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  z-index: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.my-playlist-body .left-side .playlist-title .text-column .upload-button:hover {
-  background-position: right center;
-  /* change the direction of the change here */
+.my-playlist-body .left-side .playlist-title .text-column .upload-button .upload-icon {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
   color: #fff;
-  text-decoration: none;
+}
+
+.my-playlist-body .left-side .playlist-title .text-column .upload-button:hover svg {
+  color: #0077ff;
+}
+
+.my-playlist-body .left-side .playlist-title .text-column .upload-button:active {
+  -webkit-box-shadow: 0px 0px 0px 3px #0077ff;
+          box-shadow: 0px 0px 0px 3px #0077ff;
+  -webkit-transform: scale(0.97);
+          transform: scale(0.97);
 }
 
 .my-playlist-body .left-side .song-stack {
@@ -116,7 +140,7 @@
       -ms-flex-direction: column;
           flex-direction: column;
   height: 90vh;
-  width: 500px;
+  width: 40%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 20px;
@@ -141,11 +165,11 @@
       -ms-flex-align: center;
           align-items: center;
   height: 300px;
-  width: 400px;
+  width: 100%;
   margin: 5px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  padding: 35px;
+  padding: 35px 0px;
 }
 
 .my-playlist-body .right-side .relevant-songs .number {
@@ -156,8 +180,8 @@
 }
 
 .my-playlist-body .right-side .relevant-songs .album-image {
-  width: 50%;
-  height: 100%;
+  width: 200px;
+  height: 200px;
   border-radius: 5px;
 }
 

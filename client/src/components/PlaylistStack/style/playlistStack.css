@@ -94,12 +94,12 @@
   height: 25px;
   color: #fff;
   margin-top: 3px;
+  margin-right: 5px;
 }
 
 .song-list-playlist .song-item-playlist .song-actions .song-like .like-icon:hover {
   color: #ff4747;
 }
-
 
 .song-list-playlist .song-item-playlist .song-actions .song-like .like-icon.liked {
   color: #ff4747;
@@ -113,12 +113,25 @@
   cursor: pointer;
 }
 
+.song-list-playlist .song-item-playlist .context-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 4px;
+}
+
+.song-list-playlist .song-item-playlist .more-icon {
+  width: 30px;
+  height: 30px;
+  color: #fff;
+  cursor: pointer;
+}
+
 .song-list-playlist .song-item-playlist .context-menu-btn {
   color: #fff;
   background-color: transparent;
   border: none;
   font-size: larger;
-  cursor: pointer;
+  height: 30px;
 }
-
 /*# sourceMappingURL=playlistStack.css.map */
