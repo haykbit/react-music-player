@@ -114,9 +114,9 @@ export const loginWithEmailAndPassword =
   };
 
 export const logout = () => async (dispatch) => {
-  await signOut();
   localStorage.removeItem("user");
   dispatch({ type: SIGN_OUT_SUCCESS });
+  await signOut();
 };
 
 export const sendPasswordResetEmailToUser = (email) => async (dispatch) => {
