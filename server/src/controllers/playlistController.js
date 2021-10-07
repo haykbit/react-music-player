@@ -61,6 +61,8 @@ async function updatePlaylist(req, res, next) {
     console.log(err);
   }
 }
+
+//To test.
 async function addSong(req, res, next) {
   const { id: songId } = req.params;
   const { id: playlistId } = req.params;
