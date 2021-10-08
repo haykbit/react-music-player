@@ -11,6 +11,7 @@ import "./style/playlistgrid.scss";
 
 function PlaylistGrid() {
   const playlist = [
+    { name: "My uploaded Songs", songs: 10, cover: portadaTres },
     { name: "Spanish Rock", songs: 43, cover: portadaUno },
     { name: "English Rock", songs: 22, cover: portadaDos },
     { name: "European Rap", songs: 15, cover: portadaTres },
