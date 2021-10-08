@@ -61,7 +61,6 @@ const SongSchema = new Schema({
   //   required: true,
   // },
   owner: {
-    // type: mongoose.Schema.ObjectId,
     type: String,
     ref: "User",
     required: true,
@@ -69,11 +68,6 @@ const SongSchema = new Schema({
   popularity: {
     type: Number,
     default: 0,
-  },
-  includedLists: {
-    type: [{ type: Schema.Types.ObjectId, ref: "Playlist" }],
-    required: true,
-    default: [],
   },
 
   createdAt: {
