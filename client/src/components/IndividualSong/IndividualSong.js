@@ -6,6 +6,7 @@ import { getLikedSongs } from "../../api/api";
 import { fancyTimeFormat } from "../../util/timeFormatter";
 import { BsFillCaretRightFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import { IoMdMore } from "react-icons/io";
 import RightClickMenu from "../RightClickMenu";
 import SongEditModal from "../SongEditModal";
@@ -100,9 +101,24 @@ function IndividualSong({ song }) {
         </div>
         <div className="song-like">
           <button onClick={handleLikeClick}>
-            <FaRegHeart className={`like-icon ${handleClassName()}`} />
+            {liked ? (
+              <FaHeart className={`like-icon ${handleClassName()}`} />
+            ) : (
+              <FaRegHeart className={`like-icon ${handleClassName()}`} />
+            )}
           </button>
         </div>
+      </div>
+      <div className="context-container">
+        <button onClick={() => Toggle()} className="context-menu-btn">
+          <IoMdMore className="more-icon" />
+        </button>
+        <RightClickMenu
+          show={contextMenu}
+          close={Toggle}
+          handleLike={handleLikeClick}
+          song={song}
+        />
       </div>
     </div>
   );

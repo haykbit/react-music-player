@@ -119,3 +119,15 @@ export async function editSongData(id, songData) {
     data: { songData },
   });
 }
+
+export async function createPlaylists(playlist) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "POST",
+    url: `${process.env.REACT_APP_API_BASE_URL}/playlists`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+    data: { playlist },
+  });
+}
