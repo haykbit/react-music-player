@@ -6,6 +6,7 @@ import { getLikedSongs } from "../../api/api";
 import { fancyTimeFormat } from "../../util/timeFormatter";
 import { BsFillCaretRightFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import { IoMdMore } from "react-icons/io";
 import RightClickMenu from "../RightClickMenu";
 import SongEditModal from "../SongEditModal";
@@ -48,6 +49,22 @@ function IndividualSong({ song }) {
       dispatch(cancelLikedSongs(song._id, user.uid));
     }
   }
+  function fancyTimeFormat(duration) {
+    // Hours, minutes and seconds
+    var hrs = ~~(duration / 3600);
+    var mins = ~~((duration % 3600) / 60);
+    var secs = ~~duration % 60;
+
+    // Output like "1:01" or "4:03:59" or "123:03:59"
+    var ret = "";
+
+    if (hrs > 0) {
+      ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
+    }
+
+    ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+    ret += "" + secs;
+    return ret;
 
   const ToggleEditModal = () => {
     setModals({ ...modals, editModal: !modals.editModal });
@@ -100,9 +117,24 @@ function IndividualSong({ song }) {
         </div>
         <div className="song-like">
           <button onClick={handleLikeClick}>
-            <FaRegHeart className={`like-icon ${handleClassName()}`} />
+            {liked ? (
+              <FaHeart className={`like-icon ${handleClassName()}`} />
+            ) : (
+              <FaRegHeart className={`like-icon ${handleClassName()}`} />
+            )}
           </button>
         </div>
+      </div>
+      <div className="context-container">
+        <button onClick={() => Toggle()} className="context-menu-btn">
+          <IoMdMore className="more-icon" />
+        </button>
+        <RightClickMenu
+          show={contextMenu}
+          close={Toggle}
+          handleLike={handleLikeClick}
+          song={song}
+        />
       </div>
     </div>
   );

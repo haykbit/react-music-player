@@ -1,17 +1,18 @@
 import React, { useState } from "react";
-import "./style/myPlaylist.scss";
+
 import Modal from "../Modal";
+import UploadedPlaylistStack from "../UploadedPlaylistStack/UploadedPlaylistStack";
+
+import { FiUploadCloud } from "react-icons/fi";
+
 import portadaUno from "../../assets/images/icons/portada-1.png";
-import PlaylistStack from "../PlaylistStack/PlaylistStack";
 import portadaDos from "../../assets/images/albums/arctic-album-1.jpeg";
 import portadaTres from "../../assets/images/albums/arctic-album-2.jpeg";
 import portadaCuatro from "../../assets/images/albums/arctic-album-3.jpeg";
-import portadaCinco from "../../assets/images/albums/arctic-album-4.jpg";
-import portadaSeis from "../../assets/images/albums/arctic-album-5.jpg";
-import portadaOcho from "../../assets/images/albums/gorillaz-demon-days.png";
-import portadaNueve from "../../assets/images/albums/linkin-p-papercut.jpeg";
 
-function MyPlaylist() {
+import "./style/playlistcomponent.scss";
+
+function UploadedPlaylist() {
   const [modal, setModal] = useState(false);
   const Toggle = () => setModal(!modal);
   return (
@@ -28,17 +29,18 @@ function MyPlaylist() {
               }}
             ></div>
             <div className="text-column">
-              <div className="playlist-name">My Uploaded Songs</div>
-              <div className="playlist-genre">Sebastian Elias</div>
-              <div className="song-number">140 songs</div>
+              <h1 className="playlist-name">My Uploaded Songs</h1>
+              <h3 className="playlist-genre">Sebastian Elias</h3>
+              <p className="song-number">140 songs</p>
               <button onClick={() => Toggle()} className="upload-button">
+                <FiUploadCloud className="upload-icon" />
                 Upload
               </button>
               <Modal show={modal} close={Toggle} />
             </div>
           </div>
           <div className="song-stack">
-            <PlaylistStack />
+            <UploadedPlaylistStack />
           </div>
         </div>
         <div className="right-side">
@@ -99,4 +101,4 @@ function MyPlaylist() {
   );
 }
 
-export default MyPlaylist;
+export default UploadedPlaylist;
