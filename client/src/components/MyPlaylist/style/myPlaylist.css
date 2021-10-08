@@ -72,6 +72,7 @@
 .my-playlist-body .left-side .playlist-title .text-column .upload-button {
   background-image: -webkit-gradient(linear, right top, left top, from(#ff4343), color-stop(#ff2a7c), color-stop(#eb3db3), color-stop(#b65fe2), to(#527aff));
   background-image: linear-gradient(to left, #ff4343, #ff2a7c, #eb3db3, #b65fe2, #527aff);
+  cursor: pointer;
 }
 
 .my-playlist-body .left-side .playlist-title .text-column .upload-button {

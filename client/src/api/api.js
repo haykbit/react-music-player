@@ -96,14 +96,26 @@ export async function getMySongsData(id) {
   });
 }
 
-export async function removeSongData(id) {
+export async function removeSongData(id, userId) {
   const userToken = await getCurrentUserToken();
-
   return axios({
-    method: "DELETE",
+    method: "PUT",
+    url: `${process.env.REACT_APP_API_BASE_URL}/songs/${id}`,
+    data: { userId },
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
+export async function editSongData(id, songData) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "PATCH",
     url: `${process.env.REACT_APP_API_BASE_URL}/songs/${id}`,
     headers: {
       Authorization: `Bearer ${userToken}`,
     },
+    data: { songData },
   });
 }
