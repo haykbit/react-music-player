@@ -1,5 +1,63 @@
+<<<<<<< HEAD
+@-webkit-keyframes App-logo-spin {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+.characters {
+  list-style: none;
+  padding-left: 0;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.characters li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 0.2em;
+  width: 90%;
+}
+
+.characters-thumb img {
+  display: block;
+  width: 55px;
+  border-radius: 5px;
+  height: auto;
+}
+
+.container-global {
+  width: 50px;
+  height: 100px;
+  background-color: red;
+}
+
+.song-container {
+  width: 100%;
+=======
 .playlists-container {
   margin-top: 50px;
+>>>>>>> develop
 }
 
 .playlists-container .playlists-header {
@@ -28,6 +86,85 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+<<<<<<< HEAD
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.song-list-playlist .song-item-playlist .song-actions .song-play .play-icon {
+  width: 22px;
+  height: 18px;
+  color: #fff;
+  margin-top: 3px;
+}
+
+.song-list-playlist .song-item-playlist .song-actions .song-play button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  border: none;
+  background-color: #363636;
+  cursor: pointer;
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
+}
+
+.song-list-playlist .song-item-playlist .song-actions .song-play button:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+.song-list-playlist .song-item-playlist .song-actions .song-like .like-icon {
+  width: 25px;
+  height: 25px;
+  color: #fff;
+  margin-top: 3px;
+  margin-right: 5px;
+}
+
+.song-list-playlist .song-item-playlist .song-actions .song-like .like-icon:hover {
+  color: #ff4747;
+}
+
+.song-list-playlist .song-item-playlist .song-actions .song-like .like-icon.liked {
+  color: #ff4747;
+}
+
+.song-list-playlist .song-item-playlist .song-actions .song-like button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.song-list-playlist .song-item-playlist .context-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 4px;
+}
+
+.song-list-playlist .song-item-playlist .more-icon {
+  width: 30px;
+  height: 30px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.song-list-playlist .song-item-playlist .context-menu-btn {
+  color: #fff;
+  background-color: transparent;
+  border: none;
+  font-size: larger;
+  height: 30px;
+=======
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   -webkit-box-pack: center;
@@ -49,5 +186,6 @@
 
 .playlists-container .playlists .playlist-item h1 {
   font-size: 40px;
+>>>>>>> develop
 }
-/*# sourceMappingURL=playlistStack.css.map */
+/*# sourceMappingURL=playliststack.css.map */

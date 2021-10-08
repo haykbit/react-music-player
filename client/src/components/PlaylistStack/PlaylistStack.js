@@ -1,16 +1,89 @@
-import React, { useState } from "react";
-import portadaUno from "../../assets/images/icons/portada-1.png";
-import portadaDos from "../../assets/images/icons/portada-2.png";
-import portadaTres from "../../assets/images/icons/portada-3.png";
-import portadaCuatro from "../../assets/images/icons/portada-4.png";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-import { CgPlayList } from "react-icons/cg";
-import IconPlayList from "../../assets/images/icons/wishlist.png";
+import { dispatchMySongsData } from "../../redux/song/action";
+import { getMySongsData } from "../../api/api";
+import { BsFillCaretRightFill } from "react-icons/bs";
+import { FaRegHeart } from "react-icons/fa";
+import IndividualSong from "../IndividualSong/index";
 
 import "./style/playliststack.scss";
 
 function PlaylistStack() {
-  return <></>;
+  const dispatch = useDispatch();
+  const { user, loading, authObserverSuccess } = useSelector(
+    (state) => state.auth
+  );
+
+  //condition for controll type of playlist
+  const { uploadSongSuccess, deleteSongSuccess } = useSelector(
+    (state) => state.song
+  );
+
+  function handleOnDragEnd(result) {
+    if (!result.destination) return;
+
+    const items = Array.from(mySongsData);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+
+    setMySongsData(items);
+  }
+
+  const [mySongsData, setMySongsData] = useState([]);
+  useEffect(() => {
+    if (!loading && authObserverSuccess) {
+      songData();
+    }
+  }, [loading, uploadSongSuccess, deleteSongSuccess]);
+
+  return (
+    <>
+      <div className="DragDropList">
+        <header className="DragDropList-header">
+          <DragDropContext onDragEnd={handleOnDragEnd}>
+            <Droppable droppableId="characters">
+              {(provided) => (
+                <ul
+                  className="characters"
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                >
+                  {mySongsData.map((song, index) => {
+                    return (
+                      <Draggable
+                        key={song._id}
+                        draggableId={song._id}
+                        index={index}
+                      >
+                        {(provided) => (
+                          <li
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                          >
+                            <div className="song-container">
+                              <section className="new-spain">
+                                <div className="song-list-playlist">
+                                  <IndividualSong song={song} key={song._id} />
+                                </div>
+                              </section>
+                            </div>
+                          </li>
+                        )}
+                      </Draggable>
+                    );
+                  })}
+                  {provided.placeholder}
+                </ul>
+              )}
+            </Droppable>
+          </DragDropContext>
+        </header>
+      </div>
+    </>
+  );
 }
 
 export default PlaylistStack;
