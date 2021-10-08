@@ -20,7 +20,7 @@ function App() {
     dispatch(authObserverLoading());
     if (!loading && !authObserverSuccess && !userStorage) {
       history.push("/login");
-    } else if (userStorage) {
+    } else if (!userStorage) {
       history.push("/home-page");
     }
   }, []);
