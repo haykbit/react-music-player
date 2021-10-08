@@ -1,1 +1,1 @@
-export { default } from "./Myplaylist";
+export { default } from "./MyPlaylist";

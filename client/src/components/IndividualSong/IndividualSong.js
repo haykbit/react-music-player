@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { dispatchLikeSong, cancelLikedSongs } from "../../redux/song/action";
+import { getSongPlayNow } from "../../redux/player/action";
 import { getLikedSongs } from "../../api/api";
+import { fancyTimeFormat } from "../../util/timeFormatter";
 import { BsFillCaretRightFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 import { IoMdMore } from "react-icons/io";
 import RightClickMenu from "../RightClickMenu";
+import SongEditModal from "../SongEditModal";
 
 function IndividualSong({ song }) {
   const dispatch = useDispatch();
@@ -14,7 +17,10 @@ function IndividualSong({ song }) {
 
   const [liked, setLiked] = useState(false);
   const [myFavoriteSongs, setMyFavoriteSongs] = useState([]);
-
+  const [modals, setModals] = useState({
+    editModal: false,
+    deleteModal: false,
+  });
   const [contextMenu, setContextMenu] = useState(false);
   const Toggle = () => setContextMenu(!contextMenu);
 
@@ -42,14 +48,16 @@ function IndividualSong({ song }) {
       dispatch(cancelLikedSongs(song._id, user.uid));
     }
   }
-  function format(time) {
-    let hours = Math.floor(time / 60 / 60);
-    let minutes = Math.floor(time / 60) - hours * 60;
-    let seconds = time % 60;
-    if (parseInt(hours) === 0) {
-      return minutes + ":" + seconds.toFixed(0);
-    }
-    return hours + ":" + minutes + ":" + seconds.toFixed(0);
+
+  const ToggleEditModal = () => {
+    setModals({ ...modals, editModal: !modals.editModal });
+  };
+  const ToggleDeleteModal = () =>
+    setModals({ ...modals, deleteModal: !modals.deleteModal });
+
+  function handlePlayClick() {
+    //TODO add hidden or not condition
+    dispatch(getSongPlayNow(song));
   }
   return (
     <div className="song-item-playlist">
@@ -68,19 +76,27 @@ function IndividualSong({ song }) {
         </button>
         <RightClickMenu
           show={contextMenu}
-          close={Toggle}
+          closeMenu={Toggle}
           handleLike={handleLikeClick}
+          ToggleEditModal={ToggleEditModal}
+          ToggleDeleteModal={ToggleDeleteModal}
+          modals={modals}
+          song={song}
+        />
+        <SongEditModal
+          show={modals.editModal}
+          close={ToggleEditModal}
           song={song}
         />
       </div>
       <div className="song-actions">
         <div className="song-play">
-          <button>
+          <button onClick={handlePlayClick}>
             <BsFillCaretRightFill className="play-icon" />
           </button>
         </div>
         <div className="song-time">
-          <h4>{format(song.duration)}</h4>
+          <h4>{fancyTimeFormat(song.duration)}</h4>
         </div>
         <div className="song-like">
           <button onClick={handleLikeClick}>
