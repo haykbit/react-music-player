@@ -27,6 +27,18 @@ async function createSong(req, res, next) {
   }
 }
 
+async function fetchSongs(req, res, next) {
+  try {
+    const song = await db.Song.find().lean();
+
+    res.status(200).send({
+      data: song,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 async function getSongById(req, res, next) {
   const { id } = req.params;
   try {
@@ -35,8 +47,8 @@ async function getSongById(req, res, next) {
     res.status(200).send({
       data: song,
     });
-  } catch (error) {
-    next(error);
+  } catch (err) {
+    console.log(err);
   }
 }
 
@@ -174,6 +186,7 @@ async function deleteSong(req, res, next) {
 
 module.exports = {
   createSong,
+  fetchSongs,
   getSongById,
   getSongsByUser,
   likeSong,
