@@ -56,12 +56,13 @@ const SongSchema = new Schema({
   //   ref: "Album",
   //   required: false,
   // },
-  private: {
-    type: Boolean,
-    required: true,
-  },
+  // private: {
+  //   type: Boolean,
+  //   required: true,
+  // },
   owner: {
-    type: mongoose.Schema.ObjectId,
+    // type: mongoose.Schema.ObjectId,
+    type: String,
     ref: "User",
     required: true,
   },
@@ -83,7 +84,7 @@ const SongSchema = new Schema({
     type: Number,
   },
   likedBy: {
-    type: [{ type: Schema.Types.ObjectId, ref: "user" }],
+    // type: [{ type: Schema.Types.ObjectId, ref: "user" }],
     type: Array,
     default: [],
   },
