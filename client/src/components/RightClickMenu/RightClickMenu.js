@@ -7,7 +7,7 @@ import DeleteConfirmation from "../DeleteConfirmation";
 
 function RightClickMenu({
   show,
-  close,
+  closeMenu,
   handleLike,
   song,
   ToggleDeleteModal,
@@ -38,23 +38,30 @@ function RightClickMenu({
   return (
     <>
       {show ? (
-        <div className="context-menu-container">
-          <div className="context-menu" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="context-menu-container"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="context-menu">
             <li onClick={() => handleLike()}>Add to favorites</li>
             {song.owner === userUid ? (
               <>
-                <li onClick={editHandle}>Edit</li>
+                <li
+                  onClick={() => {
+                    editHandle();
+                    closeMenu();
+                  }}
+                >
+                  Edit
+                </li>
+
                 <li onClick={deleteHandle}>Delete</li>
               </>
             ) : (
               ""
             )}
           </div>
-          <SongEditModal
-            show={modals.editModal}
-            close={ToggleEditModal}
-            song={song}
-          />
+
           <DeleteConfirmation
             show={modals.deleteModal}
             close={ToggleDeleteModal}

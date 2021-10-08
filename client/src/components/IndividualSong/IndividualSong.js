@@ -8,6 +8,7 @@ import { BsFillCaretRightFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 import { IoMdMore } from "react-icons/io";
 import RightClickMenu from "../RightClickMenu";
+import SongEditModal from "../SongEditModal";
 
 function IndividualSong({ song }) {
   const dispatch = useDispatch();
@@ -75,11 +76,16 @@ function IndividualSong({ song }) {
         </button>
         <RightClickMenu
           show={contextMenu}
-          close={Toggle}
+          closeMenu={Toggle}
           handleLike={handleLikeClick}
           ToggleEditModal={ToggleEditModal}
           ToggleDeleteModal={ToggleDeleteModal}
           modals={modals}
+          song={song}
+        />
+        <SongEditModal
+          show={modals.editModal}
+          close={ToggleEditModal}
           song={song}
         />
       </div>
