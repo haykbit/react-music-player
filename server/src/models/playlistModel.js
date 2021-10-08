@@ -26,7 +26,7 @@ const PlaylistSchema = new Schema({
     enum: {
       values: [
         "Country",
-        "Electronic dance music (EDM) ",
+        "Electronic dance music (EDM)",
         "Hip-hop",
         "Indie rock",
         "Jazz",
@@ -38,6 +38,10 @@ const PlaylistSchema = new Schema({
         "Rhythm & blues (R&B)",
         "Rock",
         "Techno",
+        "Folk",
+        "Ska",
+        "Reggae",
+        "Punk",
       ],
       message: "Please select correct genre for playlist",
     },
@@ -47,15 +51,15 @@ const PlaylistSchema = new Schema({
     required: true,
   },
   owner: {
-    type: [{ type: Schema.Types.ObjectId, ref: "User" }],
+    type: String,
+    ref: "User",
     required: true,
-    default: [],
   },
   playlistImage: [
     {
       public_id: {
         type: String,
-        required: true,
+        // required: true,
       },
       url: {
         type: String,

@@ -1,6 +1,6 @@
 import { Switch, Route } from "react-router-dom";
 import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { authObserverLoading } from "./redux/auth/action";
@@ -12,6 +12,7 @@ import Playlists from "./pages/Playlists";
 
 function App() {
   const history = useHistory();
+  const location = useLocation();
   const dispatch = useDispatch();
   const userStorage = JSON.parse(localStorage.getItem("user"));
   const { loading, authObserverSuccess } = useSelector((state) => state.auth);
@@ -20,7 +21,7 @@ function App() {
     dispatch(authObserverLoading());
     if (!loading && !authObserverSuccess && !userStorage) {
       history.push("/login");
-    } else if (!userStorage) {
+    } else if (location.pathname === "/") {
       history.push("/home-page");
     }
   }, []);
