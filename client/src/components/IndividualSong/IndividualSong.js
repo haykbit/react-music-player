@@ -47,15 +47,6 @@ function IndividualSong({ song }) {
       dispatch(cancelLikedSongs(song._id, user.uid));
     }
   }
-  function format(time) {
-    let hours = Math.floor(time / 60 / 60);
-    let minutes = Math.floor(time / 60) - hours * 60;
-    let seconds = time % 60;
-    if (parseInt(hours) === 0) {
-      return minutes + ":" + seconds.toFixed(0);
-    }
-    return hours + ":" + minutes + ":" + seconds.toFixed(0);
-  }
 
   const ToggleEditModal = () => {
     setModals({ ...modals, editModal: !modals.editModal });
