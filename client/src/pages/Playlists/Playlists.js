@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { authObserverLoading } from "../../redux/auth/action";
 import Navbar from "../../components/Navbar/Navbar";
-import Myplaylist from "../../components/MyPlaylist";
+import MyPlaylist from "../../components/MyPlaylist";
 import SongBar from "../../components/SongBar";
 import "./style/playlist.scss";
 
@@ -25,7 +25,7 @@ function Playlists() {
   return (
     <>
       <Navbar />
-      <Myplaylist />
+      <MyPlaylist />
       <SongBar />
     </>
   );
