@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
 import Modal from "../Modal";
-import DragDropList from "../DragDropList/DragDropList";
-import PlaylistStack from "../PlaylistStack/PlaylistStack";
+import UploadedPlaylistStack from "../UploadedPlaylistStack/UploadedPlaylistStack";
 
 import { FiUploadCloud } from "react-icons/fi";
 
@@ -11,9 +10,9 @@ import portadaDos from "../../assets/images/albums/arctic-album-1.jpeg";
 import portadaTres from "../../assets/images/albums/arctic-album-2.jpeg";
 import portadaCuatro from "../../assets/images/albums/arctic-album-3.jpeg";
 
-import "./style/myPlaylist.scss";
+import "./style/playlistcomponent.scss";
 
-function Myplaylist() {
+function UploadedPlaylist() {
   const [modal, setModal] = useState(false);
   const Toggle = () => setModal(!modal);
   return (
@@ -41,7 +40,7 @@ function Myplaylist() {
             </div>
           </div>
           <div className="song-stack">
-            <DragDropList />
+            <UploadedPlaylistStack />
           </div>
         </div>
         <div className="right-side">
@@ -102,4 +101,4 @@ function Myplaylist() {
   );
 }
 
-export default Myplaylist;
+export default UploadedPlaylist;

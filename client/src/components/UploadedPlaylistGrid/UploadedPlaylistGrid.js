@@ -1,15 +1,15 @@
 import React, { useState } from "react";
+
+import { CgPlayList } from "react-icons/cg";
 import portadaUno from "../../assets/images/icons/portada-1.png";
 import portadaDos from "../../assets/images/icons/portada-2.png";
 import portadaTres from "../../assets/images/icons/portada-3.png";
 import portadaCuatro from "../../assets/images/icons/portada-4.png";
-
-import { CgPlayList } from "react-icons/cg";
 import IconPlayList from "../../assets/images/icons/wishlist.png";
 
-import "./style/myplaylistupload.scss";
+import "./style/uploadedplaylistgrid.scss";
 
-function MyPlaylistUpload() {
+function UploadedPlaylistGrid() {
   const playlist = [
     { name: "Spanish Rock", songs: 43, cover: portadaUno },
     { name: "English Rock", songs: 22, cover: portadaDos },
@@ -31,7 +31,7 @@ function MyPlaylistUpload() {
           <header>
             <img src={IconPlayList} alt="" className="playlist-icon" />
           </header>
-          <h1>Playlists</h1>
+          <h1>Uploaded Playlists</h1>
         </div>
         <div className="playlists">
           {playlist.map((item, index) => {
@@ -52,4 +52,4 @@ function MyPlaylistUpload() {
   );
 }
 
-export default MyPlaylistUpload;
+export default UploadedPlaylistGrid;

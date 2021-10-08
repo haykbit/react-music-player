@@ -1,46 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { dispatchMySongsData } from "../../redux/song/action";
-import { getMySongsData } from "../../api/api";
-import { BsFillCaretRightFill } from "react-icons/bs";
-import { FaRegHeart } from "react-icons/fa";
-import IndividualSong from "../IndividualSong/index";
-import "./style/playlistStack.scss";
+import React, { useState } from "react";
+import portadaUno from "../../assets/images/icons/portada-1.png";
+import portadaDos from "../../assets/images/icons/portada-2.png";
+import portadaTres from "../../assets/images/icons/portada-3.png";
+import portadaCuatro from "../../assets/images/icons/portada-4.png";
+
+import { CgPlayList } from "react-icons/cg";
+import IconPlayList from "../../assets/images/icons/wishlist.png";
+
+import "./style/playliststack.scss";
 
 function PlaylistStack() {
-  const dispatch = useDispatch();
-  const { user, loading, authObserverSuccess } = useSelector(
-    (state) => state.auth
-  );
-  const { uploadSongSuccess, deleteSongSuccess } = useSelector(
-    (state) => state.song
-  );
-  const [mySongsData, setMySongsData] = useState([]);
-  useEffect(() => {
-    if (!loading && authObserverSuccess) {
-      songData();
-    }
-  }, [loading, uploadSongSuccess, deleteSongSuccess]);
-
-  async function songData() {
-    const mySongs = await getMySongsData(user.uid);
-    setMySongsData(mySongs.data.data);
-    dispatch(dispatchMySongsData());
-  }
-
-  return (
-    <>
-      <div className="song-container">
-        <section className="new-spain">
-          <div className="song-list-playlist">
-            {mySongsData.map((song) => {
-              return <IndividualSong song={song} key={song._id} />;
-            })}
-          </div>
-        </section>
-      </div>
-    </>
-  );
+  return <></>;
 }
 
 export default PlaylistStack;
