@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import Modal from "../Modal";
-import PlaylistStack from "../PlaylistStack/PlaylistStack";
+import PlaylistStack from "../UploadedPlaylistStack/UploadedPlaylistStack";
 
 import { FiUploadCloud } from "react-icons/fi";
 
@@ -56,6 +56,7 @@ function Playlist() {
               }}
             ></div>
             <div className="relevant-song-name">
+              {" "}
               Four Out Of Five
               <div className="relevant-song-artist">Arctic Monkeys</div>
             </div>
@@ -69,8 +70,11 @@ function Playlist() {
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
               }}
-            ></div>
+            >
+              {" "}
+            </div>
             <div className="relevant-song-name">
+              {" "}
               Brainstorm - Live
               <div className="relevant-song-artist">Arctic Monkeys</div>
             </div>
@@ -86,6 +90,7 @@ function Playlist() {
               }}
             ></div>
             <div className="relevant-song-name">
+              {" "}
               She's Thunderstorms
               <div className="relevant-song-artist">Arctic Monkeys</div>
             </div>
