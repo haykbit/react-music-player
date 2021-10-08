@@ -18,6 +18,7 @@ const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case PLAYLIST_CREATE_REQUEST:
       return {
+        ...state,
         playlistCreatedSuccess: false,
         addedToPlaylistSuccess: false,
         myPlaylistCreatedSuccess: false,
@@ -25,6 +26,7 @@ const reducer = (state = INITIAL_STATE, action) => {
       };
     case PLAYLIST_CREATE_SUCCESS:
       return {
+        ...state,
         playlistCreatedSuccess: true,
         addedToPlaylistSuccess: false,
         myPlaylistCreatedSuccess: false,
@@ -32,6 +34,7 @@ const reducer = (state = INITIAL_STATE, action) => {
       };
     case PLAYLIST_CREATE_FAIL:
       return {
+        ...state,
         playlistCreatedSuccess: false,
         addedToPlaylistSuccess: false,
         myPlaylistCreatedSuccess: false,
