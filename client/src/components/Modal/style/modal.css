@@ -48,8 +48,6 @@
   border-radius: 5px;
   width: 120px;
   cursor: pointer;
-<<<<<<< HEAD
-=======
 }
 
 .modal-container .modal .modal-input-box .submit,
@@ -64,7 +62,6 @@
 .modal-container .modal .modal-title .modal-close,
 .modal-container .modal .modal-image-box .modal-close {
   background-color: rgba(165, 161, 159, 0.863);
->>>>>>> develop
 }
 
 .modal-container .modal .modal-input-box input, .modal-container .modal .modal-input-box select,

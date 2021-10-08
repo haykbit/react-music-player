@@ -9,7 +9,7 @@ import IconPlayList from "../../assets/images/icons/wishlist.png";
 
 import "./style/playlistgrid.scss";
 
-function MyPlaylistUpload() {
+function PlaylistGrid() {
   const playlist = [
     { name: "Spanish Rock", songs: 43, cover: portadaUno },
     { name: "English Rock", songs: 22, cover: portadaDos },
@@ -52,4 +52,4 @@ function MyPlaylistUpload() {
   );
 }
 
-export default MyPlaylistUpload;
+export default PlaylistGrid;
