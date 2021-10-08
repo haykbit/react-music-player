@@ -1,10 +1,18 @@
 import React, { useState } from "react";
+<<<<<<< HEAD
 
 import { CgPlayList } from "react-icons/cg";
+=======
+>>>>>>> develop
 import portadaUno from "../../assets/images/icons/portada-1.png";
 import portadaDos from "../../assets/images/icons/portada-2.png";
 import portadaTres from "../../assets/images/icons/portada-3.png";
 import portadaCuatro from "../../assets/images/icons/portada-4.png";
+<<<<<<< HEAD
+=======
+
+import { CgPlayList } from "react-icons/cg";
+>>>>>>> develop
 import IconPlayList from "../../assets/images/icons/wishlist.png";
 
 import "./style/playlistgrid.scss";
@@ -32,7 +40,7 @@ function PlaylistGrid() {
           <header>
             <img src={IconPlayList} alt="" className="playlist-icon" />
           </header>
-          <h1>Uploaded Playlists</h1>
+          <h1>Playlists</h1>
         </div>
         <div className="playlists">
           {playlist.map((item, index) => {

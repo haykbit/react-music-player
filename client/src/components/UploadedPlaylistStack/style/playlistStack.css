@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 @-webkit-keyframes App-logo-spin {
   from {
     -webkit-transform: rotate(0deg);
@@ -54,39 +53,62 @@
 
 .song-container {
   width: 100%;
-=======
-.playlists-container {
-  margin-top: 50px;
->>>>>>> develop
 }
 
-.playlists-container .playlists-header {
+.song-list-playlist .song-item-playlist {
+  width: 100%;
+  height: 65px;
+  background-color: #fff;
+  margin-top: 10px;
+  border-radius: 5px;
+  background-color: #171717;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  color: #fff;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-left: 75px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
-.playlists-container .playlists-header .playlist-icon {
-  width: 30px;
-  height: 35px;
-  color: #a8a8a8;
-}
-
-.playlists-container .playlists-header h1 {
-  margin-left: 10px;
-}
-
-.playlists-container .playlists {
-  color: #fff;
+.song-list-playlist .song-item-playlist .song-info {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-<<<<<<< HEAD
+  width: 80%;
+}
+
+.song-list-playlist .song-item-playlist h3,
+.song-list-playlist .song-item-playlist h4,
+.song-list-playlist .song-item-playlist h5 {
+  color: #fff;
+  margin: 3px;
+  font-weight: 500;
+}
+
+.song-list-playlist .song-item-playlist .song-name {
+  margin-left: 10px;
+}
+
+.song-list-playlist .song-item-playlist .song-cover {
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  border-radius: 5px;
+  margin-left: 8px;
+}
+
+.song-list-playlist .song-item-playlist .song-actions {
+  width: 150px;
+  height: 40px;
+  background-color: #0f0f0f;
+  border-radius: 50px;
+  margin-right: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -164,28 +186,5 @@
   border: none;
   font-size: larger;
   height: 30px;
-=======
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
 }
-
-.playlists-container .playlists .playlist-item {
-  width: 250px;
-  height: 300px;
-  padding: 10px;
-  white-space: normal;
-  border-radius: 10px;
-  margin: 10px;
-  background-image: url(../../../assets/images/icons/portada-1.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.playlists-container .playlists .playlist-item h1 {
-  font-size: 40px;
->>>>>>> develop
-}
-/*# sourceMappingURL=playliststack.css.map */
+/*# sourceMappingURL=playlistStack.css.map */

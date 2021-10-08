@@ -38,22 +38,34 @@
   width: 100%;
 }
 
-  .playlists-header {
+.song-list-playlist {
+  .song-item-playlist {
+    width: 100%;
+    height: 65px;
+    background-color: #fff;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: #171717;
     display: flex;
-    color: #fff;
     align-items: center;
-    margin-left: 75px;
+    justify-content: space-between;
 
-    .playlist-icon {
-      width: 30px;
-      height: 35px;
-      color: rgb(168, 168, 168);
+    .song-info {
+      display: flex;
+      width: 80%;
     }
 
-    h1 {
+    h3,
+    h4,
+    h5 {
+      color: #fff;
+      margin: 3px;
+      font-weight: 500;
+    }
+
+    .song-name {
       margin-left: 10px;
     }
-  }
 
     .song-cover {
       width: 50px;

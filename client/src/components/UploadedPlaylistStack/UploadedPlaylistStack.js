@@ -8,15 +8,13 @@ import { BsFillCaretRightFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 import IndividualSong from "../IndividualSong/index";
 
-import "./style/playliststack.scss";
+import "./style/playlistStack.scss";
 
-function PlaylistStack() {
+function UploadedPlaylistStack() {
   const dispatch = useDispatch();
   const { user, loading, authObserverSuccess } = useSelector(
     (state) => state.auth
   );
-
-  //condition for controll type of playlist
   const { uploadSongSuccess, deleteSongSuccess } = useSelector(
     (state) => state.song
   );
@@ -37,6 +35,12 @@ function PlaylistStack() {
       songData();
     }
   }, [loading, uploadSongSuccess, deleteSongSuccess]);
+
+  async function songData() {
+    const mySongs = await getMySongsData(user.uid);
+    setMySongsData(mySongs.data.data);
+    dispatch(dispatchMySongsData());
+  }
 
   return (
     <>
@@ -86,4 +90,4 @@ function PlaylistStack() {
   );
 }
 
-export default PlaylistStack;
+export default UploadedPlaylistStack;
