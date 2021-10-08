@@ -47,8 +47,8 @@ async function seedSongs() {
     db.Song.insertMany([
       {
         title: "Admin Song - Don't modify",
-        artist: "Admin",
         genre: "Electronic dance music (EDM)",
+        artist: "Admin",
         duration: 187,
         url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
         album: "fake1234fake1234fake1234",
@@ -59,8 +59,8 @@ async function seedSongs() {
       },
       {
         title: "Plume",
-        artist: "Caravan Palace",
         genre: "Electronic dance music (EDM)",
+        artist: "Caravan Palace",
         duration: 187,
         url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1633001063/k73nlagzz8cxif3bvhqh.mp3",
         album: "fake1234fake1234fake1234",
@@ -71,8 +71,8 @@ async function seedSongs() {
       },
       {
         title: "idol",
-        artist: "BTS",
         genre: "K-pop",
+        artist: "BTS",
         duration: 3.5,
         url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
         album: "fake1234fake1234fake1234",
@@ -83,8 +83,8 @@ async function seedSongs() {
       },
       {
         title: "Serindipity",
-        artist: "BTS",
         genre: "K-pop",
+        artist: "BTS",
         duration: 3.5,
         url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1633001063/k73nlagzz8cxif3bvhqh.mp3",
         album: "fake1234fake1234fake1234",
@@ -95,8 +95,8 @@ async function seedSongs() {
       },
       {
         title: "test",
-        artist: "test",
         genre: "K-pop",
+        artist: "test",
         duration: 3.5,
         url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1633001063/test.mp3",
         album: "fake1234fake1234fake1234",
@@ -182,7 +182,6 @@ async function seedPlaylist() {
 }
 
 async function seedDatabase() {
-  console.log("Start seeding");
   try {
     //Const
     const userExists = await db.User.findOne({

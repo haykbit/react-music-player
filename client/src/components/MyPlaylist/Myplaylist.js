@@ -11,7 +11,7 @@ import portadaSeis from "../../assets/images/albums/arctic-album-5.jpg";
 import portadaOcho from "../../assets/images/albums/gorillaz-demon-days.png";
 import portadaNueve from "../../assets/images/albums/linkin-p-papercut.jpeg";
 
-function Myplaylist() {
+function MyPlaylist() {
   const [modal, setModal] = useState(false);
   const Toggle = () => setModal(!modal);
   return (
@@ -99,4 +99,4 @@ function Myplaylist() {
   );
 }
 
-export default Myplaylist;
+export default MyPlaylist;

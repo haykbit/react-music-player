@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { GiSoundWaves } from "react-icons/gi";
 import { MdPlaylistAdd } from "react-icons/md";
-
+import { useSelector } from "react-redux";
 import AudioControls from "./AudioControls";
+import { fancyTimeFormat } from "../../util/timeFormatter";
 import imageSong from "../../assets/images/albums/arctic-album-3.jpeg";
 import imageSong1 from "../../assets/images/albums/arctic-album-2.jpeg";
 import imageSong2 from "../../assets/images/albums/arctic-album-1.jpeg";
@@ -13,6 +14,8 @@ import song3 from "../../assets/music/ReturningHome.mp3";
 import "./style/songbar.scss";
 
 const AudioPlayer = () => {
+  const { songData } = useSelector((state) => state.player);
+
   const tracks = [
     {
       title: "Cali",
@@ -36,6 +39,7 @@ const AudioPlayer = () => {
       color: "#5f9fff",
     },
   ];
+  // TODO get song data from now playing
   // State
   const [trackIndex, setTrackIndex] = useState(0);
   const [trackProgress, setTrackProgress] = useState(0);
@@ -43,15 +47,15 @@ const AudioPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   // Destructure for conciseness
-  const { title, artist, color, image, audioSrc } = tracks[trackIndex];
+  const { title, artist, url, duration } = songData;
 
   // Refs
-  const audioRef = useRef(new Audio(audioSrc));
+  const audioRef = useRef(new Audio(url));
   const intervalRef = useRef();
   const isReady = useRef(false);
 
   // Destructure for conciseness
-  const { duration } = audioRef.current;
+  // const { duration } = audioRef.current;
 
   const currentPercentage = duration
     ? `${(trackProgress / duration) * 100}%`
@@ -81,7 +85,7 @@ const AudioPlayer = () => {
     audioRef.current.volume = 0;
   };
 
-  const volumeControll = (e) => {
+  const volumeControl = (e) => {
     setVolumeLevel(e);
     audioRef.current.volume = e;
   };
@@ -115,6 +119,7 @@ const AudioPlayer = () => {
 
   useEffect(() => {
     if (isPlaying) {
+      console.log(audioRef);
       audioRef.current.play();
       startTimer();
     } else {
@@ -126,7 +131,7 @@ const AudioPlayer = () => {
   useEffect(() => {
     audioRef.current.pause();
 
-    audioRef.current = new Audio(audioSrc);
+    audioRef.current = new Audio(url);
     setTrackProgress(audioRef.current.currentTime);
 
     if (isReady.current) {
@@ -147,71 +152,60 @@ const AudioPlayer = () => {
     };
   }, []);
 
-  function fancyTimeFormat(duration) {
-    // Hours, minutes and seconds
-    var hrs = ~~(duration / 3600);
-    var mins = ~~((duration % 3600) / 60);
-    var secs = ~~duration % 60;
-
-    // Output like "1:01" or "4:03:59" or "123:03:59"
-    var ret = "";
-
-    if (hrs > 0) {
-      ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
-    }
-
-    ret += "" + mins + ":" + (secs < 10 ? "0" : "");
-    ret += "" + secs;
-    return ret;
-  }
   return (
-    <div className="audio-player">
-      <div className="track-info">
-        <img
-          className="artwork"
-          src={image}
-          alt={`track artwork for ${title} by ${artist}`}
-        />
-        <div className="song-info">
-          <h4 className="title">{title}</h4>
-          <h6 className="artist">{artist}</h6>
+    <>
+      {url ? (
+        <div className="audio-player">
+          <div className="track-info">
+            <img
+              className="artwork"
+              // src={image}
+              alt={`${title} by ${artist}`}
+            />
+            <div className="song-info">
+              <h4 className="title">{title}</h4>
+              <h6 className="artist">{artist}</h6>
+            </div>
+            <AudioControls
+              isPlaying={isPlaying}
+              onPrevClick={toPrevTrack}
+              onNextClick={toNextTrack}
+              onPlayPauseClick={setIsPlaying}
+            />
+            <div className="track-bar">
+              <h4>{fancyTimeFormat(duration)}</h4>
+              <input
+                type="range"
+                value={trackProgress}
+                step="1"
+                min="0"
+                max={duration ? duration : `${duration}`}
+                className="progress"
+                onChange={(e) => onScrub(e.target.value)}
+                onMouseUp={onScrubEnd}
+                onKeyUp={onScrubEnd}
+                style={{ background: trackStyling }}
+              />
+              <h4>{fancyTimeFormat(trackProgress)}</h4>
+            </div>
+            <MdPlaylistAdd className="add-icon" />
+            <GiSoundWaves className="volume-icon" />
+            <input
+              type="range"
+              value={volumeLevel}
+              step="0.05"
+              min="0.00"
+              max="1.00"
+              className="volume"
+              onChange={(e) => volumeControl(e.target.value)}
+              style={{ background: trackStyling }}
+            />
+          </div>
         </div>
-        <AudioControls
-          isPlaying={isPlaying}
-          onPrevClick={toPrevTrack}
-          onNextClick={toNextTrack}
-          onPlayPauseClick={setIsPlaying}
-        />
-        <div className="track-bar">
-          <h4>{fancyTimeFormat(duration)}</h4>
-          <input
-            type="range"
-            value={trackProgress}
-            step="1"
-            min="0"
-            max={duration ? duration : `${duration}`}
-            className="progress"
-            onChange={(e) => onScrub(e.target.value)}
-            onMouseUp={onScrubEnd}
-            onKeyUp={onScrubEnd}
-            style={{ background: trackStyling }}
-          />
-          <h4>{fancyTimeFormat(trackProgress)}</h4>
-        </div>
-        <MdPlaylistAdd className="add-icon" />
-        <GiSoundWaves className="volume-icon" />
-        <input
-          type="range"
-          value={volumeLevel}
-          step="0.05"
-          min="0.00"
-          max="1.00"
-          className="volume"
-          onChange={(e) => volumeControll(e.target.value)}
-          style={{ background: trackStyling }}
-        />
-      </div>
-    </div>
+      ) : (
+        ""
+      )}
+    </>
   );
 };
 

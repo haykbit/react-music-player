@@ -1,4 +1,4 @@
-.modal-container {
+.delete-modal-container {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -8,23 +8,31 @@
   justify-content: center;
   align-items: center;
 
-  .modal {
+  .delete-modal {
     display: flex;
     flex-direction: column;
     width: 35vw;
     height: auto;
     padding: 2rem;
     border-radius: 20px;
-    background-color: rgba(185, 141, 100, 0.9);
+    background-color: rgba(139, 2, 25, 0.9);
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
 
-    .modal-button-box {
+    .delete-modal-button-box, .delete-modal-title {
       display: flex;
       justify-content: space-between;
+       height: 50px;
+      margin: 5px;
       button {
         border-radius: 5px;
         width: 120px;
         cursor: pointer;
+      }
+      .submit {
+          background-color: rgba(2, 138, 250, 0.801);
+      }
+      .close {
+          background-color: rgba(165, 161, 159, 0.863);
       }
     }
   }

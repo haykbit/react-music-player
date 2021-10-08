@@ -2,21 +2,30 @@ import React, { useState } from "react";
 import { getCurrentUser } from "../../services/auth";
 import "./style/rightClickMenu.scss";
 import Modal from "../Modal";
+import SongEditModal from "../SongEditModal";
 import DeleteConfirmation from "../DeleteConfirmation";
 
-function RightClickMenu({ show, close, handleLike, song }) {
-  const [modals, setModals] = useState({
-    editModal: false,
-    deleteModal: false,
-  });
+function RightClickMenu({
+  show,
+  close,
+  handleLike,
+  song,
+  ToggleDeleteModal,
+  ToggleEditModal,
+  modals,
+}) {
+  // const [modals, setModals] = useState({
+  //   editModal: false,
+  //   deleteModal: false,
+  // });
 
   const userUid = getCurrentUser().uid;
 
-  const ToggleEditModal = () =>
-    setModals({ ...modals, editModal: !modals.editModal });
+  // const ToggleEditModal = () =>
+  //   setModals({ ...modals, editModal: !modals.editModal });
 
-  const ToggleDeleteModal = () =>
-    setModals({ ...modals, deleteModal: !modals.deleteModal });
+  // const ToggleDeleteModal = () =>
+  //   setModals({ ...modals, deleteModal: !modals.deleteModal });
 
   async function editHandle() {
     ToggleEditModal();
@@ -29,7 +38,7 @@ function RightClickMenu({ show, close, handleLike, song }) {
   return (
     <>
       {show ? (
-        <div className="context-menu-container" onClick={() => close()}>
+        <div className="context-menu-container">
           <div className="context-menu" onClick={(e) => e.stopPropagation()}>
             <li onClick={() => handleLike()}>Add to favorites</li>
             {song.owner === userUid ? (
@@ -41,11 +50,16 @@ function RightClickMenu({ show, close, handleLike, song }) {
               ""
             )}
           </div>
-          <Modal show={modals.editModal} close={ToggleEditModal} />
+          <SongEditModal
+            show={modals.editModal}
+            close={ToggleEditModal}
+            song={song}
+          />
           <DeleteConfirmation
             show={modals.deleteModal}
             close={ToggleDeleteModal}
             songId={song._id}
+            userId={userUid}
           />
         </div>
       ) : null}
