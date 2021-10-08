@@ -52,7 +52,7 @@ function Navbar() {
     dispatch(resetUserData());
   };
   const handlePlaylist = () => {
-    history.push("/upload-playlists");
+    history.push("/playlists");
   };
 
   return (
