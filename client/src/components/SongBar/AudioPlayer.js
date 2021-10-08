@@ -3,6 +3,7 @@ import { GiSoundWaves } from "react-icons/gi";
 import { MdPlaylistAdd } from "react-icons/md";
 import { useSelector } from "react-redux";
 import AudioControls from "./AudioControls";
+import { fancyTimeFormat } from "../../util/timeFormatter";
 import imageSong from "../../assets/images/albums/arctic-album-3.jpeg";
 import imageSong1 from "../../assets/images/albums/arctic-album-2.jpeg";
 import imageSong2 from "../../assets/images/albums/arctic-album-1.jpeg";
@@ -151,23 +152,6 @@ const AudioPlayer = () => {
     };
   }, []);
 
-  function fancyTimeFormat(duration) {
-    // Hours, minutes and seconds
-    var hrs = ~~(duration / 3600);
-    var mins = ~~((duration % 3600) / 60);
-    var secs = ~~duration % 60;
-
-    // Output like "1:01" or "4:03:59" or "123:03:59"
-    var ret = "";
-
-    if (hrs > 0) {
-      ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
-    }
-
-    ret += "" + mins + ":" + (secs < 10 ? "0" : "");
-    ret += "" + secs;
-    return ret;
-  }
   return (
     <>
       {url ? (

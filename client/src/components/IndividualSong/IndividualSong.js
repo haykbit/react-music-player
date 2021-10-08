@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { dispatchLikeSong, cancelLikedSongs } from "../../redux/song/action";
 import { getSongPlayNow } from "../../redux/player/action";
 import { getLikedSongs } from "../../api/api";
+import { fancyTimeFormat } from "../../util/timeFormatter";
 import { BsFillCaretRightFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 import { IoMdMore } from "react-icons/io";
@@ -98,7 +99,7 @@ function IndividualSong({ song }) {
           </button>
         </div>
         <div className="song-time">
-          <h4>{format(song.duration)}</h4>
+          <h4>{fancyTimeFormat(song.duration)}</h4>
         </div>
         <div className="song-like">
           <button onClick={handleLikeClick}>
