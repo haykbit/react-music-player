@@ -37,5 +37,9 @@ const reducer = (state = INITIAL_STATE, action) => {
         myPlaylistCreatedSuccess: false,
         error: action.payload,
       };
+    default:
+      return { ...state };
   }
 };
+
+export default reducer;

@@ -3,6 +3,7 @@ import authReducer from "./auth/reducer";
 import userReducer from "./user/reducer";
 import songReducer from "./song/reducer";
 import playerReducer from "./player/reducer";
+import playlistReducer from "./playList/reducer";
 
 const rootReducer = combineReducers({
   auth: authReducer,
