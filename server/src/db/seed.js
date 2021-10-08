@@ -36,6 +36,7 @@ async function seedUsers() {
         firebase_id: "zuvAukoB7ogMj7DHaimzKqEFI3C3",
       },
     ]);
+    console.log("Seed Users OK");
   } catch (err) {
     console.log(err);
   }
@@ -46,29 +47,143 @@ async function seedSongs() {
     db.Song.insertMany([
       {
         title: "Admin Song - Don't modify",
-        genre: "Electronic dance music (EDM) ",
+        genre: "Electronic dance music (EDM)",
         artist: "Admin",
         duration: 187,
         url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
-        owner: "hNgne9CGnvbcwHokxnXgCRjUVVO2",
+        album: "fake1234fake1234fake1234",
+        private: false,
+        owner: "615d7975e1b282b490fa251c",
+        popularity: 32,
+        includedLists: [],
       },
       {
         title: "Plume",
-        genre: "Electronic dance music (EDM) ",
+        genre: "Electronic dance music (EDM)",
         artist: "Caravan Palace",
         duration: 187,
         url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1633001063/k73nlagzz8cxif3bvhqh.mp3",
-        owner: "hNgne9CGnvbcwHokxnXgCRjUVVO2",
+        album: "fake1234fake1234fake1234",
+        private: false,
+        owner: "615b22fb93c39b954c27c9da",
+        popularity: 32,
+        includedLists: [],
+      },
+      {
+        title: "idol",
+        genre: "K-pop",
+        artist: "BTS",
+        duration: 3.5,
+        url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
+        album: "fake1234fake1234fake1234",
+        private: false,
+        owner: "615b22fb93c39b954c27c9da",
+        popularity: 32,
+        includedLists: [],
+      },
+      {
+        title: "Serindipity",
+        genre: "K-pop",
+        artist: "BTS",
+        duration: 3.5,
+        url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1633001063/k73nlagzz8cxif3bvhqh.mp3",
+        album: "fake1234fake1234fake1234",
+        private: true,
+        owner: "615b22fb93c39b954c27c9da",
+        popularity: 32,
+        includedLists: [],
+      },
+      {
+        title: "test",
+        genre: "K-pop",
+        artist: "test",
+        duration: 3.5,
+        url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1633001063/test.mp3",
+        album: "fake1234fake1234fake1234",
+        private: false,
+        owner: "615b22fb93c39b954c27c9da",
+        popularity: 32,
+        includedLists: [],
       },
     ]);
+    console.log("Seed Songs OK");
+  } catch (err) {
+    console.log(err);
+  }
+}
+async function seedPlaylist() {
+  try {
+    db.Playlist.insertMany([
+      {
+        title: "Sports Playlist",
+        description: "Music to Work Out",
+        songs: [],
+        genre: "Techno",
+        private: "false",
+        owner: [],
+        playlistImage: [
+          {
+            public_id: "upload/v1632827814",
+            url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
+          },
+        ],
+        popularity: 10,
+      },
+      {
+        title: "Sleep Playlist",
+        description: "Music to Relax",
+        songs: [],
+        genre: "Oldies",
+        private: "false",
+        owner: [],
+        playlistImage: [
+          {
+            public_id: "upload/v1632827814",
+            url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
+          },
+        ],
+        popularity: 15,
+      },
+      {
+        title: "Test Playlist",
+        description: "Music to Test",
+        songs: [],
+        genre: "Oldies",
+        private: "false",
+        owner: [],
+        playlistImage: [
+          {
+            public_id: "upload/v1632827814",
+            url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
+          },
+        ],
+        popularity: 15,
+      },
+      {
+        title: "Multiple Playlist",
+        description: "Music to Test",
+        songs: [],
+        genre: "Oldies",
+        private: "false",
+        owner: [],
+        playlistImage: [
+          {
+            public_id: "upload/v1632827814",
+            url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
+          },
+        ],
+        popularity: 15,
+      },
+    ]);
+    console.log("Seed Playlist OK");
   } catch (err) {
     console.log(err);
   }
 }
 
 async function seedDatabase() {
-  //User
   try {
+    //Const
     const userExists = await db.User.findOne({
       email: "admin@mail.com",
     }).lean();
@@ -76,6 +191,12 @@ async function seedDatabase() {
     const songExists = await db.Song.findOne({
       url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
     }).lean();
+
+    const playlistExists = await db.Playlist.findOne({
+      title: "testPlaylist",
+    }).lean();
+
+    //Conditions
 
     if (!userExists) {
       mongoose.connection.collection("users").drop();
@@ -86,23 +207,14 @@ async function seedDatabase() {
       mongoose.connection.collection("songs").drop();
       seedSongs();
     }
-  } catch (err) {
-    console.log(err);
-  }
-
-  //Song
-  try {
-    const songExists = await db.Song.findOne({
-      id: "_id:6152f26da11b50c0d609bdf2",
-    }).lean();
-
-    if (!songExists) {
-      await mongoose.connection.collection("songs").drop();
-      seedSongs();
+    if (!playlistExists) {
+      mongoose.connection.collection("playlists").drop();
+      seedPlaylist();
     }
   } catch (err) {
     console.log(err);
   }
+  console.log("Seed ended");
 }
 
 module.exports = seedDatabase;

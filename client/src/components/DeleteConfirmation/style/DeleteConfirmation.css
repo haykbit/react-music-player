@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 .modal-container {
+=======
+.delete-modal-container {
+>>>>>>> develop
   position: fixed;
   top: 0;
   bottom: 0;
@@ -15,7 +19,11 @@
           align-items: center;
 }
 
+<<<<<<< HEAD
 .modal-container .modal {
+=======
+.delete-modal-container .delete-modal {
+>>>>>>> develop
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -27,23 +35,50 @@
   height: auto;
   padding: 2rem;
   border-radius: 20px;
+<<<<<<< HEAD
   background-color: rgba(185, 141, 100, 0.9);
+=======
+  background-color: rgba(139, 2, 25, 0.9);
+>>>>>>> develop
   -webkit-box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
           box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
 }
 
+<<<<<<< HEAD
 .modal-container .modal .modal-button-box {
+=======
+.delete-modal-container .delete-modal .delete-modal-button-box, .delete-modal-container .delete-modal .delete-modal-title {
+>>>>>>> develop
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+<<<<<<< HEAD
 }
 
 .modal-container .modal .modal-button-box button {
+=======
+  height: 50px;
+  margin: 5px;
+}
+
+.delete-modal-container .delete-modal .delete-modal-button-box button, .delete-modal-container .delete-modal .delete-modal-title button {
+>>>>>>> develop
   border-radius: 5px;
   width: 120px;
   cursor: pointer;
 }
+<<<<<<< HEAD
+=======
+
+.delete-modal-container .delete-modal .delete-modal-button-box .submit, .delete-modal-container .delete-modal .delete-modal-title .submit {
+  background-color: rgba(2, 138, 250, 0.801);
+}
+
+.delete-modal-container .delete-modal .delete-modal-button-box .close, .delete-modal-container .delete-modal .delete-modal-title .close {
+  background-color: rgba(165, 161, 159, 0.863);
+}
+>>>>>>> develop
 /*# sourceMappingURL=DeleteConfirmation.css.map */

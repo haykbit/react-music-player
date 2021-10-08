@@ -28,7 +28,7 @@
   height: auto;
   padding: 2rem;
   border-radius: 20px;
-  background-color: rgba(47, 47, 47, 0.9);
+  background-color: rgba(203, 123, 250, 0.9);
   -webkit-box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
           box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
 }
@@ -48,12 +48,32 @@
   border-radius: 5px;
   width: 120px;
   cursor: pointer;
+<<<<<<< HEAD
+=======
 }
 
-.modal-container .modal .modal-input-box input,
+.modal-container .modal .modal-input-box .submit,
+.modal-container .modal .modal-button-box .submit,
+.modal-container .modal .modal-title .submit,
+.modal-container .modal .modal-image-box .submit {
+  background-color: rgba(2, 138, 250, 0.801);
+}
+
+.modal-container .modal .modal-input-box .modal-close,
+.modal-container .modal .modal-button-box .modal-close,
+.modal-container .modal .modal-title .modal-close,
+.modal-container .modal .modal-image-box .modal-close {
+  background-color: rgba(165, 161, 159, 0.863);
+>>>>>>> develop
+}
+
+.modal-container .modal .modal-input-box input, .modal-container .modal .modal-input-box select,
 .modal-container .modal .modal-button-box input,
+.modal-container .modal .modal-button-box select,
 .modal-container .modal .modal-title input,
-.modal-container .modal .modal-image-box input {
+.modal-container .modal .modal-title select,
+.modal-container .modal .modal-image-box input,
+.modal-container .modal .modal-image-box select {
   height: 40px;
   width: 300px;
   -webkit-box-sizing: border-box;
