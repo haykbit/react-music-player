@@ -1,4 +1,4 @@
-import PLAYLST_STATE from "./state";
+import INITIAL_STATE from "./state";
 import {
   PLAYLIST_CREATE_REQUEST,
   PLAYLIST_CREATE_SUCCESS,
@@ -14,7 +14,7 @@ import {
   ADD_SONG_TO_PLAYLIST_FAIL,
 } from "./types";
 
-const reducer = (state = PLAYLIST_STATE, action) => {
+const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case PLAYLIST_CREATE_REQUEST:
       return {
@@ -30,5 +30,16 @@ const reducer = (state = PLAYLIST_STATE, action) => {
         myPlaylistCreatedSuccess: false,
         error: null,
       };
+    case PLAYLIST_CREATE_FAIL:
+      return {
+        playlistCreatedSuccess: false,
+        addedToPlaylistSuccess: false,
+        myPlaylistCreatedSuccess: false,
+        error: action.payload,
+      };
+    default:
+      return { ...state };
   }
 };
+
+export default reducer;
