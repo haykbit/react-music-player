@@ -9,7 +9,7 @@ import { FaRegHeart } from "react-icons/fa";
 
 import "./style/playlistnew.scss";
 
-function PlaylistNew() {
+function GeneralList() {
   // const { x, y, showMenu } = useRightClickMenu();
   return (
     <>
@@ -354,4 +354,4 @@ function PlaylistNew() {
   );
 }
 
-export default PlaylistNew;
+export default GeneralList;
