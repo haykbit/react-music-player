@@ -7,11 +7,12 @@ import portadaTres from "../../assets/images/icons/portada-3.png";
 import portadaCuatro from "../../assets/images/icons/portada-4.png";
 import IconPlayList from "../../assets/images/icons/wishlist.png";
 
-import "./style/playlistgrid.scss";
+import "./style/uploadedplaylistgrid.scss";
 
-function PlaylistGrid() {
+function UploadedPlaylistGrid() {
   const playlist = [
     { name: "My uploaded Songs", songs: 10, cover: portadaTres },
+
     { name: "Spanish Rock", songs: 43, cover: portadaUno },
     { name: "English Rock", songs: 22, cover: portadaDos },
     { name: "European Rap", songs: 15, cover: portadaTres },
@@ -53,4 +54,4 @@ function PlaylistGrid() {
   );
 }
 
-export default PlaylistGrid;
+export default UploadedPlaylistGrid;
