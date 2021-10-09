@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import Modal from "../Modal";
-import PlaylistStack from "../UploadedPlaylistStack/UploadedPlaylistStack";
+import PlaylistStack from "../PlaylistStack";
 
 import { FiUploadCloud } from "react-icons/fi";
 

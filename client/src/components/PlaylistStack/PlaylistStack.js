@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-import { dispatchMySongsData } from "../../redux/song/action";
+import { getMyUploadedSongsPlaylist } from "../../redux/playlist/action";
+import { getMySongsPlaylist } from "../../api/api";
 import { getMySongsData } from "../../api/api";
 import { BsFillCaretRightFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
@@ -11,15 +12,21 @@ import IndividualSong from "../IndividualSong/index";
 import "./style/playliststack.scss";
 
 function PlaylistStack() {
-  const dispatch = useDispatch();
+  const [mySongsData, setMySongsData] = useState(null);
   const { user, loading, authObserverSuccess } = useSelector(
     (state) => state.auth
   );
-
-  //condition for controll type of playlist
   const { uploadSongSuccess, deleteSongSuccess } = useSelector(
     (state) => state.song
   );
+
+  async function loadPlaylistOnMount() {
+    const uploadedPlaylist = await getMySongsPlaylist(user.uid);
+    console.log(uploadedPlaylist, "UPLOADED PLAYLIST");
+    setMySongsData(uploadedPlaylist.data.data);
+  }
+
+  //condition for controll type of playlist
 
   function handleOnDragEnd(result) {
     if (!result.destination) return;
@@ -31,12 +38,17 @@ function PlaylistStack() {
     setMySongsData(items);
   }
 
-  const [mySongsData, setMySongsData] = useState([]);
   useEffect(() => {
     if (!loading && authObserverSuccess) {
-      songData();
+      loadPlaylistOnMount();
     }
   }, [loading, uploadSongSuccess, deleteSongSuccess]);
+
+  useEffect(() => {
+    if (!loading && authObserverSuccess) {
+      loadPlaylistOnMount();
+    }
+  }, []);
 
   return (
     <>
@@ -50,31 +62,40 @@ function PlaylistStack() {
                   {...provided.droppableProps}
                   ref={provided.innerRef}
                 >
-                  {mySongsData.map((song, index) => {
-                    return (
-                      <Draggable
-                        key={song._id}
-                        draggableId={song._id}
-                        index={index}
-                      >
-                        {(provided) => (
-                          <li
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
+                  {mySongsData ? (
+                    <>
+                      {mySongsData.map((song, index) => {
+                        return (
+                          <Draggable
+                            key={song._id}
+                            draggableId={song._id}
+                            index={index}
                           >
-                            <div className="song-container">
-                              <section className="new-spain">
-                                <div className="song-list-playlist">
-                                  <IndividualSong song={song} key={song._id} />
+                            {(provided) => (
+                              <li
+                                ref={provided.innerRef}
+                                {...provided.draggableProps}
+                                {...provided.dragHandleProps}
+                              >
+                                <div className="song-container">
+                                  <section className="new-spain">
+                                    <div className="song-list-playlist">
+                                      <IndividualSong
+                                        song={song}
+                                        key={song._id}
+                                      />
+                                    </div>
+                                  </section>
                                 </div>
-                              </section>
-                            </div>
-                          </li>
-                        )}
-                      </Draggable>
-                    );
-                  })}
+                              </li>
+                            )}
+                          </Draggable>
+                        );
+                      })}
+                    </>
+                  ) : (
+                    <p>No songs found</p>
+                  )}
                   {provided.placeholder}
                 </ul>
               )}
