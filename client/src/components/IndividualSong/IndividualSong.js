@@ -61,7 +61,7 @@ function IndividualSong({ song, index, playlist }) {
     dispatch(getSongPlayNow(song, playlist, index));
   }
   return (
-    <div className="song-item-playlist">
+    <>
       <div className="song-info">
         <div className="song-cover"></div>
         <div className="song-name">
@@ -69,47 +69,48 @@ function IndividualSong({ song, index, playlist }) {
           <h5>{song.artist}</h5>
         </div>
       </div>
-      <div className="song-actions">
-        <div className="song-play">
-          <button onClick={handlePlayClick}>
-            <BsFillCaretRightFill className="play-icon" />
-          </button>
+      <div className="song-actions-container">
+        <div className="song-actions">
+          <div className="song-play">
+            <button onClick={handlePlayClick}>
+              <BsFillCaretRightFill className="play-icon" />
+            </button>
+          </div>
+          <div className="song-time">
+            <h4>{fancyTimeFormat(song.duration)}</h4>
+          </div>
+          <div className="song-like">
+            <button onClick={handleLikeClick}>
+              {liked ? (
+                <FaHeart className={`like-icon ${handleClassName()}`} />
+              ) : (
+                <FaRegHeart className={`like-icon ${handleClassName()}`} />
+              )}
+            </button>
+          </div>
         </div>
-        <div className="song-time">
-          <h4>{fancyTimeFormat(song.duration)}</h4>
-        </div>
-        <div className="song-like">
-          <button onClick={handleLikeClick}>
-            {liked ? (
-              <FaHeart className={`like-icon ${handleClassName()}`} />
-            ) : (
-              <FaRegHeart className={`like-icon ${handleClassName()}`} />
-            )}
+
+        <div className="context-container">
+          <button onClick={() => Toggle()} className="context-menu-btn">
+            <IoMdMore className="context-icon" />
           </button>
+          <RightClickMenu
+            show={contextMenu}
+            closeMenu={Toggle}
+            handleLike={handleLikeClick}
+            ToggleEditModal={ToggleEditModal}
+            ToggleDeleteModal={ToggleDeleteModal}
+            modals={modals}
+            song={song}
+          />
+          <SongEditModal
+            show={modals.editModal}
+            close={ToggleEditModal}
+            song={song}
+          />
         </div>
       </div>
-      <div>
-        <button onClick={() => Toggle()} className="context-menu-btn">
-          <label>
-            <IoMdMore />
-          </label>
-        </button>
-        <RightClickMenu
-          show={contextMenu}
-          closeMenu={Toggle}
-          handleLike={handleLikeClick}
-          ToggleEditModal={ToggleEditModal}
-          ToggleDeleteModal={ToggleDeleteModal}
-          modals={modals}
-          song={song}
-        />
-        <SongEditModal
-          show={modals.editModal}
-          close={ToggleEditModal}
-          song={song}
-        />
-      </div>
-    </div>
+    </>
   );
 }
 
