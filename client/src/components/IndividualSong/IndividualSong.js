@@ -69,27 +69,6 @@ function IndividualSong({ song, index, playlist }) {
           <h5>{song.artist}</h5>
         </div>
       </div>
-      <div>
-        <button onClick={() => Toggle()} className="context-menu-btn">
-          <label>
-            <IoMdMore />
-          </label>
-        </button>
-        <RightClickMenu
-          show={contextMenu}
-          closeMenu={Toggle}
-          handleLike={handleLikeClick}
-          ToggleEditModal={ToggleEditModal}
-          ToggleDeleteModal={ToggleDeleteModal}
-          modals={modals}
-          song={song}
-        />
-        <SongEditModal
-          show={modals.editModal}
-          close={ToggleEditModal}
-          song={song}
-        />
-      </div>
       <div className="song-actions">
         <div className="song-play">
           <button onClick={handlePlayClick}>
@@ -109,14 +88,24 @@ function IndividualSong({ song, index, playlist }) {
           </button>
         </div>
       </div>
-      <div className="context-container">
+      <div>
         <button onClick={() => Toggle()} className="context-menu-btn">
-          <IoMdMore className="more-icon" />
+          <label>
+            <IoMdMore />
+          </label>
         </button>
         <RightClickMenu
           show={contextMenu}
-          close={Toggle}
+          closeMenu={Toggle}
           handleLike={handleLikeClick}
+          ToggleEditModal={ToggleEditModal}
+          ToggleDeleteModal={ToggleDeleteModal}
+          modals={modals}
+          song={song}
+        />
+        <SongEditModal
+          show={modals.editModal}
+          close={ToggleEditModal}
           song={song}
         />
       </div>
