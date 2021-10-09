@@ -10,6 +10,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   song: songReducer,
   player: playerReducer,
+  playlist: playlistReducer,
 });
 
 export default rootReducer;

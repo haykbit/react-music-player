@@ -1,14 +1,14 @@
 const db = require("../models");
 
 async function createPlaylist(req, res, next) {
-  const { title, description, genre, private, url } = req.body.playlist;
+  const { title, description, genre, private, image } = req.body.playlist;
   const { uid } = req.user;
   try {
     const newPlaylist = await db.Playlist.create({
       title,
       description,
-      genre,
-      playlistImage: url,
+      genre: genre,
+      playlistImage: image,
       private,
       owner: uid,
     });
@@ -88,9 +88,17 @@ async function updatePlaylist(req, res, next) {
   }
 }
 
+async function removeSongFromPlaylist(req, res, next) {
+  try {
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
   fetchPlaylists: fetchPlaylists,
   getPlaylistById: getPlaylistById,
   removePlaylistById: removePlaylistById,
   updatePlaylist: updatePlaylist,
+  createPlaylist,
 };
