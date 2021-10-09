@@ -14,7 +14,7 @@ import song3 from "../../assets/music/ReturningHome.mp3";
 import "./style/songbar.scss";
 
 const AudioPlayer = () => {
-  const { songData } = useSelector((state) => state.player);
+  const { songData, playlist, index } = useSelector((state) => state.player);
 
   const tracks = [
     {
@@ -23,6 +23,7 @@ const AudioPlayer = () => {
       audioSrc: song1,
       image: imageSong,
       color: "#00aeb0",
+      url: "http://res.cloudinary.com/dzaxp8xwy/video/upload/v1633778937/gq4fvxyri6yee5t8voog.mp3",
     },
     {
       title: "50",
@@ -30,6 +31,7 @@ const AudioPlayer = () => {
       audioSrc: song2,
       image: imageSong1,
       color: "#ffb77a",
+      url: "http://res.cloudinary.com/dzaxp8xwy/video/upload/v1633778937/gq4fvxyri6yee5t8voog.mp3",
     },
     {
       title: "I Wonder",
@@ -37,6 +39,7 @@ const AudioPlayer = () => {
       audioSrc: song3,
       image: imageSong2,
       color: "#5f9fff",
+      url: "http://res.cloudinary.com/dzaxp8xwy/video/upload/v1633778937/gq4fvxyri6yee5t8voog.mp3",
     },
   ];
   // TODO get song data from now playing
@@ -47,9 +50,10 @@ const AudioPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   // Destructure for conciseness
-  const { title, artist, url, duration } = songData;
+  const { title, artist, url, duration } = playlist[index];
 
   // Refs
+  console.log(url, "URL IN PLAYER");
   const audioRef = useRef(new Audio(url));
   const intervalRef = useRef();
   const isReady = useRef(false);
@@ -127,7 +131,6 @@ const AudioPlayer = () => {
   // Restart state for next song
   useEffect(() => {
     audioRef.current.pause();
-
     audioRef.current = new Audio(url);
     setTrackProgress(audioRef.current.currentTime);
 

@@ -11,7 +11,7 @@ import { IoMdMore } from "react-icons/io";
 import RightClickMenu from "../RightClickMenu";
 import SongEditModal from "../SongEditModal";
 
-function IndividualSong({ song }) {
+function IndividualSong({ song, index, playlist }) {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const { likeSongSuccess, loading } = useSelector((state) => state.song);
@@ -58,7 +58,7 @@ function IndividualSong({ song }) {
 
   function handlePlayClick() {
     //TODO add hidden or not condition
-    dispatch(getSongPlayNow(song));
+    dispatch(getSongPlayNow(song, playlist, index));
   }
   return (
     <div className="song-item-playlist">

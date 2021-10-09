@@ -83,6 +83,8 @@ function PlaylistStack() {
                                       <IndividualSong
                                         song={song}
                                         key={song._id}
+                                        playlist={mySongsData}
+                                        index={index}
                                       />
                                     </div>
                                   </section>
