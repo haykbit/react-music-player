@@ -44,13 +44,13 @@ const AudioPlayer = () => {
   ];
   // TODO get song data from now playing
   // State
-  const [trackIndex, setTrackIndex] = useState(0);
+  const [trackIndex, setTrackIndex] = useState(index);
   const [trackProgress, setTrackProgress] = useState(0);
   const [volumeLevel, setVolumeLevel] = useState("0.50");
   const [isPlaying, setIsPlaying] = useState(false);
 
   // Destructure for conciseness
-  const { title, artist, url, duration } = playlist[index];
+  const { title, artist, url, duration } = playlist[trackIndex];
 
   // Refs
   console.log(url, "URL IN PLAYER");

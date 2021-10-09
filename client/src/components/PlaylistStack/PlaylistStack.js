@@ -78,16 +78,14 @@ function PlaylistStack() {
                                 {...provided.dragHandleProps}
                               >
                                 <div className="song-container">
-                                  <section className="new-spain">
-                                    <div className="song-list-playlist">
-                                      <IndividualSong
-                                        song={song}
-                                        key={song._id}
-                                        playlist={mySongsData}
-                                        index={index}
-                                      />
-                                    </div>
-                                  </section>
+                                  <div className="song-list-playlist">
+                                    <IndividualSong
+                                      song={song}
+                                      key={song._id}
+                                      playlist={mySongsData}
+                                      index={index}
+                                    />
+                                  </div>
                                 </div>
                               </li>
                             )}
