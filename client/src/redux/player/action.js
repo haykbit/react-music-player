@@ -10,10 +10,10 @@ import {
   PLAY_PREV_FAIL,
 } from "./types";
 
-export const getSongPlayNow = (song) => async (dispatch) => {
+export const getSongPlayNow = (song, playlist, index) => async (dispatch) => {
   dispatch({ type: PLAY_REQUEST });
   try {
-    dispatch({ type: PLAY_SUCCESS, payload: song });
+    dispatch({ type: PLAY_SUCCESS, payload: { song, playlist, index } });
   } catch (error) {
     dispatch({ type: PLAY_FAIL, payload: error.message });
   }

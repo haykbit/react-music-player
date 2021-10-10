@@ -5,6 +5,15 @@ const INITIAL_STATE = {
     duration: 0,
     url: "",
   },
+  playlist: [
+    {
+      title: "",
+      artist: "",
+      duration: 0,
+      url: "",
+    },
+  ],
+  index: 0,
   loading: false,
   error: null,
   playSuccess: false,

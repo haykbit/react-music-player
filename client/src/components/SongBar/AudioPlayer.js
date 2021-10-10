@@ -14,40 +14,17 @@ import song3 from "../../assets/music/ReturningHome.mp3";
 import "./style/songbar.scss";
 
 const AudioPlayer = () => {
-  const { songData } = useSelector((state) => state.player);
+  const { playSuccess, playlist, index } = useSelector((state) => state.player);
 
-  const tracks = [
-    {
-      title: "Cali",
-      artist: "Wataboi",
-      audioSrc: song1,
-      image: imageSong,
-      color: "#00aeb0",
-    },
-    {
-      title: "50",
-      artist: "tobylane",
-      audioSrc: song2,
-      image: imageSong1,
-      color: "#ffb77a",
-    },
-    {
-      title: "I Wonder",
-      artist: "DreamHeaven",
-      audioSrc: song3,
-      image: imageSong2,
-      color: "#5f9fff",
-    },
-  ];
   // TODO get song data from now playing
   // State
-  const [trackIndex, setTrackIndex] = useState(0);
+  const [trackIndex, setTrackIndex] = useState(index);
   const [trackProgress, setTrackProgress] = useState(0);
   const [volumeLevel, setVolumeLevel] = useState("0.50");
   const [isPlaying, setIsPlaying] = useState(false);
 
   // Destructure for conciseness
-  const { title, artist, url, duration } = songData;
+  const { title, artist, url, duration } = playlist[trackIndex];
 
   // Refs
   const audioRef = useRef(new Audio(url));
@@ -55,11 +32,10 @@ const AudioPlayer = () => {
   const isReady = useRef(false);
 
   // Destructure for conciseness
-  // const { duration } = audioRef.current;
 
-  const currentPercentage = duration
+  /* const currentPercentage = duration
     ? `${(trackProgress / duration) * 100}%`
-    : "0%";
+    : "0%"; */
 
   const startTimer = () => {
     // Clear any timers already running
@@ -93,22 +69,20 @@ const AudioPlayer = () => {
       setIsPlaying(true);
     }
     startTimer();
-    audioRef.current.volume = volumeLevel;
+    //audioRef.current.volume = volumeLevel;
   };
 
   const toPrevTrack = () => {
     if (trackIndex - 1 < 0) {
-      setTrackIndex(tracks.length - 1);
+      setTrackIndex(playlist.length - 1);
     } else {
       setTrackIndex(trackIndex - 1);
     }
   };
 
   const toNextTrack = () => {
-    console.log("TRACK INDEX: ", trackIndex);
-    console.log("TRACKS LENGTH: ", tracks.length);
-    if (trackIndex < tracks.length - 1) {
-      setTrackIndex(trackIndex + 1);
+    if (trackIndex < playlist.length - 1) {
+      setTrackIndex((prev) => prev + 1);
     } else {
       setTrackIndex(0);
     }
@@ -116,7 +90,6 @@ const AudioPlayer = () => {
 
   useEffect(() => {
     if (isPlaying) {
-      console.log(audioRef);
       audioRef.current.play();
       startTimer();
     } else {
@@ -127,9 +100,26 @@ const AudioPlayer = () => {
   // Restart state for next song
   useEffect(() => {
     audioRef.current.pause();
-
     audioRef.current = new Audio(url);
     setTrackProgress(audioRef.current.currentTime);
+    setTrackIndex(index);
+
+    if (isReady.current) {
+      audioRef.current.play();
+      setIsPlaying(true);
+      startTimer();
+    } else {
+      // Next song is ready
+      isReady.current = true;
+    }
+  }, [playSuccess, index]);
+
+  // Restart state for next song
+  useEffect(() => {
+    audioRef.current.pause();
+    audioRef.current = new Audio(url);
+    setTrackProgress(audioRef.current.currentTime);
+    //setTrackIndex(index);
 
     if (isReady.current) {
       audioRef.current.play();
@@ -142,7 +132,6 @@ const AudioPlayer = () => {
   }, [trackIndex]);
 
   useEffect(() => {
-    // Pause and clean up on unmount
     return () => {
       audioRef.current.pause();
       clearInterval(intervalRef.current);

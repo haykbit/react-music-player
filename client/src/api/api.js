@@ -142,3 +142,15 @@ export async function getPlaylistsList(id) {
     },
   });
 }
+
+//!! it is the same as getMySongsData function.
+export async function getMySongsPlaylist(userId) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/songs/mysongs/${userId}`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}

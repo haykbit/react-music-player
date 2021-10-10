@@ -20,6 +20,8 @@ const reducer = (state = INITIAL_STATE, action) => {
         loading: true,
         playSuccess: false,
         songData: null,
+        playlist: null,
+        index: 0,
         error: null,
       };
     case PLAY_SUCCESS:
@@ -27,7 +29,9 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: false,
         playSuccess: true,
-        songData: action.payload,
+        songData: action.payload.song,
+        playlist: action.payload.playlist,
+        index: action.payload.index,
       };
     case PLAY_FAIL:
       return {
@@ -35,6 +39,8 @@ const reducer = (state = INITIAL_STATE, action) => {
         loading: false,
         error: action.payload,
         songData: null,
+        playlist: null,
+        index: 0,
       };
     case PLAY_NEXT_REQUEST:
       return {
