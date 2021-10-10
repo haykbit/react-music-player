@@ -7,7 +7,7 @@ const FormSchema = Yup.object().shape({
     .required("The playlist title is required"),
   description: Yup.string()
     .min(2, "Too short")
-    .max(100, "Too long")
+    .max(200, "Too long")
     .required("The description is required"),
   private: Yup.string().required("This field is required"),
 });
