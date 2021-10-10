@@ -1,4 +1,4 @@
-import { createPlaylists } from "../../api/api";
+import { createPlaylists, getMyPlaylistsList } from "../../api/api";
 import { uploadImages } from "../../services/cloudinary";
 import {
   PLAYLIST_CREATE_REQUEST,
@@ -27,6 +27,8 @@ export const createNewPlaylist = (playlistData, image) => async (dispatch) => {
 export const getMyPlaylists = (id) => async (dispatch) => {
   dispatch({ type: GET_MY_PLAYLISTS_REQUEST });
   try {
+    const playlists = await getMyPlaylistsList(id);
+    dispatch({ type: GET_MY_PLAYLISTS_SUCCESS, payload: playlists.data.data });
   } catch (error) {
     dispatch({ type: GET_MY_PLAYLISTS_FAIL, payload: error.message });
   }

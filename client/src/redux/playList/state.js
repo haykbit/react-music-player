@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   addedToPlaylistSuccess: false,
   getMyPlaylistsSuccess: false,
   error: null,
+  myPlaylists: [],
 };
 
 export default INITIAL_STATE;

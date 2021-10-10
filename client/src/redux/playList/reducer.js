@@ -59,6 +59,7 @@ const reducer = (state = INITIAL_STATE, action) => {
         playlistCreatedSuccess: false,
         addedToPlaylistSuccess: false,
         getMyPlaylistsSuccess: true,
+        myPlaylists: action.payload,
         error: null,
       };
     case GET_MY_PLAYLISTS_FAIL:
