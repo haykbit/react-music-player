@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import Modal from "../Modal";
-import PlaylistStack from "../UploadedPlaylistStack/UploadedPlaylistStack";
+// import PlaylistStack from "../UploadedPlaylistStack/UploadedPlaylistStack";
 
 import { FiUploadCloud } from "react-icons/fi";
 
@@ -39,9 +39,7 @@ function Playlist() {
               <Modal show={modal} close={Toggle} />
             </div>
           </div>
-          <div className="song-stack">
-            <PlaylistStack />
-          </div>
+          <div className="song-stack">{/* <PlaylistStack /> */}</div>
         </div>
         <div className="right-side">
           <div className="relevant-title">Top 3 most relevant songs</div>

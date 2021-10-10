@@ -9,7 +9,7 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Playlists from "./pages/Playlists";
-import UploadPlaylistGrid from "./components/UploadedPlaylistGrid/UploadedPlaylistGrid";
+// import UploadPlaylistGrid from "./components/UploadedPlaylistGrid/UploadedPlaylistGrid";
 
 function App() {
   const history = useHistory();
