@@ -25,6 +25,7 @@ const AudioPlayer = () => {
 
   // Destructure for conciseness
   const { title, artist, url, duration } = playlist[trackIndex];
+  console.log(volumeLevel);
 
   // Refs
   const audioRef = useRef(new Audio(url));
@@ -69,7 +70,7 @@ const AudioPlayer = () => {
       setIsPlaying(true);
     }
     startTimer();
-    //audioRef.current.volume = volumeLevel;
+    audioRef.current.volume = volumeLevel;
   };
 
   const toPrevTrack = () => {
@@ -97,12 +98,13 @@ const AudioPlayer = () => {
     }
   }, [isPlaying]);
 
-  // Restart state for next song
+  // Getting the right song on play
   useEffect(() => {
     audioRef.current.pause();
     audioRef.current = new Audio(url);
     setTrackProgress(audioRef.current.currentTime);
     setTrackIndex(index);
+    volumeControl(volumeLevel);
 
     if (isReady.current) {
       audioRef.current.play();
@@ -112,14 +114,14 @@ const AudioPlayer = () => {
       // Next song is ready
       isReady.current = true;
     }
-  }, [playSuccess, index]);
+  }, [playSuccess, playlist, index]);
 
   // Restart state for next song
   useEffect(() => {
     audioRef.current.pause();
     audioRef.current = new Audio(url);
     setTrackProgress(audioRef.current.currentTime);
-    //setTrackIndex(index);
+    volumeControl(volumeLevel);
 
     if (isReady.current) {
       audioRef.current.play();

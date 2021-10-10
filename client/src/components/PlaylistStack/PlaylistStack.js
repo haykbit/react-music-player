@@ -41,7 +41,7 @@ function PlaylistStack() {
     if (!loading && authObserverSuccess) {
       loadPlaylistOnMount();
     }
-  }, [loading, uploadSongSuccess, deleteSongSuccess, mySongsData]);
+  }, [loading, uploadSongSuccess, deleteSongSuccess]);
 
   useEffect(() => {
     if (!loading && authObserverSuccess) {
