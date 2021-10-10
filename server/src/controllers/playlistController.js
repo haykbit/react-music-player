@@ -27,11 +27,12 @@ async function createPlaylist(req, res, next) {
 }
 
 async function fetchPlaylists(req, res, next) {
+  const { ownerId } = req.params;
   try {
-    const playlist = await db.Playlist.find().lean();
+    const myPlaylists = await db.Playlist.find({ owner: ownerId }).lean();
 
     res.status(200).send({
-      data: playlist,
+      data: myPlaylists,
     });
   } catch (err) {
     console.log(err);

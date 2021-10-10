@@ -131,3 +131,14 @@ export async function createPlaylists(playlist) {
     data: { playlist },
   });
 }
+
+export async function getPlaylistsList(id) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/playlists/all/${id}`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}

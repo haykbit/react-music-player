@@ -7,7 +7,11 @@ const playlistRouter = Router();
 //http://localhost:4000/playlists/
 
 playlistRouter.post("/", authMiddleware, playlistController.createPlaylist);
-playlistRouter.get("/all", authMiddleware, playlistController.fetchPlaylists);
+playlistRouter.get(
+  "/all/:id",
+  authMiddleware,
+  playlistController.fetchPlaylists
+);
 playlistRouter.get("/:id", authMiddleware, playlistController.getPlaylistById);
 playlistRouter.patch("/:id", authMiddleware, playlistController.updatePlaylist);
 

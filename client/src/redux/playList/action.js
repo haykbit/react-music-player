@@ -17,6 +17,6 @@ export const createNewPlaylist = (playlistData, image) => async (dispatch) => {
     dispatch({ type: PLAYLIST_CREATE_SUCCESS });
     await createPlaylists(playlist);
   } catch (error) {
-    dispatch({ type: PLAYLIST_CREATE_FAIL });
+    dispatch({ type: PLAYLIST_CREATE_FAIL, payload: error.message });
   }
 };
