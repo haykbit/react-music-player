@@ -8,9 +8,14 @@ const playlistRouter = Router();
 
 playlistRouter.post("/", authMiddleware, playlistController.createPlaylist);
 playlistRouter.get(
-  "/all/:id",
+  "/my-lists/:id",
   authMiddleware,
-  playlistController.fetchPlaylists
+  playlistController.fetchMyPlaylists
+);
+playlistRouter.get(
+  "/all",
+  authMiddleware,
+  playlistController.fetchAllPlaylists
 );
 playlistRouter.get("/:id", authMiddleware, playlistController.getPlaylistById);
 playlistRouter.patch("/:id", authMiddleware, playlistController.updatePlaylist);

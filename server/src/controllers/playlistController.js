@@ -26,13 +26,25 @@ async function createPlaylist(req, res, next) {
   }
 }
 
-async function fetchPlaylists(req, res, next) {
-  const { ownerId } = req.params;
+async function fetchMyPlaylists(req, res, next) {
+  const { id } = req.params;
   try {
-    const myPlaylists = await db.Playlist.find({ owner: ownerId }).lean();
+    const myPlaylists = await db.Playlist.find({ owner: id }).lean();
 
     res.status(200).send({
       data: myPlaylists,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function fetchAllPlaylists(req, res, next) {
+  try {
+    const allPlaylists = await db.Playlist.find().lean();
+
+    res.status(200).send({
+      data: allPlaylists,
     });
   } catch (err) {
     console.log(err);
@@ -97,9 +109,10 @@ async function removeSongFromPlaylist(req, res, next) {
 }
 
 module.exports = {
-  fetchPlaylists: fetchPlaylists,
-  getPlaylistById: getPlaylistById,
-  removePlaylistById: removePlaylistById,
-  updatePlaylist: updatePlaylist,
+  fetchMyPlaylists,
+  fetchAllPlaylists,
+  getPlaylistById,
+  removePlaylistById,
+  updatePlaylist,
   createPlaylist,
 };

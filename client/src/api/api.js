@@ -132,11 +132,11 @@ export async function createPlaylists(playlist) {
   });
 }
 
-export async function getPlaylistsList(id) {
+export async function getMyPlaylistsList(id) {
   const userToken = await getCurrentUserToken();
   return axios({
     method: "GET",
-    url: `${process.env.REACT_APP_API_BASE_URL}/playlists/all/${id}`,
+    url: `${process.env.REACT_APP_API_BASE_URL}/playlists/my-lists/${id}`,
     headers: {
       Authorization: `Bearer ${userToken}`,
     },
