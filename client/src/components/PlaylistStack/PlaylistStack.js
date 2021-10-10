@@ -22,7 +22,6 @@ function PlaylistStack() {
 
   async function loadPlaylistOnMount() {
     const uploadedPlaylist = await getMySongsPlaylist(user.uid);
-    console.log(uploadedPlaylist, "UPLOADED PLAYLIST");
     setMySongsData(uploadedPlaylist.data.data);
   }
 
@@ -42,7 +41,7 @@ function PlaylistStack() {
     if (!loading && authObserverSuccess) {
       loadPlaylistOnMount();
     }
-  }, [loading, uploadSongSuccess, deleteSongSuccess]);
+  }, [loading, uploadSongSuccess, deleteSongSuccess, mySongsData]);
 
   useEffect(() => {
     if (!loading && authObserverSuccess) {
