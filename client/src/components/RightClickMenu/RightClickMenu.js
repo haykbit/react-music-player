@@ -38,15 +38,15 @@ function RightClickMenu({
   return (
     <>
       {show ? (
-        <div
-          className="context-menu-container"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="context-menu">
-            <li onClick={() => handleLike()}>Add to favorites</li>
+        <div className="context-menu-container" onClick={() => closeMenu()}>
+          <div className="context-menu" onClick={(e) => e.stopPropagation()}>
+            <li className="menu-option-box" onClick={() => handleLike()}>
+              Favorite
+            </li>
             {song.owner === userUid ? (
               <>
                 <li
+                  className="menu-option-box"
                   onClick={() => {
                     editHandle();
                     closeMenu();
@@ -55,7 +55,9 @@ function RightClickMenu({
                   Edit
                 </li>
 
-                <li onClick={deleteHandle}>Delete</li>
+                <li className="menu-option-box" onClick={deleteHandle}>
+                  Delete
+                </li>
               </>
             ) : (
               ""
