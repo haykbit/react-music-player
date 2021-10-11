@@ -1,6 +1,6 @@
 import { Switch, Route } from "react-router-dom";
 import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { authObserverLoading } from "./redux/auth/action";
@@ -9,14 +9,11 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Playlists from "./pages/Playlists";
+import IndividualPlaylist from "./pages/IndividualPlaylist";
 
 function App() {
   const history = useHistory();
-  // useEffect(() => {
-  //   if (!loading && !accessToken) {
-  //     history.push("/login");
-  //   }
-  // }, [loading, accessToken, history]);
+  const location = useLocation();
   const dispatch = useDispatch();
   const userStorage = JSON.parse(localStorage.getItem("user"));
   const { loading, authObserverSuccess } = useSelector((state) => state.auth);
@@ -25,6 +22,8 @@ function App() {
     dispatch(authObserverLoading());
     if (!loading && !authObserverSuccess && !userStorage) {
       history.push("/login");
+    } else if (location.pathname === "/") {
+      history.push("/home-page");
     }
   }, []);
 
@@ -35,7 +34,8 @@ function App() {
         <Route path="/register" exact component={Register} />
         <Route path="/login" exact component={Login} />
         <Route path="/profile" exact component={Profile} />
-        <Route path="/playlist" exact component={Playlists} />
+        <Route path="/playlist" exact component={IndividualPlaylist} />
+        <Route path="/playlists" exact component={Playlists} />
         {/* <Route path="/favorite" exact component={Favorite} /> */}
       </Switch>
     </>

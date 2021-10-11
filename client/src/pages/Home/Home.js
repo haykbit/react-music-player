@@ -1,6 +1,6 @@
 import React from "react";
 import PlaylistCarrusel from "../../components/PlaylistCarrusel";
-import PlaylistNew from "../../components/PlaylistNew/PlaylistNew";
+import GeneralList from "../../components/GeneralList/GeneralList";
 import Navbar from "../../components/Navbar/Navbar";
 import AlbumExplorer from "../../components/AlbumExplorer";
 import SongBar from "../../components/SongBar";
@@ -12,7 +12,7 @@ function Home() {
     <>
       <Navbar />
       <PlaylistCarrusel />
-      <PlaylistNew />
+      <GeneralList />
       <AlbumExplorer />
       <SongBar />
     </>

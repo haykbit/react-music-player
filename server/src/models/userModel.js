@@ -39,16 +39,12 @@ const UserSchema = new Schema(
       type: [{ type: Schema.Types.ObjectId, ref: "song" }],
       default: [],
     },
-    artist: {
-      type: Boolean,
-      default: false,
-    },
-    mySongs: {
-      type: [{ type: Schema.Types.ObjectId, ref: "song" }],
+    myPlaylists: {
+      type: [{ type: Schema.Types.ObjectId, ref: "playlist" }],
       default: [],
     },
-    myFavoriteSongs: {
-      type: [{ type: Schema.Types.ObjectId, ref: "song" }],
+    myFavoritePlaylists: {
+      type: [{ type: Schema.Types.ObjectId, ref: "playlist" }],
       default: [],
     },
     artist: {

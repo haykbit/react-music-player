@@ -7,6 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 
   .modal {
     display: flex;
@@ -15,7 +16,7 @@
     height: auto;
     padding: 2rem;
     border-radius: 20px;
-    background-color: rgba(47, 47, 47, 0.9);
+    background-color: rgba(203, 123, 250, 0.9);
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
 
     .modal-input-box,
@@ -31,7 +32,14 @@
         width: 120px;
         cursor: pointer;
       }
-      input {
+      .submit {
+        background-color: rgba(2, 138, 250, 0.801);;
+      }
+      .modal-close {
+       background-color: rgba(165, 161, 159, 0.863);
+
+      }
+      input, select {
         height: 40px;
         width: 300px;
         box-sizing: border-box;

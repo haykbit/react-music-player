@@ -32,6 +32,7 @@ function ProfileInfo() {
 
   const { loading, accessToken, signOutSuccess, authObserverSuccess, user } =
     useSelector((state) => state.auth);
+
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -53,7 +54,6 @@ function ProfileInfo() {
     const userData = await getUserProfile(user.uid);
     console.log(userData, "USER DATA");
     const { email, firstName, lastName, profileImage } = userData.data.data;
-    console.log(profileImage, "profile");
     setProfile({
       email: email,
       firstName: firstName,
