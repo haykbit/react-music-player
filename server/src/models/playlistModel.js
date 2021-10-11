@@ -13,7 +13,7 @@ const PlaylistSchema = new Schema(
       type: String,
       required: [true, "Please enter description to the playlist"],
       trim: true,
-      maxLength: [30, "Playlist description cannot exceed 30 characters"],
+      maxLength: [200, "Playlist description cannot exceed 200 characters"],
     },
     songs: {
       type: [{ type: Schema.Types.ObjectId, ref: "Song" }],
@@ -24,6 +24,7 @@ const PlaylistSchema = new Schema(
       // required: [true, "Please select genre for this playlist"],
       enum: {
         values: [
+          "",
           "Country",
           "Electronic dance music (EDM)",
           "Hip-hop",
@@ -42,7 +43,7 @@ const PlaylistSchema = new Schema(
           "Reggae",
           "Punk",
         ],
-        message: "Please select correct genre for playlist",
+        // message: "Please select correct genre for playlist",
       },
     },
     private: {

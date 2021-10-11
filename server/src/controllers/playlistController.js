@@ -1,14 +1,14 @@
 const db = require("../models");
 
 async function createPlaylist(req, res, next) {
-  const { title, description, genre, private, url } = req.body.playlist;
+  const { title, description, genre, private, image } = req.body.playlist;
   const { uid } = req.user;
   try {
     const newPlaylist = await db.Playlist.create({
       title,
       description,
-      genre,
-      playlistImage: url,
+      genre: genre,
+      playlistImage: image,
       private,
       owner: uid,
     });
@@ -26,12 +26,25 @@ async function createPlaylist(req, res, next) {
   }
 }
 
-async function fetchPlaylists(req, res, next) {
+async function fetchMyPlaylists(req, res, next) {
+  const { id } = req.params;
   try {
-    const playlist = await db.Playlist.find().lean();
+    const myPlaylists = await db.Playlist.find({ owner: id }).lean();
 
     res.status(200).send({
-      data: playlist,
+      data: myPlaylists,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function fetchAllPlaylists(req, res, next) {
+  try {
+    const allPlaylists = await db.Playlist.find().lean();
+
+    res.status(200).send({
+      data: allPlaylists,
     });
   } catch (err) {
     console.log(err);
@@ -88,9 +101,18 @@ async function updatePlaylist(req, res, next) {
   }
 }
 
+async function removeSongFromPlaylist(req, res, next) {
+  try {
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
-  fetchPlaylists: fetchPlaylists,
-  getPlaylistById: getPlaylistById,
-  removePlaylistById: removePlaylistById,
-  updatePlaylist: updatePlaylist,
+  fetchMyPlaylists,
+  fetchAllPlaylists,
+  getPlaylistById,
+  removePlaylistById,
+  updatePlaylist,
+  createPlaylist,
 };

@@ -78,6 +78,7 @@ const SongSchema = new Schema(
     },
     played: {
       type: Number,
+      default: 0,
     },
   },
   { timestamp: true }

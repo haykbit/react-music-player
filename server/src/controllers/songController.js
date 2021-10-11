@@ -153,7 +153,8 @@ async function updateSong(req, res, next) {
           genre: genre || "",
           album: album || "",
         },
-      }
+      },
+      { new: true }
     );
 
     res.status(200).send({
@@ -184,6 +185,21 @@ async function deleteSong(req, res, next) {
   }
 }
 
+async function countPlayedNumber(req, res, next) {
+  const { id } = req.params;
+  try {
+    await db.Song.findOneAndUpdate(
+      { _id: id },
+      {
+        $inc: {
+          played: 1,
+        },
+      },
+      { new: true }
+    );
+  } catch (error) {}
+}
+
 module.exports = {
   createSong,
   fetchSongs,
@@ -193,4 +209,5 @@ module.exports = {
   cancelLikeSong,
   updateSong,
   deleteSong,
+  countPlayedNumber,
 };

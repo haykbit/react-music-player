@@ -9,14 +9,14 @@ import { BsFillCaretRightFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 import IndividualSong from "../IndividualSong/index";
 
-import "./style/playliststack.scss";
+import "./style/playlistStack.scss";
 
 function PlaylistStack() {
   const [mySongsData, setMySongsData] = useState(null);
   const { user, loading, authObserverSuccess } = useSelector(
     (state) => state.auth
   );
-  const { uploadSongSuccess, deleteSongSuccess } = useSelector(
+  const { uploadSongSuccess, deleteSongSuccess, songUpdated } = useSelector(
     (state) => state.song
   );
 
@@ -42,7 +42,13 @@ function PlaylistStack() {
     if (!loading && authObserverSuccess) {
       loadPlaylistOnMount();
     }
-  }, [loading, uploadSongSuccess, deleteSongSuccess]);
+  }, [loading, uploadSongSuccess, deleteSongSuccess, songUpdated]);
+
+  useEffect(() => {
+    if (!loading && authObserverSuccess) {
+      loadPlaylistOnMount();
+    }
+  }, []);
 
   useEffect(() => {
     if (!loading && authObserverSuccess) {

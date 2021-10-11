@@ -83,6 +83,10 @@
   margin: 0px 0px 0px 20px;
 }
 
+.song-container .song-list-playlist:hover {
+  background-color: #666666;
+}
+
 .song-container .playlists-header {
   display: -webkit-box;
   display: -ms-flexbox;
