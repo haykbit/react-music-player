@@ -7,7 +7,6 @@ import portadaUno from "../../assets/images/icons/portada-1.png";
 import portadaDos from "../../assets/images/icons/portada-2.png";
 import portadaTres from "../../assets/images/icons/portada-3.png";
 import portadaCuatro from "../../assets/images/icons/portada-4.png";
-import { useHistory } from "react-router-dom";
 
 import { CgPlayList } from "react-icons/cg";
 import IconPlayList from "../../assets/images/icons/wishlist.png";
@@ -48,7 +47,6 @@ function PlaylistGrid() {
     { name: "European Rap", songs: 15, cover: portadaTres },
     { name: "Spanish Trap", songs: 43, cover: portadaCuatro },
   ];
-  const history = useHistory();
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
@@ -75,7 +73,12 @@ function PlaylistGrid() {
                 className="playlist-item"
                 key={index}
                 style={{ backgroundImage: `url(${item.playlistImage})` }}
-                onClick={() => history.push(`playlist/${item._id}`)}
+                onClick={() =>
+                  history.push({
+                    pathname: `playlist/${item._id}`,
+                    state: { item },
+                  })
+                }
               >
                 <h1>{item.title}</h1>
                 <h4>{item.description}</h4>
