@@ -8,7 +8,7 @@ import { BsFillCaretRightFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
 import IndividualSong from "../IndividualSong/index";
 
-import "./style/playlistStack.scss";
+import "./style/playliststack.scss";
 
 function PlaylistStack() {
   const [mySongsData, setMySongsData] = useState(null);

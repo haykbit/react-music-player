@@ -37,7 +37,7 @@ function App() {
         <Route path="/login" exact component={Login} />
         <Route path="/profile" exact component={Profile} />
         <Route path="/favorites" exact component={FavSongs} />
-        <Route path="/playlist" exact component={IndividualPlaylist} />
+        <Route path="/playlist/:id" exact component={IndividualPlaylist} />
         <Route path="/playlists" exact component={Playlists} />
       </Switch>
       <AudioPlayer />
