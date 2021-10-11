@@ -11,6 +11,11 @@ songRouter.patch("/like/:id", songController.likeSong);
 songRouter.patch("/cancel-like/:id", songController.cancelLikeSong);
 songRouter.get("/:id", authMiddleware, songController.getSongById);
 songRouter.patch("/:id", authMiddleware, songController.updateSong);
+songRouter.patch(
+  "/played/:id",
+  authMiddleware,
+  songController.countPlayedNumber
+);
 songRouter.delete("/:id", authMiddleware, songController.deleteSong);
 
 songRouter.get(
