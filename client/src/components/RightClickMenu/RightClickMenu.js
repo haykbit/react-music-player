@@ -3,7 +3,6 @@ import { getCurrentUser } from "../../services/auth";
 import "./style/rightClickMenu.scss";
 import Modal from "../Modal";
 import SongEditModal from "../SongEditModal";
-import DeleteConfirmation from "../DeleteConfirmation";
 
 function RightClickMenu({
   show,
@@ -55,7 +54,13 @@ function RightClickMenu({
                   Edit
                 </li>
 
-                <li className="menu-option-box" onClick={deleteHandle}>
+                <li
+                  className="menu-option-box"
+                  onClick={() => {
+                    deleteHandle();
+                    closeMenu();
+                  }}
+                >
                   Delete
                 </li>
               </>
@@ -63,13 +68,6 @@ function RightClickMenu({
               ""
             )}
           </div>
-
-          <DeleteConfirmation
-            show={modals.deleteModal}
-            close={ToggleDeleteModal}
-            songId={song._id}
-            userId={userUid}
-          />
         </div>
       ) : null}
     </>
