@@ -2,21 +2,30 @@ import React, { useState } from "react";
 import { getCurrentUser } from "../../services/auth";
 import "./style/rightClickMenu.scss";
 import Modal from "../Modal";
+import SongEditModal from "../SongEditModal";
 import DeleteConfirmation from "../DeleteConfirmation";
 
-function RightClickMenu({ show, close, handleLike, song }) {
-  const [modals, setModals] = useState({
-    editModal: false,
-    deleteModal: false,
-  });
+function RightClickMenu({
+  show,
+  closeMenu,
+  handleLike,
+  song,
+  ToggleDeleteModal,
+  ToggleEditModal,
+  modals,
+}) {
+  // const [modals, setModals] = useState({
+  //   editModal: false,
+  //   deleteModal: false,
+  // });
 
   const userUid = getCurrentUser().uid;
 
-  const ToggleEditModal = () =>
-    setModals({ ...modals, editModal: !modals.editModal });
+  // const ToggleEditModal = () =>
+  //   setModals({ ...modals, editModal: !modals.editModal });
 
-  const ToggleDeleteModal = () =>
-    setModals({ ...modals, deleteModal: !modals.deleteModal });
+  // const ToggleDeleteModal = () =>
+  //   setModals({ ...modals, deleteModal: !modals.deleteModal });
 
   async function editHandle() {
     ToggleEditModal();
@@ -29,23 +38,35 @@ function RightClickMenu({ show, close, handleLike, song }) {
   return (
     <>
       {show ? (
-        <div className="context-menu-container" onClick={() => close()}>
-          <div className="context-menu" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="context-menu-container"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="context-menu">
             <li onClick={() => handleLike()}>Add to favorites</li>
             {song.owner === userUid ? (
               <>
-                <li onClick={editHandle}>Edit</li>
+                <li
+                  onClick={() => {
+                    editHandle();
+                    closeMenu();
+                  }}
+                >
+                  Edit
+                </li>
+
                 <li onClick={deleteHandle}>Delete</li>
               </>
             ) : (
               ""
             )}
           </div>
-          <Modal show={modals.editModal} close={ToggleEditModal} />
+
           <DeleteConfirmation
             show={modals.deleteModal}
             close={ToggleDeleteModal}
             songId={song._id}
+            userId={userUid}
           />
         </div>
       ) : null}

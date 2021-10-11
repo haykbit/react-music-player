@@ -19,6 +19,9 @@ async function createSong(req, res, next) {
         $push: { mySongs: [{ _id: newSong._id }] },
       }
     );
+    res.status(200).send({
+      message: "OK",
+    });
   } catch (error) {
     next(error);
   }
@@ -139,11 +142,18 @@ async function cancelLikeSong(req, res, next) {
 
 async function updateSong(req, res, next) {
   const { id } = req.params;
-  const { title, artist, genre } = req.body;
+  const { title, artist, genre, album } = req.body.songData;
   try {
     const updatedSong = await db.Song.findOneAndUpdate(
       { _id: id },
-      { $set: { title: title || "", artist: artist || "", genre: genre || "" } }
+      {
+        $set: {
+          title: title || "",
+          artist: artist || "",
+          genre: genre || "",
+          album: album || "",
+        },
+      }
     );
 
     res.status(200).send({
@@ -156,8 +166,19 @@ async function updateSong(req, res, next) {
 
 async function deleteSong(req, res, next) {
   const { id } = req.params;
+  const { userId } = req.body;
   try {
     await db.Song.deleteOne({ _id: id });
+    await db.User.findOneAndUpdate(
+      { firebase_id: userId },
+      {
+        $pull: { mySongs: id },
+      },
+      { new: true }
+    );
+    res.status(200).send({
+      message: "OK",
+    });
   } catch (err) {
     console.log(err);
   }

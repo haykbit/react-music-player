@@ -1,5 +1,31 @@
 const db = require("../models");
 
+async function createPlaylist(req, res, next) {
+  const { title, description, genre, private, url } = req.body.playlist;
+  const { uid } = req.user;
+  try {
+    const newPlaylist = await db.Playlist.create({
+      title,
+      description,
+      genre,
+      playlistImage: url,
+      private,
+      owner: uid,
+    });
+    await db.User.findOneAndUpdate(
+      { firebase_id: uid },
+      {
+        $push: { myPlaylists: [{ _id: newPlaylist._id }] },
+      }
+    );
+    res.status(200).send({
+      message: "OK",
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 async function fetchPlaylists(req, res, next) {
   try {
     const playlist = await db.Playlist.find().lean();
@@ -111,5 +137,6 @@ module.exports = {
   getPlaylistById: getPlaylistById,
   removePlaylistById: removePlaylistById,
   updatePlaylist: updatePlaylist,
+  createPlaylist: createPlaylist,
   addSong: addSong,
 };

@@ -44,13 +44,20 @@ function Navbar() {
       setProfileData();
     }
   }, [userState, loading]);
+
   const handleProfile = () => {
     history.push("/profile");
   };
+
   const handleLogout = () => {
     dispatch(logout());
     dispatch(resetUserData());
   };
+
+  const handlePlaylists = () => {
+    history.push("/playlists");
+  };
+
   const handlePlaylist = () => {
     history.push("/playlist");
   };
@@ -95,25 +102,21 @@ function Navbar() {
                   <BiUserCircle className="list-icon" />
                   <h4>Profile</h4>
                 </li>
-                <li onClick={handlePlaylist}>
+                <li onClick={handlePlaylists}>
                   <RiMusic2Line className="list-icon" />
                   <h4>Playlists</h4>
                 </li>
                 <li>
+                  <GoListUnordered className="list-icon" />
+                  <h4>My Playlists</h4>
+                </li>
+                <li onClick={handlePlaylist}>
                   <MdFavoriteBorder className="list-icon" />
                   <h4>Favorite</h4>
                 </li>
                 <li>
-                  <GoListUnordered className="list-icon" />
-                  <h4>General list</h4>
-                </li>
-                <li>
                   <RiHistoryFill className="list-icon" />
                   <h4>History</h4>
-                </li>
-                <li>
-                  <RiSettings4Line className="list-icon" />
-                  <h4>Settings</h4>
                 </li>
                 <li onClick={handleLogout}>
                   <IoLogOutOutline className="list-icon" />

@@ -1,124 +1,53 @@
-.song-container {
-  width: 100%;
+.playlists-container {
+  margin-top: 50px;
 }
 
-.song-list-playlist .song-item-playlist {
-  width: 100%;
-  height: 65px;
-  background-color: #fff;
-  margin-top: 10px;
-  border-radius: 5px;
-  background-color: #171717;
+.playlists-container .playlists-header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-.song-list-playlist .song-item-playlist .song-info {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 80%;
-}
-
-.song-list-playlist .song-item-playlist h3,
-.song-list-playlist .song-item-playlist h4,
-.song-list-playlist .song-item-playlist h5 {
   color: #fff;
-  margin: 3px;
-  font-weight: 500;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-left: 75px;
 }
 
-.song-list-playlist .song-item-playlist .song-name {
+.playlists-container .playlists-header .playlist-icon {
+  width: 30px;
+  height: 35px;
+  color: #a8a8a8;
+}
+
+.playlists-container .playlists-header h1 {
   margin-left: 10px;
 }
 
-.song-list-playlist .song-item-playlist .song-cover {
-  width: 50px;
-  height: 50px;
-  background-color: #fff;
-  border-radius: 5px;
-  margin-left: 8px;
-}
-
-.song-list-playlist .song-item-playlist .song-actions {
-  width: 150px;
-  height: 40px;
-  background-color: #0f0f0f;
-  border-radius: 50px;
-  margin-right: 10px;
+.playlists-container .playlists {
+  color: #fff;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
-.song-list-playlist .song-item-playlist .song-actions .song-play .play-icon {
-  width: 22px;
-  height: 18px;
-  color: #fff;
-  margin-top: 3px;
+.playlists-container .playlists .playlist-item {
+  width: 250px;
+  height: 300px;
+  padding: 10px;
+  white-space: normal;
+  border-radius: 10px;
+  margin: 10px;
+  background-image: url(../../../assets/images/icons/portada-1.png);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-.song-list-playlist .song-item-playlist .song-actions .song-play button {
-  width: 40px;
-  height: 40px;
-  border-radius: 50px;
-  border: none;
-  background-color: #363636;
-  cursor: pointer;
-  -webkit-transition: -webkit-transform 0.2s;
-  transition: -webkit-transform 0.2s;
-  transition: transform 0.2s;
-  transition: transform 0.2s, -webkit-transform 0.2s;
+.playlists-container .playlists .playlist-item h1 {
+  font-size: 40px;
 }
-
-.song-list-playlist .song-item-playlist .song-actions .song-play button:hover {
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
-}
-
-.song-list-playlist .song-item-playlist .song-actions .song-like .like-icon {
-  width: 25px;
-  height: 25px;
-  color: #fff;
-  margin-top: 3px;
-}
-
-.song-list-playlist .song-item-playlist .song-actions .song-like .like-icon:hover {
-  color: #ff4747;
-}
-
-
-.song-list-playlist .song-item-playlist .song-actions .song-like .like-icon.liked {
-  color: #ff4747;
-}
-
-.song-list-playlist .song-item-playlist .song-actions .song-like button {
-  width: 40px;
-  height: 40px;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-}
-
-.song-list-playlist .song-item-playlist .context-menu-btn {
-  color: #fff;
-  background-color: transparent;
-  border: none;
-  font-size: larger;
-  cursor: pointer;
-}
-
-/*# sourceMappingURL=playlistStack.css.map */
+/*# sourceMappingURL=playliststack.css.map */
