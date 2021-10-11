@@ -1,5 +1,5 @@
 import { Switch, Route } from "react-router-dom";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import AudioPlayer from "../src/components/SongBar/AudioPlayer";
@@ -13,6 +13,7 @@ import Playlists from "./pages/Playlists";
 import IndividualPlaylist from "./pages/IndividualPlaylist";
 import FavSongs from "./pages/FavSongs/FavSongs";
 import UploadedSongs from "./pages/UploadedSongs/UploadedSongs";
+import Spinner from "./components/Spinner";
 
 function App() {
   const history = useHistory();
@@ -20,28 +21,34 @@ function App() {
   const dispatch = useDispatch();
   const userStorage = JSON.parse(localStorage.getItem("user"));
   const { loading, authObserverSuccess } = useSelector((state) => state.auth);
-
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
+    setIsLoading(true);
     dispatch(authObserverLoading());
     if (!loading && !authObserverSuccess && !userStorage) {
       history.push("/login");
     } else if (location.pathname === "/") {
       history.push("/home-page");
     }
+    setIsLoading(false);
   }, []);
 
   return (
     <>
-      <Switch>
-        <Route path="/home-page" exact component={Home} />
-        <Route path="/register" exact component={Register} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/profile" exact component={Profile} />
-        <Route path="/mysongs" exact component={UploadedSongs} />
-        <Route path="/favorites" exact component={FavSongs} />
-        <Route path="/playlist/:id" exact component={IndividualPlaylist} />
-        <Route path="/playlists" exact component={Playlists} />
-      </Switch>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <Switch>
+          <Route path="/home-page" exact component={Home} />
+          <Route path="/register" exact component={Register} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/profile" exact component={Profile} />
+          <Route path="/mysongs" exact component={UploadedSongs} />
+          <Route path="/favorites" exact component={FavSongs} />
+          <Route path="/playlist/:id" exact component={IndividualPlaylist} />
+          <Route path="/playlists" exact component={Playlists} />
+        </Switch>
+      )}
       <AudioPlayer />
     </>
   );

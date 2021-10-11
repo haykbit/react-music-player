@@ -42,11 +42,11 @@ function PlaylistStack({ playlist }) {
     }
   }, [loading]);
 
-  // useEffect(() => {
-  //   if (!loading && authObserverSuccess) {
-  //     loadPlaylistOnMount();
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (!loading && authObserverSuccess) {
+      loadPlaylistOnMount();
+    }
+  }, []);
 
   return (
     <>
