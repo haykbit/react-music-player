@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+
+import SortableList, { SortableItem } from "react-easy-sort";
+import arrayMove from "array-move";
+
 import portadaUno from "../../assets/images/icons/portada-1.png";
 import portadaDos from "../../assets/images/icons/portada-2.png";
 import portadaTres from "../../assets/images/icons/portada-3.png";
@@ -25,31 +29,54 @@ function PlaylistGrid() {
     { name: "European Rap", songs: 15, cover: portadaTres },
     { name: "Spanish Trap", songs: 43, cover: portadaCuatro },
   ];
+  const [items, setItems] = React.useState(playlist);
+
+  const onSortEnd = (oldIndex: number, newIndex: number) => {
+    setItems((array) => arrayMove(array, oldIndex, newIndex));
+  };
+
+  console.log(items);
+
   return (
-    <>
-      <div className="playlists-container">
-        <div className="playlists-header">
-          <header>
-            <img src={IconPlayList} alt="" className="playlist-icon" />
-          </header>
-          <h1>Playlists</h1>
-        </div>
-        <div className="playlists">
-          {playlist.map((item, index) => {
-            return (
+    <div className="playlists-container">
+      <div className="playlists-header">
+        <header>
+          <img src={IconPlayList} alt="" className="playlist-icon" />
+        </header>
+        <h1>Playlists</h1>
+      </div>
+      <div className="playlists">
+        <SortableList
+          onSortEnd={onSortEnd}
+          className="list"
+          draggedItemClassName="dragged"
+        >
+          {items.map((item, index) => (
+            <SortableItem key={index}>
               <div
-                className="playlist-item"
                 key={index}
-                style={{ backgroundImage: `url(${item.cover})` }}
+                style={{
+                  backgroundImage: `url(${item.cover})`,
+                  width: "250px",
+                  height: "300px",
+                  padding: "10px",
+                  color: "#fff",
+                  whiteSpace: "normal",
+                  borderRadius: "10px",
+                  margin: "10px",
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  cursor: "pointer",
+                }}
               >
-                <h1>{item.name}</h1>
+                <h1 style={{ fontSize: "40px" }}>{item.name}</h1>
                 <h5>{item.songs}</h5>
               </div>
-            );
-          })}
-        </div>
+            </SortableItem>
+          ))}
+        </SortableList>
       </div>
-    </>
+    </div>
   );
 }
 
