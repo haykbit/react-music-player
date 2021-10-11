@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { getUserProfile } from "../../api/api";
 import Modal from "../Modal";
 import PlaylistStack from "./PlaylistStack";
-// import AudioPlayer from "../SongBar/AudioPlayer";
 
 import { FiUploadCloud } from "react-icons/fi";
 
@@ -107,7 +106,6 @@ function Playlist({ playlist }) {
             </div>
           </div>
         </div>
-        {/* <AudioPlayer /> */}
       </div>
     </>
   );
