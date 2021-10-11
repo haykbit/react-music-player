@@ -7,6 +7,7 @@ import portadaUno from "../../assets/images/icons/portada-1.png";
 import portadaDos from "../../assets/images/icons/portada-2.png";
 import portadaTres from "../../assets/images/icons/portada-3.png";
 import portadaCuatro from "../../assets/images/icons/portada-4.png";
+import { useHistory } from "react-router-dom";
 
 import { CgPlayList } from "react-icons/cg";
 import IconPlayList from "../../assets/images/icons/wishlist.png";
@@ -28,7 +29,12 @@ function PlaylistGrid() {
     }
   }, [loading, authObserverSuccess, playlistCreatedSuccess]);
   const playlist = [
-    { name: "My uploaded Songs", songs: 10, cover: portadaTres },
+    {
+      name: "My uploaded Songs",
+      songs: 10,
+      cover: portadaTres,
+      link: "/playlist",
+    },
     { name: "Spanish Rock", songs: 43, cover: portadaUno },
     { name: "English Rock", songs: 22, cover: portadaDos },
     { name: "European Rap", songs: 15, cover: portadaTres },
@@ -42,6 +48,7 @@ function PlaylistGrid() {
     { name: "European Rap", songs: 15, cover: portadaTres },
     { name: "Spanish Trap", songs: 43, cover: portadaCuatro },
   ];
+  const history = useHistory();
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
@@ -64,6 +71,7 @@ function PlaylistGrid() {
           {myPlaylists.map((item, index) => {
             return (
               <div
+                onClick={() => history.push(item.link)}
                 className="playlist-item"
                 key={index}
                 style={{ backgroundImage: `url(${item.playlistImage})` }}

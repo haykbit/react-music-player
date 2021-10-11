@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-import { getMyUploadedSongsPlaylist } from "../../redux/playlist/action";
-import { getMySongsPlaylist } from "../../api/api";
+import { getMySongsPlaylist } from "../../../api/api";
 import { BsFillCaretRightFill } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa";
-import IndividualSong from "../IndividualSong/index";
+import IndividualSong from "../../IndividualSong";
 
 import "./style/playliststack.scss";
 
@@ -40,7 +39,7 @@ function PlaylistStack() {
     if (!loading && authObserverSuccess) {
       loadPlaylistOnMount();
     }
-  }, [loading, uploadSongSuccess, deleteSongSuccess, songUpdated]);
+  }, [loading]);
 
   useEffect(() => {
     if (!loading && authObserverSuccess) {

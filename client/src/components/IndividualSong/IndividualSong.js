@@ -10,6 +10,8 @@ import { FaHeart } from "react-icons/fa";
 import { IoMdMore } from "react-icons/io";
 import RightClickMenu from "../RightClickMenu";
 import SongEditModal from "../SongEditModal";
+import DeleteConfirmation from "../DeleteConfirmation";
+import { getCurrentUser } from "../../services/auth";
 
 function IndividualSong({ song, index, playlist }) {
   const dispatch = useDispatch();
@@ -60,6 +62,8 @@ function IndividualSong({ song, index, playlist }) {
     //TODO add hidden or not condition
     dispatch(getSongPlayNow(song, playlist, index));
   }
+
+  const userUid = getCurrentUser().uid;
   return (
     <>
       <div className="song-info">
@@ -103,6 +107,12 @@ function IndividualSong({ song, index, playlist }) {
             show={modals.editModal}
             close={ToggleEditModal}
             song={song}
+          />
+          <DeleteConfirmation
+            show={modals.deleteModal}
+            close={ToggleDeleteModal}
+            songId={song._id}
+            userId={userUid}
           />
         </div>
       </div>
