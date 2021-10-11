@@ -13,12 +13,11 @@ import SongEditModal from "../SongEditModal";
 import DeleteConfirmation from "../DeleteConfirmation";
 import { getCurrentUser } from "../../services/auth";
 
-function IndividualSong({ song, index, playlist }) {
+function IndividualSong({ song, index, playlist, favorite }) {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const { likeSongSuccess, loading } = useSelector((state) => state.song);
-
-  const [liked, setLiked] = useState(false);
+  const [liked, setLiked] = useState(favorite);
   const [myFavoriteSongs, setMyFavoriteSongs] = useState([]);
   const [modals, setModals] = useState({
     editModal: false,
@@ -45,6 +44,7 @@ function IndividualSong({ song, index, playlist }) {
 
   function handleLikeClick() {
     setLiked((prev) => !prev);
+    console.log(liked);
     if (liked === false) {
       dispatch(dispatchLikeSong(song._id, user.uid));
     } else {
