@@ -66,6 +66,10 @@ function Navbar() {
     history.push("/playlist");
   };
 
+  const handleUploaded = () => {
+    history.push("/mysongs");
+  };
+
   return (
     <>
       <div className="nav-container">
@@ -106,17 +110,21 @@ function Navbar() {
                   <BiUserCircle className="list-icon" />
                   <h4>Profile</h4>
                 </li>
-                <li onClick={handlePlaylists}>
+                <li>
                   <RiMusic2Line className="list-icon" />
                   <h4>Playlists</h4>
                 </li>
-                <li>
+                <li onClick={handlePlaylists}>
                   <GoListUnordered className="list-icon" />
                   <h4>My Playlists</h4>
                 </li>
                 <li onClick={handleFavorite}>
                   <MdFavoriteBorder className="list-icon" />
                   <h4>Favorite</h4>
+                </li>
+                <li onClick={handleUploaded}>
+                  <MdFavoriteBorder className="list-icon" />
+                  <h4>My Music</h4>
                 </li>
                 <li onClick={handlePlaylist}>
                   <RiHistoryFill className="list-icon" />

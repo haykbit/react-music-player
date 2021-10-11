@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import Modal from "../Modal";
-import PlaylistStack from "./PlaylistStack";
+import UploadedPlaylistStack from "./UploadedPlaylistStack";
 // import AudioPlayer from "../SongBar/AudioPlayer";
 
 import { FiUploadCloud } from "react-icons/fi";
@@ -13,7 +13,7 @@ import portadaCuatro from "../../assets/images/albums/arctic-album-3.jpeg";
 
 import "./style/playlistcomponent.scss";
 
-function Playlist() {
+function UploadedSongsPlaylist() {
   const [modal, setModal] = useState(false);
   const Toggle = () => setModal(!modal);
   return (
@@ -30,13 +30,18 @@ function Playlist() {
               }}
             ></div>
             <div className="text-column">
-              <h1 className="playlist-name">{/* {title} */}Title</h1>
-              <h3 className="playlist-genre">{/* {owner} */}Sebastian Elias</h3>
+              <h1 className="playlist-name">My Uploaded Songs</h1>
+              <h3 className="playlist-genre">Sebastian Elias</h3>
               <p className="song-number">140 songs</p>
+              <button onClick={() => Toggle()} className="upload-button">
+                <FiUploadCloud className="upload-icon" />
+                Upload
+              </button>
+              <Modal show={modal} close={Toggle} />
             </div>
           </div>
           <div className="song-stack">
-            <PlaylistStack />
+            <UploadedPlaylistStack />
           </div>
         </div>
         <div className="right-side">
@@ -98,4 +103,4 @@ function Playlist() {
   );
 }
 
-export default Playlist;
+export default UploadedSongsPlaylist;
