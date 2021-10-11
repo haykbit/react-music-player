@@ -89,7 +89,7 @@ async function updatePlaylist(req, res, next) {
 }
 
 //To test.
-async function addSong(req, res, next) {
+async function addSongFromPlaylistView(req, res, next) {
   const { id: songId } = req.params;
   const { id: playlistId } = req.params;
   const { userId } = req.body;
@@ -108,20 +108,20 @@ async function addSong(req, res, next) {
       await db.Playlist.findOneAndUpdate(
         { _id: playlistId },
         {
-          $inc: {
-            songsOfPlaylist: 1,
-          },
+          // $inc: {
+          //   songsOfPlaylist: 1,
+          // },
           $push: {
-            songs: userId,
+            songs: songId,
           },
         }
       );
-      await db.User.findOneAndUpdate(
-        { firebase_id: userId },
-        {
-          $push: { myPlaylists: [{ _id: playlistId }] },
-        }
-      );
+      // await db.User.findOneAndUpdate(
+      //   { firebase_id: userId },
+      //   {
+      //     $push: { myPlaylists: [{ _id: playlistId }] },
+      //   }
+      // );
     }
 
     res.status(200).send({
@@ -138,5 +138,5 @@ module.exports = {
   removePlaylistById: removePlaylistById,
   updatePlaylist: updatePlaylist,
   createPlaylist: createPlaylist,
-  addSong: addSong,
+  addSongFromPlaylistView: addSongFromPlaylistView,
 };

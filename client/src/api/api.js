@@ -142,3 +142,26 @@ export async function getMySongsPlaylist(userId) {
     },
   });
 }
+
+export async function addSongFromPlaylistView(songId, playlistId, userId) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "PATCH",
+    url: `${process.env.REACT_APP_API_BASE_URL}/playlists/add/${songId}`,
+    data: { userId },
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+// export async function addSongFromSongInfo(songId, userId) {
+//   const userToken = await getCurrentUserToken();
+//   return axios({
+//     method: "PATCH",
+//     url: `${process.env.REACT_APP_API_BASE_URL}/playlists/add/${songId}`,
+//     data: { userId },
+//     headers: {
+//       Authorization: `Bearer ${userToken}`,
+//     },
+//   });
+// }

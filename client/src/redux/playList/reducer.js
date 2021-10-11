@@ -37,6 +37,33 @@ const reducer = (state = INITIAL_STATE, action) => {
         myPlaylistCreatedSuccess: false,
         error: action.payload,
       };
+    case ADD_SONG_TO_PLAYLIST_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+        addToPlaylistFromPlaylistViewSuccess: false,
+        canceladdToPlaylistFromPlaylistView: false,
+        UploadToPlaylistFromPlaylistView: false,
+        PlaylistData: null,
+      };
+    case ADD_SONG_TO_PLAYLIST_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        addToPlaylistFromPlaylistViewSuccess: true,
+        canceladdToPlaylistFromPlaylistView: false,
+      };
+    case ADD_SONG_TO_PLAYLIST_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        addToPlaylistFromPlaylistViewSuccess: false,
+        canceladdToPlaylistFromPlaylistView: false,
+      };
+
     default:
       return { ...state };
   }

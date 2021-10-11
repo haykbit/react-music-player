@@ -47,10 +47,6 @@ const UserSchema = new Schema(
       type: [{ type: Schema.Types.ObjectId, ref: "playlist" }],
       default: [],
     },
-    myPlaylists: {
-      type: [{ type: Schema.Types.ObjectId, ref: "Playlist" }],
-      default: [],
-    },
     artist: {
       type: Boolean,
       default: false,
