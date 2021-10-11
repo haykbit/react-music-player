@@ -7,6 +7,9 @@ import {
   GET_MY_PLAYLISTS_REQUEST,
   GET_MY_PLAYLISTS_SUCCESS,
   GET_MY_PLAYLISTS_FAIL,
+  REMOVE_SONG_REQUEST,
+  REMOVE_SONG_SUCCESS,
+  REMOVE_SONG_FAIL,
 } from "./types";
 
 export const createNewPlaylist = (playlistData, image) => async (dispatch) => {
