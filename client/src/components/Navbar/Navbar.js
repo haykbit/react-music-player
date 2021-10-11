@@ -58,6 +58,10 @@ function Navbar() {
     history.push("/playlists");
   };
 
+  const handleFavorite = () => {
+    history.push("/favorites");
+  };
+
   const handlePlaylist = () => {
     history.push("/playlist");
   };
@@ -110,11 +114,11 @@ function Navbar() {
                   <GoListUnordered className="list-icon" />
                   <h4>My Playlists</h4>
                 </li>
-                <li onClick={handlePlaylist}>
+                <li onClick={handleFavorite}>
                   <MdFavoriteBorder className="list-icon" />
                   <h4>Favorite</h4>
                 </li>
-                <li>
+                <li onClick={handlePlaylist}>
                   <RiHistoryFill className="list-icon" />
                   <h4>History</h4>
                 </li>
