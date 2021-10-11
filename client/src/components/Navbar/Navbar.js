@@ -44,15 +44,22 @@ function Navbar() {
       setProfileData();
     }
   }, [userState, loading]);
+
   const handleProfile = () => {
     history.push("/profile");
   };
+
   const handleLogout = () => {
     dispatch(logout());
     dispatch(resetUserData());
   };
-  const handlePlaylist = () => {
+
+  const handlePlaylists = () => {
     history.push("/playlists");
+  };
+
+  const handlePlaylist = () => {
+    history.push("/playlist");
   };
 
   return (
@@ -95,7 +102,7 @@ function Navbar() {
                   <BiUserCircle className="list-icon" />
                   <h4>Profile</h4>
                 </li>
-                <li onClick={handlePlaylist}>
+                <li onClick={handlePlaylists}>
                   <RiMusic2Line className="list-icon" />
                   <h4>Playlists</h4>
                 </li>
@@ -103,7 +110,7 @@ function Navbar() {
                   <GoListUnordered className="list-icon" />
                   <h4>My Playlists</h4>
                 </li>
-                <li>
+                <li onClick={handlePlaylist}>
                   <MdFavoriteBorder className="list-icon" />
                   <h4>Favorite</h4>
                 </li>

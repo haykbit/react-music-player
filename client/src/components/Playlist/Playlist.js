@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 
 import Modal from "../Modal";
-import PlaylistStack from "../UploadedPlaylistStack/UploadedPlaylistStack";
+import PlaylistStack from "../PlaylistStack";
+import AudioPlayer from "../SongBar/AudioPlayer";
 
 import { FiUploadCloud } from "react-icons/fi";
 
@@ -96,6 +97,7 @@ function Playlist() {
             </div>
           </div>
         </div>
+        <AudioPlayer />
       </div>
     </>
   );
