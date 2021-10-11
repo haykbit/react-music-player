@@ -19,6 +19,11 @@
   color: #a8a8a8;
 }
 
+.playlists-container .playlists-header .plus-icon {
+  margin-left: 20px;
+  cursor: pointer;
+}
+
 .playlists-container .playlists-header h1 {
   margin-left: 10px;
 }

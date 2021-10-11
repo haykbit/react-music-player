@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getMyPlaylists } from "../../redux/playlist/action";
+import CreatePlaylistModal from "../CreatePlaylistModal";
 import portadaUno from "../../assets/images/icons/portada-1.png";
 import portadaDos from "../../assets/images/icons/portada-2.png";
 import portadaTres from "../../assets/images/icons/portada-3.png";
@@ -6,10 +9,22 @@ import portadaCuatro from "../../assets/images/icons/portada-4.png";
 
 import { CgPlayList } from "react-icons/cg";
 import IconPlayList from "../../assets/images/icons/wishlist.png";
-
+import { BsFillPlusCircleFill } from "react-icons/bs";
 import "./style/playlistgrid.scss";
 
 function PlaylistGrid() {
+  const { user, loading, authObserverSuccess } = useSelector(
+    (state) => state.auth
+  );
+  const { myPlaylists, playlistCreatedSuccess } = useSelector(
+    (state) => state.playlist
+  );
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (!loading && authObserverSuccess) {
+      dispatch(getMyPlaylists(user.uid));
+    }
+  }, [loading, authObserverSuccess, playlistCreatedSuccess]);
   const playlist = [
     { name: "My uploaded Songs", songs: 10, cover: portadaTres },
     { name: "Spanish Rock", songs: 43, cover: portadaUno },
@@ -25,6 +40,9 @@ function PlaylistGrid() {
     { name: "European Rap", songs: 15, cover: portadaTres },
     { name: "Spanish Trap", songs: 43, cover: portadaCuatro },
   ];
+  const [modal, setModal] = useState(false);
+  const toggle = () => setModal(!modal);
+
   return (
     <>
       <div className="playlists-container">
@@ -33,17 +51,24 @@ function PlaylistGrid() {
             <img src={IconPlayList} alt="" className="playlist-icon" />
           </header>
           <h1>Playlists</h1>
+          <BsFillPlusCircleFill
+            size={32}
+            className="plus-icon"
+            onClick={() => toggle()}
+          />
+          <CreatePlaylistModal show={modal} close={toggle} />
         </div>
         <div className="playlists">
-          {playlist.map((item, index) => {
+          {myPlaylists.map((item, index) => {
             return (
               <div
                 className="playlist-item"
                 key={index}
-                style={{ backgroundImage: `url(${item.cover})` }}
+                style={{ backgroundImage: `url(${item.playlistImage})` }}
               >
-                <h1>{item.name}</h1>
-                <h5>{item.songs}</h5>
+                <h1>{item.title}</h1>
+                <h4>{item.description}</h4>
+                <h5>Songs: {item.songs.length}</h5>
               </div>
             );
           })}

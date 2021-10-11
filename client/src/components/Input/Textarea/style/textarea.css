@@ -1,0 +1,14 @@
+.textarea-input {
+  height: 17vh;
+  width: 300px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 15px;
+  font-size: 15px;
+  color: #868686;
+  font-weight: 600;
+}
+/*# sourceMappingURL=textarea.css.map */
