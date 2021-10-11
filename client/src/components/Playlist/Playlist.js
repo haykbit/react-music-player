@@ -3,8 +3,6 @@ import React, { useState } from "react";
 import Modal from "../Modal";
 import PlaylistStack from "./PlaylistStack";
 
-import { FiUploadCloud } from "react-icons/fi";
-
 import portadaUno from "../../assets/images/icons/portada-1.png";
 import portadaDos from "../../assets/images/albums/arctic-album-1.jpeg";
 import portadaTres from "../../assets/images/albums/arctic-album-2.jpeg";
