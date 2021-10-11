@@ -2,6 +2,7 @@ import { Switch, Route } from "react-router-dom";
 import React, { useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import AudioPlayer from "../src/components/SongBar/AudioPlayer";
 
 import { authObserverLoading } from "./redux/auth/action";
 import Login from "./pages/Login";
@@ -39,6 +40,7 @@ function App() {
         <Route path="/playlist" exact component={IndividualPlaylist} />
         <Route path="/playlists" exact component={Playlists} />
       </Switch>
+      <AudioPlayer />
     </>
   );
 }

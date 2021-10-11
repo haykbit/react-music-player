@@ -81,11 +81,7 @@ function IndividualSong({ song, index, playlist }) {
           </div>
           <div className="song-like">
             <button onClick={handleLikeClick}>
-              {liked ? (
-                <FaHeart className={`like-icon ${handleClassName()}`} />
-              ) : (
-                <FaRegHeart className={`like-icon ${handleClassName()}`} />
-              )}
+              <FaHeart className={`like-icon ${handleClassName()}`} />
             </button>
           </div>
         </div>
