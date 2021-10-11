@@ -16,7 +16,7 @@ function PlaylistStack() {
   const { user, loading, authObserverSuccess } = useSelector(
     (state) => state.auth
   );
-  const { uploadSongSuccess, deleteSongSuccess } = useSelector(
+  const { uploadSongSuccess, deleteSongSuccess, songUpdated } = useSelector(
     (state) => state.song
   );
 
@@ -42,7 +42,7 @@ function PlaylistStack() {
     if (!loading && authObserverSuccess) {
       loadPlaylistOnMount();
     }
-  }, [loading, uploadSongSuccess, deleteSongSuccess]);
+  }, [loading, uploadSongSuccess, deleteSongSuccess, songUpdated]);
 
   useEffect(() => {
     if (!loading && authObserverSuccess) {
