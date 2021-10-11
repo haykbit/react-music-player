@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { authObserverLoading } from "../../redux/auth/action";
 import Navbar from "../../components/Navbar/Navbar";
-import FavSongsPlaylist from "../../components/FavSongsPlaylist/Playlist";
+import FavSongsPlaylist from "../../components/FavSongsPlaylist";
 import "./style/playlist.scss";
 
 function FavSongs() {
