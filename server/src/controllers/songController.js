@@ -153,7 +153,8 @@ async function updateSong(req, res, next) {
           genre: genre || "",
           album: album || "",
         },
-      }
+      },
+      { new: true }
     );
 
     res.status(200).send({
