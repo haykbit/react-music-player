@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { getCurrentUser } from "../../../services/auth";
 import "./style/rightClickMenu.scss";
 
@@ -10,7 +11,20 @@ function PlaylistContextMenu({
   ToggleDeleteModal,
   ToggleEditModal,
 }) {
-  const userUid = getCurrentUser().uid;
+  const { loading, authObserverSuccess } = useSelector((state) => state.auth);
+
+  const [userId, setUserId] = useState("");
+
+  function getUserId() {
+    const userUid = getCurrentUser().uid;
+    setUserId(userUid);
+  }
+
+  useEffect(() => {
+    if (!loading && authObserverSuccess) {
+      getUserId();
+    }
+  }, []);
 
   async function editHandle() {
     ToggleEditModal();
@@ -28,7 +42,7 @@ function PlaylistContextMenu({
             <li className="menu-option-box" onClick={() => handleLike()}>
               Favorite
             </li>
-            {playlist.owner === userUid ? (
+            {playlist.owner === userId ? (
               <>
                 <li
                   className="menu-option-box"

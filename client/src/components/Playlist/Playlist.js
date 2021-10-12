@@ -15,24 +15,21 @@ import portadaCuatro from "../../assets/images/albums/arctic-album-3.jpeg";
 import "./style/playlistcomponent.scss";
 
 function Playlist({ playlist }) {
-  const [modal, setModal] = useState(false);
-  const ToggleModal = () => setModal(!modal);
-
+  const [userInfo, setUserInfo] = useState({});
   const [contextMenu, setContextMenu] = useState(false);
-  const ToggleContext = () => setContextMenu(!contextMenu);
-
   const [modals, setModals] = useState({
     editModal: false,
     deleteModal: false,
   });
 
+  // Toggles for the diferent menus and modals
+  const ToggleContext = () => setContextMenu(!contextMenu);
   const ToggleEditModal = () => {
     setModals({ ...modals, editModal: !modals.editModal });
   };
   const ToggleDeleteModal = () =>
     setModals({ ...modals, deleteModal: !modals.deleteModal });
 
-  const [userInfo, setUserInfo] = useState({});
   const { loading, authObserverSuccess } = useSelector((state) => state.auth);
 
   useEffect(() => {
@@ -40,10 +37,12 @@ function Playlist({ playlist }) {
       getUserInfo();
     }
   }, []);
+
   async function getUserInfo() {
     const user = await getUserProfile(playlist.owner);
     setUserInfo(user.data.data);
   }
+
   return (
     <>
       <div className="my-playlist-body">
