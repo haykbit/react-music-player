@@ -10,13 +10,14 @@ import { FaHeart } from "react-icons/fa";
 import { IoMdMore } from "react-icons/io";
 import RightClickMenu from "../RightClickMenu";
 import SongEditModal from "../SongEditModal";
+import DeleteConfirmation from "../DeleteConfirmation";
+import { getCurrentUser } from "../../services/auth";
 
-function IndividualSong({ song, index, playlist }) {
+function IndividualSong({ song, index, playlist, favorite }) {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const { likeSongSuccess, loading } = useSelector((state) => state.song);
-
-  const [liked, setLiked] = useState(false);
+  const [liked, setLiked] = useState(favorite);
   const [myFavoriteSongs, setMyFavoriteSongs] = useState([]);
   const [modals, setModals] = useState({
     editModal: false,
@@ -43,6 +44,7 @@ function IndividualSong({ song, index, playlist }) {
 
   function handleLikeClick() {
     setLiked((prev) => !prev);
+    console.log(liked);
     if (liked === false) {
       dispatch(dispatchLikeSong(song._id, user.uid));
     } else {
@@ -60,6 +62,8 @@ function IndividualSong({ song, index, playlist }) {
     //TODO add hidden or not condition
     dispatch(getSongPlayNow(song, playlist, index));
   }
+
+  const userUid = getCurrentUser().uid;
   return (
     <>
       <div className="song-info">
@@ -103,6 +107,12 @@ function IndividualSong({ song, index, playlist }) {
             show={modals.editModal}
             close={ToggleEditModal}
             song={song}
+          />
+          <DeleteConfirmation
+            show={modals.deleteModal}
+            close={ToggleDeleteModal}
+            songId={song._id}
+            userId={userUid}
           />
         </div>
       </div>

@@ -6,20 +6,27 @@
   color: white;
   display: flex;
   flex-direction: column;
-  padding: 10px;
   position: absolute;
+  transform: translateX(20%) translateY(50%);
   box-sizing: border-box;
   padding: 15px;
+  z-index: 1000;
 
   .context-menu {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    li {
+    justify-content: flex-start;
+    height: auto;
+    border-radius: 10px;
+    .menu-option-box {
       cursor: pointer;
       list-style: none;
+      font-weight: 500;
       border-bottom: 1px solid white;
-      margin: 10px;
+      margin: 5px;
     }
+  }
+  .menu-option-box:hover {
+    background-color: #666666;
   }
 }

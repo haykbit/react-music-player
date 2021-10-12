@@ -84,18 +84,6 @@ export async function getLikedSongs(id) {
   });
 }
 
-export async function getMySongsData(id) {
-  //get user id argument
-  const userToken = await getCurrentUserToken();
-  return axios({
-    method: "GET",
-    url: `${process.env.REACT_APP_API_BASE_URL}/users/mySongs/${id}`,
-    headers: {
-      Authorization: `Bearer ${userToken}`,
-    },
-  });
-}
-
 export async function removeSongData(id, userId) {
   const userToken = await getCurrentUserToken();
   return axios({
@@ -160,6 +148,17 @@ export async function countPlayed(songId) {
   return axios({
     method: "PATCH",
     url: `${process.env.REACT_APP_API_BASE_URL}/songs/played/${songId}`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
+export async function getSongsFromPlaylist(playlistId) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/playlists/playlist/${playlistId}`,
     headers: {
       Authorization: `Bearer ${userToken}`,
     },
