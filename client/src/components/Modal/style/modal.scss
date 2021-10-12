@@ -11,48 +11,62 @@
 
   .modal {
     display: flex;
-    flex-direction: column;
-    width: 35vw;
+    width: auto;
     height: auto;
     padding: 2rem;
     border-radius: 20px;
-    background-color: rgba(203, 123, 250, 0.9);
+    background-color: rgba(61, 61, 61, 0.9);
     box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+    justify-content: center;
 
-    .modal-input-box,
-    .modal-button-box,
-    .modal-title,
-    .modal-image-box {
-      //   outline: 1px solid white;
-      height: 50px;
-      margin: 5px;
-
-      button {
-        border-radius: 5px;
-        width: 120px;
-        cursor: pointer;
-      }
-      .submit {
-        background-color: rgba(2, 138, 250, 0.801);;
-      }
-      .modal-close {
-       background-color: rgba(165, 161, 159, 0.863);
-
-      }
-      input, select {
-        height: 40px;
-        width: 300px;
-        box-sizing: border-box;
-        padding: 10px;
-        border-radius: 5px;
-      }
-    }
-    .modal-input-box,
-    .modal-title {
+    .form-box {
       display: flex;
-      justify-content: center;
-      align-items: center;
+      flex-direction: row;
     }
+
+    .left-side-modal {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+
+      // background-color: blanchedalmond;
+
+      .modal-input-box,
+      .modal-button-box,
+      .modal-title,
+      .modal-image-box {
+        //   outline: 1px solid white;
+        height: 50px;
+        margin: 5px;
+
+        button {
+          border-radius: 5px;
+          width: 120px;
+          cursor: pointer;
+        }
+        .submit {
+          background-color: rgba(2, 138, 250, 0.801);
+        }
+        .modal-close {
+          background-color: rgba(165, 161, 159, 0.863);
+        }
+        input,
+        select {
+          height: 45px;
+          width: 300px;
+          box-sizing: border-box;
+          padding: 10px;
+          border-radius: 5px;
+        }
+      }
+      .modal-input-box,
+      .modal-title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
     .modal-button-box {
       display: flex;
       justify-content: space-between;
@@ -70,6 +84,48 @@
       }
       input {
         display: none;
+      }
+    }
+
+    .right-side-modal {
+      height: 200px;
+      width: 200px;
+      margin-left: 10px;
+      display: flex;
+
+      .upload-image-box {
+        display: flex;
+        margin-left: 10px;
+        height: 100%;
+        width: 200px;
+        label {
+          height: 200px;
+        }
+        p {
+          font-size: 15px;
+          margin-left: 25px;
+          color: white;
+        }
+        .song-image-upload {
+          height: 100%;
+          width: 200px;
+          justify-content: center;
+          background-color: transparent;
+          background-repeat: no-repeat;
+          background-size: contain;
+          cursor: pointer;
+        }
+        input {
+          display: none;
+        }
+
+        .song-image-preview {
+          margin-top: 3px;
+          height: 200px;
+          width: 200px;
+          object-fit: cover;
+          border-radius: 5px;
+        }
       }
     }
   }
