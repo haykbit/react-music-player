@@ -2,8 +2,9 @@ import React, { useState } from "react";
 
 import Modal from "../Modal";
 import PlaylistStack from "./PlaylistStack";
+import PlaylistContextMenu from "./PlaylistContextMenu/PlaylistContextMenu";
 
-import { FiUploadCloud } from "react-icons/fi";
+import { IoMdMore } from "react-icons/io";
 
 import portadaUno from "../../assets/images/icons/portada-1.png";
 import portadaDos from "../../assets/images/albums/arctic-album-1.jpeg";
@@ -14,7 +15,22 @@ import "./style/playlistcomponent.scss";
 
 function Playlist() {
   const [modal, setModal] = useState(false);
-  const Toggle = () => setModal(!modal);
+  const ToggleModal = () => setModal(!modal);
+
+  const [contextMenu, setContextMenu] = useState(false);
+  const ToggleContext = () => setContextMenu(!contextMenu);
+
+  const [modals, setModals] = useState({
+    editModal: false,
+    deleteModal: false,
+  });
+
+  const ToggleEditModal = () => {
+    setModals({ ...modals, editModal: !modals.editModal });
+  };
+  const ToggleDeleteModal = () =>
+    setModals({ ...modals, deleteModal: !modals.deleteModal });
+
   return (
     <>
       <div className="my-playlist-body">
@@ -32,6 +48,12 @@ function Playlist() {
               <h1 className="playlist-name">{/* {title} */}Title</h1>
               <h3 className="playlist-genre">{/* {owner} */}Sebastian Elias</h3>
               <p className="song-number">140 songs</p>
+              <button
+                onClick={() => ToggleContext()}
+                className="context-menu-btn"
+              >
+                <IoMdMore className="context-icon" />
+              </button>
             </div>
           </div>
           <div className="song-stack">
@@ -91,6 +113,16 @@ function Playlist() {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="context-container">
+        <PlaylistContextMenu
+          show={contextMenu}
+          closeMenu={ToggleContext}
+          ToggleEditModal={ToggleEditModal}
+          ToggleDeleteModal={ToggleDeleteModal}
+          playlist={playlist}
+        />
       </div>
     </>
   );
