@@ -164,3 +164,15 @@ export async function getSongsFromPlaylist(playlistId) {
     },
   });
 }
+
+export async function removeSongFromPlaylist(playlistId, songId) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "PATCH",
+    url: `${process.env.REACT_APP_API_BASE_URL}/playlists/songs/${playlistId}`,
+    data: { songId },
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
