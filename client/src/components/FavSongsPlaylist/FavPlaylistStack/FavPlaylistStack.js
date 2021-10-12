@@ -77,6 +77,7 @@ function FavPlaylistStack() {
                                       key={song._id}
                                       playlist={favSongsData}
                                       index={index}
+                                      favorite={true}
                                     />
                                   </div>
                                 </div>

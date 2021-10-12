@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import Modal from "../Modal";
-import UploadedPlaylistStack from "./UploadedPlaylistStack";
+import PlaylistStack from "./FavPlaylistStack";
 
 import { FiUploadCloud } from "react-icons/fi";
 
@@ -12,7 +12,7 @@ import portadaCuatro from "../../assets/images/albums/arctic-album-3.jpeg";
 
 import "./style/playlistcomponent.scss";
 
-function UploadedSongsPlaylist() {
+function FavSongsPlaylist() {
   const [modal, setModal] = useState(false);
   const Toggle = () => setModal(!modal);
   return (
@@ -29,18 +29,13 @@ function UploadedSongsPlaylist() {
               }}
             ></div>
             <div className="text-column">
-              <h1 className="playlist-name">My Uploaded Songs</h1>
+              <h1 className="playlist-name">My Favorite Songs</h1>
               <h3 className="playlist-genre">Sebastian Elias</h3>
               <p className="song-number">140 songs</p>
-              <button onClick={() => Toggle()} className="upload-button">
-                <FiUploadCloud className="upload-icon" />
-                Upload
-              </button>
-              <Modal show={modal} close={Toggle} />
             </div>
           </div>
           <div className="song-stack">
-            <UploadedPlaylistStack />
+            <PlaylistStack />
           </div>
         </div>
         <div className="right-side">
@@ -101,4 +96,4 @@ function UploadedSongsPlaylist() {
   );
 }
 
-export default UploadedSongsPlaylist;
+export default FavSongsPlaylist;

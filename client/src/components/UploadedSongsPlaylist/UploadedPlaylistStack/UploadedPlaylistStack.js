@@ -82,6 +82,7 @@ function UploadedPlaylistStack() {
                                       key={song._id}
                                       playlist={mySongsData}
                                       index={index}
+                                      favorite={false}
                                     />
                                   </div>
                                 </div>

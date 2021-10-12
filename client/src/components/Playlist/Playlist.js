@@ -3,9 +3,6 @@ import { useSelector } from "react-redux";
 import { getUserProfile } from "../../api/api";
 import Modal from "../Modal";
 import PlaylistStack from "./PlaylistStack";
-// import AudioPlayer from "../SongBar/AudioPlayer";
-
-import { FiUploadCloud } from "react-icons/fi";
 
 import portadaUno from "../../assets/images/icons/portada-1.png";
 import portadaDos from "../../assets/images/albums/arctic-album-1.jpeg";
@@ -107,7 +104,6 @@ function Playlist({ playlist }) {
             </div>
           </div>
         </div>
-        {/* <AudioPlayer /> */}
       </div>
     </>
   );

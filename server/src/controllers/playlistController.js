@@ -141,6 +141,22 @@ async function getSongsByPlaylistId(req, res, next) {
   }
 }
 
+async function getSongsByPlaylistId(req, res, next) {
+  const { id } = req.params;
+  try {
+    const playlist = await db.Playlist.findOne({ _id: id });
+    const playlistSongs = playlist.songs;
+    const songsData = await db.Song.find({
+      _id: { $in: playlistSongs },
+    });
+    res.status(200).send({
+      data: songsData,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
   fetchMyPlaylists,
   fetchAllPlaylists,
