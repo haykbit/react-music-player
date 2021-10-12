@@ -1,26 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-import { getMySongsPlaylist } from "../../../api/api";
-import { BsFillCaretRightFill } from "react-icons/bs";
-import { FaRegHeart } from "react-icons/fa";
+import { getSongsFromPlaylist } from "../../../api/api";
 import IndividualSong from "../../IndividualSong";
 
 import "./style/playliststack.scss";
 
-function PlaylistStack() {
+function PlaylistStack({ playlist }) {
+  // console.log(playlist, "playlist from playlist stack");
   const [mySongsData, setMySongsData] = useState(null);
   const { user, loading, authObserverSuccess } = useSelector(
     (state) => state.auth
   );
-  const { uploadSongSuccess, deleteSongSuccess, songUpdated } = useSelector(
-    (state) => state.song
-  );
 
   async function loadPlaylistOnMount() {
-    const uploadedPlaylist = await getMySongsPlaylist(user.uid);
-    setMySongsData(uploadedPlaylist.data.data);
+    const songs = await getSongsFromPlaylist(playlist._id);
+    setMySongsData(songs.data.data);
   }
 
   //condition for controll type of playlist

@@ -153,3 +153,14 @@ export async function countPlayed(songId) {
     },
   });
 }
+
+export async function getSongsFromPlaylist(playlistId) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/playlists/playlist/${playlistId}`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
