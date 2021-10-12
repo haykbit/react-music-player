@@ -19,13 +19,16 @@ import "./style/playlistgrid.scss";
 
 function PlaylistGrid() {
   const history = useHistory();
+  const dispatch = useDispatch();
+
   const { user, loading, authObserverSuccess } = useSelector(
     (state) => state.auth
   );
   const { myPlaylists, playlistCreatedSuccess } = useSelector(
     (state) => state.playlist
   );
-  const dispatch = useDispatch();
+
+  const [items, setItems] = useState([{}]);
   useEffect(() => {
     if (!loading && authObserverSuccess) {
       dispatch(getMyPlaylists(user.uid));
@@ -35,13 +38,19 @@ function PlaylistGrid() {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
-  const [items, setItems] = useState(myPlaylists);
+  useEffect(() => {
+    if (!loading && authObserverSuccess) {
+      setItems(myPlaylists);
+      //dispatch(getMyPlaylists(user.uid));
+    }
+  }, [myPlaylists]);
 
   const onSortEnd = (oldIndex: number, newIndex: number) => {
-    setItems((array) => arrayMove(array, oldIndex, newIndex));
+    setItems((myPlaylists) => arrayMove(myPlaylists, oldIndex, newIndex));
   };
 
-  console.log(items);
+  console.log("PLAYLIST: ", myPlaylists);
+  console.log("ITEMS: ", items);
 
   return (
     <div className="playlists-container">
