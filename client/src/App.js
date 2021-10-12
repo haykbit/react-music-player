@@ -2,6 +2,7 @@ import { Switch, Route } from "react-router-dom";
 import React, { useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import AudioPlayer from "../src/components/SongBar/AudioPlayer";
 
 import { authObserverLoading } from "./redux/auth/action";
 import Login from "./pages/Login";
@@ -10,6 +11,8 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Playlists from "./pages/Playlists";
 import IndividualPlaylist from "./pages/IndividualPlaylist";
+import FavSongs from "./pages/FavSongs/FavSongs";
+import UploadedSongs from "./pages/UploadedSongs/UploadedSongs";
 
 function App() {
   const history = useHistory();
@@ -34,10 +37,12 @@ function App() {
         <Route path="/register" exact component={Register} />
         <Route path="/login" exact component={Login} />
         <Route path="/profile" exact component={Profile} />
-        <Route path="/playlist" exact component={IndividualPlaylist} />
+        <Route path="/mysongs" exact component={UploadedSongs} />
+        <Route path="/favorites" exact component={FavSongs} />
+        <Route path="/playlist/:id" exact component={IndividualPlaylist} />
         <Route path="/playlists" exact component={Playlists} />
-        {/* <Route path="/favorite" exact component={Favorite} /> */}
       </Switch>
+      <AudioPlayer />
     </>
   );
 }

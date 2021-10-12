@@ -1,28 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-import { getMyUploadedSongsPlaylist } from "../../redux/playlist/action";
-import { getMySongsPlaylist } from "../../api/api";
-import { getMySongsData } from "../../api/api";
-import { BsFillCaretRightFill } from "react-icons/bs";
-import { FaRegHeart } from "react-icons/fa";
-import IndividualSong from "../IndividualSong/index";
+import { getLikedSongs } from "../../../api/api";
+import IndividualSong from "../../IndividualSong";
 
 import "./style/playliststack.scss";
 
-function PlaylistStack() {
-  const [mySongsData, setMySongsData] = useState(null);
+function FavPlaylistStack() {
+  const [favSongsData, setFavSongsData] = useState(null);
   const { user, loading, authObserverSuccess } = useSelector(
     (state) => state.auth
   );
-  const { uploadSongSuccess, deleteSongSuccess } = useSelector(
-    (state) => state.song
-  );
+  const { cancelLikedSuccess } = useSelector((state) => state.song);
 
   async function loadPlaylistOnMount() {
-    const uploadedPlaylist = await getMySongsPlaylist(user.uid);
-    setMySongsData(uploadedPlaylist.data.data);
+    const favoritedPlaylist = await getLikedSongs(user.uid);
+    setFavSongsData(favoritedPlaylist.data.data);
   }
 
   //condition for controll type of playlist
@@ -30,18 +24,18 @@ function PlaylistStack() {
   function handleOnDragEnd(result) {
     if (!result.destination) return;
 
-    const items = Array.from(mySongsData);
+    const items = Array.from(favSongsData);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
-    setMySongsData(items);
+    setFavSongsData(items);
   }
 
   useEffect(() => {
     if (!loading && authObserverSuccess) {
       loadPlaylistOnMount();
     }
-  }, [loading, uploadSongSuccess, deleteSongSuccess]);
+  }, [loading, cancelLikedSuccess]);
 
   useEffect(() => {
     if (!loading && authObserverSuccess) {
@@ -61,9 +55,9 @@ function PlaylistStack() {
                   {...provided.droppableProps}
                   ref={provided.innerRef}
                 >
-                  {mySongsData ? (
+                  {favSongsData ? (
                     <>
-                      {mySongsData.map((song, index) => {
+                      {favSongsData.map((song, index) => {
                         return (
                           <Draggable
                             key={song._id}
@@ -81,8 +75,9 @@ function PlaylistStack() {
                                     <IndividualSong
                                       song={song}
                                       key={song._id}
-                                      playlist={mySongsData}
+                                      playlist={favSongsData}
                                       index={index}
+                                      favorite={true}
                                     />
                                   </div>
                                 </div>
@@ -106,4 +101,4 @@ function PlaylistStack() {
   );
 }
 
-export default PlaylistStack;
+export default FavPlaylistStack;

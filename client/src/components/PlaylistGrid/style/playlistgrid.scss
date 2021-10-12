@@ -12,7 +12,10 @@
       height: 35px;
       color: rgb(168, 168, 168);
     }
-
+    .plus-icon {
+      margin-left: 20px;
+      cursor: pointer;
+    }
     h1 {
       margin-left: 10px;
     }
@@ -34,6 +37,7 @@
       background-image: url(../../../assets/images/icons/portada-1.png);
       background-size: cover;
       background-repeat: no-repeat;
+      cursor: pointer;
 
       h1 {
         font-size: 40px;

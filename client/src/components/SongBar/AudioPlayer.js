@@ -28,6 +28,7 @@ const AudioPlayer = () => {
   console.log(volumeLevel);
 
   // Refs
+  console.log(url, "URL IN PLAYER");
   const audioRef = useRef(new Audio(url));
   const intervalRef = useRef();
   const isReady = useRef(false);
