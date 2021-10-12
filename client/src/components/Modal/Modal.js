@@ -31,21 +31,6 @@ const Modal = ({ show, close }) => {
     }
   }
 
-  const [songImage, setSongimage] = useState("");
-  const [isUploaded, setIsUploaded] = useState(false);
-
-  function handleImageChange(e) {
-    if (e.target.files && e.target.files[0]) {
-      let reader = new FileReader();
-
-      reader.onload = function (e) {
-        setSongimage(e.target.result);
-        setIsUploaded(true);
-      };
-      reader.readAsDataURL(e.target.files[0]);
-    }
-  }
-
   return (
     <>
       {show ? (
