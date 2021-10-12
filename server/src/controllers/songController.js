@@ -173,7 +173,7 @@ async function deleteSong(req, res, next) {
     await db.User.findOneAndUpdate(
       { firebase_id: userId },
       {
-        $pull: { mySongs: id },
+        $pull: { mySongs: id, myFavoriteSongs: id },
       },
       { new: true }
     );
@@ -197,7 +197,9 @@ async function countPlayedNumber(req, res, next) {
       },
       { new: true }
     );
-  } catch (error) {}
+  } catch (error) {
+    next(error);
+  }
 }
 
 module.exports = {

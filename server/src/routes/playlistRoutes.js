@@ -18,6 +18,12 @@ playlistRouter.get(
   playlistController.fetchAllPlaylists
 );
 playlistRouter.get("/:id", authMiddleware, playlistController.getPlaylistById);
+playlistRouter.get(
+  "/playlist/:id",
+  authMiddleware,
+  playlistController.getSongsByPlaylistId
+);
+
 playlistRouter.patch("/:id", authMiddleware, playlistController.updatePlaylist);
 
 playlistRouter.delete(
