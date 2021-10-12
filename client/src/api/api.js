@@ -211,3 +211,14 @@ export async function getMyFavPlaylists(userId) {
     },
   });
 }
+
+export async function getPublicPlaylists(userId) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/playlists/public/${userId}`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}

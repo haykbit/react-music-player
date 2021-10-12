@@ -4,6 +4,7 @@ import {
   cancelFollowingPlaylist,
   getMyFavPlaylists,
   getMyPlaylistsList,
+  getPublicPlaylists,
   removeSongFromPlaylist,
 } from "../../api/api";
 import { uploadImages } from "../../services/cloudinary";
@@ -26,6 +27,9 @@ import {
   GET_FAVORITE_PLAYLISTS_REQUEST,
   GET_FAVORITE_PLAYLISTS_SUCCESS,
   GET_FAVORITE_PLAYLISTS_FAIL,
+  GET_PUBLIC_PLAYLISTS_REQUEST,
+  GET_PUBLIC_PLAYLISTS_SUCCESS,
+  GET_PUBLIC_PLAYLISTS_FAIL,
 } from "./types";
 
 export const createNewPlaylist = (playlistData, image) => async (dispatch) => {
@@ -95,5 +99,18 @@ export const getFavoritePlaylists = (userId) => async (dispatch) => {
     });
   } catch (error) {
     dispatch({ type: GET_FAVORITE_PLAYLISTS_FAIL, payload: error.message });
+  }
+};
+
+export const displayPublicPlaylists = (userId) => async (dispatch) => {
+  dispatch({ type: GET_PUBLIC_PLAYLISTS_REQUEST });
+  try {
+    const publicPlaylists = await getPublicPlaylists(userId);
+    dispatch({
+      type: GET_PUBLIC_PLAYLISTS_SUCCESS,
+      payload: publicPlaylists.data.data,
+    });
+  } catch (error) {
+    dispatch({ type: GET_PUBLIC_PLAYLISTS_FAIL, payload: error.message });
   }
 };

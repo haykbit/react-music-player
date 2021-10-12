@@ -24,6 +24,9 @@ import {
   GET_FAVORITE_PLAYLISTS_REQUEST,
   GET_FAVORITE_PLAYLISTS_SUCCESS,
   GET_FAVORITE_PLAYLISTS_FAIL,
+  GET_PUBLIC_PLAYLISTS_REQUEST,
+  GET_PUBLIC_PLAYLISTS_SUCCESS,
+  GET_PUBLIC_PLAYLISTS_FAIL,
 } from "./types";
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -185,6 +188,35 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: false,
         getFavoritePlaylistsSuccess: false,
+        error: action.payload,
+      };
+    case GET_PUBLIC_PLAYLISTS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        playlistCreatedSuccess: false,
+        addedToPlaylistSuccess: false,
+        getMyPlaylistsSuccess: false,
+        getFavoritePlaylistsSuccess: false,
+        removeSongSuccess: false,
+        followSuccess: false,
+        cancelFollowSuccess: false,
+        getPublicPlaylistsSuccess: false,
+        error: null,
+      };
+    case GET_PUBLIC_PLAYLISTS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        getPublicPlaylistsSuccess: true,
+        publicPlaylists: action.payload,
+        error: null,
+      };
+    case GET_PUBLIC_PLAYLISTS_FAIL:
+      return {
+        ...state,
+        loading: false,
+        getPublicPlaylistsSuccess: false,
         error: action.payload,
       };
     default:

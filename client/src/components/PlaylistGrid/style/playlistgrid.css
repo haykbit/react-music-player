@@ -50,6 +50,7 @@
   background-image: url(../../../assets/images/icons/portada-1.png);
   background-size: cover;
   background-repeat: no-repeat;
+  cursor: pointer;
 }
 
 .playlists-container .playlists .playlist-item h1 {

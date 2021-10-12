@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getMyPlaylists } from "../../redux/playlist/action";
 import CreatePlaylistModal from "../CreatePlaylistModal";
 import portadaUno from "../../assets/images/icons/portada-1.png";
 import portadaDos from "../../assets/images/icons/portada-2.png";
@@ -13,20 +12,8 @@ import IconPlayList from "../../assets/images/icons/wishlist.png";
 import { BsFillPlusCircleFill } from "react-icons/bs";
 import "./style/playlistgrid.scss";
 
-function PlaylistGrid() {
+function PlaylistGrid({ playlists, privateLists }) {
   const history = useHistory();
-  const { user, loading, authObserverSuccess } = useSelector(
-    (state) => state.auth
-  );
-  const { myPlaylists, playlistCreatedSuccess } = useSelector(
-    (state) => state.playlist
-  );
-  const dispatch = useDispatch();
-  useEffect(() => {
-    if (!loading && authObserverSuccess) {
-      dispatch(getMyPlaylists(user.uid));
-    }
-  }, [loading, authObserverSuccess, playlistCreatedSuccess]);
   const playlist = [
     {
       name: "My uploaded Songs",
@@ -57,16 +44,22 @@ function PlaylistGrid() {
           <header>
             <img src={IconPlayList} alt="" className="playlist-icon" />
           </header>
-          <h1>Playlists</h1>
-          <BsFillPlusCircleFill
-            size={32}
-            className="plus-icon"
-            onClick={() => toggle()}
-          />
-          <CreatePlaylistModal show={modal} close={toggle} />
+          {!privateLists ? (
+            <h1>Playlists</h1>
+          ) : (
+            <>
+              <h1>My Playlists</h1>
+              <BsFillPlusCircleFill
+                size={32}
+                className="plus-icon"
+                onClick={() => toggle()}
+              />
+              <CreatePlaylistModal show={modal} close={toggle} />
+            </>
+          )}
         </div>
         <div className="playlists">
-          {myPlaylists.map((item, index) => {
+          {playlists.map((item, index) => {
             return (
               <div
                 onClick={() => history.push(item.link)}

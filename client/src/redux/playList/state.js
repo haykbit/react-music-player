@@ -7,9 +7,11 @@ const INITIAL_STATE = {
   removeSongSuccess: false,
   followSuccess: false,
   cancelFollowSuccess: false,
+  getPublicPlaylistsSuccess: false,
   error: null,
   myPlaylists: [],
   myFavPlaylists: [],
+  publicPlaylists: [],
 };
 
 export default INITIAL_STATE;
