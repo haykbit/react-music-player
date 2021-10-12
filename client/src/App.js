@@ -1,5 +1,5 @@
 import { Switch, Route } from "react-router-dom";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import AudioPlayer from "../src/components/SongBar/AudioPlayer";
@@ -20,7 +20,6 @@ function App() {
   const dispatch = useDispatch();
   const userStorage = JSON.parse(localStorage.getItem("user"));
   const { loading, authObserverSuccess } = useSelector((state) => state.auth);
-
   useEffect(() => {
     dispatch(authObserverLoading());
     if (!loading && !authObserverSuccess && !userStorage) {
@@ -42,7 +41,7 @@ function App() {
         <Route path="/playlist/:id" exact component={IndividualPlaylist} />
         <Route path="/playlists" exact component={Playlists} />
       </Switch>
-      <AudioPlayer />
+      {authObserverSuccess ? <AudioPlayer /> : null}
     </>
   );
 }

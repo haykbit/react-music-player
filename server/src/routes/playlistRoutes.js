@@ -24,6 +24,11 @@ playlistRouter.get(
   playlistController.getSongsByPlaylistId
 );
 
+playlistRouter.patch(
+  "/songs/:id",
+  authMiddleware,
+  playlistController.removeSongFromPlaylist
+);
 playlistRouter.patch("/:id", authMiddleware, playlistController.updatePlaylist);
 
 playlistRouter.delete(

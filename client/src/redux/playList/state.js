@@ -3,6 +3,7 @@ const INITIAL_STATE = {
   playlistCreatedSuccess: false,
   addedToPlaylistSuccess: false,
   getMyPlaylistsSuccess: false,
+  removeSongSuccess: false,
   error: null,
   myPlaylists: [],
 };
