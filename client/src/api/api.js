@@ -38,12 +38,12 @@ export async function updateUserProfile(id, profile, profileImage) {
   });
 }
 
-export async function uploadSongsData(song, metadata) {
+export async function uploadSongsData(song, metadata, image) {
   const userToken = await getCurrentUserToken();
   return axios({
     method: "POST",
     url: `${process.env.REACT_APP_API_BASE_URL}/songs`,
-    data: { song, metadata },
+    data: { song, metadata, image },
     headers: {
       Authorization: `Bearer ${userToken}`,
     },
