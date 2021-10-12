@@ -33,7 +33,7 @@ function Playlist({ playlist }) {
             <div
               className="album-column"
               style={{
-                backgroundImage: `url(${portadaUno})`,
+                backgroundImage: `url(${playlist.playlistImage})`,
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
               }}

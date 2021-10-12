@@ -1,5 +1,8 @@
 import {
   createPlaylists,
+  followingPlaylist,
+  cancelFollowingPlaylist,
+  getMyFavPlaylists,
   getMyPlaylistsList,
   removeSongFromPlaylist,
 } from "../../api/api";
@@ -14,6 +17,15 @@ import {
   REMOVE_SONG_REQUEST,
   REMOVE_SONG_SUCCESS,
   REMOVE_SONG_FAIL,
+  FOLLOW_PLAYLIST_REQUEST,
+  FOLLOW_PLAYLIST_SUCCESS,
+  FOLLOW_PLAYLIST_FAIL,
+  CANCEL_FOLLOW_PLAYLIST_REQUEST,
+  CANCEL_FOLLOW_PLAYLIST_SUCCESS,
+  CANCEL_FOLLOW_PLAYLIST_FAIL,
+  GET_FAVORITE_PLAYLISTS_REQUEST,
+  GET_FAVORITE_PLAYLISTS_SUCCESS,
+  GET_FAVORITE_PLAYLISTS_FAIL,
 } from "./types";
 
 export const createNewPlaylist = (playlistData, image) => async (dispatch) => {
@@ -51,3 +63,37 @@ export const deleteSongFromPlaylist =
       dispatch({ type: REMOVE_SONG_FAIL, payload: error.message });
     }
   };
+
+export const followPlaylist = (playlistId, userId) => async (dispatch) => {
+  dispatch({ type: FOLLOW_PLAYLIST_REQUEST });
+  try {
+    await followingPlaylist(playlistId, userId);
+    dispatch({ type: FOLLOW_PLAYLIST_SUCCESS });
+  } catch (error) {
+    dispatch({ type: FOLLOW_PLAYLIST_FAIL, payload: error.message });
+  }
+};
+
+export const cancelFollowPlaylist =
+  (playlistId, userId) => async (dispatch) => {
+    dispatch({ type: CANCEL_FOLLOW_PLAYLIST_REQUEST });
+    try {
+      await cancelFollowingPlaylist(playlistId, userId);
+      dispatch({ type: CANCEL_FOLLOW_PLAYLIST_SUCCESS });
+    } catch (error) {
+      dispatch({ type: CANCEL_FOLLOW_PLAYLIST_FAIL, payload: error.message });
+    }
+  };
+
+export const getFavoritePlaylists = (userId) => async (dispatch) => {
+  dispatch({ type: GET_FAVORITE_PLAYLISTS_REQUEST });
+  try {
+    const myFavLists = await getMyFavPlaylists(userId);
+    dispatch({
+      type: GET_FAVORITE_PLAYLISTS_SUCCESS,
+      payload: myFavLists.data.data,
+    });
+  } catch (error) {
+    dispatch({ type: GET_FAVORITE_PLAYLISTS_FAIL, payload: error.message });
+  }
+};

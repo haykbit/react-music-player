@@ -23,14 +23,27 @@ playlistRouter.get(
   authMiddleware,
   playlistController.getSongsByPlaylistId
 );
-
+playlistRouter.get(
+  "/my-favorite-lists/:id",
+  authMiddleware,
+  playlistController.getMyFavoritePlaylists
+);
 playlistRouter.patch(
   "/songs/:id",
   authMiddleware,
   playlistController.removeSongFromPlaylist
 );
 playlistRouter.patch("/:id", authMiddleware, playlistController.updatePlaylist);
-
+playlistRouter.patch(
+  "/follow/:id",
+  authMiddleware,
+  playlistController.followPlaylist
+);
+playlistRouter.patch(
+  "/cancel-follow/:id",
+  authMiddleware,
+  playlistController.cancelFollowPlaylist
+);
 playlistRouter.delete(
   "/:id",
   authMiddleware,

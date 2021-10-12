@@ -157,6 +157,85 @@ async function getSongsByPlaylistId(req, res, next) {
   }
 }
 
+async function followPlaylist(req, res, next) {
+  // playlist id
+  const { id } = req.params;
+  const { userId } = req.body;
+  try {
+    const checkPublic = await db.Playlist.findOne({ _id: id, private: false });
+    if (checkPublic) {
+      const playlist = await db.Playlist.findOneAndUpdate(
+        { _id: id, owner: !userId },
+        {
+          $inc: {
+            likes: 1,
+          },
+        }
+      );
+      await db.User.findOneAndUpdate(
+        { firebase_id: userId },
+        {
+          $push: { myFavoritePlaylists: [{ _id: id }] },
+        }
+      );
+    }
+    res.status(200).send({
+      message: "OK",
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function cancelFollowPlaylist(req, res, next) {
+  const { id: playlistId } = req.params;
+  const { userId } = req.body;
+  try {
+    const checkPlaylist = await db.Playlist.findById(playlistId);
+    const checkUser = await db.User.findOne({ firebase_id: userId });
+    if (checkUser.myFavoritePlaylists.includes(playlistId)) {
+      await db.Playlist.findOneAndUpdate(
+        { _id: playlistId },
+        {
+          $inc: {
+            likes: -1,
+          },
+        },
+        { new: true }
+      );
+
+      await db.User.findOneAndUpdate(
+        { firebase_id: userId },
+        {
+          $pull: { myFavoritePlaylists: playlistId },
+        },
+        { new: true }
+      );
+    }
+    res.status(200).send({
+      message: "OK",
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function getMyFavoritePlaylists(req, res, next) {
+  const { id } = req.params;
+  try {
+    const user = await db.User.findOne({ firebase_id: id });
+    const myFavLists = user.myFavoritePlaylists;
+    const myFavListsData = await db.Playlist.find({
+      _id: { $in: myFavLists },
+    });
+    res.status(200).send({
+      data: myFavListsData,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
   fetchMyPlaylists,
   fetchAllPlaylists,
@@ -166,4 +245,7 @@ module.exports = {
   createPlaylist,
   removeSongFromPlaylist,
   getSongsByPlaylistId,
+  followPlaylist,
+  cancelFollowPlaylist,
+  getMyFavoritePlaylists,
 };
