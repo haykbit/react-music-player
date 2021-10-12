@@ -24,8 +24,9 @@
   .playlists {
     color: #fff;
     display: flex;
+
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: center; // Start ?
 
     .playlist-item {
       width: 250px;
@@ -34,9 +35,10 @@
       white-space: normal;
       border-radius: 10px;
       margin: 10px;
-      background-image: url(../../../assets/images/icons/portada-1.png);
+      // background-image: url(../../../assets/images/icons/portada-1.png);
       background-size: cover;
       background-repeat: no-repeat;
+      background-position: center;
       cursor: pointer;
 
       h1 {
