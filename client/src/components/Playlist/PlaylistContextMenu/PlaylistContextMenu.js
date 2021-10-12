@@ -34,6 +34,14 @@ function PlaylistContextMenu({
     ToggleDeleteModal();
   }
 
+  function handleAddSong() {
+    console.log("I'M ADDING A SONG!");
+  }
+
+  function handleShare() {
+    console.log("I'M SHARING!");
+  }
+
   return (
     <>
       {show ? (
@@ -44,6 +52,9 @@ function PlaylistContextMenu({
             </li>
             {playlist.owner === userId ? (
               <>
+                <li className="menu-option-box" onClick={() => handleAddSong()}>
+                  Add Song
+                </li>
                 <li
                   className="menu-option-box"
                   onClick={() => {
@@ -51,7 +62,7 @@ function PlaylistContextMenu({
                     closeMenu();
                   }}
                 >
-                  Edit
+                  Edit Playlist
                 </li>
 
                 <li
@@ -61,12 +72,15 @@ function PlaylistContextMenu({
                     closeMenu();
                   }}
                 >
-                  Delete
+                  Delete Playlist
                 </li>
               </>
             ) : (
               ""
             )}
+            <li className="menu-option-box" onClick={() => handleShare()}>
+              Share
+            </li>
           </div>
         </div>
       ) : null}

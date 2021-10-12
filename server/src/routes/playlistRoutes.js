@@ -31,7 +31,7 @@ playlistRouter.patch(
 );
 playlistRouter.patch("/:id", authMiddleware, playlistController.updatePlaylist);
 
-playlistRouter.delete(
+playlistRouter.put(
   "/:id",
   authMiddleware,
   playlistController.removePlaylistById

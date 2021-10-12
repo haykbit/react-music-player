@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import "./style/DeleteConfirmation.scss";
-import { deleteSong } from "../../../redux/song/action";
+import { deletePlaylist } from "../../../redux/playlist/action";
+import { useHistory } from "react-router";
 
-const PlaylistDeleteConfirmation = ({ show, close, songId, userId }) => {
+const PlaylistDeleteConfirmation = ({ show, close, playlistId, userId }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
-  function deleteSelectedSong() {
-    dispatch(deleteSong(songId, userId));
-    close();
+  function deleteSelectedPlaylist() {
+    try {
+      dispatch(deletePlaylist(playlistId, userId));
+      history.push("/playlists");
+    } catch (err) {
+      console.log(err.response.data);
+    }
   }
 
   return (
@@ -25,7 +31,7 @@ const PlaylistDeleteConfirmation = ({ show, close, songId, userId }) => {
               </button>
               <button
                 className="submit"
-                onClick={() => deleteSelectedSong(songId)}
+                onClick={() => deleteSelectedPlaylist()}
               >
                 Confirm
               </button>

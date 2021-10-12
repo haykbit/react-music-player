@@ -71,11 +71,20 @@ async function getPlaylistById(req, res, next) {
 
 async function removePlaylistById(req, res, next) {
   const { id } = req.params;
+  const { userId } = req.body;
+
   try {
-    const playlist = await db.Playlist.deleteOne({ _id: id }).lean();
+    await db.Playlist.deleteOne({ _id: id });
+    await db.User.findOneAndUpdate(
+      { firebase_id: userId },
+      {
+        $pull: { myPlaylists: id },
+      },
+      { new: true }
+    );
 
     res.status(200).send({
-      data: playlist,
+      message: "OK",
     });
   } catch (err) {
     console.log(err);
@@ -119,22 +128,6 @@ async function removeSongFromPlaylist(req, res, next) {
     );
     res.status(200).send({
       message: "OK",
-    });
-  } catch (error) {
-    next(error);
-  }
-}
-
-async function getSongsByPlaylistId(req, res, next) {
-  const { id } = req.params;
-  try {
-    const playlist = await db.Playlist.findOne({ _id: id });
-    const playlistSongs = playlist.songs;
-    const songsData = await db.Song.find({
-      _id: { $in: playlistSongs },
-    });
-    res.status(200).send({
-      data: songsData,
     });
   } catch (error) {
     next(error);

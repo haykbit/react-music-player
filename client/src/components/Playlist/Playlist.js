@@ -4,6 +4,7 @@ import { getUserProfile } from "../../api/api";
 import Modal from "../Modal";
 import PlaylistStack from "./PlaylistStack";
 import PlaylistContextMenu from "./PlaylistContextMenu/PlaylistContextMenu";
+import PlaylistDeleteConfirmation from "./PlaylistDeleteConfirmation";
 
 import { IoMdMore } from "react-icons/io";
 
@@ -36,7 +37,7 @@ function Playlist({ playlist }) {
     if (!loading && authObserverSuccess) {
       getUserInfo();
     }
-  }, []);
+  }, [loading]);
 
   async function getUserInfo() {
     const user = await getUserProfile(playlist.owner);
@@ -47,24 +48,47 @@ function Playlist({ playlist }) {
     <>
       <div className="my-playlist-body">
         <div className="left-side">
-          <div className="playlist-title">
-            <div
-              className="album-column"
-              style={{
-                backgroundImage: `url(${portadaUno})`,
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-              }}
-            ></div>
-            <div className="text-column">
-              <h1 className="playlist-name">{playlist.title}</h1>
-              <h3 className="playlist-genre">
-                {userInfo.firstName} {userInfo.lastName}
-              </h3>
-              <p className="playlist-genre">{playlist.description}</p>
-              <p className="song-number">{playlist.songs.length} songs</p>
-            </div>
-          </div>
+          {userInfo ? (
+            <>
+              <div className="playlist-title">
+                <div
+                  className="album-column"
+                  style={{
+                    backgroundImage: `url(${portadaUno})`,
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                  }}
+                ></div>
+                <div className="text-column">
+                  <h1 className="playlist-name">{playlist.title}</h1>
+                  <h3 className="playlist-genre">
+                    {userInfo.firstName} {userInfo.lastName}
+                  </h3>
+                  <p className="playlist-genre">{playlist.description}</p>
+                  <p className="song-number">{playlist.songs.length} songs</p>
+                  <button
+                    onClick={() => ToggleContext()}
+                    className="context-menu-btn"
+                  >
+                    <IoMdMore className="context-icon" />
+                  </button>
+
+                  <div className="context-container">
+                    <PlaylistContextMenu
+                      show={contextMenu}
+                      closeMenu={ToggleContext}
+                      ToggleEditModal={ToggleEditModal}
+                      ToggleDeleteModal={ToggleDeleteModal}
+                      playlist={playlist}
+                    />
+                  </div>
+                </div>
+              </div>
+            </>
+          ) : (
+            ""
+          )}
+
           <div className="song-stack">
             <PlaylistStack playlist={playlist} />
           </div>
@@ -125,12 +149,16 @@ function Playlist({ playlist }) {
       </div>
 
       <div className="context-container">
-        <PlaylistContextMenu
-          show={contextMenu}
-          closeMenu={ToggleContext}
-          ToggleEditModal={ToggleEditModal}
-          ToggleDeleteModal={ToggleDeleteModal}
-          playlist={playlist}
+        {/* <PlaylistEditModal
+          show={modals.editModal}
+          close={ToggleEditModal}
+          song={song}
+        /> */}
+        <PlaylistDeleteConfirmation
+          show={modals.deleteModal}
+          close={ToggleDeleteModal}
+          playlistId={playlist._id}
+          userId={userInfo.firebase_id}
         />
       </div>
     </>

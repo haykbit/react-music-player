@@ -2,6 +2,7 @@ import {
   createPlaylists,
   getMyPlaylistsList,
   removeSongFromPlaylist,
+  removePlaylist,
 } from "../../api/api";
 import { uploadImages } from "../../services/cloudinary";
 import {
@@ -14,6 +15,9 @@ import {
   REMOVE_SONG_REQUEST,
   REMOVE_SONG_SUCCESS,
   REMOVE_SONG_FAIL,
+  DELETE_PLAYLIST_REQUEST,
+  DELETE_PLAYLIST_SUCCESS,
+  DELETE_PLAYLIST_FAIL,
 } from "./types";
 
 export const createNewPlaylist = (playlistData, image) => async (dispatch) => {
@@ -51,3 +55,13 @@ export const deleteSongFromPlaylist =
       dispatch({ type: REMOVE_SONG_FAIL, payload: error.message });
     }
   };
+
+export const deletePlaylist = (playlistId, userId) => async (dispatch) => {
+  dispatch({ type: DELETE_PLAYLIST_REQUEST });
+  try {
+    await removePlaylist(playlistId, userId);
+    dispatch({ type: DELETE_PLAYLIST_SUCCESS });
+  } catch (error) {
+    dispatch({ type: DELETE_PLAYLIST_FAIL, payload: error.message });
+  }
+};
