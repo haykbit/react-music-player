@@ -20,7 +20,7 @@ function Playlist({ playlist }) {
     if (!loading && authObserverSuccess) {
       getUserInfo();
     }
-  }, []);
+  }, [loading]);
   async function getUserInfo() {
     const user = await getUserProfile(playlist.owner);
     setUserInfo(user.data.data);
