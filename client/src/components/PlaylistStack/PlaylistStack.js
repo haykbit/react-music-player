@@ -50,12 +50,6 @@ function PlaylistStack() {
     }
   }, []);
 
-  useEffect(() => {
-    if (!loading && authObserverSuccess) {
-      loadPlaylistOnMount();
-    }
-  }, []);
-
   return (
     <>
       <div className="DragDropList">
