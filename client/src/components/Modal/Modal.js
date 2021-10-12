@@ -10,21 +10,21 @@ import SongUploadIcon from "../../assets/images/icons/songImageUpload.png";
 
 const Modal = ({ show, close }) => {
   const [song, setSong] = useState("");
+  const [songImage, setSongImage] = useState("");
+  const [isUploaded, setIsUploaded] = useState(false);
+  const [image, setImage] = useState("");
   const dispatch = useDispatch();
 
   function uploadSong(metadata) {
-    dispatch(uploadSongFile(song, metadata));
+    dispatch(uploadSongFile(song, metadata, image));
   }
-
-  const [songImage, setSongimage] = useState("");
-  const [isUploaded, setIsUploaded] = useState(false);
 
   function handleImageChange(e) {
     if (e.target.files && e.target.files[0]) {
       let reader = new FileReader();
-
+      setImage(e.target.files[0]);
       reader.onload = function (e) {
-        setSongimage(e.target.result);
+        setSongImage(e.target.result);
         setIsUploaded(true);
       };
       reader.readAsDataURL(e.target.files[0]);

@@ -12,6 +12,9 @@ import {
   ADD_SONG_TO_PLAYLIST_REQUEST,
   ADD_SONG_TO_PLAYLIST_SUCCESS,
   ADD_SONG_TO_PLAYLIST_FAIL,
+  REMOVE_SONG_REQUEST,
+  REMOVE_SONG_SUCCESS,
+  REMOVE_SONG_FAIL,
 } from "./types";
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -49,7 +52,7 @@ const reducer = (state = INITIAL_STATE, action) => {
         loading: true,
         playlistCreatedSuccess: false,
         addedToPlaylistSuccess: false,
-        getMyPlaylistsSuccess: true,
+        getMyPlaylistsSuccess: false,
         error: null,
       };
     case GET_MY_PLAYLISTS_SUCCESS:
@@ -69,6 +72,30 @@ const reducer = (state = INITIAL_STATE, action) => {
         playlistCreatedSuccess: false,
         addedToPlaylistSuccess: false,
         getMyPlaylistsSuccess: false,
+        error: action.payload,
+      };
+    case REMOVE_SONG_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        playlistCreatedSuccess: false,
+        addedToPlaylistSuccess: false,
+        getMyPlaylistsSuccess: false,
+        removeSongSuccess: false,
+        error: null,
+      };
+    case REMOVE_SONG_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        removeSongSuccess: true,
+        error: null,
+      };
+    case REMOVE_SONG_FAIL:
+      return {
+        ...state,
+        loading: false,
+        removeSongSuccess: false,
         error: action.payload,
       };
     default:
