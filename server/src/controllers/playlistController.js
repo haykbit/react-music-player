@@ -107,7 +107,35 @@ async function updatePlaylist(req, res, next) {
 }
 
 async function removeSongFromPlaylist(req, res, next) {
+  const { id } = req.params;
+  const { songId } = req.body;
   try {
+    await db.Playlist.findOneAndUpdate(
+      { _id: id },
+      {
+        $pull: { songs: songId },
+      },
+      { new: true }
+    );
+    res.status(200).send({
+      message: "OK",
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function getSongsByPlaylistId(req, res, next) {
+  const { id } = req.params;
+  try {
+    const playlist = await db.Playlist.findOne({ _id: id });
+    const playlistSongs = playlist.songs;
+    const songsData = await db.Song.find({
+      _id: { $in: playlistSongs },
+    });
+    res.status(200).send({
+      data: songsData,
+    });
   } catch (error) {
     next(error);
   }
@@ -136,5 +164,6 @@ module.exports = {
   removePlaylistById,
   updatePlaylist,
   createPlaylist,
+  removeSongFromPlaylist,
   getSongsByPlaylistId,
 };

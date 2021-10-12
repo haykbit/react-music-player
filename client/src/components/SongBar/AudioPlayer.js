@@ -24,7 +24,7 @@ const AudioPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   // Destructure for conciseness
-  const { title, artist, url, duration } = playlist[trackIndex];
+  const { title, artist, url, duration, songImage } = playlist[trackIndex];
 
   // Refs
   const audioRef = useRef(new Audio(url));
@@ -146,7 +146,7 @@ const AudioPlayer = () => {
           <div className="track-info">
             <img
               className="artwork"
-              // src={image}
+              src={songImage}
               alt={`${title} by ${artist}`}
             />
             <div className="song-info">
