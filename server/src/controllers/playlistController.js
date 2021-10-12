@@ -131,12 +131,13 @@ async function addSongFromPlaylistView(req, res, next) {
           },
         }
       );
-      
     }
 
     res.status(200).send({
       message: "OK",
-    })
+    });
+  } catch (error) {
+    next(error);
   }
 }
 
