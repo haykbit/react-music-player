@@ -3,7 +3,6 @@ import {
   likeSong,
   getLikedSongs,
   cancelLikeSong,
-  getMySongsData,
   removeSongData,
   editSongData,
 } from "../../api/api";

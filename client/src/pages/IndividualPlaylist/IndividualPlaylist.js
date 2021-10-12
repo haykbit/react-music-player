@@ -6,7 +6,8 @@ import Navbar from "../../components/Navbar/Navbar";
 import Playlist from "../../components/Playlist";
 import "./style/playlist.scss";
 
-function IndividualPlaylist() {
+function IndividualPlaylist(props) {
+  const playlist = props.location.state.item;
   const history = useHistory();
   const dispatch = useDispatch();
   const userStorage = JSON.parse(localStorage.getItem("user"));
@@ -24,7 +25,7 @@ function IndividualPlaylist() {
   return (
     <>
       <Navbar />
-      <Playlist />
+      <Playlist playlist={playlist} />
     </>
   );
 }

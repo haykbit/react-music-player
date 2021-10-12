@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   playlistCreatedSuccess: false,
   addedToPlaylistSuccess: false,
   myPlaylistCreatedSuccess: false,
+  myPlaylists: [],
   addToPlaylistFromPlaylistViewSuccess: false,
   UploadToPlaylistFromPlaylistView: false,
   canceladdToPlaylistFromPlaylistView: false,

@@ -1,14 +1,14 @@
 const db = require("../models");
 
 async function createPlaylist(req, res, next) {
-  const { title, description, genre, private, url } = req.body.playlist;
+  const { title, description, genre, private, image } = req.body.playlist;
   const { uid } = req.user;
   try {
     const newPlaylist = await db.Playlist.create({
       title,
       description,
-      genre,
-      playlistImage: url,
+      genre: genre,
+      playlistImage: image,
       private,
       owner: uid,
     });
@@ -26,12 +26,30 @@ async function createPlaylist(req, res, next) {
   }
 }
 
-async function fetchPlaylists(req, res, next) {
+async function fetchMyPlaylists(req, res, next) {
+  const { id } = req.params;
   try {
-    const playlist = await db.Playlist.find().lean();
+    const myPlaylists = await db.Playlist.find({ owner: id }).lean();
 
     res.status(200).send({
-      data: playlist,
+      data: myPlaylists,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function fetchAllPlaylists(req, res, next) {
+  const { id } = req.params;
+  try {
+    const allMyPlaylists = await db.Playlist.find({ owner: id }).lean();
+    const publicPlaylists = await db.Playlist.find({
+      owner: !id,
+      private: false,
+    }).lean();
+    res.status(200).send({
+      allMyPlaylists,
+      publicPlaylists,
     });
   } catch (err) {
     console.log(err);
@@ -108,24 +126,37 @@ async function addSongFromPlaylistView(req, res, next) {
       await db.Playlist.findOneAndUpdate(
         { _id: playlistId },
         {
-          // $inc: {
-          //   songsOfPlaylist: 1,
-          // },
           $push: {
             songs: songId,
           },
         }
       );
-      // await db.User.findOneAndUpdate(
-      //   { firebase_id: userId },
-      //   {
-      //     $push: { myPlaylists: [{ _id: playlistId }] },
-      //   }
-      // );
+      
     }
 
     res.status(200).send({
       message: "OK",
+    })
+  }
+}
+
+async function removeSongFromPlaylist(req, res, next) {
+  try {
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function getSongsByPlaylistId(req, res, next) {
+  const { id } = req.params;
+  try {
+    const playlist = await db.Playlist.findOne({ _id: id });
+    const playlistSongs = playlist.songs;
+    const songsData = await db.Song.find({
+      _id: { $in: playlistSongs },
+    });
+    res.status(200).send({
+      data: songsData,
     });
   } catch (error) {
     next(error);
@@ -133,10 +164,12 @@ async function addSongFromPlaylistView(req, res, next) {
 }
 
 module.exports = {
-  fetchPlaylists: fetchPlaylists,
-  getPlaylistById: getPlaylistById,
-  removePlaylistById: removePlaylistById,
-  updatePlaylist: updatePlaylist,
-  createPlaylist: createPlaylist,
-  addSongFromPlaylistView: addSongFromPlaylistView,
+  fetchMyPlaylists,
+  fetchAllPlaylists,
+  getPlaylistById,
+  removePlaylistById,
+  updatePlaylist,
+  createPlaylist,
+  getSongsByPlaylistId,
+  addSongFromPlaylistView,
 };

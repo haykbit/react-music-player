@@ -153,7 +153,8 @@ async function updateSong(req, res, next) {
           genre: genre || "",
           album: album || "",
         },
-      }
+      },
+      { new: true }
     );
 
     res.status(200).send({
@@ -172,7 +173,7 @@ async function deleteSong(req, res, next) {
     await db.User.findOneAndUpdate(
       { firebase_id: userId },
       {
-        $pull: { mySongs: id },
+        $pull: { mySongs: id, myFavoriteSongs: id },
       },
       { new: true }
     );
@@ -181,6 +182,23 @@ async function deleteSong(req, res, next) {
     });
   } catch (err) {
     console.log(err);
+  }
+}
+
+async function countPlayedNumber(req, res, next) {
+  const { id } = req.params;
+  try {
+    await db.Song.findOneAndUpdate(
+      { _id: id },
+      {
+        $inc: {
+          played: 1,
+        },
+      },
+      { new: true }
+    );
+  } catch (error) {
+    next(error);
   }
 }
 
@@ -193,4 +211,5 @@ module.exports = {
   cancelLikeSong,
   updateSong,
   deleteSong,
+  countPlayedNumber,
 };
