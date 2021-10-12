@@ -39,17 +39,16 @@ async function fetchMyPlaylists(req, res, next) {
   }
 }
 
-async function fetchAllPlaylists(req, res, next) {
+async function fetchPublicPlaylists(req, res, next) {
   const { id } = req.params;
   try {
-    const allMyPlaylists = await db.Playlist.find({ owner: id }).lean();
     const publicPlaylists = await db.Playlist.find({
-      owner: !id,
+      owner: { $ne: id },
       private: false,
-    }).lean();
+    });
+
     res.status(200).send({
-      allMyPlaylists,
-      publicPlaylists,
+      data: publicPlaylists,
     });
   } catch (err) {
     console.log(err);
@@ -162,23 +161,20 @@ async function followPlaylist(req, res, next) {
   const { id } = req.params;
   const { userId } = req.body;
   try {
-    const checkPublic = await db.Playlist.findOne({ _id: id, private: false });
-    if (checkPublic) {
-      const playlist = await db.Playlist.findOneAndUpdate(
-        { _id: id, owner: !userId },
-        {
-          $inc: {
-            likes: 1,
-          },
-        }
-      );
-      await db.User.findOneAndUpdate(
-        { firebase_id: userId },
-        {
-          $push: { myFavoritePlaylists: [{ _id: id }] },
-        }
-      );
-    }
+    const playlist = await db.Playlist.findOneAndUpdate(
+      { _id: id, owner: { $ne: userId }, private: false },
+      {
+        $inc: {
+          likes: 1,
+        },
+      }
+    );
+    await db.User.findOneAndUpdate(
+      { firebase_id: userId },
+      {
+        $push: { myFavoritePlaylists: [{ _id: id }] },
+      }
+    );
     res.status(200).send({
       message: "OK",
     });
@@ -238,7 +234,7 @@ async function getMyFavoritePlaylists(req, res, next) {
 
 module.exports = {
   fetchMyPlaylists,
-  fetchAllPlaylists,
+  fetchPublicPlaylists,
   getPlaylistById,
   removePlaylistById,
   updatePlaylist,
