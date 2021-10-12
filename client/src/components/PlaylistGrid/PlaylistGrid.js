@@ -19,8 +19,8 @@ import "./style/playlistgrid.scss";
 
 function PlaylistGrid() {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
-  const toggle = () => setModal(!modal);
 
   const { user, loading, authObserverSuccess } = useSelector(
     (state) => state.auth
@@ -28,33 +28,20 @@ function PlaylistGrid() {
   const { myPlaylists, playlistCreatedSuccess } = useSelector(
     (state) => state.playlist
   );
-  const dispatch = useDispatch();
+
+  const [items, setItems] = useState(myPlaylists);
+
   useEffect(() => {
     if (!loading && authObserverSuccess) {
       dispatch(getMyPlaylists(user.uid));
     }
   }, [loading, authObserverSuccess, playlistCreatedSuccess]);
-  const playlist = [
-    {
-      name: "My uploaded Songs",
-      songs: 10,
-      cover: portadaTres,
-      link: "/playlist",
-    },
-    { name: "Spanish Rock", songs: 43, cover: portadaUno },
-    { name: "English Rock", songs: 22, cover: portadaDos },
-    { name: "European Rap", songs: 15, cover: portadaTres },
-    { name: "Spanish Trap", songs: 43, cover: portadaCuatro },
-    { name: "English Country", songs: 22, cover: portadaUno },
-    { name: "European Techno", songs: 15, cover: portadaDos },
-    { name: "Spanish Pop", songs: 43, cover: portadaTres },
-    { name: "English Rap", songs: 22, cover: portadaCuatro },
-    { name: "European House", songs: 15, cover: portadaUno },
-    { name: "English Rock", songs: 22, cover: portadaDos },
-    { name: "European Rap", songs: 15, cover: portadaTres },
-    { name: "Spanish Trap", songs: 43, cover: portadaCuatro },
-  ];
-  const [items, setItems] = React.useState(playlist);
+
+  useEffect(() => {
+    setItems(myPlaylists);
+  }, [loading]);
+
+  const toggle = () => setModal(!modal);
 
   const onSortEnd = (oldIndex: number, newIndex: number) => {
     setItems((array) => arrayMove(array, oldIndex, newIndex));
@@ -85,11 +72,16 @@ function PlaylistGrid() {
           {items.map((item, index) => (
             <SortableItem key={index}>
               <div
-                onClick={() => history.push(item.link)}
+                onClick={() =>
+                  history.push({
+                    pathname: `playlist/${item._id}`,
+                    state: { item },
+                  })
+                }
                 className="playlist-item"
                 key={index}
                 style={{
-                  backgroundImage: `url(${item.cover})`,
+                  backgroundImage: `url(${item.playlistImage})`,
                   width: "250px",
                   height: "300px",
                   padding: "10px",
@@ -102,7 +94,7 @@ function PlaylistGrid() {
                   cursor: "pointer",
                 }}
               >
-                <h1 style={{ fontSize: "40px" }}>{item.name}</h1>
+                <h1 style={{ fontSize: "40px" }}>{item.title}</h1>
                 <h5>{item.songs}</h5>
               </div>
             </SortableItem>
