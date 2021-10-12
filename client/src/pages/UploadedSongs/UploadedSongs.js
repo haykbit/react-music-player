@@ -3,11 +3,10 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { authObserverLoading } from "../../redux/auth/action";
 import Navbar from "../../components/Navbar/Navbar";
-import Playlist from "../../components/Playlist";
+import UploadedSongsPlaylist from "../../components/UploadedSongsPlaylist";
 import "./style/playlist.scss";
 
-function IndividualPlaylist(props) {
-  const playlist = props.location.state.item;
+function UploadedSongs() {
   const history = useHistory();
   const dispatch = useDispatch();
   const userStorage = JSON.parse(localStorage.getItem("user"));
@@ -25,9 +24,9 @@ function IndividualPlaylist(props) {
   return (
     <>
       <Navbar />
-      <Playlist playlist={playlist} />
+      <UploadedSongsPlaylist />
     </>
   );
 }
 
-export default IndividualPlaylist;
+export default UploadedSongs;

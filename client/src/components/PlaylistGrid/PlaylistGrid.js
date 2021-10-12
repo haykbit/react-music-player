@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { getMyPlaylists } from "../../redux/playlist/action";
 import CreatePlaylistModal from "../CreatePlaylistModal";
 import portadaUno from "../../assets/images/icons/portada-1.png";
 import portadaDos from "../../assets/images/icons/portada-2.png";
 import portadaTres from "../../assets/images/icons/portada-3.png";
 import portadaCuatro from "../../assets/images/icons/portada-4.png";
-import { useHistory } from "react-router-dom";
 
 import { CgPlayList } from "react-icons/cg";
 import IconPlayList from "../../assets/images/icons/wishlist.png";
@@ -14,6 +14,7 @@ import { BsFillPlusCircleFill } from "react-icons/bs";
 import "./style/playlistgrid.scss";
 
 function PlaylistGrid() {
+  const history = useHistory();
   const { user, loading, authObserverSuccess } = useSelector(
     (state) => state.auth
   );
@@ -46,7 +47,6 @@ function PlaylistGrid() {
     { name: "European Rap", songs: 15, cover: portadaTres },
     { name: "Spanish Trap", songs: 43, cover: portadaCuatro },
   ];
-  const history = useHistory();
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
@@ -73,6 +73,12 @@ function PlaylistGrid() {
                 className="playlist-item"
                 key={index}
                 style={{ backgroundImage: `url(${item.playlistImage})` }}
+                onClick={() =>
+                  history.push({
+                    pathname: `playlist/${item._id}`,
+                    state: { item },
+                  })
+                }
               >
                 <h1>{item.title}</h1>
                 <h4>{item.description}</h4>
