@@ -11,11 +11,13 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 10px;
   position: absolute;
+  -webkit-transform: translateX(20%) translateY(50%);
+          transform: translateX(20%) translateY(50%);
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 15px;
+  z-index: 1000;
 }
 
 .context-menu-container .context-menu {
@@ -26,15 +28,22 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  height: auto;
+  border-radius: 10px;
 }
 
-.context-menu-container .context-menu li {
+.context-menu-container .context-menu .menu-option-box {
   cursor: pointer;
   list-style: none;
+  font-weight: 500;
   border-bottom: 1px solid white;
-  margin: 10px;
+  margin: 5px;
+}
+
+.context-menu-container .menu-option-box:hover {
+  background-color: #666666;
 }
 /*# sourceMappingURL=rightClickMenu.css.map */

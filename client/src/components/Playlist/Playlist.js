@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getUserProfile } from "../../api/api";
 import Modal from "../Modal";
 import PlaylistStack from "./PlaylistStack";
@@ -10,20 +10,55 @@ import portadaTres from "../../assets/images/albums/arctic-album-2.jpeg";
 import portadaCuatro from "../../assets/images/albums/arctic-album-3.jpeg";
 
 import "./style/playlistcomponent.scss";
+import {
+  cancelFollowPlaylist,
+  followPlaylist,
+  getFavoritePlaylists,
+} from "../../redux/playlist/action";
 
 function Playlist({ playlist }) {
+  const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
   const [userInfo, setUserInfo] = useState({});
+  const [follow, setFollow] = useState(false);
+  const [myFavPlaylists, setMyFavPlaylists] = useState([]);
   const Toggle = () => setModal(!modal);
-  const { loading, authObserverSuccess } = useSelector((state) => state.auth);
+  const { user, loading, authObserverSuccess } = useSelector(
+    (state) => state.auth
+  );
+  const { myFavoritePlaylists, followSuccess } = useSelector(
+    (state) => state.playlist
+  );
   useEffect(() => {
     if (!loading && authObserverSuccess) {
       getUserInfo();
+      getFavoritePlaylistsInfo();
     }
-  }, []);
+  }, [loading]);
   async function getUserInfo() {
     const user = await getUserProfile(playlist.owner);
     setUserInfo(user.data.data);
+  }
+  function handleFollowClick() {
+    setFollow((prev) => !prev);
+
+    if (follow === false) {
+      dispatch(followPlaylist(playlist._id, user.uid));
+    } else {
+      dispatch(cancelFollowPlaylist(playlist._id, user.uid));
+    }
+  }
+  function getFavoritePlaylistsInfo() {
+    dispatch(getFavoritePlaylists(user.uid));
+    setMyFavPlaylists(myFavPlaylists);
+  }
+  function handleClassNameAndFollow() {
+    const checkFavLists = myFavPlaylists.some(
+      (ele) => ele["_id"] === playlist._id
+    )
+      ? "following"
+      : "follow";
+    return checkFavLists;
   }
   return (
     <>
@@ -33,7 +68,7 @@ function Playlist({ playlist }) {
             <div
               className="album-column"
               style={{
-                backgroundImage: `url(${portadaUno})`,
+                backgroundImage: `url(${playlist.playlistImage})`,
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
               }}
@@ -45,6 +80,16 @@ function Playlist({ playlist }) {
               </h3>
               <p className="playlist-genre">{playlist.description}</p>
               <p className="song-number">{playlist.songs.length} songs</p>
+              {!playlist.private ? (
+                <div>
+                  <button
+                    className={handleClassNameAndFollow()}
+                    onClick={handleFollowClick}
+                  >
+                    {follow ? "following" : "follow"}
+                  </button>
+                </div>
+              ) : null}
             </div>
           </div>
           <div className="song-stack">

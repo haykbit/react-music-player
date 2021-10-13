@@ -1,110 +1,103 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getMyPlaylists } from "../../redux/playlist/action";
-import { CgPlayList } from "react-icons/cg";
 import { BsFillPlusCircleFill } from "react-icons/bs";
 
 import SortableList, { SortableItem } from "react-easy-sort";
 import arrayMove from "array-move";
 
 import CreatePlaylistModal from "../CreatePlaylistModal";
-import portadaUno from "../../assets/images/icons/portada-1.png";
-import portadaDos from "../../assets/images/icons/portada-2.png";
-import portadaTres from "../../assets/images/icons/portada-3.png";
-import portadaCuatro from "../../assets/images/icons/portada-4.png";
 
 import IconPlayList from "../../assets/images/icons/wishlist.png";
 import "./style/playlistgrid.scss";
 
-function PlaylistGrid() {
+function PlaylistGrid({ playlists, privateLists }) {
   const history = useHistory();
-  const dispatch = useDispatch();
 
-  const { user, loading, authObserverSuccess } = useSelector(
-    (state) => state.auth
-  );
-  const { myPlaylists, playlistCreatedSuccess } = useSelector(
-    (state) => state.playlist
-  );
+  const { loading, authObserverSuccess } = useSelector((state) => state.auth);
 
   const [items, setItems] = useState([{}]);
-  useEffect(() => {
-    if (!loading && authObserverSuccess) {
-      dispatch(getMyPlaylists(user.uid));
-    }
-  }, [loading, authObserverSuccess, playlistCreatedSuccess]);
 
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
   useEffect(() => {
     if (!loading && authObserverSuccess) {
-      setItems(myPlaylists);
-      //dispatch(getMyPlaylists(user.uid));
+      setItems(playlists);
     }
-  }, [myPlaylists]);
+  }, [playlists]);
 
   const onSortEnd = (oldIndex: number, newIndex: number) => {
-    setItems((myPlaylists) => arrayMove(myPlaylists, oldIndex, newIndex));
+    setItems((playlists) => arrayMove(playlists, oldIndex, newIndex));
   };
 
-  console.log("PLAYLIST: ", myPlaylists);
   console.log("ITEMS: ", items);
 
   return (
-    <div className="playlists-container">
-      <div className="playlists-header">
-        <header>
-          <img src={IconPlayList} alt="" className="playlist-icon" />
-        </header>
-        <h1>Playlists</h1>
-        <BsFillPlusCircleFill
-          size={32}
-          className="plus-icon"
-          onClick={() => toggle()}
-        />
-        <CreatePlaylistModal show={modal} close={toggle} />
+    <>
+      <div className="playlists-container">
+        <div className="playlists-header">
+          <header>
+            <img src={IconPlayList} alt="" className="playlist-icon" />
+          </header>
+          {!privateLists ? (
+            <>
+              <h1>Playlists</h1>
+            </>
+          ) : (
+            <>
+              <h1>My Playlists</h1>
+              <BsFillPlusCircleFill
+                size={32}
+                className="plus-icon"
+                onClick={() => toggle()}
+              />
+              <CreatePlaylistModal show={modal} close={toggle} />
+            </>
+          )}
+        </div>
+        <div className="playlists">
+          <SortableList
+            onSortEnd={onSortEnd}
+            className="list"
+            draggedItemClassName="dragged"
+          >
+            {items.map((item, index) => (
+              <SortableItem key={index}>
+                <div
+                  className="playlist-item"
+                  key={index}
+                  style={{
+                    backgroundImage: `url(${item.playlistImage})`,
+                    width: "250px",
+                    height: "300px",
+                    padding: "10px",
+                    color: "#fff",
+                    whiteSpace: "normal",
+                    borderRadius: "10px",
+                    margin: "10px",
+                    backgroundPosition: "center",
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                    cursor: "pointer",
+                  }}
+                  onClick={() =>
+                    history.push({
+                      pathname: `playlist/${item._id}`,
+                      state: { item },
+                    })
+                  }
+                >
+                  <h1 style={{ fontSize: "40px" }}>{item.title}</h1>
+                  <h5>{item.description}</h5>
+                  <h5>Songs: {item.songs ? item.songs.length : "0"}</h5>
+                </div>
+              </SortableItem>
+            ))}
+          </SortableList>
+        </div>
       </div>
-      <div className="playlists">
-        <SortableList
-          onSortEnd={onSortEnd}
-          className="list"
-          draggedItemClassName="dragged"
-        >
-          {items.map((item, index) => (
-            <SortableItem key={index}>
-              <div
-                className="playlist-item"
-                key={index}
-                style={{
-                  backgroundImage: `url(${item.playlistImage})`,
-                  width: "250px",
-                  height: "300px",
-                  padding: "10px",
-                  color: "#fff",
-                  whiteSpace: "normal",
-                  borderRadius: "10px",
-                  margin: "10px",
-                  backgroundSize: "cover",
-                  backgroundRepeat: "no-repeat",
-                  cursor: "pointer",
-                }}
-                onClick={() =>
-                  history.push({
-                    pathname: `playlist/${item._id}`,
-                    state: { item },
-                  })
-                }
-              >
-                <h1 style={{ fontSize: "40px" }}>{item.title}</h1>
-                <h5>Songs: {item.songs.length}</h5>
-              </div>
-            </SortableItem>
-          ))}
-        </SortableList>
-      </div>
-    </div>
+    </>
   );
 }
 

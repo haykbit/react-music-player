@@ -2,38 +2,39 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { authObserverLoading } from "../../redux/auth/action";
-import { displayPublicPlaylists } from "../../redux/playlist/action";
+import { getMyPlaylists } from "../../redux/playlist/action";
 import Navbar from "../../components/Navbar/Navbar";
 import PlaylistGrid from "../../components/PlaylistGrid/PlaylistGrid";
-import "./style/playlist.scss";
+import "./style/myplaylist.scss";
 
-function Playlists() {
+function MyPlaylists() {
   const history = useHistory();
   const dispatch = useDispatch();
   const userStorage = JSON.parse(localStorage.getItem("user"));
   const { user, loading, authObserverSuccess, signOutSuccess } = useSelector(
     (state) => state.auth
   );
-  const { publicPlaylists, getPublicPlaylistsSuccess } = useSelector(
+  const { myPlaylists, playlistCreatedSuccess } = useSelector(
     (state) => state.playlist
   );
   useEffect(() => {
     if (!loading && authObserverSuccess) {
-      dispatch(displayPublicPlaylists(user.uid));
+      dispatch(getMyPlaylists(user.uid));
     }
-  }, [loading, authObserverSuccess]);
+  }, [loading, authObserverSuccess, playlistCreatedSuccess]);
   useEffect(() => {
     dispatch(authObserverLoading());
     if (signOutSuccess) {
       history.push("/login");
     }
   }, []);
+
   return (
     <>
       <Navbar />
-      <PlaylistGrid playlists={publicPlaylists} privateLists={false} />
+      <PlaylistGrid playlists={myPlaylists} privateLists={true} />
     </>
   );
 }
 
-export default Playlists;
+export default MyPlaylists;
