@@ -113,7 +113,7 @@ function Playlist({ playlist }) {
               </h3>
               <p className="playlist-genre">{playlist.description}</p>
               <p className="song-number">{playlist.songs.length} songs</p>
-              {!playlist.private ? (
+              {!playlist.private && user.uid !== playlist.owner ? (
                 <div>
                   <button
                     className={`follow-button ${handleClassNameAndFollow()}`}
