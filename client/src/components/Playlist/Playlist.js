@@ -21,6 +21,7 @@ import {
   getFavoritePlaylists,
 } from "../../redux/playlist/action";
 import { getMyFavPlaylists } from "../../api/api";
+import AddToPlaylist from "../AddToPlaylist/AddToPlaylist";
 
 function Playlist({ playlist }) {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ function Playlist({ playlist }) {
   const [userInfo, setUserInfo] = useState({});
   const [contextMenu, setContextMenu] = useState(false);
   const [modals, setModals] = useState({
+    addToPlaylist: false,
     editModal: false,
     deleteModal: false,
   });
@@ -41,6 +43,9 @@ function Playlist({ playlist }) {
   };
   const ToggleDeleteModal = () =>
     setModals({ ...modals, deleteModal: !modals.deleteModal });
+
+  const ToggleAddToPlaylist = () =>
+    setModals({ ...modals, addToPlaylist: !modals.addToPlaylist });
 
   const { user, loading, authObserverSuccess } = useSelector(
     (state) => state.auth
@@ -87,6 +92,7 @@ function Playlist({ playlist }) {
   }
   return (
     <>
+      <AddToPlaylist show={modals.addToPlaylist} close={ToggleAddToPlaylist} />
       <div className="my-playlist-body">
         <div className="left-side">
           <div className="playlist-title">
@@ -134,6 +140,7 @@ function Playlist({ playlist }) {
                 <PlaylistContextMenu
                   show={contextMenu}
                   closeMenu={ToggleContext}
+                  ToggleAddToPlaylist={ToggleAddToPlaylist}
                   ToggleEditModal={ToggleEditModal}
                   ToggleDeleteModal={ToggleDeleteModal}
                   playlist={playlist}
