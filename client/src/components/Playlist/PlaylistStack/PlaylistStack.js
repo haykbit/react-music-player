@@ -8,7 +8,6 @@ import IndividualSong from "../../IndividualSong";
 import "./style/playliststack.scss";
 
 function PlaylistStack({ playlist }) {
-  // console.log(playlist, "playlist from playlist stack");
   const [mySongsData, setMySongsData] = useState(null);
   const { user, loading, authObserverSuccess } = useSelector(
     (state) => state.auth

@@ -3,6 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { getUserProfile } from "../../api/api";
 import Modal from "../Modal";
 import PlaylistStack from "./PlaylistStack";
+import PlaylistContextMenu from "./PlaylistContextMenu/PlaylistContextMenu";
+import PlaylistDeleteConfirmation from "./PlaylistDeleteConfirmation";
+
+import { IoMdMore } from "react-icons/io";
 
 import portadaUno from "../../assets/images/icons/portada-1.png";
 import portadaDos from "../../assets/images/albums/arctic-album-1.jpeg";
@@ -18,23 +22,37 @@ import {
 
 function Playlist({ playlist }) {
   const dispatch = useDispatch();
-  const [modal, setModal] = useState(false);
   const [userInfo, setUserInfo] = useState({});
+  const [contextMenu, setContextMenu] = useState(false);
+  const [modals, setModals] = useState({
+    editModal: false,
+    deleteModal: false,
+  });
   const [follow, setFollow] = useState(false);
   const [myFavPlaylists, setMyFavPlaylists] = useState([]);
-  const Toggle = () => setModal(!modal);
+
+  // Toggles for the diferent menus and modals
+  const ToggleContext = () => setContextMenu(!contextMenu);
+  const ToggleEditModal = () => {
+    setModals({ ...modals, editModal: !modals.editModal });
+  };
+  const ToggleDeleteModal = () =>
+    setModals({ ...modals, deleteModal: !modals.deleteModal });
+
   const { user, loading, authObserverSuccess } = useSelector(
     (state) => state.auth
   );
   const { myFavoritePlaylists, followSuccess } = useSelector(
     (state) => state.playlist
   );
+
   useEffect(() => {
     if (!loading && authObserverSuccess) {
       getUserInfo();
       getFavoritePlaylistsInfo();
     }
   }, [loading]);
+
   async function getUserInfo() {
     const user = await getUserProfile(playlist.owner);
     setUserInfo(user.data.data);
@@ -90,6 +108,22 @@ function Playlist({ playlist }) {
                   </button>
                 </div>
               ) : null}
+              <button
+                onClick={() => ToggleContext()}
+                className="context-menu-btn"
+              >
+                <IoMdMore className="context-icon" />
+              </button>
+
+              <div className="context-container">
+                <PlaylistContextMenu
+                  show={contextMenu}
+                  closeMenu={ToggleContext}
+                  ToggleEditModal={ToggleEditModal}
+                  ToggleDeleteModal={ToggleDeleteModal}
+                  playlist={playlist}
+                />
+              </div>
             </div>
           </div>
           <div className="song-stack">
@@ -149,6 +183,20 @@ function Playlist({ playlist }) {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="context-container">
+        {/* <PlaylistEditModal
+          show={modals.editModal}
+          close={ToggleEditModal}
+          song={song}
+        /> */}
+        <PlaylistDeleteConfirmation
+          show={modals.deleteModal}
+          close={ToggleDeleteModal}
+          playlistId={playlist._id}
+          userId={userInfo.firebase_id}
+        />
       </div>
     </>
   );

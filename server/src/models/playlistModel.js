@@ -7,12 +7,17 @@ const PlaylistSchema = new Schema(
       type: String,
       required: [true, "Please enter title to the playlist"],
       trim: true,
-      maxLength: [20, "Playlist title cannot exceed 20 characters"],
+      minLenght: [2, "Playlist title needs to have at least 2 characters"],
+      maxLength: [50, "Playlist title cannot exceed 50 characters"],
     },
     description: {
       type: String,
       required: [true, "Please enter description to the playlist"],
       trim: true,
+      minLenght: [
+        2,
+        "Playlist description needs to have at least 2 characters",
+      ],
       maxLength: [200, "Playlist description cannot exceed 200 characters"],
     },
     songs: {
@@ -21,7 +26,6 @@ const PlaylistSchema = new Schema(
     },
     genre: {
       type: String,
-      // required: [true, "Please select genre for this playlist"],
       enum: {
         values: [
           "",
@@ -43,7 +47,6 @@ const PlaylistSchema = new Schema(
           "Reggae",
           "Punk",
         ],
-        // message: "Please select correct genre for playlist",
       },
     },
     private: {

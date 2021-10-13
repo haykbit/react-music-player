@@ -15,6 +15,9 @@ import {
   REMOVE_SONG_REQUEST,
   REMOVE_SONG_SUCCESS,
   REMOVE_SONG_FAIL,
+  DELETE_PLAYLIST_REQUEST,
+  DELETE_PLAYLIST_SUCCESS,
+  DELETE_PLAYLIST_FAIL,
   FOLLOW_PLAYLIST_REQUEST,
   FOLLOW_PLAYLIST_SUCCESS,
   FOLLOW_PLAYLIST_FAIL,
@@ -108,6 +111,27 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: false,
         removeSongSuccess: false,
+        error: action.payload,
+      };
+    case DELETE_PLAYLIST_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        deletePlaylistSuccess: false,
+        error: null,
+      };
+    case DELETE_PLAYLIST_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        deletePlaylistSuccess: true,
+        error: null,
+      };
+    case DELETE_PLAYLIST_FAIL:
+      return {
+        ...state,
+        loading: false,
+        deletePlaylistSuccess: false,
         error: action.payload,
       };
     case FOLLOW_PLAYLIST_REQUEST:
