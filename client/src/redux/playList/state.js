@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   getMyPlaylistsSuccess: false,
   getFavoritePlaylistsSuccess: false,
   removeSongSuccess: false,
+  deletePlaylistSuccess: false,
   followSuccess: false,
   cancelFollowSuccess: false,
   getPublicPlaylistsSuccess: false,

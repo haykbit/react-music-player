@@ -7,13 +7,15 @@ const SongSchema = new Schema(
       type: String,
       required: [true, "Please enter title song"],
       trim: true,
-      maxLength: [30, "Song title cannot exceed 30 characters"],
+      minLength: [2, "Song title needs to have at least 2 characters"],
+      maxLength: [80, "Song title cannot exceed 80 characters"],
     },
     artist: {
       type: String,
       required: [true, "Please enter artist song"],
       trim: true,
-      maxLength: [30, "Song artist cannot exceed 30 characters"],
+      minLength: [2, "Song artist needs to have at least 2 characters"],
+      maxLength: [50, "Song artist cannot exceed 30 characters"],
     },
     genre: {
       type: String,
@@ -51,16 +53,13 @@ const SongSchema = new Schema(
     },
     album: {
       type: String,
+      minLength: [2, "Album name needs to have at least 2 characters"],
+      maxLength: [50, "Album name artist cannot exceed 30 characters"],
     },
-    // album: {
-    //   type: mongoose.Schema.ObjectId,
-    //   ref: "Album",
-    //   required: false,
-    // },
-    // private: {
-    //   type: Boolean,
-    //   required: true,
-    // },
+    private: {
+      type: Boolean,
+      required: true,
+    },
     songImage: {
       type: String,
       default:
