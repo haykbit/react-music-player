@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { getUserProfile } from "../../api/api";
 import PlaylistStack from "./PlaylistStack";
 import PlaylistContextMenu from "./PlaylistContextMenu/PlaylistContextMenu";
@@ -22,6 +23,7 @@ import { getMyFavPlaylists } from "../../api/api";
 
 function Playlist({ playlist }) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [userInfo, setUserInfo] = useState({});
   const [contextMenu, setContextMenu] = useState(false);
   const [modals, setModals] = useState({
@@ -97,7 +99,15 @@ function Playlist({ playlist }) {
             ></div>
             <div className="text-column">
               <h1 className="playlist-name">{playlist.title}</h1>
-              <h3 className="playlist-genre">
+              <h3
+                className="playlist-user"
+                onClick={() =>
+                  history.push({
+                    pathname: `/playlist-user/${userInfo.firebase_id}`,
+                    state: { userInfo },
+                  })
+                }
+              >
                 {userInfo.firstName} {userInfo.lastName}
               </h3>
               <p className="playlist-genre">{playlist.description}</p>
@@ -105,10 +115,10 @@ function Playlist({ playlist }) {
               {!playlist.private ? (
                 <div>
                   <button
-                    className={handleClassNameAndFollow()}
+                    className={`follow-button ${handleClassNameAndFollow()}`}
                     onClick={handleFollowClick}
                   >
-                    {handleClassNameAndFollow()}
+                    {handleClassNameAndFollow().toUpperCase()}
                   </button>
                 </div>
               ) : null}
