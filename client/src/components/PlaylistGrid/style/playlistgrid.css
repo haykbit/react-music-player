@@ -29,7 +29,6 @@
 }
 
 .playlists-container .playlists {
-  color: #fff;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -40,20 +39,46 @@
           justify-content: center;
 }
 
-.playlists-container .playlists .playlist-item {
-  width: 250px;
-  height: 300px;
-  padding: 10px;
-  white-space: normal;
-  border-radius: 10px;
-  margin: 10px;
-  background-image: url(../../../assets/images/icons/portada-1.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  cursor: pointer;
+.list {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto auto;
+      grid-template-columns: auto auto auto;
+  grid-gap: 16px;
 }
 
-.playlists-container .playlists .playlist-item h1 {
-  font-size: 40px;
+.item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  height: 150px;
+  cursor: -webkit-grab;
+  cursor: grab;
+  font-size: 20px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.dragged {
+  background-color: #2525c5;
+}
+
+@media (min-width: 600px) {
+  .list {
+    grid-gap: 24px;
+  }
 }
 /*# sourceMappingURL=playlistgrid.css.map */
