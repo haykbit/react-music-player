@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserProfile } from "../../api/api";
-import Modal from "../Modal";
 import PlaylistStack from "./PlaylistStack";
 
 import portadaUno from "../../assets/images/icons/portada-1.png";
@@ -15,30 +14,32 @@ import {
   followPlaylist,
   getFavoritePlaylists,
 } from "../../redux/playlist/action";
+import { getMyFavPlaylists } from "../../api/api";
 
 function Playlist({ playlist }) {
   const dispatch = useDispatch();
-  const [modal, setModal] = useState(false);
   const [userInfo, setUserInfo] = useState({});
   const [follow, setFollow] = useState(false);
   const [myFavPlaylists, setMyFavPlaylists] = useState([]);
-  const Toggle = () => setModal(!modal);
   const { user, loading, authObserverSuccess } = useSelector(
     (state) => state.auth
   );
-  const { myFavoritePlaylists, followSuccess } = useSelector(
+  const { followSuccess, cancelFollowSuccess } = useSelector(
     (state) => state.playlist
   );
+
   useEffect(() => {
     if (!loading && authObserverSuccess) {
       getUserInfo();
       getFavoritePlaylistsInfo();
     }
-  }, [loading]);
+  }, [loading, followSuccess, cancelFollowSuccess]);
+
   async function getUserInfo() {
     const user = await getUserProfile(playlist.owner);
     setUserInfo(user.data.data);
   }
+
   function handleFollowClick() {
     setFollow((prev) => !prev);
 
@@ -48,10 +49,13 @@ function Playlist({ playlist }) {
       dispatch(cancelFollowPlaylist(playlist._id, user.uid));
     }
   }
-  function getFavoritePlaylistsInfo() {
+
+  async function getFavoritePlaylistsInfo() {
     dispatch(getFavoritePlaylists(user.uid));
-    setMyFavPlaylists(myFavPlaylists);
+    const myFavLists = await getMyFavPlaylists(user.uid);
+    setMyFavPlaylists(myFavLists.data.data);
   }
+
   function handleClassNameAndFollow() {
     const checkFavLists = myFavPlaylists.some(
       (ele) => ele["_id"] === playlist._id
@@ -86,7 +90,7 @@ function Playlist({ playlist }) {
                     className={handleClassNameAndFollow()}
                     onClick={handleFollowClick}
                   >
-                    {follow ? "following" : "follow"}
+                    {handleClassNameAndFollow()}
                   </button>
                 </div>
               ) : null}
