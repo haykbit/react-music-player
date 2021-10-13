@@ -187,7 +187,6 @@ async function cancelFollowPlaylist(req, res, next) {
   const { id: playlistId } = req.params;
   const { userId } = req.body;
   try {
-    const checkPlaylist = await db.Playlist.findById(playlistId);
     const checkUser = await db.User.findOne({ firebase_id: userId });
     if (checkUser.myFavoritePlaylists.includes(playlistId)) {
       await db.Playlist.findOneAndUpdate(

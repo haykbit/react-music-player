@@ -45,7 +45,9 @@ function PlaylistGrid({ playlists, privateLists }) {
             <img src={IconPlayList} alt="" className="playlist-icon" />
           </header>
           {!privateLists ? (
-            <h1>Playlists</h1>
+            <>
+              <h1>Playlists</h1>
+            </>
           ) : (
             <>
               <h1>My Playlists</h1>
