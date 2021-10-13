@@ -36,8 +36,6 @@ const Modal = ({ show, close }) => {
       {show ? (
         <div className="modal-container" onClick={() => close()}>
           <div className="modal" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-title">Upload Song</div>
-
             <Formik
               onSubmit={(values) => {
                 uploadSong(values);
@@ -63,6 +61,7 @@ const Modal = ({ show, close }) => {
                 handleBlur,
               }) => (
                 <div>
+                  <div className="modal-title">Upload Song</div>
                   <form onSubmit={handleSubmit} className="form-box">
                     <div className="left-side-modal">
                       <div className="modal-input-box">
