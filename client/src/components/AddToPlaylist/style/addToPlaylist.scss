@@ -1,0 +1,41 @@
+.add-to-playlist-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(39, 39, 39, 0.8);
+  overflow: hidden;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  .add-to-playlist-box {
+    height: 500px;
+    width: 500px;
+    background-color: #171717;
+    box-sizing: border-box;
+    padding: 15px;
+    border-radius: 7px;
+    overflow: auto;
+
+    .add-to-playlist-title {
+      display: flex;
+      justify-content: center;
+
+      p {
+        margin-top: 5px;
+        margin-bottom: 10px;
+        font-size: larger;
+        font-weight: 700;
+        color: white;
+      }
+    }
+    .playlists-list-box {
+      height: 80px;
+      width: 100%;
+      outline: 1px white solid;
+    }
+  }
+}
