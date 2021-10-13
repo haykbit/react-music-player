@@ -13,12 +13,11 @@ import SongEditModal from "../SongEditModal";
 import DeleteConfirmation from "../DeleteConfirmation";
 import { getCurrentUser } from "../../services/auth";
 
-function IndividualSong({ song, index, playlist }) {
+function IndividualSong({ song, index, playlist, favorite }) {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const { likeSongSuccess, loading } = useSelector((state) => state.song);
-
-  const [liked, setLiked] = useState(false);
+  const [liked, setLiked] = useState(favorite);
   const [myFavoriteSongs, setMyFavoriteSongs] = useState([]);
   const [modals, setModals] = useState({
     editModal: false,
@@ -45,6 +44,7 @@ function IndividualSong({ song, index, playlist }) {
 
   function handleLikeClick() {
     setLiked((prev) => !prev);
+    console.log(liked);
     if (liked === false) {
       dispatch(dispatchLikeSong(song._id, user.uid));
     } else {
@@ -67,7 +67,19 @@ function IndividualSong({ song, index, playlist }) {
   return (
     <>
       <div className="song-info">
-        <div className="song-cover"></div>
+        <div
+          className="song-cover"
+          style={{
+            backgroundImage: `url(${song.songImage})`,
+            backgroundSize: "cover",
+          }}
+        >
+          {/* <img
+            src={song.songImage}
+            alt={song.title}
+            style={{ objectFit: "cover" }}
+          /> */}
+        </div>
         <div className="song-name">
           <h3>{song.title}</h3>
           <h5>{song.artist}</h5>

@@ -3,11 +3,10 @@ import {
   likeSong,
   getLikedSongs,
   cancelLikeSong,
-  getMySongsData,
   removeSongData,
   editSongData,
 } from "../../api/api";
-import { uploadSongs } from "../../services/cloudinary";
+import { uploadImages, uploadSongs } from "../../services/cloudinary";
 import {
   POST_SONG_REQUEST,
   POST_SONG_SUCCESS,
@@ -32,11 +31,13 @@ import {
   DELETE_SONG_FAIL,
 } from "./types";
 
-export const uploadSongFile = (song, metadata) => async (dispatch) => {
+export const uploadSongFile = (song, metadata, image) => async (dispatch) => {
   dispatch({ type: POST_SONG_REQUEST });
   try {
     const songData = await uploadSongs(song);
-    await uploadSongsData(songData, metadata);
+    const songImage = await uploadImages(image);
+    console.log(songImage);
+    await uploadSongsData(songData, metadata, songImage.url);
     dispatch({ type: POST_SONG_SUCCESS });
   } catch (error) {
     dispatch({ type: POST_SONG_FAIL, payload: error.message });

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { getMyPlaylists } from "../../redux/playlist/action";
 import { CgPlayList } from "react-icons/cg";
 import { BsFillPlusCircleFill } from "react-icons/bs";
@@ -77,6 +78,7 @@ function PlaylistGrid() {
               <div
                 className="playlist-item"
                 key={index}
+
                 style={{
                   backgroundImage: `url(${item.playlistImage})`,
                   width: "250px",
@@ -90,6 +92,14 @@ function PlaylistGrid() {
                   backgroundRepeat: "no-repeat",
                   cursor: "pointer",
                 }}
+                
+                onClick={() =>
+                  history.push({
+                    pathname: `playlist/${item._id}`,
+                    state: { item },
+                  })
+                }
+
               >
                 <h1 style={{ fontSize: "40px" }}>{item.title}</h1>
                 <h5>{item.songs}</h5>

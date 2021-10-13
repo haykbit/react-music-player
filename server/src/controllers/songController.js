@@ -3,6 +3,7 @@ const db = require("../models");
 async function createSong(req, res, next) {
   const { duration, url } = req.body.song;
   const { title, genre, artist } = req.body.metadata;
+  const { image } = req.body;
   const { uid } = req.user;
   try {
     const newSong = await db.Song.create({
@@ -12,6 +13,7 @@ async function createSong(req, res, next) {
       url,
       duration,
       owner: uid,
+      songImage: image,
     });
     await db.User.findOneAndUpdate(
       { firebase_id: uid },
@@ -173,7 +175,7 @@ async function deleteSong(req, res, next) {
     await db.User.findOneAndUpdate(
       { firebase_id: userId },
       {
-        $pull: { mySongs: id },
+        $pull: { mySongs: id, myFavoriteSongs: id },
       },
       { new: true }
     );
@@ -197,7 +199,9 @@ async function countPlayedNumber(req, res, next) {
       },
       { new: true }
     );
-  } catch (error) {}
+  } catch (error) {
+    next(error);
+  }
 }
 
 module.exports = {

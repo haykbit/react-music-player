@@ -61,6 +61,11 @@ const SongSchema = new Schema(
     //   type: Boolean,
     //   required: true,
     // },
+    songImage: {
+      type: String,
+      default:
+        "https://res.cloudinary.com/dzaxp8xwy/image/upload/v1633947229/upgkd8ktarfuixxfvhrp.jpg",
+    },
     owner: {
       type: String,
       ref: "User",
@@ -81,7 +86,7 @@ const SongSchema = new Schema(
       default: 0,
     },
   },
-  { timestamp: true }
+  { timestamps: true }
 );
 
 const Song = mongoose.model("Song", SongSchema);
