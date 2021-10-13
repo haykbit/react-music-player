@@ -56,10 +56,10 @@ const SongSchema = new Schema(
       minLength: [2, "Album name needs to have at least 2 characters"],
       maxLength: [50, "Album name artist cannot exceed 30 characters"],
     },
-    private: {
+    /* private: {
       type: Boolean,
       required: true,
-    },
+    }, */
     songImage: {
       type: String,
       default:

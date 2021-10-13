@@ -5,6 +5,7 @@ import { getUserProfile } from "../../api/api";
 import PlaylistStack from "./PlaylistStack";
 import PlaylistContextMenu from "./PlaylistContextMenu/PlaylistContextMenu";
 import PlaylistDeleteConfirmation from "./PlaylistDeleteConfirmation";
+import EditPlaylistModal from "./EditPlaylistModal";
 
 import { IoMdMore } from "react-icons/io";
 
@@ -112,7 +113,7 @@ function Playlist({ playlist }) {
               </h3>
               <p className="playlist-genre">{playlist.description}</p>
               <p className="song-number">{playlist.songs.length} songs</p>
-              {!playlist.private ? (
+              {!playlist.private && user.uid !== playlist.owner ? (
                 <div>
                   <button
                     className={`follow-button ${handleClassNameAndFollow()}`}
@@ -200,11 +201,11 @@ function Playlist({ playlist }) {
       </div>
 
       <div className="context-container">
-        {/* <PlaylistEditModal
+        <EditPlaylistModal
           show={modals.editModal}
           close={ToggleEditModal}
-          song={song}
-        /> */}
+          playlist={playlist}
+        />
         <PlaylistDeleteConfirmation
           show={modals.deleteModal}
           close={ToggleDeleteModal}
