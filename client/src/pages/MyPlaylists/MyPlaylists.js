@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { authObserverLoading } from "../../redux/auth/action";
-import { getMyPlaylists } from "../../redux/playlist/action";
+import { getFavoritePlaylists } from "../../redux/playlist/action";
 import Navbar from "../../components/Navbar/Navbar";
 import PlaylistGrid from "../../components/PlaylistGrid/PlaylistGrid";
 import "./style/myplaylist.scss";
@@ -10,16 +10,16 @@ import "./style/myplaylist.scss";
 function MyPlaylists() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const userStorage = JSON.parse(localStorage.getItem("user"));
   const { user, loading, authObserverSuccess, signOutSuccess } = useSelector(
     (state) => state.auth
   );
-  const { myPlaylists, playlistCreatedSuccess } = useSelector(
+  const { myFavoritePlaylists, playlistCreatedSuccess } = useSelector(
     (state) => state.playlist
   );
+
   useEffect(() => {
     if (!loading && authObserverSuccess) {
-      dispatch(getMyPlaylists(user.uid));
+      dispatch(getFavoritePlaylists(user.uid));
     }
   }, [loading, authObserverSuccess, playlistCreatedSuccess]);
   useEffect(() => {
@@ -32,7 +32,7 @@ function MyPlaylists() {
   return (
     <>
       <Navbar />
-      <PlaylistGrid playlists={myPlaylists} privateLists={true} />
+      <PlaylistGrid playlists={myFavoritePlaylists} privateLists={true} />
     </>
   );
 }

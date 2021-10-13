@@ -44,7 +44,6 @@ function IndividualSong({ song, index, playlist, favorite }) {
 
   function handleLikeClick() {
     setLiked((prev) => !prev);
-    console.log(liked);
     if (liked === false) {
       dispatch(dispatchLikeSong(song._id, user.uid));
     } else {

@@ -14,6 +14,7 @@ import IndividualPlaylist from "./pages/IndividualPlaylist";
 import FavSongs from "./pages/FavSongs/FavSongs";
 import UploadedSongs from "./pages/UploadedSongs/UploadedSongs";
 import MyPlaylists from "./pages/MyPlaylists";
+import PlaylistUserInfo from "./pages/PlaylistUserInfo";
 
 function App() {
   const history = useHistory();
@@ -42,6 +43,7 @@ function App() {
         <Route path="/playlist/:id" exact component={IndividualPlaylist} />
         <Route path="/my-playlists" exact component={MyPlaylists} />
         <Route path="/playlists" exact component={Playlists} />
+        <Route path="/playlist-user/:id" exact component={PlaylistUserInfo} />
       </Switch>
       {authObserverSuccess ? <AudioPlayer /> : null}
     </>

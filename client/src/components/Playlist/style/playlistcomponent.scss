@@ -22,6 +22,7 @@
         height: 300px;
         width: 350px;
         border-radius: 20px;
+        background-position: center;
       }
       .text-column {
         height: 100%;
@@ -48,7 +49,8 @@
 
           font-size: 30px;
         }
-        .playlist-genre {
+        .playlist-genre,
+        .playlist-user {
           display: flex;
           align-items: center;
           width: 100%;
@@ -56,7 +58,13 @@
 
           font-size: 20px;
         }
-
+        .playlist-user {
+          cursor: pointer;
+          text-decoration: underline;
+          &:hover {
+            color: darkgoldenrod;
+          }
+        }
         .context-menu-btn {
           color: #fff;
           background-color: transparent;
@@ -74,6 +82,21 @@
         .upload-button:active {
           box-shadow: 0px 0px 0px 3px rgb(0, 119, 255);
           transform: scale(0.97);
+        }
+        .follow-button {
+          border-radius: 5px;
+          width: 120px;
+          height: 40px;
+          cursor: pointer;
+          letter-spacing: 1px;
+          font-weight: 500;
+          color: white;
+          &.follow {
+            background-color: rgb(112, 3, 122);
+          }
+          &.following {
+            background-color: rgb(255, 102, 0);
+          }
         }
       }
     }

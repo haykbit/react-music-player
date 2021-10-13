@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { getUserProfile } from "../../api/api";
 import PlaylistStack from "./PlaylistStack";
 import PlaylistContextMenu from "./PlaylistContextMenu/PlaylistContextMenu";
@@ -19,9 +20,11 @@ import {
   followPlaylist,
   getFavoritePlaylists,
 } from "../../redux/playlist/action";
+import { getMyFavPlaylists } from "../../api/api";
 
 function Playlist({ playlist }) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [userInfo, setUserInfo] = useState({});
   const [contextMenu, setContextMenu] = useState(false);
   const [modals, setModals] = useState({
@@ -42,7 +45,7 @@ function Playlist({ playlist }) {
   const { user, loading, authObserverSuccess } = useSelector(
     (state) => state.auth
   );
-  const { myFavoritePlaylists, followSuccess } = useSelector(
+  const { followSuccess, cancelFollowSuccess } = useSelector(
     (state) => state.playlist
   );
 
@@ -51,12 +54,13 @@ function Playlist({ playlist }) {
       getUserInfo();
       getFavoritePlaylistsInfo();
     }
-  }, [loading]);
+  }, [loading, followSuccess, cancelFollowSuccess]);
 
   async function getUserInfo() {
     const user = await getUserProfile(playlist.owner);
     setUserInfo(user.data.data);
   }
+
   function handleFollowClick() {
     setFollow((prev) => !prev);
 
@@ -66,10 +70,13 @@ function Playlist({ playlist }) {
       dispatch(cancelFollowPlaylist(playlist._id, user.uid));
     }
   }
-  function getFavoritePlaylistsInfo() {
+
+  async function getFavoritePlaylistsInfo() {
     dispatch(getFavoritePlaylists(user.uid));
-    setMyFavPlaylists(myFavPlaylists);
+    const myFavLists = await getMyFavPlaylists(user.uid);
+    setMyFavPlaylists(myFavLists.data.data);
   }
+
   function handleClassNameAndFollow() {
     const checkFavLists = myFavPlaylists.some(
       (ele) => ele["_id"] === playlist._id
@@ -93,7 +100,15 @@ function Playlist({ playlist }) {
             ></div>
             <div className="text-column">
               <h1 className="playlist-name">{playlist.title}</h1>
-              <h3 className="playlist-genre">
+              <h3
+                className="playlist-user"
+                onClick={() =>
+                  history.push({
+                    pathname: `/playlist-user/${userInfo.firebase_id}`,
+                    state: { userInfo },
+                  })
+                }
+              >
                 {userInfo.firstName} {userInfo.lastName}
               </h3>
               <p className="playlist-genre">{playlist.description}</p>
@@ -101,10 +116,10 @@ function Playlist({ playlist }) {
               {!playlist.private ? (
                 <div>
                   <button
-                    className={handleClassNameAndFollow()}
+                    className={`follow-button ${handleClassNameAndFollow()}`}
                     onClick={handleFollowClick}
                   >
-                    {follow ? "following" : "follow"}
+                    {handleClassNameAndFollow().toUpperCase()}
                   </button>
                 </div>
               ) : null}
