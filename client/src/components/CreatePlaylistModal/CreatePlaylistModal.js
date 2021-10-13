@@ -177,6 +177,10 @@ const Modal = ({ show, close }) => {
                         ) : (
                           <div className="song-image-preview">
                             <img
+                              onClick={() => {
+                                setIsUploaded(false);
+                                setImage(null);
+                              }}
                               className="song-image-preview"
                               src={playlistImage}
                               alt="uploaded-img"
