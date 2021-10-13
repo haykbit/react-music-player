@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
   loading: false,
   playlistCreatedSuccess: false,
+  playlistEditSuccess: false,
   addedToPlaylistSuccess: false,
   getMyPlaylistsSuccess: false,
   getFavoritePlaylistsSuccess: false,

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { getCurrentUserToken } from "../services/auth";
 
+// ?USERS
 export async function syncUserData(user) {
   const userToken = await getCurrentUserToken();
   return axios({
@@ -38,6 +39,7 @@ export async function updateUserProfile(id, profile, profileImage) {
   });
 }
 
+// ?SONGS
 export async function uploadSongsData(song, metadata, image) {
   const userToken = await getCurrentUserToken();
   return axios({
@@ -107,6 +109,8 @@ export async function editSongData(id, songData) {
     data: { songData },
   });
 }
+
+// ?PLAYLISTS
 
 export async function createPlaylists(playlist) {
   const userToken = await getCurrentUserToken();
@@ -232,5 +236,17 @@ export async function getPublicPlaylists(userId) {
     headers: {
       Authorization: `Bearer ${userToken}`,
     },
+  });
+}
+
+export async function updatePlaylist(playlist, image, id) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "PATCH",
+    url: `${process.env.REACT_APP_API_BASE_URL}/playlists/${id}`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+    data: { playlist, image },
   });
 }

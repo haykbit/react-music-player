@@ -92,7 +92,9 @@ async function removePlaylistById(req, res, next) {
 
 async function updatePlaylist(req, res, next) {
   const { id } = req.params;
-  const { title, description, genre, image, private } = req.body;
+  const { title, description, genre, private } = req.body.playlist;
+  const { image } = req.body;
+
   try {
     const updatedPlaylist = await db.Playlist.findOneAndUpdate(
       { _id: id },
@@ -110,7 +112,7 @@ async function updatePlaylist(req, res, next) {
     res.status(200).send({
       data: updatedPlaylist,
     });
-  } catch (err) {
+  } catch (error) {
     next(error);
   }
 }
