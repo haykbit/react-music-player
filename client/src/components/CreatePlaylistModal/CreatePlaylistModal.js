@@ -144,23 +144,6 @@ const Modal = ({ show, close }) => {
                           <option value="false">Public</option>
                         </select>
                       </div>
-                      {/* <div className="modal-image-box">
-                        <label
-                          className="upload-icon"
-                          forHtml="songUploadInput"
-                          style={{
-                            backgroundImage: `url(${UploadIcon})`,
-                          }}
-                        >
-                          <input
-                            name="image"
-                            onChange={(e) => {
-                              setImage(e.target.files[0]);
-                            }}
-                            type="file"
-                          ></input>
-                        </label>
-                      </div> */}
                       <div className="modal-button-box">
                         <button className="modal-close" onClick={() => close()}>
                           Cancel
