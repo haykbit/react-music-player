@@ -4,7 +4,12 @@ import { logout } from "../../redux/auth/action";
 import { resetUserData } from "../../redux/user/action";
 import { getUserProfile } from "../../api/api";
 
-import { RiSettings4Line, RiMusic2Line, RiHistoryFill } from "react-icons/ri";
+import {
+  RiSettings4Line,
+  RiMusic2Line,
+  RiHistoryFill,
+  RiFolderMusicLine,
+} from "react-icons/ri";
 import { MdFavoriteBorder } from "react-icons/md";
 import { GoListUnordered } from "react-icons/go";
 import { IoLogOutOutline } from "react-icons/io5";
@@ -54,8 +59,8 @@ function Navbar() {
     dispatch(resetUserData());
   };
 
-  const handlePlaylists = () => {
-    history.push("/playlists");
+  const handleMyPlaylists = () => {
+    history.push("/my-playlists");
   };
 
   const handleFavorite = () => {
@@ -70,6 +75,9 @@ function Navbar() {
     history.push("/mysongs");
   };
 
+  const handlePlaylists = () => {
+    history.push("/playlists");
+  };
   return (
     <>
       <div className="nav-container">
@@ -110,11 +118,11 @@ function Navbar() {
                   <BiUserCircle className="list-icon" />
                   <h4>Profile</h4>
                 </li>
-                <li>
+                <li onClick={handlePlaylists}>
                   <RiMusic2Line className="list-icon" />
                   <h4>Playlists</h4>
                 </li>
-                <li onClick={handlePlaylists}>
+                <li onClick={handleMyPlaylists}>
                   <GoListUnordered className="list-icon" />
                   <h4>My Playlists</h4>
                 </li>
@@ -123,7 +131,7 @@ function Navbar() {
                   <h4>Favorite</h4>
                 </li>
                 <li onClick={handleUploaded}>
-                  <MdFavoriteBorder className="list-icon" />
+                  <RiFolderMusicLine className="list-icon" />
                   <h4>My Music</h4>
                 </li>
                 <li onClick={handlePlaylist}>

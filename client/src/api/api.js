@@ -188,3 +188,49 @@ export async function removeSongFromPlaylist(playlistId, songId) {
     },
   });
 }
+
+export async function followingPlaylist(playlistId, userId) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "PATCH",
+    url: `${process.env.REACT_APP_API_BASE_URL}/playlists/follow/${playlistId}`,
+    data: { userId },
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
+export async function cancelFollowingPlaylist(playlistId, userId) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "PATCH",
+    url: `${process.env.REACT_APP_API_BASE_URL}/playlists/cancel-follow/${playlistId}`,
+    data: { userId },
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
+export async function getMyFavPlaylists(userId) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/playlists/my-favorite-lists/${userId}`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
+export async function getPublicPlaylists(userId) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/playlists/public/${userId}`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}

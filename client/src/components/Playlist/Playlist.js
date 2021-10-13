@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getUserProfile } from "../../api/api";
 import Modal from "../Modal";
 import PlaylistStack from "./PlaylistStack";
@@ -14,14 +14,22 @@ import portadaTres from "../../assets/images/albums/arctic-album-2.jpeg";
 import portadaCuatro from "../../assets/images/albums/arctic-album-3.jpeg";
 
 import "./style/playlistcomponent.scss";
+import {
+  cancelFollowPlaylist,
+  followPlaylist,
+  getFavoritePlaylists,
+} from "../../redux/playlist/action";
 
 function Playlist({ playlist }) {
+  const dispatch = useDispatch();
   const [userInfo, setUserInfo] = useState({});
   const [contextMenu, setContextMenu] = useState(false);
   const [modals, setModals] = useState({
     editModal: false,
     deleteModal: false,
   });
+  const [follow, setFollow] = useState(false);
+  const [myFavPlaylists, setMyFavPlaylists] = useState([]);
 
   // Toggles for the diferent menus and modals
   const ToggleContext = () => setContextMenu(!contextMenu);
@@ -31,11 +39,17 @@ function Playlist({ playlist }) {
   const ToggleDeleteModal = () =>
     setModals({ ...modals, deleteModal: !modals.deleteModal });
 
-  const { loading, authObserverSuccess } = useSelector((state) => state.auth);
+  const { user, loading, authObserverSuccess } = useSelector(
+    (state) => state.auth
+  );
+  const { myFavoritePlaylists, followSuccess } = useSelector(
+    (state) => state.playlist
+  );
 
   useEffect(() => {
     if (!loading && authObserverSuccess) {
       getUserInfo();
+      getFavoritePlaylistsInfo();
     }
   }, [loading]);
 
@@ -43,52 +57,75 @@ function Playlist({ playlist }) {
     const user = await getUserProfile(playlist.owner);
     setUserInfo(user.data.data);
   }
+  function handleFollowClick() {
+    setFollow((prev) => !prev);
 
+    if (follow === false) {
+      dispatch(followPlaylist(playlist._id, user.uid));
+    } else {
+      dispatch(cancelFollowPlaylist(playlist._id, user.uid));
+    }
+  }
+  function getFavoritePlaylistsInfo() {
+    dispatch(getFavoritePlaylists(user.uid));
+    setMyFavPlaylists(myFavPlaylists);
+  }
+  function handleClassNameAndFollow() {
+    const checkFavLists = myFavPlaylists.some(
+      (ele) => ele["_id"] === playlist._id
+    )
+      ? "following"
+      : "follow";
+    return checkFavLists;
+  }
   return (
     <>
       <div className="my-playlist-body">
         <div className="left-side">
-          {userInfo ? (
-            <>
-              <div className="playlist-title">
-                <div
-                  className="album-column"
-                  style={{
-                    backgroundImage: `url(${portadaUno})`,
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
-                  }}
-                ></div>
-                <div className="text-column">
-                  <h1 className="playlist-name">{playlist.title}</h1>
-                  <h3 className="playlist-genre">
-                    {userInfo.firstName} {userInfo.lastName}
-                  </h3>
-                  <p className="playlist-genre">{playlist.description}</p>
-                  <p className="song-number">{playlist.songs.length} songs</p>
+          <div className="playlist-title">
+            <div
+              className="album-column"
+              style={{
+                backgroundImage: `url(${playlist.playlistImage})`,
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+              }}
+            ></div>
+            <div className="text-column">
+              <h1 className="playlist-name">{playlist.title}</h1>
+              <h3 className="playlist-genre">
+                {userInfo.firstName} {userInfo.lastName}
+              </h3>
+              <p className="playlist-genre">{playlist.description}</p>
+              <p className="song-number">{playlist.songs.length} songs</p>
+              {!playlist.private ? (
+                <div>
                   <button
-                    onClick={() => ToggleContext()}
-                    className="context-menu-btn"
+                    className={handleClassNameAndFollow()}
+                    onClick={handleFollowClick}
                   >
-                    <IoMdMore className="context-icon" />
+                    {follow ? "following" : "follow"}
                   </button>
-
-                  <div className="context-container">
-                    <PlaylistContextMenu
-                      show={contextMenu}
-                      closeMenu={ToggleContext}
-                      ToggleEditModal={ToggleEditModal}
-                      ToggleDeleteModal={ToggleDeleteModal}
-                      playlist={playlist}
-                    />
-                  </div>
                 </div>
-              </div>
-            </>
-          ) : (
-            ""
-          )}
+              ) : null}
+              <button
+                onClick={() => ToggleContext()}
+                className="context-menu-btn"
+              >
+                <IoMdMore className="context-icon" />
+              </button>
 
+              <div className="context-container">
+                <PlaylistContextMenu
+                  show={contextMenu}
+                  closeMenu={ToggleContext}
+                  ToggleEditModal={ToggleEditModal}
+                  ToggleDeleteModal={ToggleDeleteModal}
+                  playlist={playlist}
+                />
+              </div>
+            </div>
+          </div>
           <div className="song-stack">
             <PlaylistStack playlist={playlist} />
           </div>

@@ -18,6 +18,18 @@ import {
   DELETE_PLAYLIST_REQUEST,
   DELETE_PLAYLIST_SUCCESS,
   DELETE_PLAYLIST_FAIL,
+  FOLLOW_PLAYLIST_REQUEST,
+  FOLLOW_PLAYLIST_SUCCESS,
+  FOLLOW_PLAYLIST_FAIL,
+  CANCEL_FOLLOW_PLAYLIST_REQUEST,
+  CANCEL_FOLLOW_PLAYLIST_SUCCESS,
+  CANCEL_FOLLOW_PLAYLIST_FAIL,
+  GET_FAVORITE_PLAYLISTS_REQUEST,
+  GET_FAVORITE_PLAYLISTS_SUCCESS,
+  GET_FAVORITE_PLAYLISTS_FAIL,
+  GET_PUBLIC_PLAYLISTS_REQUEST,
+  GET_PUBLIC_PLAYLISTS_SUCCESS,
+  GET_PUBLIC_PLAYLISTS_FAIL,
 } from "./types";
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -120,6 +132,115 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: false,
         deletePlaylistSuccess: false,
+        error: action.payload,
+      };
+    case FOLLOW_PLAYLIST_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        playlistCreatedSuccess: false,
+        addedToPlaylistSuccess: false,
+        getMyPlaylistsSuccess: false,
+        removeSongSuccess: false,
+        followSuccess: false,
+        cancelFollowSuccess: false,
+        error: null,
+      };
+    case FOLLOW_PLAYLIST_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        followSuccess: true,
+        error: null,
+      };
+    case FOLLOW_PLAYLIST_FAIL:
+      return {
+        ...state,
+        loading: false,
+        followSuccess: false,
+        error: action.payload,
+      };
+    case CANCEL_FOLLOW_PLAYLIST_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        playlistCreatedSuccess: false,
+        addedToPlaylistSuccess: false,
+        getMyPlaylistsSuccess: false,
+        removeSongSuccess: false,
+        followSuccess: false,
+        cancelFollowSuccess: false,
+        error: null,
+      };
+    case CANCEL_FOLLOW_PLAYLIST_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        cancelFollowSuccess: true,
+        error: null,
+      };
+    case CANCEL_FOLLOW_PLAYLIST_FAIL:
+      return {
+        ...state,
+        loading: false,
+        cancelFollowSuccess: false,
+        error: action.payload,
+      };
+    case GET_FAVORITE_PLAYLISTS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        playlistCreatedSuccess: false,
+        addedToPlaylistSuccess: false,
+        getMyPlaylistsSuccess: false,
+        getFavoritePlaylistsSuccess: false,
+        removeSongSuccess: false,
+        followSuccess: false,
+        cancelFollowSuccess: false,
+        error: null,
+      };
+    case GET_FAVORITE_PLAYLISTS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        getFavoritePlaylistsSuccess: true,
+        myFavoritePlaylists: action.payload,
+        error: null,
+      };
+    case GET_FAVORITE_PLAYLISTS_FAIL:
+      return {
+        ...state,
+        loading: false,
+        getFavoritePlaylistsSuccess: false,
+        error: action.payload,
+      };
+    case GET_PUBLIC_PLAYLISTS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        playlistCreatedSuccess: false,
+        addedToPlaylistSuccess: false,
+        getMyPlaylistsSuccess: false,
+        getFavoritePlaylistsSuccess: false,
+        removeSongSuccess: false,
+        followSuccess: false,
+        cancelFollowSuccess: false,
+        getPublicPlaylistsSuccess: false,
+        error: null,
+      };
+    case GET_PUBLIC_PLAYLISTS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        getPublicPlaylistsSuccess: true,
+        publicPlaylists: action.payload,
+        error: null,
+      };
+    case GET_PUBLIC_PLAYLISTS_FAIL:
+      return {
+        ...state,
+        loading: false,
+        getPublicPlaylistsSuccess: false,
         error: action.payload,
       };
     default:
