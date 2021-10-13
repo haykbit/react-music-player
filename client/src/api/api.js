@@ -120,6 +120,18 @@ export async function createPlaylists(playlist) {
   });
 }
 
+export async function removePlaylist(id, userId) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "PUT",
+    url: `${process.env.REACT_APP_API_BASE_URL}/playlists/${id}`,
+    data: { userId },
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
 export async function getMyPlaylistsList(id) {
   const userToken = await getCurrentUserToken();
   return axios({

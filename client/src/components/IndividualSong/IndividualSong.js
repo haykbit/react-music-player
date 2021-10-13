@@ -73,13 +73,7 @@ function IndividualSong({ song, index, playlist, favorite }) {
             backgroundImage: `url(${song.songImage})`,
             backgroundSize: "cover",
           }}
-        >
-          {/* <img
-            src={song.songImage}
-            alt={song.title}
-            style={{ objectFit: "cover" }}
-          /> */}
-        </div>
+        ></div>
         <div className="song-name">
           <h3>{song.title}</h3>
           <h5>{song.artist}</h5>

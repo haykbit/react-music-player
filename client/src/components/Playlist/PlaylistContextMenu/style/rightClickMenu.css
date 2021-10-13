@@ -1,0 +1,40 @@
+.context-menu-container {
+  height: 250px;
+  width: 150px;
+  border-radius: 10px;
+  background-color: #313131;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 10px;
+  position: absolute;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 15px;
+}
+
+.context-menu-container .context-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.context-menu-container .context-menu li {
+  cursor: pointer;
+  list-style: none;
+  border-bottom: 1px solid white;
+  margin: 10px;
+}
+/*# sourceMappingURL=rightClickMenu.css.map */
