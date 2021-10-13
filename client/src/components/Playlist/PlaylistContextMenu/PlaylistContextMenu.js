@@ -10,6 +10,7 @@ function PlaylistContextMenu({
   playlist,
   ToggleDeleteModal,
   ToggleEditModal,
+  ToggleAddToPlaylist,
 }) {
   const { loading, authObserverSuccess } = useSelector((state) => state.auth);
 
@@ -35,6 +36,8 @@ function PlaylistContextMenu({
   }
 
   function handleAddSong() {
+    ToggleAddToPlaylist();
+    closeMenu();
     console.log("I'M ADDING A SONG!");
   }
 
