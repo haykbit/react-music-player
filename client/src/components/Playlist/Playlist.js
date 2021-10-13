@@ -5,6 +5,7 @@ import { getUserProfile } from "../../api/api";
 import PlaylistStack from "./PlaylistStack";
 import PlaylistContextMenu from "./PlaylistContextMenu/PlaylistContextMenu";
 import PlaylistDeleteConfirmation from "./PlaylistDeleteConfirmation";
+import EditPlaylistModal from "./EditPlaylistModal";
 
 import { IoMdMore } from "react-icons/io";
 
@@ -200,11 +201,11 @@ function Playlist({ playlist }) {
       </div>
 
       <div className="context-container">
-        {/* <PlaylistEditModal
+        <EditPlaylistModal
           show={modals.editModal}
           close={ToggleEditModal}
-          song={song}
-        /> */}
+          playlist={playlist}
+        />
         <PlaylistDeleteConfirmation
           show={modals.deleteModal}
           close={ToggleDeleteModal}

@@ -30,6 +30,9 @@ import {
   GET_PUBLIC_PLAYLISTS_REQUEST,
   GET_PUBLIC_PLAYLISTS_SUCCESS,
   GET_PUBLIC_PLAYLISTS_FAIL,
+  PLAYLIST_EDIT_REQUEST,
+  PLAYLIST_EDIT_SUCCESS,
+  PLAYLIST_EDIT_FAIL,
 } from "./types";
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -59,6 +62,27 @@ const reducer = (state = INITIAL_STATE, action) => {
         playlistCreatedSuccess: false,
         addedToPlaylistSuccess: false,
         getMyPlaylistsSuccess: false,
+        error: action.payload,
+      };
+    case PLAYLIST_EDIT_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        playlistEditSuccess: false,
+        error: false,
+      };
+    case PLAYLIST_EDIT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        playlistEditSuccess: true,
+        error: false,
+      };
+    case PLAYLIST_EDIT_FAIL:
+      return {
+        ...state,
+        loading: false,
+        playlistEditSuccess: false,
         error: action.payload,
       };
     case GET_MY_PLAYLISTS_REQUEST:
