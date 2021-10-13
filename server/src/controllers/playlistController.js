@@ -15,7 +15,10 @@ async function createPlaylist(req, res, next) {
     await db.User.findOneAndUpdate(
       { firebase_id: uid },
       {
-        $push: { myPlaylists: [{ _id: newPlaylist._id }] },
+        $push: {
+          myPlaylists: [{ _id: newPlaylist._id }],
+          myFavoritePlaylists: [{ _id: newPlaylist._id }],
+        },
       }
     );
     res.status(200).send({
@@ -77,7 +80,7 @@ async function removePlaylistById(req, res, next) {
     await db.User.findOneAndUpdate(
       { firebase_id: userId },
       {
-        $pull: { myPlaylists: id },
+        $pull: { myPlaylists: id, myFavoritePlaylists: id },
       },
       { new: true }
     );
@@ -150,41 +153,28 @@ async function getSongsByPlaylistId(req, res, next) {
   }
 }
 
-async function getSongsByPlaylistId(req, res, next) {
-  const { id } = req.params;
-  try {
-    const playlist = await db.Playlist.findOne({ _id: id });
-    const playlistSongs = playlist.songs;
-    const songsData = await db.Song.find({
-      _id: { $in: playlistSongs },
-    });
-    res.status(200).send({
-      data: songsData,
-    });
-  } catch (error) {
-    next(error);
-  }
-}
-
 async function followPlaylist(req, res, next) {
   // playlist id
-  const { id } = req.params;
+  const { id: playlistId } = req.params;
   const { userId } = req.body;
   try {
-    const playlist = await db.Playlist.findOneAndUpdate(
-      { _id: id, owner: { $ne: userId }, private: false },
-      {
-        $inc: {
-          likes: 1,
-        },
-      }
-    );
-    await db.User.findOneAndUpdate(
-      { firebase_id: userId },
-      {
-        $push: { myFavoritePlaylists: [{ _id: id }] },
-      }
-    );
+    const checkUser = await db.User.findOne({ firebase_id: userId });
+    if (!checkUser.myFavoritePlaylists.includes(playlistId)) {
+      await db.Playlist.findOneAndUpdate(
+        { _id: playlistId, owner: { $ne: userId }, private: false },
+        {
+          $inc: {
+            likes: 1,
+          },
+        }
+      );
+      await db.User.findOneAndUpdate(
+        { firebase_id: userId },
+        {
+          $push: { myFavoritePlaylists: [{ _id: playlistId }] },
+        }
+      );
+    }
     res.status(200).send({
       message: "OK",
     });

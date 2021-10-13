@@ -11,7 +11,7 @@ const INITIAL_STATE = {
   getPublicPlaylistsSuccess: false,
   error: null,
   myPlaylists: [],
-  myFavPlaylists: [],
+  myFavoritePlaylists: [],
   publicPlaylists: [],
 };
 

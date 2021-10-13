@@ -11,7 +11,7 @@ const PlaylistDeleteConfirmation = ({ show, close, playlistId, userId }) => {
   function deleteSelectedPlaylist() {
     try {
       dispatch(deletePlaylist(playlistId, userId));
-      history.push("/playlists");
+      history.push("/my-playlists");
     } catch (err) {
       console.log(err.response.data);
     }
