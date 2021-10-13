@@ -22,26 +22,37 @@
   }
 
   .playlists {
-    color: #fff;
     display: flex;
+
     flex-wrap: wrap;
     justify-content: center;
+  }
+}
 
-    .playlist-item {
-      width: 250px;
-      height: 300px;
-      padding: 10px;
-      white-space: normal;
-      border-radius: 10px;
-      margin: 10px;
-      background-image: url(../../../assets/images/icons/portada-1.png);
-      background-size: cover;
-      background-repeat: no-repeat;
-      cursor: pointer;
+.list {
+  user-select: none;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 16px;
+}
 
-      h1 {
-        font-size: 40px;
-      }
-    }
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  height: 150px;
+  cursor: grab;
+  font-size: 20px;
+  user-select: none;
+}
+
+.dragged {
+  background-color: rgb(37, 37, 197);
+}
+
+@media (min-width: 600px) {
+  .list {
+    grid-gap: 24px;
   }
 }
