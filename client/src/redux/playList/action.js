@@ -7,6 +7,7 @@ import {
   getPublicPlaylists,
   removeSongFromPlaylist,
   removePlaylist,
+  updatePlaylist,
 } from "../../api/api";
 import { uploadImages } from "../../services/cloudinary";
 import {
@@ -34,6 +35,9 @@ import {
   GET_PUBLIC_PLAYLISTS_REQUEST,
   GET_PUBLIC_PLAYLISTS_SUCCESS,
   GET_PUBLIC_PLAYLISTS_FAIL,
+  PLAYLIST_EDIT_REQUEST,
+  PLAYLIST_EDIT_SUCCESS,
+  PLAYLIST_EDIT_FAIL,
 } from "./types";
 
 export const createNewPlaylist = (playlistData, image) => async (dispatch) => {
@@ -126,5 +130,21 @@ export const displayPublicPlaylists = (userId) => async (dispatch) => {
     });
   } catch (error) {
     dispatch({ type: GET_PUBLIC_PLAYLISTS_FAIL, payload: error.message });
+  }
+};
+
+export const editPlaylist = (playlist, image, id) => async (dispatch) => {
+  dispatch({ type: PLAYLIST_EDIT_REQUEST });
+  try {
+    if (image) {
+      const imageData = await uploadImages(image);
+      updatePlaylist(playlist, imageData.url, id);
+    } else {
+      updatePlaylist(playlist, playlist.initialImage, id);
+    }
+
+    dispatch({ type: PLAYLIST_EDIT_SUCCESS });
+  } catch (error) {
+    dispatch({ type: PLAYLIST_EDIT_FAIL });
   }
 };

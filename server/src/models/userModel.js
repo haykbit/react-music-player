@@ -7,13 +7,13 @@ const UserSchema = new Schema(
     firstName: {
       type: String,
       trim: true,
-      minLenght: [2, "First name needs to have at least 2 characters"],
+      minLength: [2, "First name needs to have at least 2 characters"],
       maxLength: [50, "First name cannot exceed 50 characters"],
     },
     lastName: {
       type: String,
       trim: true,
-      minLenght: [2, "Last name needs to have at least 2 characters"],
+      minLength: [2, "Last name needs to have at least 2 characters"],
       maxLength: [50, "Last name cannot exceed 50 characters"],
     },
     profileImage: {

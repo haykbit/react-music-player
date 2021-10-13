@@ -71,7 +71,8 @@
   font-size: 30px;
 }
 
-.my-playlist-body .left-side .playlist-title .text-column .playlist-genre, .my-playlist-body .left-side .playlist-title .text-column .playlist-user {
+.my-playlist-body .left-side .playlist-title .text-column .playlist-genre,
+.my-playlist-body .left-side .playlist-title .text-column .playlist-user {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

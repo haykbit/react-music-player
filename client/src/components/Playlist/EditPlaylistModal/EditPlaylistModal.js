@@ -2,22 +2,21 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Formik } from "formik";
 import FormSchema from "./FormSchema";
-import "./style/createPlaylistModal.scss";
-import UploadIcon from "../../assets/images/icons/upload-icon.png";
-import SongUploadIcon from "../../assets/images/icons/songImageUpload.png";
+import "./style/editplaylistmodal.scss";
+import SongUploadIcon from "../../../assets/images/icons/songImageUpload.png";
 
-import { createNewPlaylist } from "../../redux/playlist/action";
-import Input from "../Input";
-import Textarea from "../Input/Textarea";
+import { editPlaylist } from "../../../redux/playlist/action";
+import Input from "../../Input";
+import Textarea from "../../Input/Textarea";
 
-const Modal = ({ show, close }) => {
+const EditPlaylistModal = ({ show, close, playlist }) => {
   const [playlistImage, setPlaylistImage] = useState("");
   const [isUploaded, setIsUploaded] = useState(false);
   const [image, setImage] = useState("");
   const dispatch = useDispatch();
 
-  function createPlaylist(playlistData) {
-    dispatch(createNewPlaylist(playlistData, image));
+  function editActualPlaylist(playlistData) {
+    dispatch(editPlaylist(playlistData, image, playlist._id));
   }
 
   function handleImageChange(e) {
@@ -39,14 +38,15 @@ const Modal = ({ show, close }) => {
           <div className="modal" onClick={(e) => e.stopPropagation()}>
             <Formik
               onSubmit={(values) => {
-                createPlaylist(values);
+                editActualPlaylist(values);
                 close();
               }}
               initialValues={{
-                title: "",
-                description: "",
-                genre: "",
-                private: true,
+                title: playlist.title,
+                description: playlist.description,
+                genre: playlist.genre,
+                private: playlist.private,
+                initialImage: playlist.playlistImage,
               }}
               validationSchema={FormSchema}
             >
@@ -61,7 +61,9 @@ const Modal = ({ show, close }) => {
                 handleBlur,
               }) => (
                 <div>
-                  <div className="playlist-modal-title">New Playlist</div>
+                  <div className="playlist-modal-title">
+                    Change Playlist information
+                  </div>
                   <form onSubmit={handleSubmit} className="form-box">
                     <div className="left-side-modal">
                       <div className="modal-input-box">
@@ -158,7 +160,7 @@ const Modal = ({ show, close }) => {
                         {!isUploaded ? (
                           <>
                             <label htmlFor="upload-input">
-                              <p>Upload playlist image</p>
+                              <p>Change playlist image</p>
                               <img
                                 className="song-image-upload"
                                 alt=""
@@ -201,4 +203,4 @@ const Modal = ({ show, close }) => {
   );
 };
 
-export default Modal;
+export default EditPlaylistModal;
