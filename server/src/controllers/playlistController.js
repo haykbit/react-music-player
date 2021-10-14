@@ -117,23 +117,18 @@ async function addSongFromPlaylistView(req, res, next) {
 
     const checkSong = await db.Playlist.find({
       _id: playlistId,
-      songs: { $in: [songId] },
+      // songs: { $in: [songId] },
+
+      // const checkSong = await db.Playlist.find({
+      //   "songs.songId": songId,
     });
 
-    //Exist method? NO
+    console.log("OWNER");
+    console.log(checkOwner);
+    console.log("SONG");
+    console.log(checkSong);
 
-    const existingSong = await db.Playlist.find({
-      // 'songs.songId': [songId],
-      // "songs.songId": "${songId}",
-      "songs.songId": "6168006f803aa4b2d7e0e1bc",
-    });
-
-    //Type of value .NOp
-    // const existingSongStr = { $toString: existingSong };
-
-    console.log(existingSong);
-
-    if (checkOwner.owner === userId && checkSong == !existingSong) {
+    if (checkOwner.owner === userId && !checkSong.includes(songId)) {
       await db.Playlist.findOneAndUpdate(
         { _id: playlistId },
         {
@@ -146,10 +141,9 @@ async function addSongFromPlaylistView(req, res, next) {
         message: "OK",
       });
     } else {
-      // res.status(error);
-      console.log("ERROR HERE");
-      // return res.status;
-      return res.status(200).json();
+      return res.status(200).send({
+        message: "Not working",
+      });
     }
   } catch (error) {
     next(error);
