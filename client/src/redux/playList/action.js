@@ -43,11 +43,19 @@ import {
 export const createNewPlaylist = (playlistData, image) => async (dispatch) => {
   dispatch({ type: PLAYLIST_CREATE_REQUEST });
   try {
-    const imageData = await uploadImages(image);
-    const playlist = {
-      ...playlistData,
-      image: imageData.url,
-    };
+    let playlist = {};
+    if (image) {
+      const imageData = await uploadImages(image);
+      playlist = {
+        ...playlistData,
+        image: imageData.url,
+      };
+    } else {
+      playlist = {
+        ...playlistData,
+        image: undefined,
+      };
+    }
     dispatch({ type: PLAYLIST_CREATE_SUCCESS });
     await createPlaylists(playlist);
   } catch (error) {
