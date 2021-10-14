@@ -5,7 +5,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { getSongsFromPlaylist } from "../../../api/api";
 import IndividualSong from "../../IndividualSong";
 
-import "./style/playlistStack.scss";
+import "./style/playliststack.scss";
 
 function PlaylistStack({ playlist }) {
   // console.log(playlist, "playlist from playlist stack");

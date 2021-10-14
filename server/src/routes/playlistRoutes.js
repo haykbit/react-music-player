@@ -25,6 +25,7 @@ playlistRouter.get(
 );
 
 playlistRouter.patch("/:id", authMiddleware, playlistController.updatePlaylist);
+
 playlistRouter.patch(
   "/add/:id",
   authMiddleware,

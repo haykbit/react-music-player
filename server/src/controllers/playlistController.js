@@ -109,19 +109,23 @@ async function updatePlaylist(req, res, next) {
 //To test.
 async function addSongFromPlaylistView(req, res, next) {
   const { id: songId } = req.params;
-  const { id: playlistId } = req.params;
+  const { playlistId } = req.body;
   const { userId } = req.body;
 
   try {
-    //CONST
+    //Soy dueño de esta playlist?
+    const checkOwner = await db.Playlist.findOne(userId);
+
+    //En que playlist voy a meter la cancion ?
+    const checkPlaylist = await db.Playlist.findOne(playlistId);
+
+    //Que cancion voy a meter? Esta repetida ?
     const checkSong = await db.Song.findById(songId);
-    const checkPlaylist = await db.Playlist.findById(playlistId);
-    const checkUser = await db.User.findOne({ firebase_id: userId });
 
     if (
-      !checkSong.songs.includes(userId) &&
-      !checkPlaylist.songs.includes(songId) &&
-      !checkUser.myPlaylists.includes(songId)
+      !checkOwner.playlist.includes(userId) &&
+      !checkPlaylist.playlist.includes(playlistId) &&
+      !checkSong.song.includes(songId)
     ) {
       await db.Playlist.findOneAndUpdate(
         { _id: playlistId },

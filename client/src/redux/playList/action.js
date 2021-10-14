@@ -42,10 +42,10 @@ export const getMyPlaylists = (id) => async (dispatch) => {
 };
 
 export const addSongNewFromPlaylistView =
-  (playlistId, userId) => async (dispatch) => {
+  (playlistId, userId, songId) => async (dispatch) => {
     dispatch({ type: ADD_SONG_TO_PLAYLIST_REQUEST });
     try {
-      await addSongFromPlaylistView(playlistId, userId);
+      await addSongFromPlaylistView(playlistId, userId, songId);
       dispatch({ type: ADD_SONG_TO_PLAYLIST_SUCCESS });
     } catch (error) {
       dispatch({ type: ADD_SONG_TO_PLAYLIST_FAIL, payload: error.message });
