@@ -1,7 +1,11 @@
-.profile-container {
-margin-left: 25px;
+.profile-page-container {
+  height: auto;
+  width: 1000px;
+  position: fixed;
+  background-color: aquamarine;
   margin-top: 40px;
-    .profile-title, .profile-name{
-        color: white
-    }
+  .profile-title,
+  .profile-name {
+    color: white;
+  }
 }
