@@ -99,6 +99,7 @@ function Playlist({ playlist }) {
           text={"Add song"}
         />
       )}
+
       <div className="my-playlist-body">
         <div className="left-side">
           <div className="playlist-title">

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { getCurrentUser } from "../../services/auth";
 import "./style/rightClickMenu.scss";
 import Modal from "../Modal";
-import SongEditModal from "../SongEditModal";
+import SongEditModal from "../UploadedSongsPlaylist/SongEditModal";
 
 function RightClickMenu({
   show,
