@@ -120,11 +120,20 @@ async function addSongFromPlaylistView(req, res, next) {
       songs: { $in: [songId] },
     });
 
-    if (
-      checkOwner.owner === userId
-      // && !checkSong
-    )
-      //{
+    //Exist method? NO
+
+    const existingSong = await db.Playlist.find({
+      // 'songs.songId': [songId],
+      // "songs.songId": "${songId}",
+      "songs.songId": "6168006f803aa4b2d7e0e1bc",
+    });
+
+    //Type of value .NOp
+    // const existingSongStr = { $toString: existingSong };
+
+    console.log(existingSong);
+
+    if (checkOwner.owner === userId && checkSong == !existingSong) {
       await db.Playlist.findOneAndUpdate(
         { _id: playlistId },
         {
@@ -133,12 +142,15 @@ async function addSongFromPlaylistView(req, res, next) {
           },
         }
       );
-    res.status(200).send({
-      message: "OK",
-    });
-    // } else {
-    //   res.status(error);
-    // }
+      res.status(200).send({
+        message: "OK",
+      });
+    } else {
+      // res.status(error);
+      console.log("ERROR HERE");
+      // return res.status;
+      return res.status(200).json();
+    }
   } catch (error) {
     next(error);
   }
