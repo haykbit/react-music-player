@@ -35,8 +35,12 @@ export const uploadSongFile = (song, metadata, image) => async (dispatch) => {
   dispatch({ type: POST_SONG_REQUEST });
   try {
     const songData = await uploadSongs(song);
-    const songImage = await uploadImages(image);
-    await uploadSongsData(songData, metadata, songImage.url);
+    if (image) {
+      const songImage = await uploadImages(image);
+      await uploadSongsData(songData, metadata, songImage.url);
+    } else {
+      await uploadSongsData(songData, metadata, undefined);
+    }
     dispatch({ type: POST_SONG_SUCCESS });
   } catch (error) {
     dispatch({ type: POST_SONG_FAIL, payload: error.message });

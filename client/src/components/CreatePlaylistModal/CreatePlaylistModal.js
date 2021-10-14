@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { Formik } from "formik";
 import FormSchema from "./FormSchema";
 import "./style/createPlaylistModal.scss";
-import UploadIcon from "../../assets/images/icons/upload-icon.png";
 import SongUploadIcon from "../../assets/images/icons/songImageUpload.png";
 
 import { createNewPlaylist } from "../../redux/playlist/action";
