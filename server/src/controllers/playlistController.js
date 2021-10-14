@@ -106,26 +106,28 @@ async function updatePlaylist(req, res, next) {
   }
 }
 
-//To test.
 async function addSongFromPlaylistView(req, res, next) {
   const { id: songId } = req.params;
-  const { playlistId } = req.body;
-  const { userId } = req.body;
+  const { myPlaylists } = req.body;
+  const { owner } = req.body;
 
   try {
-    //Soy dueño de esta playlist?
-    const checkOwner = await db.Playlist.findOne(userId);
+    // Encontrar la id del propietario de la playlist
+    const checkOwner = await db.Playlist.findById(owner);
 
-    //En que playlist voy a meter la cancion ?
-    const checkPlaylist = await db.Playlist.findOne(playlistId);
+    // Encontrar la id de una playlist de la cual soy propietario
+    const checkPlaylist = await db.User.findById(myPlaylists);
 
-    //Que cancion voy a meter? Esta repetida ?
+    // Encontrar cualquier cancion por su id
     const checkSong = await db.Song.findById(songId);
 
     if (
-      !checkOwner.playlist.includes(userId) &&
-      !checkPlaylist.playlist.includes(playlistId) &&
-      !checkSong.song.includes(songId)
+      //Que el propietario de la playlist se incluya dentro de usuario como owner o user id
+      !checkOwner.user.includes(owner) &&
+      //Que el propietario de la playlist se incluya dentro  de usuario como una playlist que le pertenece
+      !checkPlaylist.user.includes(myPlaylists) &&
+      //Que cualquier cancion se incluyda dentro de playlist segun su id (si se repite NO)
+      !checkSong.playlist.includes(songId)
     ) {
       await db.Playlist.findOneAndUpdate(
         { _id: playlistId },
@@ -135,11 +137,10 @@ async function addSongFromPlaylistView(req, res, next) {
           },
         }
       );
+      res.status(200).send({
+        message: "OK",
+      });
     }
-
-    res.status(200).send({
-      message: "OK",
-    });
   } catch (error) {
     next(error);
   }

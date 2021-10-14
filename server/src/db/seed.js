@@ -121,13 +121,9 @@ async function seedPlaylist() {
         songs: [],
         genre: "Techno",
         private: "false",
-        owner: [],
-        playlistImage: [
-          {
-            public_id: "upload/v1632827814",
-            url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
-          },
-        ],
+        owner: "61680061a0757a3afb694583",
+        playlistImage:
+          "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
         popularity: 10,
       },
       {
@@ -136,13 +132,9 @@ async function seedPlaylist() {
         songs: [],
         genre: "Oldies",
         private: "false",
-        owner: [],
-        playlistImage: [
-          {
-            public_id: "upload/v1632827814",
-            url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
-          },
-        ],
+        owner: "61680061a0757a3afb694583",
+        playlistImage:
+          "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
         popularity: 15,
       },
       {
@@ -151,13 +143,9 @@ async function seedPlaylist() {
         songs: [],
         genre: "Oldies",
         private: "false",
-        owner: [],
-        playlistImage: [
-          {
-            public_id: "upload/v1632827814",
-            url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
-          },
-        ],
+        owner: "61680061a0757a3afb694583",
+        playlistImage:
+          "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
         popularity: 15,
       },
       {
@@ -166,13 +154,9 @@ async function seedPlaylist() {
         songs: [],
         genre: "Oldies",
         private: "false",
-        owner: [],
-        playlistImage: [
-          {
-            public_id: "upload/v1632827814",
-            url: "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
-          },
-        ],
+        owner: "61680061a0757a3afb694583",
+        playlistImage:
+          "https://res.cloudinary.com/dzaxp8xwy/video/upload/v1632916940/popau9wxpbhd5akh0w1c.mp3",
         popularity: 15,
       },
     ]);
