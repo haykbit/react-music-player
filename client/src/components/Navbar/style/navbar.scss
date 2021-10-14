@@ -22,41 +22,6 @@
   }
 }
 
-//======= SEARCH ========//
-
-.search {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background-color: #171717;
-  width: 60%;
-  height: 20px;
-  padding: 15px;
-  border-radius: 7px;
-
-  form {
-    width: 90%;
-  }
-
-  input {
-    background-color: transparent;
-    border: none;
-    margin-left: 15px;
-    width: 100%;
-    font-size: 18px;
-    color: #fff;
-    caret-color: rgb(255, 255, 255);
-
-    &:focus {
-      outline: none;
-    }
-
-    &::placeholder {
-      color: #fff;
-    }
-  }
-}
-
 //======= MANU ========//
 
 .nav-menu {

@@ -250,3 +250,36 @@ export async function updatePlaylist(playlist, image, id) {
     data: { playlist, image },
   });
 }
+
+export async function getSearchSong() {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/songs/all/`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
+export async function getSearchPlaylist() {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/playlists/all/`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
+export async function getSearchArtist() {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/users/all/`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}

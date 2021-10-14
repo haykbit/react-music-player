@@ -233,6 +233,20 @@ async function getMyFavoritePlaylists(req, res, next) {
   }
 }
 
+async function fetchPlaylists(req, res, next) {
+  try {
+    const publicPlaylists = await db.Playlist.find({
+      private: false,
+    });
+
+    res.status(200).send({
+      data: publicPlaylists,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 module.exports = {
   fetchMyPlaylists,
   fetchPublicPlaylists,
@@ -245,4 +259,5 @@ module.exports = {
   followPlaylist,
   cancelFollowPlaylist,
   getMyFavoritePlaylists,
+  fetchPlaylists,
 };
