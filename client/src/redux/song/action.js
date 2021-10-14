@@ -91,10 +91,15 @@ export const deleteSong = (songId, userId) => async (dispatch) => {
   }
 };
 
-export const editSong = (songId, songData) => async (dispatch) => {
+export const editActualSong = (songId, songData, image) => async (dispatch) => {
   dispatch({ type: UPDATE_SONG_REQUEST });
   try {
-    await editSongData(songId, songData);
+    if (image) {
+      const songImage = await uploadImages(image);
+      await editSongData(songId, songData, songImage.url);
+    } else {
+      await editSongData(songId, songData, songData.initialImage);
+    }
     dispatch({ type: UPDATE_SONG_SUCCESS });
   } catch (error) {
     dispatch({ type: UPDATE_SONG_FAIL, payload: error.message });
