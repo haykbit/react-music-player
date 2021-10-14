@@ -7,8 +7,9 @@ import UploadIcon from "../../assets/images/icons/upload-icon.png";
 import { uploadSongFile } from "../../redux/song/action";
 import Input from "../Input";
 import SongUploadIcon from "../../assets/images/icons/songImageUpload.png";
+import useLockBodyScroll from "../../hooks/useLockBodyScroll";
 
-const Modal = ({ show, close }) => {
+const Modal = ({ show, close, userInfo }) => {
   const [song, setSong] = useState("");
   const [songImage, setSongImage] = useState("");
   const [isUploaded, setIsUploaded] = useState(false);
@@ -30,7 +31,7 @@ const Modal = ({ show, close }) => {
       reader.readAsDataURL(e.target.files[0]);
     }
   }
-
+  useLockBodyScroll();
   return (
     <>
       {show ? (
@@ -38,6 +39,7 @@ const Modal = ({ show, close }) => {
           <div className="modal" onClick={(e) => e.stopPropagation()}>
             <Formik
               onSubmit={(values) => {
+                console.log(values);
                 uploadSong(values);
                 close();
               }}
@@ -47,6 +49,7 @@ const Modal = ({ show, close }) => {
                 album: "",
                 genre: "",
                 songUploadInput: null,
+                private: true,
               }}
               validationSchema={FormSchema}
             >
@@ -144,6 +147,23 @@ const Modal = ({ show, close }) => {
                           <option value="Punk">Punk</option>
                         </select>
                       </div>
+                      {userInfo.artist ? (
+                        <div className="modal-input-box">
+                          <select
+                            name="private"
+                            className="register-inputs"
+                            autoComplete="on"
+                            value={values.private}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            hasErrorMessage={touched.private}
+                            errorMessage={errors.private}
+                          >
+                            <option value="true">Private</option>
+                            <option value="false">Public</option>
+                          </select>
+                        </div>
+                      ) : null}
 
                       <div className="modal-image-box">
                         <label
