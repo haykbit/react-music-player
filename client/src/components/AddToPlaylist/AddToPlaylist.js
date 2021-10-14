@@ -1,7 +1,9 @@
 import React from "react";
 import "./style/addToPlaylist.scss";
+import useLockBodyScroll from "../../hooks/useLockBodyScroll";
 
 function AddToPlaylist({ show, close, text = "" }) {
+  useLockBodyScroll();
   return (
     <>
       {show ? (

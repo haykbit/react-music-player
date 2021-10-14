@@ -5,7 +5,9 @@
   position: fixed;
   height: 100%;
   width: 100%;
-  background-color: rgba(39, 39, 39, 0.8);
+  overflow-y: hidden;
+  // background-color: rgba(39, 39, 39, 0.8);
+
   overflow: hidden;
   ::-webkit-scrollbar {
     display: none;
@@ -19,6 +21,7 @@
     padding: 15px;
     border-radius: 7px;
     overflow: auto;
+    box-shadow: 0px 0px 19px 7px #353535;
 
     .add-to-playlist-title {
       display: flex;

@@ -36,7 +36,7 @@ function UploadedSongsPlaylist() {
                 <FiUploadCloud className="upload-icon" />
                 Upload
               </button>
-              <Modal show={modal} close={Toggle} />
+              {modal && <Modal show={modal} close={Toggle} />}
             </div>
           </div>
           <div className="song-stack">

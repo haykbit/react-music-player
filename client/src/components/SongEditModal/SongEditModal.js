@@ -6,13 +6,14 @@ import FormSchema from "./FormSchema";
 import "./style/songEditModal.scss";
 import UploadIcon from "../../assets/images/icons/upload-icon.png";
 import Input from "../Input";
+import useLockBodyScroll from "../../hooks/useLockBodyScroll";
 
 const SongEditModal = ({ show, close, song }) => {
   const dispatch = useDispatch();
   function updateSong(metadata) {
     dispatch(editSong(song._id, metadata));
   }
-
+  useLockBodyScroll();
   return (
     <>
       {show ? (
