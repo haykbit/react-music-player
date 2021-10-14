@@ -12,9 +12,10 @@ import portadaCuatro from "../../assets/images/albums/arctic-album-3.jpeg";
 
 import "./style/playlistcomponent.scss";
 
-function UploadedSongsPlaylist() {
+function UploadedSongsPlaylist({ userInfo }) {
   const [modal, setModal] = useState(false);
   const Toggle = () => setModal(!modal);
+  console.log(userInfo);
   return (
     <>
       <div className="my-playlist-body">
@@ -30,8 +31,12 @@ function UploadedSongsPlaylist() {
             ></div>
             <div className="text-column">
               <h1 className="playlist-name">My Uploaded Songs</h1>
-              <h3 className="playlist-genre">Sebastian Elias</h3>
-              <p className="song-number">140 songs</p>
+              <h3 className="playlist-genre">
+                {userInfo.firstName} {userInfo.lastName}
+              </h3>
+              <p className="song-number">
+                {userInfo.mySongs ? userInfo.mySongs.length : "0"} songs
+              </p>
               <button onClick={() => Toggle()} className="upload-button">
                 <FiUploadCloud className="upload-icon" />
                 Upload
