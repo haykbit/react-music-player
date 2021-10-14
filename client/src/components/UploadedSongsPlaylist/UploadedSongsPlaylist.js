@@ -15,7 +15,6 @@ import "./style/playlistcomponent.scss";
 function UploadedSongsPlaylist({ userInfo }) {
   const [modal, setModal] = useState(false);
   const Toggle = () => setModal(!modal);
-  console.log(userInfo);
   return (
     <>
       <div className="my-playlist-body">
@@ -41,7 +40,7 @@ function UploadedSongsPlaylist({ userInfo }) {
                 <FiUploadCloud className="upload-icon" />
                 Upload
               </button>
-              <Modal show={modal} close={Toggle} />
+              <Modal show={modal} close={Toggle} userInfo={userInfo} />
             </div>
           </div>
           <div className="song-stack">
