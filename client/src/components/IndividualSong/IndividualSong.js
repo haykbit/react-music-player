@@ -9,7 +9,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { IoMdMore } from "react-icons/io";
 import RightClickMenu from "../RightClickMenu";
-import SongEditModal from "../SongEditModal";
+import SongEditModal from "../UploadedSongsPlaylist/SongEditModal";
 import DeleteConfirmation from "../DeleteConfirmation";
 import { getCurrentUser } from "../../services/auth";
 
