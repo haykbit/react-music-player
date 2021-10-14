@@ -92,7 +92,11 @@ function Playlist({ playlist }) {
   }
   return (
     <>
-      <AddToPlaylist show={modals.addToPlaylist} close={ToggleAddToPlaylist} />
+      <AddToPlaylist
+        show={modals.addToPlaylist}
+        close={ToggleAddToPlaylist}
+        text="Add Song"
+      />
       <div className="my-playlist-body">
         <div className="left-side">
           <div className="playlist-title">

@@ -11,6 +11,7 @@ function RightClickMenu({
   song,
   ToggleDeleteModal,
   ToggleEditModal,
+  ToggleAddToPlaylist,
   modals,
 }) {
   // const [modals, setModals] = useState({
@@ -34,6 +35,11 @@ function RightClickMenu({
     ToggleDeleteModal();
   }
 
+  function handleAddSong() {
+    ToggleAddToPlaylist();
+    closeMenu();
+    console.log("I'M ADDING A SONG!");
+  }
   return (
     <>
       {show ? (
@@ -44,6 +50,9 @@ function RightClickMenu({
             </li>
             {song.owner === userUid ? (
               <>
+                <li className="menu-option-box" onClick={() => handleAddSong()}>
+                  Add Song
+                </li>
                 <li
                   className="menu-option-box"
                   onClick={() => {

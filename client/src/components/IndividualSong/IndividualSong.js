@@ -11,6 +11,7 @@ import { IoMdMore } from "react-icons/io";
 import RightClickMenu from "../RightClickMenu";
 import SongEditModal from "../SongEditModal";
 import DeleteConfirmation from "../DeleteConfirmation";
+import AddToPlaylist from "../AddToPlaylist";
 import { getCurrentUser } from "../../services/auth";
 
 function IndividualSong({ song, index, playlist, favorite }) {
@@ -22,9 +23,13 @@ function IndividualSong({ song, index, playlist, favorite }) {
   const [modals, setModals] = useState({
     editModal: false,
     deleteModal: false,
+    addToPlaylist: false,
   });
   const [contextMenu, setContextMenu] = useState(false);
   const Toggle = () => setContextMenu(!contextMenu);
+
+  const ToggleAddToPlaylist = () =>
+    setModals({ ...modals, addToPlaylist: !modals.addToPlaylist });
 
   useEffect(() => {
     getMyFavSongs();
@@ -65,6 +70,11 @@ function IndividualSong({ song, index, playlist, favorite }) {
   const userUid = getCurrentUser().uid;
   return (
     <>
+      <AddToPlaylist
+        show={modals.addToPlaylist}
+        close={ToggleAddToPlaylist}
+        text={"Add to playlist"}
+      />
       <div className="song-info">
         <div
           className="song-cover"
@@ -104,6 +114,7 @@ function IndividualSong({ song, index, playlist, favorite }) {
             closeMenu={Toggle}
             handleLike={handleLikeClick}
             ToggleEditModal={ToggleEditModal}
+            ToggleAddToPlaylist={ToggleAddToPlaylist}
             ToggleDeleteModal={ToggleDeleteModal}
             modals={modals}
             song={song}

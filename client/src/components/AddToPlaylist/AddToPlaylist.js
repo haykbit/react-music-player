@@ -1,7 +1,7 @@
 import React from "react";
 import "./style/addToPlaylist.scss";
 
-function AddToPlaylist({ show, close }) {
+function AddToPlaylist({ show, close, text = "" }) {
   return (
     <>
       {show ? (
@@ -12,7 +12,7 @@ function AddToPlaylist({ show, close }) {
           >
             <div className="add-to-playlist-title">
               {" "}
-              <p>Songs</p>
+              <p>{text}</p>
             </div>
             <div className="playlists-list-box"></div>
             <div className="playlists-list-box"></div>
