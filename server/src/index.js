@@ -1,7 +1,7 @@
 const app = require("./server");
 const { config } = require("./config");
 const connect = require("./db/connect");
-const seed = require("./db/seed");
+// const seed = require("./db/seed");
 
 connect().then(async () => {
   console.log(`DB connected!`);
