@@ -6,6 +6,7 @@ import FormSchema from "./FormSchema";
 import "./style/songEditModal.scss";
 import Input from "../../Input";
 import SongUploadIcon from "../../../assets/images/icons/songImageUpload.png";
+import useLockBodyScroll from "../../../hooks/useLockBodyScroll";
 
 const SongEditModal = ({ show, close, song }) => {
   const [songImage, setSongImage] = useState("");
@@ -28,7 +29,7 @@ const SongEditModal = ({ show, close, song }) => {
       reader.readAsDataURL(e.target.files[0]);
     }
   }
-
+  useLockBodyScroll();
   return (
     <>
       {show ? (

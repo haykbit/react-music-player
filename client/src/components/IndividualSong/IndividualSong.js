@@ -11,8 +11,8 @@ import { IoMdMore } from "react-icons/io";
 import RightClickMenu from "../RightClickMenu";
 import SongEditModal from "../UploadedSongsPlaylist/SongEditModal";
 import DeleteConfirmation from "../DeleteConfirmation";
+import AddToPlaylist from "../AddToPlaylist";
 import { getCurrentUser } from "../../services/auth";
-
 function IndividualSong({ song, index, playlist, favorite }) {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
@@ -22,9 +22,14 @@ function IndividualSong({ song, index, playlist, favorite }) {
   const [modals, setModals] = useState({
     editModal: false,
     deleteModal: false,
+    addToPlaylist: false,
   });
   const [contextMenu, setContextMenu] = useState(false);
   const Toggle = () => setContextMenu(!contextMenu);
+
+  const ToggleAddToPlaylist = () => {
+    setModals({ ...modals, addToPlaylist: !modals.addToPlaylist });
+  };
 
   useEffect(() => {
     getMyFavSongs();
@@ -65,6 +70,14 @@ function IndividualSong({ song, index, playlist, favorite }) {
   const userUid = getCurrentUser().uid;
   return (
     <>
+      {modals.addToPlaylist && (
+        <AddToPlaylist
+          show={modals.addToPlaylist}
+          close={ToggleAddToPlaylist}
+          text="Add to playlist"
+        />
+      )}
+
       <div className="song-info">
         <div
           className="song-cover"
@@ -104,21 +117,26 @@ function IndividualSong({ song, index, playlist, favorite }) {
             closeMenu={Toggle}
             handleLike={handleLikeClick}
             ToggleEditModal={ToggleEditModal}
+            ToggleAddToPlaylist={ToggleAddToPlaylist}
             ToggleDeleteModal={ToggleDeleteModal}
             modals={modals}
             song={song}
           />
-          <SongEditModal
-            show={modals.editModal}
-            close={ToggleEditModal}
-            song={song}
-          />
-          <DeleteConfirmation
-            show={modals.deleteModal}
-            close={ToggleDeleteModal}
-            songId={song._id}
-            userId={userUid}
-          />
+          {modals.editModal && (
+            <SongEditModal
+              show={modals.editModal}
+              close={ToggleEditModal}
+              song={song}
+            />
+          )}
+          {modals.deleteModal && (
+            <DeleteConfirmation
+              show={modals.deleteModal}
+              close={ToggleDeleteModal}
+              songId={song._id}
+              userId={userUid}
+            />
+          )}
         </div>
       </div>
     </>

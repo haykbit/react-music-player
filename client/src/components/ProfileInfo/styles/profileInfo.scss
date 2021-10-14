@@ -1,12 +1,14 @@
 .user-info {
-  height: 80%;
+  height: 500px;
+
   display: flex;
   flex-direction: column;
   margin: 5%;
 
   .content {
     display: flex;
-    height: 100%;
+    height: auto;
+    width: 800px;
   }
 
   .user-info-title {
@@ -16,8 +18,8 @@
   }
 
   .left-column {
-    width: 20%;
-    height: fit-content;
+    width: 200px;
+    height: auto;
   }
 
   .profile-picture {
@@ -61,8 +63,9 @@
   }
 
   .right-column {
-    width: 80%;
-    height: 100%;
+    width: 1000px;
+    margin-left: 20px;
+    height: auto;
 
     button {
       color: #fff;
@@ -73,6 +76,7 @@
     }
 
     .form-box {
+      width: 100%;
       input {
         align-items: center;
         padding: 15px;
@@ -102,8 +106,9 @@
     .genre-box {
       display: flex;
       flex-direction: row;
-      margin: 10px;
-      height: 40%;
+      margin-top: 10px;
+      height: 200px;
+      width: 600px;
       overflow: hidden;
       justify-content: space-between;
     }

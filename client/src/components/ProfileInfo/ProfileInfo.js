@@ -333,7 +333,7 @@ function ProfileInfo() {
                   </label>
                 </div>
               </div>
-              <div className="button-side">
+              {/* <div className="button-side">
                 {isDisabled ? (
                   <Button
                     className="edit-btn"
@@ -349,7 +349,7 @@ function ProfileInfo() {
                     Save
                   </Button>
                 ) : null}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

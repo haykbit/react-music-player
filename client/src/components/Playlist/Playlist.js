@@ -92,7 +92,14 @@ function Playlist({ playlist }) {
   }
   return (
     <>
-      <AddToPlaylist show={modals.addToPlaylist} close={ToggleAddToPlaylist} />
+      {modals.addToPlaylist && (
+        <AddToPlaylist
+          show={modals.addToPlaylist}
+          close={ToggleAddToPlaylist}
+          text={"Add song"}
+        />
+      )}
+
       <div className="my-playlist-body">
         <div className="left-side">
           <div className="playlist-title">
@@ -208,17 +215,21 @@ function Playlist({ playlist }) {
       </div>
 
       <div className="context-container">
-        <EditPlaylistModal
-          show={modals.editModal}
-          close={ToggleEditModal}
-          playlist={playlist}
-        />
-        <PlaylistDeleteConfirmation
-          show={modals.deleteModal}
-          close={ToggleDeleteModal}
-          playlistId={playlist._id}
-          userId={userInfo.firebase_id}
-        />
+        {modals.editModal && (
+          <EditPlaylistModal
+            show={modals.editModal}
+            close={ToggleEditModal}
+            playlist={playlist}
+          />
+        )}
+        {modals.deleteModal && (
+          <PlaylistDeleteConfirmation
+            show={modals.deleteModal}
+            close={ToggleDeleteModal}
+            playlistId={playlist._id}
+            userId={userInfo.firebase_id}
+          />
+        )}
       </div>
     </>
   );

@@ -1,7 +1,9 @@
 import React from "react";
 import "./style/addToPlaylist.scss";
+import useLockBodyScroll from "../../hooks/useLockBodyScroll";
 
-function AddToPlaylist({ show, close }) {
+function AddToPlaylist({ show, close, text = "" }) {
+  useLockBodyScroll();
   return (
     <>
       {show ? (
@@ -12,6 +14,7 @@ function AddToPlaylist({ show, close }) {
           >
             <div className="add-to-playlist-title">
               {" "}
+              <p>{text}</p>
               <p>Songs</p>
             </div>
             <div className="playlists-list-box"></div>

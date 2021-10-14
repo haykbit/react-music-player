@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import "./style/DeleteConfirmation.scss";
 import { deleteSong } from "../../redux/song/action";
+import useLockBodyScroll from "../../hooks/useLockBodyScroll";
 
 const DeleteConfirmation = ({ show, close, songId, userId }) => {
   const dispatch = useDispatch();
@@ -10,7 +11,7 @@ const DeleteConfirmation = ({ show, close, songId, userId }) => {
     dispatch(deleteSong(songId, userId));
     close();
   }
-
+  useLockBodyScroll();
   return (
     <>
       {show ? (

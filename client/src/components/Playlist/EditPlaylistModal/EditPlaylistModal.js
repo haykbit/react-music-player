@@ -4,7 +4,7 @@ import { Formik } from "formik";
 import FormSchema from "./FormSchema";
 import "./style/editplaylistmodal.scss";
 import SongUploadIcon from "../../../assets/images/icons/songImageUpload.png";
-
+import useLockBodyScroll from "../../../hooks/useLockBodyScroll";
 import { editPlaylist } from "../../../redux/playlist/action";
 import Input from "../../Input";
 import Textarea from "../../Input/Textarea";
@@ -30,7 +30,7 @@ const EditPlaylistModal = ({ show, close, playlist }) => {
       reader.readAsDataURL(e.target.files[0]);
     }
   }
-
+  useLockBodyScroll();
   return (
     <>
       {show ? (

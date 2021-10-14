@@ -7,6 +7,7 @@ import UploadIcon from "../../assets/images/icons/upload-icon.png";
 import { uploadSongFile } from "../../redux/song/action";
 import Input from "../Input";
 import SongUploadIcon from "../../assets/images/icons/songImageUpload.png";
+import useLockBodyScroll from "../../hooks/useLockBodyScroll";
 
 const Modal = ({ show, close }) => {
   const [song, setSong] = useState("");
@@ -30,7 +31,7 @@ const Modal = ({ show, close }) => {
       reader.readAsDataURL(e.target.files[0]);
     }
   }
-
+  useLockBodyScroll();
   return (
     <>
       {show ? (
