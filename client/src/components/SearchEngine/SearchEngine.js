@@ -1,14 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useLayoutEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { getSearchEngine } from "../../redux/search/action";
 
 import portadaUno from "../../assets/images/icons/portada-1.png";
+import search from "../../assets/images/icons/search2.png";
 import "./style/searchengine.scss";
 
 function SearchEngine() {
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
+  const [artistPage, setArtistPage] = useState(true);
+  const [showButton, setshowButton] = useState(true);
   const [response, setResponse] = useState();
 
   const { loading, authObserverSuccess } = useSelector((state) => state.auth);
@@ -18,65 +22,89 @@ function SearchEngine() {
   }, []);
 
   async function getSearch() {
-    const response = await dispatch(getSearchEngine());
-    setResponse(response);
+    const res = await dispatch(getSearchEngine());
+    setResponse(res);
+    console.log(res);
   }
-
-  const result = {
-    users: [
-      { artist: "Juan Miguel", img: "x" },
-      { artist: "Juan Miguel", img: "x" },
-    ],
-    songs: [
-      { id: 0, name: "song-1", img: "x" },
-      { id: 1, name: "song-2", img: "x" },
-    ],
-    playlists: [
-      { id: 0, name: "playlist-1", url: "link" },
-      { id: 1, name: "playlist-2", url: "link" },
-    ],
-  };
 
   const handleSearch = (e) => {
     if (e.target.value.length > 0) {
       setShow(true);
-      console.log(response);
-    } else setShow(false);
+    } else {
+      setShow(false);
+    }
   };
 
   const cardStyle = {
     display: show ? "block" : "none",
   };
 
+  const handleShow = (a) => {
+    setShowSearch(!a);
+    setshowButton(a);
+  };
+
+  const searchStyle = {
+    display: showSearch ? "flex" : "none",
+    width: "100%",
+  };
+
+  const handleShowSearch = (a) => {
+    setshowButton(a);
+    handleShow(a);
+  };
+
+  const searchButtonStyle = {
+    display: showButton ? "flex" : "none",
+    width: "5%",
+  };
+  let url = window.location.pathname;
+
   return (
     <>
-      <div className="search">
+      {url === "/artist" && (
         <div
-          className="circle"
-          style={{
-            backgroundImage: `url(${portadaUno})`,
-            backgroundSize: "contain",
-          }}
-        ></div>
-        <form>
-          <input
-            type="text"
-            placeholder="Artistas, canciones o albums"
-            onChange={(e) => handleSearch(e)}
-          />
-        </form>
-      </div>
-      <div className="search_result" style={cardStyle}>
-        <div className="result_container">
-          <div className="artist_result">
-            <h2>Artists results</h2>
-          </div>
-          <div className="song_result">
-            <h2>Songs results</h2>
-          </div>
+          className="artist-search"
+          style={searchButtonStyle}
+          onMouseEnter={() => handleShowSearch(!showButton)}
+        >
+          <img src={search} width="30px" height="30px" />
         </div>
-        <div className="playlist_result">
-          <h2>Playlist results</h2>
+      )}
+      <div
+        style={
+          url === "/artist" ? searchStyle : { width: "100%", display: "flex" }
+        }
+        onMouseLeave={() => (url === "/artist" ? handleShow(showSearch) : null)}
+      >
+        <div className="search">
+          <div
+            className="circle"
+            style={{
+              backgroundImage: `url(${portadaUno})`,
+              backgroundSize: "contain",
+            }}
+          ></div>
+          <form>
+            <input
+              type="text"
+              placeholder="Artistas, canciones o albums"
+              onChange={(e) => handleSearch(e)}
+            />
+          </form>
+        </div>
+        <div className="search_result" style={cardStyle}>
+          <div className="result_container">
+            <div className="artist_result">
+              <h2>Artists results</h2>
+            </div>
+            <div className="song_result">
+              <h2>Songs results</h2>
+            </div>
+          </div>
+          <div className="playlist_result">
+            <h2>Playlist results</h2>
+          </div>
         </div>
       </div>
     </>

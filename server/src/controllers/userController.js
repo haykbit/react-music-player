@@ -114,4 +114,5 @@ module.exports = {
   updateUser: updateUser,
   getMyFavoriteSongs,
   getMySongs,
+  getArtists,
 };
