@@ -20,66 +20,14 @@
 
 .nav-container .circle {
   width: 20px;
-  height: 20px;
+  height: 21px;
   background: linear-gradient(45deg, red 0%, #1f00ff 80%);
   border: 2px solid #fff;
   border-radius: 50px;
 }
 
-.search {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background-color: #171717;
-  width: 60%;
-  height: 20px;
-  padding: 15px;
-  border-radius: 7px;
-}
-
-.search form {
-  width: 90%;
-}
-
-.search input {
-  background-color: transparent;
-  border: none;
-  margin-left: 15px;
-  width: 100%;
-  font-size: 18px;
-  color: #fff;
-  caret-color: white;
-}
-
-.search input:focus {
-  outline: none;
-}
-
-.search input::-webkit-input-placeholder {
-  color: #fff;
-}
-
-.search input:-ms-input-placeholder {
-  color: #fff;
-}
-
-.search input::-ms-input-placeholder {
-  color: #fff;
-}
-
-.search input::placeholder {
-  color: #fff;
-}
-
 .nav-menu {
-  width: 70%;
+  width: 100%;
 }
 
 input#menu {

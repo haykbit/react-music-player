@@ -5,6 +5,7 @@
   flex-direction: row;
   align-items: center;
   background-color: #171717;
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.411);
   width: 100%;
   height: 20px;
   padding: 15px;
@@ -35,9 +36,10 @@
 
 .search_result {
   position: absolute;
-  width: 80%;
+  width: 70%;
   height: 500px;
-  background-color: #171717;
+  background-color: #060606;
+  box-shadow: 0 10px 20px rgb(0 0 0 / 77%);
   z-index: -1;
   border-radius: 7px;
   color: #fff;
@@ -46,18 +48,118 @@
   .result_container {
     display: flex;
     justify-content: space-evenly;
-    margin-top: 50px;
+    margin-top: 20px;
 
     .artist_result {
-      width: 50%;
+      width: 30%;
     }
 
     .song_result {
-      width: 50%;
+      width: 70%;
     }
   }
 
-  .playlists_result {
+  .song_result {
+    .scroll_list {
+      height: 220px;
+      width: 100%;
+      overflow-y: scroll;
+    }
+  }
+
+  .playlist_result {
+    .scroll_list {
+      display: flex;
+      height: fit-content;
+      margin-bottom: 20px;
+      overflow-x: scroll;
+    }
+  }
+
+  .song_result_card {
+    display: flex;
+    width: 91%;
+    background-color: #0e0e0e;
+    padding: 10px;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s;
+
+    &:hover {
+      background-color: #111111;
+      transform: scale(0.98);
+    }
+
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 3px;
+    }
+
+    .song_result_card_info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      h4,
+      h6 {
+        margin: 0px 20px 0px 20px;
+      }
+    }
+  }
+
+  .playlist_result_card:first-child {
+    margin-left: 0px;
+  }
+
+  .playlist_result_card {
+    display: flex;
+    width: 100px;
+    background-color: #0e0e0e;
+    padding: 10px;
+    height: 70px;
+    margin-left: 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 3px;
+    }
+
+    .playlist_result_card_info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      h4,
+      h6 {
+        margin: 0px 20px 0px 20px;
+      }
+    }
+  }
+}
+
+.artist_result_card {
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 10px 10px 0px 0px;
+  }
+
+  h5 {
+    margin: 10px 0px 0px 0px;
   }
 }
 
@@ -69,6 +171,11 @@
   border-radius: 7px;
   align-items: center;
   justify-content: center;
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 @keyframes fadeMe {
