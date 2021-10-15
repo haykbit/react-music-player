@@ -20,7 +20,7 @@ describe("<PlaylistUser> behavior", () => {
     _id: "12334",
   };
 
-  const { getByRole, getByText } = renderWithReduxAndRouter(
+  const { getByText } = renderWithReduxAndRouter(
     <PlaylistUser playlistUserData={mockUser} />
   );
   expect(getByText("Profile information")).toBeInTheDocument();
