@@ -61,7 +61,7 @@ const PlaylistSchema = new Schema(
     playlistImage: {
       type: String,
       default:
-        "https://res.cloudinary.com/dzaxp8xwy/image/upload/v1633701663/jfjiknlvclszu5ci86dm.png",
+        "https://res.cloudinary.com/oasismusic/image/upload/v1634296905/jvtqj07mryvnnztjnc2r.png",
     },
     likes: {
       type: Number,
