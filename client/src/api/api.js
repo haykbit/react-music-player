@@ -146,6 +146,17 @@ export async function removePlaylist(id, userId) {
   });
 }
 
+export async function getPlaylistById(playlistId) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/playlists/${playlistId}`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
 export async function getMyPlaylistsList(id) {
   const userToken = await getCurrentUserToken();
   return axios({

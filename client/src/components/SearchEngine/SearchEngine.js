@@ -95,7 +95,6 @@ function SearchEngine() {
   }
 
   function playlistPage(id) {
-    console.log(id, "ID TO PUSH TO");
     history.push(`playlist/${id}`);
   }
 
@@ -161,24 +160,7 @@ function SearchEngine() {
                   })
                 ) : (
                   <>
-                    <div className="artist_result_card">
-                      <img src={portadaUno} alt="" />
-                      <div className="artist_result_card_info">
-                        <h5>Artist Name</h5>
-                      </div>
-                    </div>
-                    <div className="artist_result_card">
-                      <img src={portadaUno} alt="" />
-                      <div className="artist_result_card_info">
-                        <h5>Artist Name</h5>
-                      </div>
-                    </div>
-                    <div className="artist_result_card">
-                      <img src={portadaUno} alt="" />
-                      <div className="artist_result_card_info">
-                        <h5>Artist Name</h5>
-                      </div>
-                    </div>
+                    <div>Can't find any results</div>
                   </>
                 )}
               </div>

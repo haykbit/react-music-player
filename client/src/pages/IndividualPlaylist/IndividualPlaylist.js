@@ -1,31 +1,56 @@
-import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { authObserverLoading } from "../../redux/auth/action";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { getPlaylistById } from "../../api/api";
 import Navbar from "../../components/Navbar/Navbar";
 import Playlist from "../../components/Playlist";
 import "./style/playlist.scss";
 
 function IndividualPlaylist(props) {
-  const playlist = props.location.state.item;
-  const history = useHistory();
-  const dispatch = useDispatch();
-  const userStorage = JSON.parse(localStorage.getItem("user"));
-  const { loading, authObserverSuccess, signOutSuccess } = useSelector(
-    (state) => state.auth
-  );
+  const { loading, authObserverSuccess } = useSelector((state) => state.auth);
+
+  const [playlistId, setPlaylistId] = useState("");
+  const [playlistInfo, setPlaylistInfo] = useState(null);
 
   useEffect(() => {
-    dispatch(authObserverLoading());
-    if (signOutSuccess) {
-      history.push("/login");
+    if (!loading && authObserverSuccess && !props.location.state) {
+      console.log("ENTRÓ");
+      getUrlId();
     }
-  }, []);
+  }, [loading]);
+
+  useEffect(() => {
+    console.log(playlistId);
+    if (!loading && authObserverSuccess && !props.location.state) {
+      getPlaylistInfo(playlistId);
+    }
+  }, [playlistId]);
+
+  function getUrlId() {
+    const path = window.location.pathname.toString();
+    setPlaylistId(path.slice(10));
+  }
+
+  async function getPlaylistInfo(playlistId) {
+    if (playlistId) {
+      const user = await getPlaylistById(playlistId);
+      setPlaylistInfo(user.data.data);
+    }
+  }
 
   return (
     <>
       <Navbar />
-      <Playlist playlist={playlist} />
+      {props.location.state ? (
+        <Playlist playlist={props.location.state.item} />
+      ) : (
+        ""
+      )}
+
+      {playlistInfo && !props.location.state ? (
+        <Playlist playlist={playlistInfo} />
+      ) : (
+        ""
+      )}
     </>
   );
 }
