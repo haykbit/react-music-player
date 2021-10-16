@@ -2,10 +2,28 @@
   display: flex;
   height: 60vh;
   width: 100%;
-  background-color: #f9dd94;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+
+  .edit-background {
+    display: flex;
+    height: 50px;
+    width: 50px;
+    margin-left: 10px;
+    margin-top: 5px;
+
+    .edit-icon {
+      height: 100%;
+      width: 100%;
+      cursor: pointer;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    input {
+      display: none;
+    }
+  }
 }
 .profile-page-container {
   display: flex;
