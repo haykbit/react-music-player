@@ -15,7 +15,6 @@ function AddToPlaylist({ show, close, text = "" }) {
             <div className="add-to-playlist-title">
               {" "}
               <p>{text}</p>
-              <p>Songs</p>
             </div>
             <div className="playlists-list-box"></div>
             <div className="playlists-list-box"></div>
