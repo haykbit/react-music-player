@@ -28,11 +28,21 @@ export async function getUserProfile(id) {
 
 export async function updateUserProfile(id, profile, profileImage) {
   const userToken = await getCurrentUserToken();
-  console.log(profileImage, "api profileImage");
   return axios({
     method: "PATCH",
     url: `${process.env.REACT_APP_API_BASE_URL}/users/${id}`,
     data: { ...profile, profileImage },
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
+export async function getSearchArtist() {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/users/artists`,
     headers: {
       Authorization: `Bearer ${userToken}`,
     },
@@ -267,18 +277,6 @@ export async function getSearchPlaylist() {
   return axios({
     method: "GET",
     url: `${process.env.REACT_APP_API_BASE_URL}/playlists/all/`,
-    headers: {
-      Authorization: `Bearer ${userToken}`,
-    },
-  });
-}
-
-export async function getSearchArtist() {
-  console.log("ENTRO EN API");
-  const userToken = await getCurrentUserToken();
-  return axios({
-    method: "GET",
-    url: `${process.env.REACT_APP_API_BASE_URL}/users/artists`,
     headers: {
       Authorization: `Bearer ${userToken}`,
     },

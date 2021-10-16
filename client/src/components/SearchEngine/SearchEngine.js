@@ -34,7 +34,6 @@ function SearchEngine() {
   const handleSearch = (e) => {
     let songs = response["song"]["data"]["data"];
     let artists = response["artist"]["data"]["data"];
-    console.log(response, "RESPONSE IN ENGINE");
     let playlists = response["playlist"]["data"]["data"];
     let query = e.target.value;
 
@@ -46,12 +45,12 @@ function SearchEngine() {
       const filteredPlaylists = playlists.filter((playlist) =>
         playlist.title.toLowerCase().includes(query.toLowerCase())
       );
-      /* const filteredArtists = artists.filter((artist) =>
+      const filteredArtists = artists.filter((artist) =>
         artist.userName.toLowerCase().includes(query.toLowerCase())
-      ); */
+      );
       setSong(filteredSongs);
       setPlaylist(filteredPlaylists);
-      //setArtist(filteredArtists);
+      setArtist(filteredArtists);
     } else {
       setShow(false);
     }
@@ -128,7 +127,7 @@ function SearchEngine() {
                         <div className="artist_result_card">
                           <img src={portadaUno} alt="" />
                           <div className="artist_result_card_info">
-                            <h4>Artist Name</h4>
+                            <h4>{artist.userName}</h4>
                           </div>
                         </div>
                       </>

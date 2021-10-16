@@ -95,9 +95,8 @@ async function getMySongs(req, res, next) {
 }
 
 async function getArtisticPeople(req, res, next) {
-  console.log("INTO THE SERVER REQ");
   try {
-    const user = await db.User.find();
+    const user = await db.User.find({ artist: true });
     res.status(200).send({
       data: user,
     });
