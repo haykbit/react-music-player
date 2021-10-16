@@ -95,6 +95,7 @@ function SearchEngine() {
   }
 
   function playlistPage(id) {
+    console.log(id, "ID TO PUSH TO");
     history.push(`playlist/${id}`);
   }
 
