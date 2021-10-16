@@ -9,7 +9,6 @@ import {
   removePlaylist,
   updatePlaylist,
   addSongFromPlaylistView,
-  getMyPlaylistsList,
 } from "../../api/api";
 import { uploadImages } from "../../services/cloudinary";
 import {
