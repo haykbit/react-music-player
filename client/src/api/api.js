@@ -146,6 +146,17 @@ export async function removePlaylist(id, userId) {
   });
 }
 
+export async function getPlaylistById(playlistId) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/playlists/${playlistId}`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
 export async function getMyPlaylistsList(id) {
   const userToken = await getCurrentUserToken();
   return axios({
@@ -275,7 +286,7 @@ export async function updatePlaylist(playlist, image, id) {
   });
 }
 
-export async function getSearchSong() {
+export async function getSearchSong(userId) {
   const userToken = await getCurrentUserToken();
   return axios({
     method: "GET",
@@ -283,10 +294,11 @@ export async function getSearchSong() {
     headers: {
       Authorization: `Bearer ${userToken}`,
     },
+    data: { userId },
   });
 }
 
-export async function getSearchPlaylist() {
+export async function getSearchPlaylist(userId) {
   const userToken = await getCurrentUserToken();
   return axios({
     method: "GET",
@@ -294,6 +306,7 @@ export async function getSearchPlaylist() {
     headers: {
       Authorization: `Bearer ${userToken}`,
     },
+    data: { userId },
   });
 }
 

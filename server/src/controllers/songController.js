@@ -31,11 +31,15 @@ async function createSong(req, res, next) {
 }
 
 async function fetchSongs(req, res, next) {
+  const { userId } = req.body;
   try {
-    const song = await db.Song.find().lean();
+    const publicSongs = await db.Song.find({ private: false });
+    const userSongs = await db.Song.find({ owner: userId });
+
+    const songs = publicSongs.concat(userSongs);
 
     res.status(200).send({
-      data: song,
+      data: songs,
     });
   } catch (err) {
     console.log(err);
