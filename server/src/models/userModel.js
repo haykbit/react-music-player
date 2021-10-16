@@ -13,13 +13,13 @@ const UserSchema = new Schema(
     lastName: {
       type: String,
       trim: true,
-      minLength: [2, "Last name needs to have at least 2 characters"],
+      // minLength: [2, "Last name needs to have at least 2 characters"],
       maxLength: [50, "Last name cannot exceed 50 characters"],
     },
     userName: {
       type: String,
       trim: true,
-      required: true,
+      // required: true,
       unique: [true, "This user name already exists, please try another one"],
       minLength: [2, "User name needs to have at least 2 characters"],
       maxLength: [50, "User name cannot exceed 50 characters"],
