@@ -63,7 +63,7 @@ const SongSchema = new Schema(
     songImage: {
       type: String,
       default:
-        "https://res.cloudinary.com/dzaxp8xwy/image/upload/v1633947229/upgkd8ktarfuixxfvhrp.jpg",
+        "https://res.cloudinary.com/oasismusic/image/upload/v1634289407/wmscaabwab6zggp4xilj.png",
     },
     owner: {
       type: String,
@@ -74,11 +74,6 @@ const SongSchema = new Schema(
     likes: {
       type: Number,
       default: 0,
-    },
-    likedBy: {
-      // type: [{ type: Schema.Types.ObjectId, ref: "user" }],
-      type: Array,
-      default: [],
     },
     played: {
       type: Number,
