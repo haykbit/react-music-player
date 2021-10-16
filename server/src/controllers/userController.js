@@ -77,7 +77,6 @@ async function getMyFavoriteSongs(req, res, next) {
   }
 }
 
-//TODO get my songs
 async function getMySongs(req, res, next) {
   const { id: userId } = req.params;
   try {

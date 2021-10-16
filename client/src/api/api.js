@@ -170,7 +170,7 @@ export async function getMySongsPlaylist(userId) {
 }
 
 //In progress - To ask kym
-export async function addSongFromPlaylistView(playlistId, userId, songId) {
+export async function addSongToPlaylist(playlistId, userId, songId) {
   const userToken = await getCurrentUserToken();
   return axios({
     method: "PATCH",
@@ -291,6 +291,28 @@ export async function getSearchPlaylist() {
   return axios({
     method: "GET",
     url: `${process.env.REACT_APP_API_BASE_URL}/playlists/all/`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
+export async function getPublicSongs() {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/songs/public-songs`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
+export async function getSongsForPrivateLists(id) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/songs/accessible-songs/${id}`,
     headers: {
       Authorization: `Bearer ${userToken}`,
     },

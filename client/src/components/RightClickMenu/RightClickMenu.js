@@ -48,11 +48,11 @@ function RightClickMenu({
             <li className="menu-option-box" onClick={() => handleLike()}>
               Favorite
             </li>
+            <li className="menu-option-box" onClick={() => handleAddSong()}>
+              Add Song
+            </li>
             {song.owner === userUid ? (
               <>
-                <li className="menu-option-box" onClick={() => handleAddSong()}>
-                  Add Song
-                </li>
                 <li
                   className="menu-option-box"
                   onClick={() => {

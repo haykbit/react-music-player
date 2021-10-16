@@ -8,7 +8,7 @@ import {
   removeSongFromPlaylist,
   removePlaylist,
   updatePlaylist,
-  addSongFromPlaylistView,
+  addSongToPlaylist,
 } from "../../api/api";
 import { uploadImages } from "../../services/cloudinary";
 import {
@@ -160,11 +160,11 @@ export const editPlaylist = (playlist, image, id) => async (dispatch) => {
     dispatch({ type: PLAYLIST_EDIT_FAIL });
   }
 };
-export const addSongNewFromPlaylistView =
+export const addSongToPlaylistView =
   (playlistId, userId, songId) => async (dispatch) => {
     dispatch({ type: ADD_SONG_TO_PLAYLIST_REQUEST });
     try {
-      await addSongFromPlaylistView(playlistId, userId, songId);
+      await addSongToPlaylist(playlistId, userId, songId);
       dispatch({ type: ADD_SONG_TO_PLAYLIST_SUCCESS });
     } catch (error) {
       dispatch({ type: ADD_SONG_TO_PLAYLIST_FAIL, payload: error.message });

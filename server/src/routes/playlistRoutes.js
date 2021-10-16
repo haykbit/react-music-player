@@ -55,10 +55,10 @@ playlistRouter.patch(
   playlistController.cancelFollowPlaylist
 );
 
-playlistRouter.put(
+playlistRouter.patch(
   "/add/:id",
   authMiddleware,
-  playlistController.addSongFromPlaylistView
+  playlistController.addSongToPlaylist
 );
 
 playlistRouter.put(

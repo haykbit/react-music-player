@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { dispatchLikeSong, cancelLikedSongs } from "../../redux/song/action";
 import { getSongPlayNow } from "../../redux/player/action";
+import { getMyPlaylists } from "../../redux/playlist/action";
 import { getLikedSongs } from "../../api/api";
 import { fancyTimeFormat } from "../../util/timeFormatter";
 import { BsFillCaretRightFill } from "react-icons/bs";
@@ -15,8 +16,9 @@ import AddToPlaylist from "../AddToPlaylist";
 import { getCurrentUser } from "../../services/auth";
 function IndividualSong({ song, index, playlist, favorite }) {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
-  const { likeSongSuccess, loading } = useSelector((state) => state.song);
+  const { user, authObserverSuccess } = useSelector((state) => state.auth);
+  const { loading } = useSelector((state) => state.song);
+  const { myPlaylists } = useSelector((state) => state.playlist);
   const [liked, setLiked] = useState(favorite);
   const [myFavoriteSongs, setMyFavoriteSongs] = useState([]);
   const [modals, setModals] = useState({
@@ -25,19 +27,28 @@ function IndividualSong({ song, index, playlist, favorite }) {
     addToPlaylist: false,
   });
   const [contextMenu, setContextMenu] = useState(false);
+  const [displayMyLists, setDisplayMyLists] = useState([]);
   const Toggle = () => setContextMenu(!contextMenu);
 
   const ToggleAddToPlaylist = () => {
     setModals({ ...modals, addToPlaylist: !modals.addToPlaylist });
+    song.private
+      ? setDisplayMyLists(myPlaylists.filter((item) => item.private))
+      : setDisplayMyLists(myPlaylists);
   };
 
   useEffect(() => {
     getMyFavSongs();
+    getMyLists();
   }, [loading]);
 
   async function getMyFavSongs() {
     const myFavSongs = await getLikedSongs(user.uid);
     setMyFavoriteSongs(myFavSongs.data.data);
+  }
+
+  function getMyLists() {
+    dispatch(getMyPlaylists(user.uid));
   }
 
   function handleClassName() {
@@ -75,6 +86,10 @@ function IndividualSong({ song, index, playlist, favorite }) {
           show={modals.addToPlaylist}
           close={ToggleAddToPlaylist}
           text="Add to playlist"
+          currentData={song}
+          user={user}
+          displayData={displayMyLists}
+          isPlaylist={false}
         />
       )}
 

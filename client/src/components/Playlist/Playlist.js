@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getUserProfile } from "../../api/api";
+import {
+  getUserProfile,
+  getPublicSongs,
+  getSongsForPrivateLists,
+} from "../../api/api";
 import PlaylistStack from "./PlaylistStack";
 import PlaylistContextMenu from "./PlaylistContextMenu/PlaylistContextMenu";
 import PlaylistDeleteConfirmation from "./PlaylistDeleteConfirmation";
 import EditPlaylistModal from "./EditPlaylistModal";
-import { authObserverLoading } from "../../redux/auth/action";
 
 import { IoMdMore } from "react-icons/io";
 
@@ -36,6 +39,7 @@ function Playlist({ playlist }) {
   });
   const [follow, setFollow] = useState(false);
   const [myFavPlaylists, setMyFavPlaylists] = useState([]);
+  const [displaySongs, setDisplaySongs] = useState([]);
 
   // Toggles for the diferent menus and modals
   const ToggleContext = () => setContextMenu(!contextMenu);
@@ -59,6 +63,7 @@ function Playlist({ playlist }) {
     if (!loading && authObserverSuccess) {
       getUserInfo();
       getFavoritePlaylistsInfo();
+      getSongsData();
     }
   }, [loading, followSuccess, cancelFollowSuccess]);
 
@@ -83,6 +88,16 @@ function Playlist({ playlist }) {
     setMyFavPlaylists(myFavLists.data.data);
   }
 
+  async function getSongsData() {
+    const publicSongs = await getPublicSongs();
+    const accessibleSongs = await getSongsForPrivateLists(user.uid);
+    playlist.private
+      ? setDisplaySongs([
+          ...accessibleSongs.data.mySongs,
+          ...accessibleSongs.data.othersPublicSongs,
+        ])
+      : setDisplaySongs(publicSongs.data.data);
+  }
   function handleClassNameAndFollow() {
     const checkFavLists = myFavPlaylists.some(
       (ele) => ele["_id"] === playlist._id
@@ -97,7 +112,11 @@ function Playlist({ playlist }) {
         <AddToPlaylist
           show={modals.addToPlaylist}
           close={ToggleAddToPlaylist}
-          text={"Add song"}
+          text={"Add Song"}
+          currentData={playlist}
+          user={user}
+          displayData={displaySongs}
+          isPlaylist={true}
         />
       )}
 
