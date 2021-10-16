@@ -31,6 +31,8 @@ const UserSchema = new Schema(
     },
     coverImage: {
       type: String,
+      default:
+        "https://res.cloudinary.com/oasismusic/image/upload/v1634404586/rfnuqfg1retaxby2wflx.jpg",
     },
     email: {
       type: String,

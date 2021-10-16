@@ -233,6 +233,28 @@ async function getMyFavoritePlaylists(req, res, next) {
   }
 }
 
+async function fetchPlaylists(req, res, next) {
+  const { userId } = req.body;
+  try {
+    const publicPlaylists = await db.Playlist.find({
+      private: false,
+    }).select({ title: 1, playlistImage: 1, genre: 1 });
+    const userPlaylists = await db.Playlist.find({ owner: userId }).select({
+      title: 1,
+      playlistImage: 1,
+      genre: 1,
+    });
+
+    const playlists = publicPlaylists.concat(userPlaylists);
+
+    res.status(200).send({
+      data: playlists,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 module.exports = {
   fetchMyPlaylists,
   fetchPublicPlaylists,
@@ -245,4 +267,5 @@ module.exports = {
   followPlaylist,
   cancelFollowPlaylist,
   getMyFavoritePlaylists,
+  fetchPlaylists,
 };
