@@ -93,9 +93,17 @@ async function getMySongs(req, res, next) {
     next(error);
   }
 }
-//TODO delete my songs
 
-//TODO edit my songs
+async function getArtisticPeople(req, res, next) {
+  try {
+    const user = await db.User.find({ artist: true });
+    res.status(200).send({
+      data: user,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
 
 module.exports = {
   signIn: signIn,
@@ -103,4 +111,5 @@ module.exports = {
   updateUser: updateUser,
   getMyFavoriteSongs,
   getMySongs,
+  getArtisticPeople,
 };
