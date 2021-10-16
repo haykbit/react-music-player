@@ -16,15 +16,13 @@ songRouter.patch(
   authMiddleware,
   songController.countPlayedNumber
 );
-songRouter.delete("/:id", authMiddleware, songController.deleteSong);
+songRouter.put("/:id", authMiddleware, songController.deleteSong);
 
 songRouter.get(
   "/mysongs/:ownerId",
   authMiddleware,
   songController.getSongsByUser
 );
-songRouter.patch("/:id", authMiddleware, songController.updateSong);
-songRouter.put("/:id", authMiddleware, songController.deleteSong);
 
 module.exports = {
   songRouter,

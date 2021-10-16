@@ -54,6 +54,12 @@ playlistRouter.patch(
 );
 
 playlistRouter.put(
+  "/add/:id",
+  authMiddleware,
+  playlistController.addSongFromPlaylistView
+);
+
+playlistRouter.put(
   "/:id",
   authMiddleware,
   playlistController.removePlaylistById

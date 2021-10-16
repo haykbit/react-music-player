@@ -54,6 +54,7 @@ export const login = () => async (dispatch) => {
     dispatch({ type: LOGIN_REQUEST });
     const res = await signInWithGoogle();
     const accessToken = res.credential.accessToken;
+    console.log(accessToken);
     const userProfile = {
       firstName: res.additionalUserInfo.profile.given_name,
       lastName: res.additionalUserInfo.profile.family_name,

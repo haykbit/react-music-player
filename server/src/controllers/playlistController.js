@@ -120,6 +120,42 @@ async function updatePlaylist(req, res, next) {
   }
 }
 
+//To test
+async function addSongFromPlaylistView(req, res, next) {
+  const { id: songId } = req.params;
+  const { playlistId } = req.body;
+  const { userId } = req.body;
+
+  try {
+    const checkOwner = await db.Playlist.findById(playlistId, "owner");
+    const checkSong = await db.Playlist.find({
+      _id: playlistId,
+    })
+      .select({ songs: 1, _id: 0 })
+      .lean();
+
+    if (checkOwner.owner === userId && checkSong[0].songs.includes(songId)) {
+      await db.Playlist.findOneAndUpdate(
+        { _id: playlistId },
+        {
+          $push: {
+            songs: songId,
+          },
+        }
+      );
+      res.status(200).send({
+        message: "OK, song added",
+      });
+    } else {
+      return res.status(200).send({
+        message: "Ko, song is not added",
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+}
+
 async function removeSongFromPlaylist(req, res, next) {
   const { id } = req.params;
   const { songId } = req.body;
@@ -245,4 +281,5 @@ module.exports = {
   followPlaylist,
   cancelFollowPlaylist,
   getMyFavoritePlaylists,
+  addSongFromPlaylistView,
 };

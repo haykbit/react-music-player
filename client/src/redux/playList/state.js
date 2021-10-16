@@ -1,5 +1,7 @@
 const INITIAL_STATE = {
+  PlaylistData: null,
   loading: false,
+  error: null,
   playlistCreatedSuccess: false,
   playlistEditSuccess: false,
   addedToPlaylistSuccess: false,
@@ -14,6 +16,8 @@ const INITIAL_STATE = {
   myPlaylists: [],
   myFavoritePlaylists: [],
   publicPlaylists: [],
+  UploadToPlaylistFromPlaylistView: false,
+  canceladdToPlaylistFromPlaylistView: false,
 };
 
 export default INITIAL_STATE;
