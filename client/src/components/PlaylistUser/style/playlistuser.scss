@@ -1,7 +1,126 @@
-.profile-container {
-margin-left: 25px;
-  margin-top: 40px;
-    .profile-title, .profile-name{
-        color: white
+.top-half {
+  display: flex;
+  height: 60vh;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  .edit-background {
+    display: flex;
+    height: 50px;
+    width: 50px;
+    margin-left: 10px;
+    margin-top: 5px;
+
+    .edit-icon {
+      height: 100%;
+      width: 100%;
+      cursor: pointer;
+      background-repeat: no-repeat;
+      background-size: contain;
     }
+    input {
+      display: none;
+    }
+  }
+}
+.profile-page-container {
+  display: flex;
+  height: 700px;
+  width: 100%;
+  position: fixed;
+  // background-color: aquamarine;
+  margin-top: 40px;
+  box-sizing: border-box;
+  padding: 60px;
+  justify-content: center;
+  align-items: center;
+  overflow-y: hidden;
+
+  .profile-page-box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    margin-right: 20px;
+    background-color: rgb(61, 61, 61, 0.8);
+
+    .box-header {
+      display: flex;
+      flex-direction: row;
+      height: 100px;
+      width: 100%;
+
+      justify-content: center;
+      align-items: center;
+
+      .profile-picture {
+        display: flex;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        z-index: 10;
+        align-items: center;
+        object-fit: center;
+        height: 150px;
+        width: 150px;
+        border-radius: 50%;
+        background-color: blueviolet;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+          rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+          rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+      }
+    }
+    .box-body {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
+
+      .profile-title {
+        display: inline;
+        width: 250px;
+        border-bottom: 3px solid #f9dd94;
+      }
+
+      .box-information {
+        display: flex;
+        justify-content: center;
+        height: 250px;
+        width: 100%;
+
+        .profile-name {
+          font-size: 30px;
+          color: white;
+        }
+      }
+    }
+    .public-playlist-info {
+      display: flex;
+      // background-color: chocolate;
+      height: 100%;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 15px;
+
+      .playlist-example {
+        height: 100%;
+        width: 30%;
+        background-color: black;
+        margin-right: 15px;
+        overflow-x: hidden;
+      }
+    }
+    .follow-button {
+      display: flex;
+      justify-content: end;
+      margin-right: 35px;
+
+      button {
+        height: 40px;
+        width: 150px;
+      }
+    }
+  }
 }
