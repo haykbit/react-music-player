@@ -1,11 +1,6 @@
 import { useEffect, useState, useLayoutEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
-import {
-  getSearchArtist,
-  getSearchPlaylist,
-  getSearchSong,
-} from "../../api/api";
+import { getSearchEngine } from "../../redux/search/action";
 
 import portadaUno from "../../assets/images/icons/portada-1.png";
 import search from "../../assets/images/icons/search2.png";
@@ -23,9 +18,7 @@ function SearchEngine() {
 
   let url = window.location.pathname;
 
-  const { user, loading, authObserverSuccess } = useSelector(
-    (state) => state.auth
-  );
+  const { loading, authObserverSuccess } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (!loading && authObserverSuccess) {
@@ -34,32 +27,31 @@ function SearchEngine() {
   }, [loading]);
 
   async function getSearch() {
-    // const res = await dispatch(getSearchEngine());
-    const artist = await getSearchArtist(user.uid);
-    const playlist = await getSearchPlaylist(user.uid);
-    const song = await getSearchSong(user.uid);
-    const obj = { artist, playlist, song };
-    setResponse(obj);
-    console.log(response);
+    const res = await dispatch(getSearchEngine());
+    setResponse(res);
   }
 
   const handleSearch = (e) => {
     let songs = response["song"]["data"]["data"];
-    //let artists = response["artist"]["data"]["data"];
+    let artists = response["artist"]["data"]["data"];
+    console.log(response, "RESPONSE IN ENGINE");
     let playlists = response["playlist"]["data"]["data"];
     let query = e.target.value;
 
     if (e.target.value.length > 0) {
       setShow(true);
-      let songs = response["song"]["data"]["data"];
       const filteredSongs = songs.filter((song) =>
         song.title.toLowerCase().includes(query.toLowerCase())
       );
       const filteredPlaylists = playlists.filter((playlist) =>
         playlist.title.toLowerCase().includes(query.toLowerCase())
       );
+      /* const filteredArtists = artists.filter((artist) =>
+        artist.userName.toLowerCase().includes(query.toLowerCase())
+      ); */
       setSong(filteredSongs);
       setPlaylist(filteredPlaylists);
+      //setArtist(filteredArtists);
     } else {
       setShow(false);
     }

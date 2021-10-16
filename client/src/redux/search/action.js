@@ -15,11 +15,11 @@ export const getSearchEngine = (query) => async (dispatch) => {
   dispatch({ type: SEARCH_REQUEST });
   try {
     const artist = await getSearchArtist();
+    console.log(artist, "ARTIST IN ACTION");
     const playlist = await getSearchPlaylist();
     const song = await getSearchSong();
     dispatch({ type: SEARCH_SUCCESS, payload: { query } });
     const obj = { artist, playlist, song };
-    console.log(obj);
     return obj;
   } catch (error) {
     dispatch({ type: SEARCH_FAIL, payload: error.message });

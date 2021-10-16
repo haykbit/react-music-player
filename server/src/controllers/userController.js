@@ -94,9 +94,10 @@ async function getMySongs(req, res, next) {
   }
 }
 
-async function getArtists(req, res, next) {
+async function getArtisticPeople(req, res, next) {
+  console.log("INTO THE SERVER REQ");
   try {
-    const user = await db.User.find({ artist: true });
+    const user = await db.User.find();
     res.status(200).send({
       data: user,
     });
@@ -104,9 +105,6 @@ async function getArtists(req, res, next) {
     next(error);
   }
 }
-//TODO delete my songs
-
-//TODO edit my songs
 
 module.exports = {
   signIn: signIn,
@@ -114,5 +112,5 @@ module.exports = {
   updateUser: updateUser,
   getMyFavoriteSongs,
   getMySongs,
-  getArtists,
+  getArtisticPeople,
 };

@@ -251,7 +251,7 @@ export async function updatePlaylist(playlist, image, id) {
   });
 }
 
-export async function getSearchSong(userId) {
+export async function getSearchSong() {
   const userToken = await getCurrentUserToken();
   return axios({
     method: "GET",
@@ -259,11 +259,10 @@ export async function getSearchSong(userId) {
     headers: {
       Authorization: `Bearer ${userToken}`,
     },
-    data: { userId },
   });
 }
 
-export async function getSearchPlaylist(userId) {
+export async function getSearchPlaylist() {
   const userToken = await getCurrentUserToken();
   return axios({
     method: "GET",
@@ -271,18 +270,17 @@ export async function getSearchPlaylist(userId) {
     headers: {
       Authorization: `Bearer ${userToken}`,
     },
-    data: { userId },
   });
 }
 
-export async function getSearchArtist(userId) {
+export async function getSearchArtist() {
+  console.log("ENTRO EN API");
   const userToken = await getCurrentUserToken();
   return axios({
     method: "GET",
-    url: `${process.env.REACT_APP_API_BASE_URL}/users/all/`,
+    url: `${process.env.REACT_APP_API_BASE_URL}/users/artists`,
     headers: {
       Authorization: `Bearer ${userToken}`,
     },
-    data: { userId },
   });
 }

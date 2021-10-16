@@ -7,7 +7,7 @@ const userRouter = Router();
 //http://localhost:4000/users/
 userRouter.post("/login", authMiddleware, userController.signIn);
 userRouter.get("/:id", authMiddleware, userController.getUserById);
-userRouter.get("/all", authMiddleware, userController.getArtists);
+userRouter.get("/artists", userController.getArtisticPeople);
 userRouter.patch("/:id", authMiddleware, userController.updateUser);
 userRouter.get("/myFavoriteSongs/:id", userController.getMyFavoriteSongs);
 userRouter.get("/mySongs/:id", userController.getMySongs);
