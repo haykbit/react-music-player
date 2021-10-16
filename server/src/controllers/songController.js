@@ -2,7 +2,7 @@ const db = require("../models");
 
 async function createSong(req, res, next) {
   const { duration, url } = req.body.song;
-  const { title, genre, artist } = req.body.metadata;
+  const { title, genre, artist, private } = req.body.metadata;
   const { image } = req.body;
   const { uid } = req.user;
   try {
@@ -13,6 +13,7 @@ async function createSong(req, res, next) {
       url,
       duration,
       owner: uid,
+      private,
       songImage: image,
     });
     await db.User.findOneAndUpdate(
@@ -76,18 +77,12 @@ async function likeSong(req, res, next) {
   try {
     const checkSong = await db.Song.findById(songId);
     const checkUser = await db.User.findOne({ firebase_id: userId });
-    if (
-      !checkSong.likedBy.includes(userId) &&
-      !checkUser.myFavoriteSongs.includes(songId)
-    ) {
+    if (!checkUser.myFavoriteSongs.includes(songId)) {
       const song = await db.Song.findOneAndUpdate(
         { _id: songId },
         {
           $inc: {
             likes: 1,
-          },
-          $push: {
-            likedBy: userId,
           },
         }
       );
@@ -111,20 +106,13 @@ async function cancelLikeSong(req, res, next) {
   const { id: songId } = req.params;
   const { userId } = req.body;
   try {
-    const checkSong = await db.Song.findById(songId);
     const checkUser = await db.User.findOne({ firebase_id: userId });
-    if (
-      checkSong.likedBy.includes(userId) &&
-      checkUser.myFavoriteSongs.includes(songId)
-    ) {
+    if (checkUser.myFavoriteSongs.includes(songId)) {
       await db.Song.findOneAndUpdate(
         { _id: songId },
         {
           $inc: {
             likes: -1,
-          },
-          $pull: {
-            likedBy: userId,
           },
         },
         { new: true }
@@ -149,6 +137,7 @@ async function cancelLikeSong(req, res, next) {
 async function updateSong(req, res, next) {
   const { id } = req.params;
   const { title, artist, genre, album } = req.body.songData;
+  const { image } = req.body;
   try {
     const updatedSong = await db.Song.findOneAndUpdate(
       { _id: id },
@@ -158,6 +147,7 @@ async function updateSong(req, res, next) {
           artist: artist || "",
           genre: genre || "",
           album: album || "",
+          songImage: image || "",
         },
       },
       { new: true }

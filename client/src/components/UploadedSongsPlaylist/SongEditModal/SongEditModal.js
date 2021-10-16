@@ -1,22 +1,21 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { editActualSong } from "../../../redux/song/action";
 import { Formik } from "formik";
 import FormSchema from "./FormSchema";
-import "./style/editplaylistmodal.scss";
+import "./style/songEditModal.scss";
+import Input from "../../Input";
 import SongUploadIcon from "../../../assets/images/icons/songImageUpload.png";
 import useLockBodyScroll from "../../../hooks/useLockBodyScroll";
-import { editPlaylist } from "../../../redux/playlist/action";
-import Input from "../../Input";
-import Textarea from "../../Input/Textarea";
 
-const EditPlaylistModal = ({ show, close, playlist }) => {
-  const [playlistImage, setPlaylistImage] = useState("");
+const SongEditModal = ({ show, close, song }) => {
+  const [songImage, setSongImage] = useState("");
   const [isUploaded, setIsUploaded] = useState(false);
   const [image, setImage] = useState("");
   const dispatch = useDispatch();
 
-  function editActualPlaylist(playlistData) {
-    dispatch(editPlaylist(playlistData, image, playlist._id));
+  function editSong(metadata) {
+    dispatch(editActualSong(song._id, metadata, image));
   }
 
   function handleImageChange(e) {
@@ -24,7 +23,7 @@ const EditPlaylistModal = ({ show, close, playlist }) => {
       let reader = new FileReader();
       setImage(e.target.files[0]);
       reader.onload = function (e) {
-        setPlaylistImage(e.target.result);
+        setSongImage(e.target.result);
         setIsUploaded(true);
       };
       reader.readAsDataURL(e.target.files[0]);
@@ -38,15 +37,15 @@ const EditPlaylistModal = ({ show, close, playlist }) => {
           <div className="modal" onClick={(e) => e.stopPropagation()}>
             <Formik
               onSubmit={(values) => {
-                editActualPlaylist(values);
+                editSong(values);
                 close();
               }}
               initialValues={{
-                title: playlist.title,
-                description: playlist.description,
-                genre: playlist.genre,
-                private: playlist.private,
-                initialImage: playlist.playlistImage,
+                title: song.title,
+                artist: song.artist,
+                album: song.album,
+                genre: song.genre,
+                initialImage: song.songImage,
               }}
               validationSchema={FormSchema}
             >
@@ -61,9 +60,7 @@ const EditPlaylistModal = ({ show, close, playlist }) => {
                 handleBlur,
               }) => (
                 <div>
-                  <div className="playlist-modal-title">
-                    Change Playlist information
-                  </div>
+                  <div className="modal-title">Upload Song</div>
                   <form onSubmit={handleSubmit} className="form-box">
                     <div className="left-side-modal">
                       <div className="modal-input-box">
@@ -81,19 +78,34 @@ const EditPlaylistModal = ({ show, close, playlist }) => {
                           errorMessage={errors.title}
                         />
                       </div>
-                      <div className="modal-textarea-box">
-                        <Textarea
-                          className="textarea-input"
-                          name="description"
+                      <div className="modal-input-box">
+                        <Input
+                          className="register-inputs"
+                          name="artist"
                           label=""
                           autoComplete="on"
-                          placeholder="Description"
+                          placeholder="Artist"
                           type="text"
-                          value={values.description}
+                          value={values.artist}
                           onChange={handleChange}
                           onBlur={handleBlur}
-                          hasErrorMessage={touched.description}
-                          errorMessage={errors.description}
+                          hasErrorMessage={touched.artist}
+                          errorMessage={errors.artist}
+                        />
+                      </div>
+                      <div className="modal-input-box">
+                        <Input
+                          className="register-inputs"
+                          name="album"
+                          label=""
+                          autoComplete="on"
+                          placeholder="Album"
+                          type="text"
+                          value={values.album}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                          hasErrorMessage={touched.album}
+                          errorMessage={errors.album}
                         />
                       </div>
                       <div className="modal-input-box">
@@ -131,21 +143,7 @@ const EditPlaylistModal = ({ show, close, playlist }) => {
                           <option value="Punk">Punk</option>
                         </select>
                       </div>
-                      <div className="modal-input-box">
-                        <select
-                          name="private"
-                          className="register-inputs"
-                          autoComplete="on"
-                          value={values.private}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          hasErrorMessage={touched.private}
-                          errorMessage={errors.private}
-                        >
-                          <option value="true">Private</option>
-                          <option value="false">Public</option>
-                        </select>
-                      </div>
+
                       <div className="modal-button-box">
                         <button className="modal-close" onClick={() => close()}>
                           Cancel
@@ -160,7 +158,7 @@ const EditPlaylistModal = ({ show, close, playlist }) => {
                         {!isUploaded ? (
                           <>
                             <label htmlFor="upload-input">
-                              <p>Change playlist image</p>
+                              <p>Upload song image</p>
                               <img
                                 className="song-image-upload"
                                 alt=""
@@ -184,7 +182,7 @@ const EditPlaylistModal = ({ show, close, playlist }) => {
                                 setImage(null);
                               }}
                               className="song-image-preview"
-                              src={playlistImage}
+                              src={songImage}
                               alt="uploaded-img"
                               id="uploaded-image"
                             />
@@ -203,4 +201,4 @@ const EditPlaylistModal = ({ show, close, playlist }) => {
   );
 };
 
-export default EditPlaylistModal;
+export default SongEditModal;

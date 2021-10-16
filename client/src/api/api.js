@@ -108,7 +108,7 @@ export async function removeSongData(id, userId) {
   });
 }
 
-export async function editSongData(id, songData) {
+export async function editSongData(id, songData, image) {
   const userToken = await getCurrentUserToken();
   return axios({
     method: "PATCH",
@@ -116,7 +116,7 @@ export async function editSongData(id, songData) {
     headers: {
       Authorization: `Bearer ${userToken}`,
     },
-    data: { songData },
+    data: { songData, image },
   });
 }
 
