@@ -96,7 +96,12 @@ async function getMySongs(req, res, next) {
 
 async function getArtisticPeople(req, res, next) {
   try {
-    const user = await db.User.find({ artist: true });
+    const user = await db.User.find({ artist: true }).select({
+      _id: 0,
+      userName: 1,
+      profileImage: 1,
+      firebase_id: 1,
+    });
     res.status(200).send({
       data: user,
     });

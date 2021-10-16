@@ -1,12 +1,15 @@
-import { useEffect, useState, useLayoutEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getSearchEngine } from "../../redux/search/action";
+import { getSongPlayNow } from "../../redux/player/action";
+import { useHistory } from "react-router";
 
 import portadaUno from "../../assets/images/icons/portada-1.png";
 import search from "../../assets/images/icons/search2.png";
 import "./style/searchengine.scss";
 
 function SearchEngine() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
@@ -18,7 +21,9 @@ function SearchEngine() {
 
   let url = window.location.pathname;
 
-  const { loading, authObserverSuccess } = useSelector((state) => state.auth);
+  const { user, loading, authObserverSuccess } = useSelector(
+    (state) => state.auth
+  );
 
   useEffect(() => {
     if (!loading && authObserverSuccess) {
@@ -27,7 +32,8 @@ function SearchEngine() {
   }, [loading]);
 
   async function getSearch() {
-    const res = await dispatch(getSearchEngine());
+    const res = await dispatch(getSearchEngine(user.uid));
+    console.log(res);
     setResponse(res);
   }
 
@@ -80,6 +86,18 @@ function SearchEngine() {
     width: "5%",
   };
 
+  function artistProfile(id) {
+    history.push(`playlist-user/${id}`);
+  }
+
+  function playSearchedSong(song) {
+    dispatch(getSongPlayNow(song, [song], 0));
+  }
+
+  function playlistPage(id) {
+    history.push(`playlist/${id}`);
+  }
+
   return (
     <>
       {url === "/artist" && (
@@ -124,8 +142,15 @@ function SearchEngine() {
                   artist.map((artist) => {
                     return (
                       <>
-                        <div className="artist_result_card">
-                          <img src={portadaUno} alt="" />
+                        <div
+                          key={artist.firebase_id}
+                          className="artist_result_card"
+                          onClick={() => artistProfile(artist.firebase_id)}
+                        >
+                          <img
+                            src={artist.profileImage}
+                            alt={artist.userName}
+                          />
                           <div className="artist_result_card_info">
                             <h4>{artist.userName}</h4>
                           </div>
@@ -164,8 +189,12 @@ function SearchEngine() {
                   ? song.map((song) => {
                       return (
                         <>
-                          <div className="song_result_card">
-                            <img src={portadaUno} alt="" />
+                          <div
+                            className="song_result_card"
+                            key={song._id}
+                            onClick={() => playSearchedSong(song)}
+                          >
+                            <img src={song.songImage} alt={song.title} />
                             <div className="song_result_card_info">
                               <h4>{song.title}</h4>
                               <h6>{song.genre}</h6>
@@ -187,7 +216,10 @@ function SearchEngine() {
                     <>
                       <div
                         className="playlist_result_card"
-                        style={{ backgroundImage: `url(${portadaUno})` }}
+                        style={{
+                          backgroundImage: `url(${playlist.playlistImage})`,
+                        }}
+                        onClick={() => playlistPage(playlist._id)}
                       >
                         <div className="playlist_result_card_info">
                           <h4>{playlist.title}</h4>
