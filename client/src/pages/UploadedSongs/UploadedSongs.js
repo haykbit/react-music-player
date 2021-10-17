@@ -10,7 +10,6 @@ import "./style/playlist.scss";
 function UploadedSongs() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const userStorage = JSON.parse(localStorage.getItem("user"));
   const { user, authObserverSuccess, signOutSuccess, loading } = useSelector(
     (state) => state.auth
   );

@@ -69,15 +69,23 @@ async function getMyFavoriteSongs(req, res, next) {
     const songsData = await db.Song.find({
       _id: { $in: myFavSongs },
     });
+
+    // Orders songs as the user fav list
+    const orderedSongs = myFavSongs.map((songId) => {
+      const orderedSong = songsData.filter(
+        (song) => song._id.toString() === songId
+      );
+      return orderedSong[0];
+    });
+
     res.status(200).send({
-      data: songsData,
+      data: orderedSongs,
     });
   } catch (error) {
     next(error);
   }
 }
 
-//TODO get my songs
 async function getMySongs(req, res, next) {
   const { id: userId } = req.params;
   try {

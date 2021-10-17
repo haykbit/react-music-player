@@ -3,14 +3,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 import { getMySongsPlaylist } from "../../../api/api";
-import { BsFillCaretRightFill } from "react-icons/bs";
-import { FaRegHeart } from "react-icons/fa";
+import { orderMySongs } from "../../../redux/song/action";
 import IndividualSong from "../../IndividualSong/index";
 
 import "./style/playliststack.scss";
 
 function UploadedPlaylistStack() {
+  const dispatch = useDispatch();
   const [mySongsData, setMySongsData] = useState(null);
+  const [orderInterval, setOrderInterval] = useState(null);
+  const [orderChange, setOrderChange] = useState(false);
   const { user, loading, authObserverSuccess } = useSelector(
     (state) => state.auth
   );
@@ -20,8 +22,12 @@ function UploadedPlaylistStack() {
 
   async function loadPlaylistOnMount() {
     const uploadedPlaylist = await getMySongsPlaylist(user.uid);
-    console.log(uploadedPlaylist, "UPLOADED PLAYLIST");
     setMySongsData(uploadedPlaylist.data.data);
+  }
+
+  function setOrderedList() {
+    const orderedList = mySongsData.map((song) => song._id);
+    dispatch(orderMySongs(user.uid, orderedList));
   }
 
   //condition for controll type of playlist
@@ -33,8 +39,20 @@ function UploadedPlaylistStack() {
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
+    setOrderChange(!orderChange);
     setMySongsData(items);
   }
+
+  useEffect(() => {
+    if (mySongsData) {
+      if (orderInterval) {
+        clearTimeout(orderInterval);
+        setOrderInterval(setTimeout(setOrderedList, 3000));
+      } else {
+        setOrderInterval(setTimeout(setOrderedList, 3000));
+      }
+    }
+  }, [orderChange]);
 
   useEffect(() => {
     if (!loading && authObserverSuccess) {

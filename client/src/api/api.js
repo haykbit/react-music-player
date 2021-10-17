@@ -120,6 +120,30 @@ export async function editSongData(id, songData, image) {
   });
 }
 
+export async function getSearchSong(userId) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/songs/all/`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+    data: { userId },
+  });
+}
+
+export async function orderUserSongs(id, orderedList) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "PATCH",
+    url: `${process.env.REACT_APP_API_BASE_URL}/songs/order/${id}`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+    data: { orderedList },
+  });
+}
+
 // ?PLAYLISTS
 
 export async function createPlaylists(playlist) {
@@ -168,7 +192,6 @@ export async function getMyPlaylistsList(id) {
   });
 }
 
-//!! it is the same as getMySongsData function.
 export async function getMySongsPlaylist(userId) {
   const userToken = await getCurrentUserToken();
   return axios({
@@ -269,18 +292,6 @@ export async function updatePlaylist(playlist, image, id) {
       Authorization: `Bearer ${userToken}`,
     },
     data: { playlist, image },
-  });
-}
-
-export async function getSearchSong(userId) {
-  const userToken = await getCurrentUserToken();
-  return axios({
-    method: "GET",
-    url: `${process.env.REACT_APP_API_BASE_URL}/songs/all/`,
-    headers: {
-      Authorization: `Bearer ${userToken}`,
-    },
-    data: { userId },
   });
 }
 

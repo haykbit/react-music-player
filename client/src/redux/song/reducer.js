@@ -19,6 +19,9 @@ import {
   GET_MY_LIKED_SONGS_REQUEST,
   GET_MY_LIKED_SONGS_SUCCESS,
   GET_MY_LIKED_SONGS_FAIL,
+  ORDER_MY_SONGS_REQUEST,
+  ORDER_MY_SONGS_SUCCESS,
+  ORDER_MY_SONGS_FAIL,
   DELETE_SONG_REQUEST,
   DELETE_SONG_SUCCESS,
   DELETE_SONG_FAIL,
@@ -170,6 +173,24 @@ const reducer = (state = INITIAL_STATE, action) => {
         loading: false,
         error: action.payload,
         myLikedSongsSuccess: false,
+      };
+    case ORDER_MY_SONGS_REQUEST:
+      return {
+        ...state,
+        orderSongsSuccess: false,
+        error: null,
+      };
+    case ORDER_MY_SONGS_SUCCESS:
+      return {
+        ...state,
+        orderSongsSuccess: true,
+        error: null,
+      };
+    case ORDER_MY_SONGS_FAIL:
+      return {
+        ...state,
+        orderSongsSuccess: false,
+        error: action.payload,
       };
     case DELETE_SONG_REQUEST:
       return {
