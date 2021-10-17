@@ -17,6 +17,7 @@ songRouter.get(
   authMiddleware,
   songController.getSongsByUser
 );
+songRouter.patch("/order-favorite/:id", songController.orderFavoriteSongs);
 songRouter.patch("/order/:id", songController.orderMySongs);
 songRouter.patch("/like/:id", songController.likeSong);
 songRouter.patch("/cancel-like/:id", songController.cancelLikeSong);

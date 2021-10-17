@@ -101,6 +101,24 @@ async function orderMySongs(req, res, next) {
   }
 }
 
+async function orderFavoriteSongs(req, res, next) {
+  const { id } = req.params;
+  const { orderedList } = req.body;
+
+  try {
+    const orderedSongs = await db.User.findOneAndUpdate(
+      { firebase_id: id },
+      { myFavoriteSongs: orderedList },
+      { new: true }
+    );
+    res.status(200).send({
+      data: orderedSongs,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 async function likeSong(req, res, next) {
   const { id: songId } = req.params;
   const { userId } = req.body;
@@ -239,4 +257,5 @@ module.exports = {
   deleteSong,
   countPlayedNumber,
   orderMySongs,
+  orderFavoriteSongs,
 };

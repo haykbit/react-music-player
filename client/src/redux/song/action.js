@@ -6,6 +6,7 @@ import {
   removeSongData,
   editSongData,
   orderUserSongs,
+  orderFavoritedSongs,
 } from "../../api/api";
 import { uploadImages, uploadSongs } from "../../services/cloudinary";
 import {
@@ -118,6 +119,16 @@ export const orderMySongs = (id, orderedList) => async (dispatch) => {
   dispatch({ type: ORDER_MY_SONGS_REQUEST });
   try {
     await orderUserSongs(id, orderedList);
+    dispatch({ type: ORDER_MY_SONGS_SUCCESS });
+  } catch (error) {
+    dispatch({ type: ORDER_MY_SONGS_FAIL, payload: error.message });
+  }
+};
+
+export const orderFavoriteSongs = (id, orderedList) => async (dispatch) => {
+  dispatch({ type: ORDER_MY_SONGS_REQUEST });
+  try {
+    await orderFavoritedSongs(id, orderedList);
     dispatch({ type: ORDER_MY_SONGS_SUCCESS });
   } catch (error) {
     dispatch({ type: ORDER_MY_SONGS_FAIL, payload: error.message });

@@ -73,7 +73,7 @@ async function getMyFavoriteSongs(req, res, next) {
     // Orders songs as the user fav list
     const orderedSongs = myFavSongs.map((songId) => {
       const orderedSong = songsData.filter(
-        (song) => song._id.toString() === songId
+        (song) => song._id.toString() === songId.toString()
       );
       return orderedSong[0];
     });
