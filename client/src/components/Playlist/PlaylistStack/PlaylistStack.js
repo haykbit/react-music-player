@@ -19,7 +19,7 @@ function PlaylistStack({ playlist }) {
     setMySongsData(songs.data.data);
   }
 
-  //condition for controll type of playlist
+  //condition for control type of playlist
 
   function handleOnDragEnd(result) {
     if (!result.destination) return;
