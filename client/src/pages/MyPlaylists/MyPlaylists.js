@@ -22,12 +22,13 @@ function MyPlaylists() {
       dispatch(getFavoritePlaylists(user.uid));
     }
   }, [loading, authObserverSuccess, playlistCreatedSuccess]);
-  useEffect(() => {
+
+  /* useEffect(() => {
     dispatch(authObserverLoading());
     if (signOutSuccess) {
       history.push("/login");
     }
-  }, []);
+  }, []); */
 
   return (
     <>

@@ -318,3 +318,15 @@ export async function getSearchPlaylist(userId) {
     data: { userId },
   });
 }
+
+export async function orderUserPlaylists(id, orderedList) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "PATCH",
+    url: `${process.env.REACT_APP_API_BASE_URL}/playlists/order/${id}`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+    data: { orderedList },
+  });
+}

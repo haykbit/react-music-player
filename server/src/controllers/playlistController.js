@@ -58,6 +58,24 @@ async function fetchPublicPlaylists(req, res, next) {
   }
 }
 
+async function orderMyPlaylists(req, res, next) {
+  const { id } = req.params;
+  const { orderedList } = req.body;
+
+  try {
+    const orderedSongs = await db.User.findOneAndUpdate(
+      { firebase_id: id },
+      { myFavoritePlaylists: orderedList },
+      { new: true }
+    );
+    res.status(200).send({
+      data: orderedSongs,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 async function getPlaylistById(req, res, next) {
   const { id } = req.params;
   try {
@@ -225,8 +243,17 @@ async function getMyFavoritePlaylists(req, res, next) {
     const myFavListsData = await db.Playlist.find({
       _id: { $in: myFavLists },
     });
+
+    // Orders playlists as the user's favorite playlists list
+    const orderedPlaylists = myFavLists.map((playlistId) => {
+      const orderedList = myFavListsData.filter(
+        (list) => list._id.toString() === playlistId.toString()
+      );
+      return orderedList[0];
+    });
+
     res.status(200).send({
-      data: myFavListsData,
+      data: orderedPlaylists,
     });
   } catch (error) {
     next(error);
@@ -268,4 +295,5 @@ module.exports = {
   cancelFollowPlaylist,
   getMyFavoritePlaylists,
   fetchPlaylists,
+  orderMyPlaylists,
 };

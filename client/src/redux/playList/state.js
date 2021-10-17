@@ -14,6 +14,7 @@ const INITIAL_STATE = {
   myPlaylists: [],
   myFavoritePlaylists: [],
   publicPlaylists: [],
+  orderPlaylistsSuccess: false,
 };
 
 export default INITIAL_STATE;

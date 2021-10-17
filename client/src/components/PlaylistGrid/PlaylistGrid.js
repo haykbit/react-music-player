@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { BsFillPlusCircleFill } from "react-icons/bs";
+import { orderMyPlaylists } from "../../redux/playlist/action";
 
 import SortableList, { SortableItem } from "react-easy-sort";
 import arrayMove from "array-move";
@@ -13,22 +14,47 @@ import "./style/playlistgrid.scss";
 
 function PlaylistGrid({ playlists, privateLists }) {
   const history = useHistory();
+  const dispatch = useDispatch();
 
-  const { loading, authObserverSuccess } = useSelector((state) => state.auth);
+  const { user, loading, authObserverSuccess } = useSelector(
+    (state) => state.auth
+  );
 
   const [items, setItems] = useState([{}]);
+  const [userInfo, setUserInfo] = useState([{}]);
+  const [orderInterval, setOrderInterval] = useState(null);
+  const [orderChange, setOrderChange] = useState(false);
 
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
   useEffect(() => {
+    if (items) {
+      if (orderInterval) {
+        clearTimeout(orderInterval);
+        setOrderInterval(setTimeout(setOrderedList, 3000));
+      } else {
+        setOrderInterval(setTimeout(setOrderedList, 3000));
+      }
+    }
+  }, [orderChange]);
+
+  useEffect(() => {
     if (!loading && authObserverSuccess) {
+      setUserInfo(user);
       setItems(playlists);
     }
   }, [playlists]);
 
+  function setOrderedList() {
+    const orderedList = items.map((song) => song._id);
+    dispatch(orderMyPlaylists(userInfo.uid, orderedList));
+  }
+
   const onSortEnd = (oldIndex: number, newIndex: number) => {
     setItems((playlists) => arrayMove(playlists, oldIndex, newIndex));
+
+    setOrderChange(!orderChange);
   };
 
   console.log("ITEMS: ", items);

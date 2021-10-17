@@ -6,55 +6,50 @@ const playlistRouter = Router();
 
 //http://localhost:4000/playlists/
 
-playlistRouter.post("/", authMiddleware, playlistController.createPlaylist);
-playlistRouter.get(
-  "/my-lists/:id",
-  authMiddleware,
-  playlistController.fetchMyPlaylists
-);
-
-playlistRouter.get(
-  "/public/:id",
-  authMiddleware,
-  playlistController.fetchPublicPlaylists
-);
-
 playlistRouter.get("/all", authMiddleware, playlistController.fetchPlaylists);
-
-playlistRouter.get("/:id", authMiddleware, playlistController.getPlaylistById);
-
-playlistRouter.get(
-  "/playlist/:id",
-  authMiddleware,
-  playlistController.getSongsByPlaylistId
-);
-
-playlistRouter.get(
-  "/my-favorite-lists/:id",
-  authMiddleware,
-  playlistController.getMyFavoritePlaylists
-);
-
+playlistRouter.post("/", authMiddleware, playlistController.createPlaylist);
 playlistRouter.patch(
   "/songs/:id",
   authMiddleware,
   playlistController.removeSongFromPlaylist
 );
-
-playlistRouter.patch("/:id", authMiddleware, playlistController.updatePlaylist);
-
+playlistRouter.get(
+  "/public/:id",
+  authMiddleware,
+  playlistController.fetchPublicPlaylists
+);
+playlistRouter.get(
+  "/playlist/:id",
+  authMiddleware,
+  playlistController.getSongsByPlaylistId
+);
+playlistRouter.patch(
+  "/order/:id",
+  authMiddleware,
+  playlistController.orderMyPlaylists
+);
+playlistRouter.get(
+  "/my-lists/:id",
+  authMiddleware,
+  playlistController.fetchMyPlaylists
+);
+playlistRouter.get(
+  "/my-favorite-lists/:id",
+  authMiddleware,
+  playlistController.getMyFavoritePlaylists
+);
 playlistRouter.patch(
   "/follow/:id",
   authMiddleware,
   playlistController.followPlaylist
 );
-
 playlistRouter.patch(
   "/cancel-follow/:id",
   authMiddleware,
   playlistController.cancelFollowPlaylist
 );
-
+playlistRouter.get("/:id", authMiddleware, playlistController.getPlaylistById);
+playlistRouter.patch("/:id", authMiddleware, playlistController.updatePlaylist);
 playlistRouter.put(
   "/:id",
   authMiddleware,
