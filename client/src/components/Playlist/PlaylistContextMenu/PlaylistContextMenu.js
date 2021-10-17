@@ -6,14 +6,14 @@ import "./style/rightClickMenu.scss";
 function PlaylistContextMenu({
   show,
   closeMenu,
-  handleLike,
   playlist,
   ToggleDeleteModal,
   ToggleEditModal,
   ToggleAddToPlaylist,
+  handleFollowClick,
+  follow,
 }) {
   const { loading, authObserverSuccess } = useSelector((state) => state.auth);
-
   const [userId, setUserId] = useState("");
 
   function getUserId() {
@@ -25,7 +25,7 @@ function PlaylistContextMenu({
     if (!loading && authObserverSuccess) {
       getUserId();
     }
-  }, []);
+  }, [loading]);
 
   async function editHandle() {
     ToggleEditModal();
@@ -50,9 +50,6 @@ function PlaylistContextMenu({
       {show ? (
         <div className="context-menu-container" onClick={() => closeMenu()}>
           <div className="context-menu" onClick={(e) => e.stopPropagation()}>
-            <li className="menu-option-box" onClick={() => handleLike()}>
-              Favorite
-            </li>
             {playlist.owner === userId ? (
               <>
                 <li className="menu-option-box" onClick={() => handleAddSong()}>

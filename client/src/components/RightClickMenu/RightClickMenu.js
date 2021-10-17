@@ -45,15 +45,15 @@ function RightClickMenu({
       {show ? (
         <div className="context-menu-container" onClick={() => closeMenu()}>
           <div className="context-menu" onClick={(e) => e.stopPropagation()}>
-            <li className="menu-option-box" onClick={() => handleLike()}>
+            <div className="menu-option-box" onClick={() => handleLike()}>
               Favorite
-            </li>
-            <li className="menu-option-box" onClick={() => handleAddSong()}>
+            </div>
+            <div className="menu-option-box" onClick={() => handleAddSong()}>
               Add Song
-            </li>
+            </div>
             {song.owner === userUid ? (
               <>
-                <li
+                <div
                   className="menu-option-box"
                   onClick={() => {
                     editHandle();
@@ -61,9 +61,9 @@ function RightClickMenu({
                   }}
                 >
                   Edit
-                </li>
+                </div>
 
-                <li
+                <div
                   className="menu-option-box"
                   onClick={() => {
                     deleteHandle();
@@ -71,7 +71,7 @@ function RightClickMenu({
                   }}
                 >
                   Delete
-                </li>
+                </div>
               </>
             ) : (
               ""
