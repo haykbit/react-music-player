@@ -120,7 +120,6 @@ async function updatePlaylist(req, res, next) {
   }
 }
 
-//To test
 async function addSongToPlaylist(req, res, next) {
   const { id: songId } = req.params;
   const { playlistId } = req.body;
@@ -136,6 +135,9 @@ async function addSongToPlaylist(req, res, next) {
         { new: true }
       );
     }
+    res.status(200).send({
+      message: "OK",
+    });
   } catch (error) {
     next(error);
   }

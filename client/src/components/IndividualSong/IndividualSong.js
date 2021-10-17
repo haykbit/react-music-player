@@ -18,7 +18,9 @@ function IndividualSong({ song, index, playlist, favorite }) {
   const dispatch = useDispatch();
   const { user, authObserverSuccess } = useSelector((state) => state.auth);
   const { loading } = useSelector((state) => state.song);
-  const { myPlaylists } = useSelector((state) => state.playlist);
+  const { myPlaylists, addSongToPlaylistSuccess } = useSelector(
+    (state) => state.playlist
+  );
   const [liked, setLiked] = useState(favorite);
   const [myFavoriteSongs, setMyFavoriteSongs] = useState([]);
   const [modals, setModals] = useState({
@@ -33,14 +35,23 @@ function IndividualSong({ song, index, playlist, favorite }) {
   const ToggleAddToPlaylist = () => {
     setModals({ ...modals, addToPlaylist: !modals.addToPlaylist });
     song.private
-      ? setDisplayMyLists(myPlaylists.filter((item) => item.private))
-      : setDisplayMyLists(myPlaylists);
+      ? setDisplayMyLists(
+          myPlaylists.filter(
+            (item) => item.private && !item.songs.includes(song._id)
+          )
+        )
+      : setDisplayMyLists(
+          myPlaylists.filter((item) => !item.songs.includes(song._id))
+        );
   };
 
   useEffect(() => {
     getMyFavSongs();
-    getMyLists();
   }, [loading]);
+
+  useEffect(() => {
+    getMyLists();
+  }, [displayMyLists, addSongToPlaylistSuccess]);
 
   async function getMyFavSongs() {
     const myFavSongs = await getLikedSongs(user.uid);

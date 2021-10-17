@@ -55,9 +55,8 @@ function Playlist({ playlist }) {
   const { user, loading, authObserverSuccess } = useSelector(
     (state) => state.auth
   );
-  const { followSuccess, cancelFollowSuccess } = useSelector(
-    (state) => state.playlist
-  );
+  const { followSuccess, cancelFollowSuccess, addToPlaylistViewSuccess } =
+    useSelector((state) => state.playlist);
 
   useEffect(() => {
     if (!loading && authObserverSuccess) {
@@ -74,7 +73,6 @@ function Playlist({ playlist }) {
 
   function handleFollowClick() {
     setFollow((prev) => !prev);
-
     if (follow === false) {
       dispatch(followPlaylist(playlist._id, user.uid));
     } else {
@@ -92,11 +90,17 @@ function Playlist({ playlist }) {
     const publicSongs = await getPublicSongs();
     const accessibleSongs = await getSongsForPrivateLists(user.uid);
     playlist.private
-      ? setDisplaySongs([
-          ...accessibleSongs.data.mySongs,
-          ...accessibleSongs.data.othersPublicSongs,
-        ])
-      : setDisplaySongs(publicSongs.data.data);
+      ? setDisplaySongs(
+          [
+            ...accessibleSongs.data.mySongs,
+            ...accessibleSongs.data.othersPublicSongs,
+          ].filter((item) => !playlist.songs.includes(item._id))
+        )
+      : setDisplaySongs(
+          publicSongs.data.data.filter(
+            (item) => !playlist.songs.includes(item._id)
+          )
+        );
   }
   function handleClassNameAndFollow() {
     const checkFavLists = myFavPlaylists.some(
@@ -172,6 +176,8 @@ function Playlist({ playlist }) {
                     ToggleEditModal={ToggleEditModal}
                     ToggleDeleteModal={ToggleDeleteModal}
                     playlist={playlist}
+                    handleFollowClick={handleFollowClick}
+                    follow={follow}
                   />
                 </div>
               </div>

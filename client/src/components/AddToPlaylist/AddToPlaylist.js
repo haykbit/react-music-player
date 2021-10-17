@@ -17,6 +17,8 @@ function AddToPlaylist({
   function handleClick(playlistId, userId, songId) {
     if (!isPlaylist) {
       dispatch(addSongToPlaylistView(playlistId, userId, songId));
+    } else {
+      dispatch(addSongToPlaylistView(songId, userId, playlistId));
     }
     close();
   }
@@ -34,13 +36,14 @@ function AddToPlaylist({
               {" "}
               <p>{text}</p>
             </div>
-            {displayData.map((list) => {
+            {displayData.map((list, index) => {
               return (
                 <div
                   className="playlists-list-box"
                   onClick={() =>
                     handleClick(list._id, user.uid, currentData._id)
                   }
+                  key={index}
                 >
                   {list.title}
                 </div>
