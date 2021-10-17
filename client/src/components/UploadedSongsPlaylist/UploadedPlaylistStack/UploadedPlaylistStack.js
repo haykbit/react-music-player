@@ -20,7 +20,6 @@ function UploadedPlaylistStack() {
 
   async function loadPlaylistOnMount() {
     const uploadedPlaylist = await getMySongsPlaylist(user.uid);
-    console.log(uploadedPlaylist, "UPLOADED PLAYLIST");
     setMySongsData(uploadedPlaylist.data.data);
   }
 

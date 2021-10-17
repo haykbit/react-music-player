@@ -212,10 +212,10 @@ async function getAccessibleSongs(req, res, next) {
   const { id: userId } = req.params;
   try {
     const mySongs = await db.Song.find({ owner: userId }).lean();
-    const othersPublicSongs = await db.Song.find(
-      { private: false },
-      { owner: !userId }
-    );
+    const othersPublicSongs = await db.Song.find({
+      private: false,
+      owner: { $ne: userId },
+    });
     res.status(200).send({
       mySongs,
       othersPublicSongs,

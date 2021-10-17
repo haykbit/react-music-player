@@ -46,11 +46,15 @@ function IndividualSong({ song, index, playlist, favorite }) {
   };
 
   useEffect(() => {
-    getMyFavSongs();
+    if (!loading && authObserverSuccess) {
+      getMyFavSongs();
+    }
   }, [loading]);
 
   useEffect(() => {
-    getMyLists();
+    if (!loading && authObserverSuccess) {
+      getMyLists();
+    }
   }, [displayMyLists, addSongToPlaylistSuccess]);
 
   async function getMyFavSongs() {

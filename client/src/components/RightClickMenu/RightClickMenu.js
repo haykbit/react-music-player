@@ -38,7 +38,6 @@ function RightClickMenu({
   function handleAddSong() {
     ToggleAddToPlaylist();
     closeMenu();
-    console.log("I'M ADDING A SONG!");
   }
   return (
     <>

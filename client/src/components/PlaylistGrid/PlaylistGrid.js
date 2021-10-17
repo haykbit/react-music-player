@@ -31,8 +31,6 @@ function PlaylistGrid({ playlists, privateLists }) {
     setItems((playlists) => arrayMove(playlists, oldIndex, newIndex));
   };
 
-  console.log("ITEMS: ", items);
-
   return (
     <>
       <div className="playlists-container">

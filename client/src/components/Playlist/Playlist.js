@@ -40,7 +40,6 @@ function Playlist({ playlist }) {
   const [follow, setFollow] = useState(false);
   const [myFavPlaylists, setMyFavPlaylists] = useState([]);
   const [displaySongs, setDisplaySongs] = useState([]);
-
   // Toggles for the diferent menus and modals
   const ToggleContext = () => setContextMenu(!contextMenu);
   const ToggleEditModal = () => {
@@ -52,19 +51,26 @@ function Playlist({ playlist }) {
   const ToggleAddToPlaylist = () =>
     setModals({ ...modals, addToPlaylist: !modals.addToPlaylist });
 
-  const { user, loading, authObserverSuccess } = useSelector(
+  const { loading, user, authObserverSuccess } = useSelector(
     (state) => state.auth
   );
-  const { followSuccess, cancelFollowSuccess, addToPlaylistViewSuccess } =
-    useSelector((state) => state.playlist);
+  const {
+    followSuccess,
+    cancelFollowSuccess,
+    addSongToPlaylistSuccess,
+    myFavoritePlaylistsSuccess,
+  } = useSelector((state) => state.playlist);
 
   useEffect(() => {
     if (!loading && authObserverSuccess) {
       getUserInfo();
       getFavoritePlaylistsInfo();
-      getSongsData();
     }
   }, [loading, followSuccess, cancelFollowSuccess]);
+
+  useEffect(() => {
+    getSongsData();
+  }, [playlist]);
 
   async function getUserInfo() {
     const user = await getUserProfile(playlist.owner);
@@ -94,7 +100,7 @@ function Playlist({ playlist }) {
           [
             ...accessibleSongs.data.mySongs,
             ...accessibleSongs.data.othersPublicSongs,
-          ].filter((item) => !playlist.songs.includes(item._id))
+          ].filter((item) => playlist.songs.includes(item._id) === false)
         )
       : setDisplaySongs(
           publicSongs.data.data.filter(
