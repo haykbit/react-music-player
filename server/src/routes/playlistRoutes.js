@@ -19,6 +19,8 @@ playlistRouter.get(
   playlistController.fetchPublicPlaylists
 );
 
+playlistRouter.get("/all", authMiddleware, playlistController.fetchPlaylists);
+
 playlistRouter.get("/:id", authMiddleware, playlistController.getPlaylistById);
 
 playlistRouter.get(
@@ -51,6 +53,12 @@ playlistRouter.patch(
   "/cancel-follow/:id",
   authMiddleware,
   playlistController.cancelFollowPlaylist
+);
+
+playlistRouter.patch(
+  "/add/:id",
+  authMiddleware,
+  playlistController.addSongToPlaylist
 );
 
 playlistRouter.put(
