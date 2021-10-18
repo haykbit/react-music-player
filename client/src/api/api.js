@@ -28,11 +28,21 @@ export async function getUserProfile(id) {
 
 export async function updateUserProfile(id, profile, profileImage) {
   const userToken = await getCurrentUserToken();
-  console.log(profileImage, "api profileImage");
   return axios({
     method: "PATCH",
     url: `${process.env.REACT_APP_API_BASE_URL}/users/${id}`,
     data: { ...profile, profileImage },
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
+export async function getSearchArtist() {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/users/artists`,
     headers: {
       Authorization: `Bearer ${userToken}`,
     },
@@ -130,6 +140,17 @@ export async function removePlaylist(id, userId) {
     method: "PUT",
     url: `${process.env.REACT_APP_API_BASE_URL}/playlists/${id}`,
     data: { userId },
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
+export async function getPlaylistById(playlistId) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/playlists/${playlistId}`,
     headers: {
       Authorization: `Bearer ${userToken}`,
     },
@@ -248,5 +269,29 @@ export async function updatePlaylist(playlist, image, id) {
       Authorization: `Bearer ${userToken}`,
     },
     data: { playlist, image },
+  });
+}
+
+export async function getSearchSong(userId) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/songs/all/`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+    data: { userId },
+  });
+}
+
+export async function getSearchPlaylist(userId) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/playlists/all/`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+    data: { userId },
   });
 }

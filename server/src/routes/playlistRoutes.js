@@ -19,6 +19,8 @@ playlistRouter.get(
   playlistController.fetchPublicPlaylists
 );
 
+playlistRouter.get("/all", authMiddleware, playlistController.fetchPlaylists);
+
 playlistRouter.get("/:id", authMiddleware, playlistController.getPlaylistById);
 
 playlistRouter.get(
