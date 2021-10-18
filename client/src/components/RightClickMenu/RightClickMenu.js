@@ -48,7 +48,7 @@ function RightClickMenu({
             <div className="menu-option-box" onClick={() => handleAddSong()}>
               Add Song
             </div>
-            {playlistData.owner === userUid ? (
+            {playlistData && playlistData.owner === userUid ? (
               <div
                 className="menu-option-box"
                 onClick={() => handleSongRemoveFromPlaylist()}
