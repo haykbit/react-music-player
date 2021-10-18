@@ -84,6 +84,7 @@ export async function cancelLikeSong(songId, userId) {
     },
   });
 }
+
 export async function getLikedSongs(id) {
   //get user id argument
   const userToken = await getCurrentUserToken();
@@ -168,7 +169,6 @@ export async function getMyPlaylistsList(id) {
   });
 }
 
-//!! it is the same as getMySongsData function.
 export async function getMySongsPlaylist(userId) {
   const userToken = await getCurrentUserToken();
   return axios({
@@ -180,7 +180,6 @@ export async function getMySongsPlaylist(userId) {
   });
 }
 
-//In progress - To ask kym
 export async function addSongToPlaylist(playlistId, userId, songId) {
   const userToken = await getCurrentUserToken();
   return axios({
@@ -192,7 +191,6 @@ export async function addSongToPlaylist(playlistId, userId, songId) {
     },
   });
 }
-//
 
 export async function countPlayed(songId) {
   const userToken = await getCurrentUserToken();
