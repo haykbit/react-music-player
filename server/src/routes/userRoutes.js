@@ -14,9 +14,12 @@ userRouter.put(
   authMiddleware,
   userController.updateUserEmail
 );
-
-userRouter.get("/myFavoriteSongs/:id", userController.getMyFavoriteSongs);
-userRouter.get("/mySongs/:id", userController.getMySongs);
+userRouter.get(
+  "/myFavoriteSongs/:id",
+  authMiddleware,
+  userController.getMyFavoriteSongs
+);
+userRouter.get("/mySongs/:id", authMiddleware, userController.getMySongs);
 
 module.exports = {
   userRouter,

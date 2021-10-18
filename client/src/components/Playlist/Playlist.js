@@ -40,6 +40,7 @@ function Playlist({ playlist }) {
   const [follow, setFollow] = useState(false);
   const [myFavPlaylists, setMyFavPlaylists] = useState([]);
   const [displaySongs, setDisplaySongs] = useState([]);
+
   // Toggles for the diferent menus and modals
   const ToggleContext = () => setContextMenu(!contextMenu);
   const ToggleEditModal = () => {
