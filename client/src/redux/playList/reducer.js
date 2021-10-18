@@ -33,6 +33,9 @@ import {
   PLAYLIST_EDIT_REQUEST,
   PLAYLIST_EDIT_SUCCESS,
   PLAYLIST_EDIT_FAIL,
+  ORDER_PLAYLISTS_REQUEST,
+  ORDER_PLAYLISTS_SUCCESS,
+  ORDER_PLAYLISTS_FAIL,
 } from "./types";
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -280,6 +283,27 @@ const reducer = (state = INITIAL_STATE, action) => {
         getPublicPlaylistsSuccess: false,
         error: action.payload,
       };
+    case ORDER_PLAYLISTS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        orderPlaylistsSuccess: false,
+        error: null,
+      };
+    case ORDER_PLAYLISTS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        orderPlaylistsSuccess: true,
+        error: null,
+      };
+    case ORDER_PLAYLISTS_FAIL:
+      return {
+        ...state,
+        loading: false,
+        orderPlaylistsSuccess: false,
+        error: action.payload,
+      };
     case ADD_SONG_TO_PLAYLIST_REQUEST:
       return {
         ...state,
@@ -307,7 +331,6 @@ const reducer = (state = INITIAL_STATE, action) => {
         error: action.payload,
         addToPlaylistFromPlaylistViewSuccess: false,
       };
-
     default:
       return { ...state };
   }

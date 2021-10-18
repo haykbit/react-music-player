@@ -63,8 +63,56 @@ async function getSongsByUser(req, res, next) {
   const { ownerId } = req.params;
   try {
     const songs = await db.Song.find({ owner: ownerId });
+
+    const user = await db.User.findOne({ firebase_id: ownerId });
+    const mySongsList = user.mySongs;
+
+    // Orders songs as the user uploaded songs list
+    const orderedSongs = mySongsList.map((songId) => {
+      const orderedSong = songs.filter(
+        (song) => song._id.toString() === songId.toString()
+      );
+      return orderedSong[0];
+    });
+
     res.status(200).send({
-      data: songs,
+      data: orderedSongs,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function orderMySongs(req, res, next) {
+  const { id } = req.params;
+  const { orderedList } = req.body;
+
+  try {
+    const orderedSongs = await db.User.findOneAndUpdate(
+      { firebase_id: id },
+      { mySongs: orderedList },
+      { new: true }
+    );
+    res.status(200).send({
+      data: orderedSongs,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function orderFavoriteSongs(req, res, next) {
+  const { id } = req.params;
+  const { orderedList } = req.body;
+
+  try {
+    const orderedSongs = await db.User.findOneAndUpdate(
+      { firebase_id: id },
+      { myFavoriteSongs: orderedList },
+      { new: true }
+    );
+    res.status(200).send({
+      data: orderedSongs,
     });
   } catch (error) {
     next(error);
@@ -235,6 +283,8 @@ module.exports = {
   updateSong,
   deleteSong,
   countPlayedNumber,
+  orderMySongs,
+  orderFavoriteSongs,
   getPublicSongs,
   getAccessibleSongs,
 };

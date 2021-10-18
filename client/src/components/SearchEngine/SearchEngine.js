@@ -124,7 +124,7 @@ function SearchEngine() {
           style={searchButtonStyle}
           onMouseEnter={() => handleShowSearch(!showButton)}
         >
-          <img src={search} />
+          <img src={search} alt="Search" />
         </div>
       )}
       <div
