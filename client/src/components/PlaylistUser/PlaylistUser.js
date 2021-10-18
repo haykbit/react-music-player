@@ -96,7 +96,6 @@ function PlaylistUser({ playlistUserData }) {
           </div>
 
           <div className="box-body">
-            {/* <h2 className="profile-title">Profile information</h2> */}
             <div className="box-information">
               <h3 className="profile-name">
                 {playlistUserData.firstName} {playlistUserData.lastName}
