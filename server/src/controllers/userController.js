@@ -93,9 +93,22 @@ async function getMySongs(req, res, next) {
     next(error);
   }
 }
-//TODO delete my songs
 
-//TODO edit my songs
+async function getArtisticPeople(req, res, next) {
+  try {
+    const user = await db.User.find({ artist: true }).select({
+      _id: 0,
+      userName: 1,
+      profileImage: 1,
+      firebase_id: 1,
+    });
+    res.status(200).send({
+      data: user,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
 
 module.exports = {
   signIn: signIn,
@@ -103,4 +116,5 @@ module.exports = {
   updateUser: updateUser,
   getMyFavoriteSongs,
   getMySongs,
+  getArtisticPeople,
 };
