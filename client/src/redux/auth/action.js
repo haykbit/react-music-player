@@ -21,6 +21,7 @@ import {
   SEND_PASSWORD_RESET_FAIL,
   LOADING_OBSERVER,
   LOADING_OBSERVER_SUCCESS,
+  LOADING_OBSERVER_FAIL,
   AUTH_RESET,
 } from "./types";
 
@@ -44,7 +45,7 @@ export const authObserverLoading = () => (dispatch) => {
       }
     });
   } catch (error) {
-    console.log(error.response.data);
+    dispatch({ type: LOADING_OBSERVER_FAIL, payload: error.message });
   }
 };
 

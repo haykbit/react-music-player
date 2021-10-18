@@ -6,7 +6,6 @@ import PlaylistStack from "./PlaylistStack";
 import PlaylistContextMenu from "./PlaylistContextMenu/PlaylistContextMenu";
 import PlaylistDeleteConfirmation from "./PlaylistDeleteConfirmation";
 import EditPlaylistModal from "./EditPlaylistModal";
-import { authObserverLoading } from "../../redux/auth/action";
 
 import { IoMdMore } from "react-icons/io";
 
@@ -218,7 +217,6 @@ function Playlist({ playlist }) {
       ) : (
         ""
       )}
-
       <div className="context-container">
         {modals.editModal && (
           <EditPlaylistModal

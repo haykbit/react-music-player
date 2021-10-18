@@ -39,7 +39,6 @@ const Modal = ({ show, close, userInfo }) => {
           <div className="modal" onClick={(e) => e.stopPropagation()}>
             <Formik
               onSubmit={(values) => {
-                console.log(values);
                 uploadSong(values);
                 close();
               }}

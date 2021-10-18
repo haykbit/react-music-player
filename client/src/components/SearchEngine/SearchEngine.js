@@ -87,7 +87,7 @@ function SearchEngine() {
   };
 
   function artistProfile(id) {
-    history.push(`playlist-user/${id}`);
+    history.push(`/playlist-user/${id}`);
   }
 
   function playSearchedSong(song) {
@@ -95,7 +95,7 @@ function SearchEngine() {
   }
 
   function playlistPage(id) {
-    history.push(`playlist/${id}`);
+    history.push(`/playlist/${id}`);
   }
 
   return (
