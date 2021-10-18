@@ -9,7 +9,6 @@ import backgroundPicture from "../../assets/images/background/profile-picture-ba
 import editIcon from "../../assets/images/icons/editIcon.png";
 function PlaylistUser({ playlistUserData }) {
   const history = useHistory();
-  const location = useLocation();
   const dispatch = useDispatch();
   const { user, loading, authObserverSuccess, signOutSuccess } = useSelector(
     (state) => state.auth
@@ -79,9 +78,17 @@ function PlaylistUser({ playlistUserData }) {
               }}
             ></div>
           </div>
-          <div className="follow-button">
-            <button>Follow</button>
+          <div className="follow-info">
+            <div className="follow-data">
+              <p>Followers : 0</p>
+              <p>Following : 0</p>
+            </div>
+
+            <div className="follow-button">
+              <button>Follow</button>
+            </div>
           </div>
+
           <div className="box-body">
             {/* <h2 className="profile-title">Profile information</h2> */}
             <div className="box-information">
@@ -89,41 +96,90 @@ function PlaylistUser({ playlistUserData }) {
                 {playlistUserData.firstName} {playlistUserData.lastName}
               </h3>
             </div>
-            <div className="public-playlist-info">
-              <div className="scroll-container">
-                <div className="scroll">
-                  <>
-                    {myFavoritePlaylists.map((playlist, index) => {
-                      return (
-                        <div
-                          key={playlist.id}
-                          index={index}
-                          className="playlist-example"
-                          style={{
-                            backgroundImage: `url(${playlist.playlistImage})`,
-                          }}
-                          onClick={() =>
-                            history.push({
-                              pathname: `playlist/${playlist._id}`,
-                              state: { playlist },
-                            })
-                          }
-                        >
-                          <div className="playlist-example-info">
-                            <h1 style={{ fontSize: "20px" }}>
-                              {playlist.title}
-                            </h1>
-                            <h5>{playlist.description}</h5>
-                            <h5>
-                              Songs:{" "}
-                              {playlist.songs ? playlist.songs.length : "0"}
-                            </h5>
+            <div className="playlist-songs-container">
+              <h3>Playlists</h3>
+              <div className="public-playlist-info">
+                <div className="scroll-container">
+                  <div className="scroll">
+                    <>
+                      {myFavoritePlaylists.map((playlist, index) => {
+                        return (
+                          <div
+                            key={playlist.id}
+                            index={index}
+                            className="playlist-example"
+                            style={{
+                              backgroundImage: `url(${playlist.playlistImage})`,
+                            }}
+                            onClick={() =>
+                              history.push({
+                                pathname: `/playlist/${playlist._id}`,
+                                state: { playlist },
+                              })
+                            }
+                          >
+                            <div className="playlist-example-info">
+                              <h1 style={{ fontSize: "20px" }}>
+                                {playlist.title}
+                              </h1>
+                              <h5>
+                                Songs:{" "}
+                                {playlist.songs ? playlist.songs.length : "0"}
+                              </h5>
+                            </div>
                           </div>
-                        </div>
-                      );
-                    })}
-                  </>
+                        );
+                      })}
+                    </>
+                  </div>
                 </div>
+              </div>
+              <div className="public-songs-info">
+                <h3 className="songs-title">Songs</h3>
+                <div className="songs-box">
+                  <div className="songs-example">
+                    <div className="song-info-img">song image</div>
+                    <div className="song-info-text">
+                      <div className="song-info-title">Song Title</div>
+                      <div className="song-info-artist">Songs Artist</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* <div className="scroll-container">
+                  <div className="scroll">
+                    <>
+                      {myFavoritePlaylists.map((playlist, index) => {
+                        return (
+                          <div
+                            key={playlist.id}
+                            index={index}
+                            className="playlist-example"
+                            style={{
+                              backgroundImage: `url(${playlist.playlistImage})`,
+                            }}
+                            onClick={() =>
+                              history.push({
+                                pathname: `/playlist/${playlist._id}`,
+                                state: { playlist },
+                              })
+                            }
+                          >
+                            <div className="playlist-example-info">
+                              <h1 style={{ fontSize: "20px" }}>
+                                {playlist.title}
+                              </h1>
+                              <h5>
+                                Songs:{" "}
+                                {playlist.songs ? playlist.songs.length : "0"}
+                              </h5>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </>
+                  </div>
+                </div> */}
               </div>
             </div>
           </div>
