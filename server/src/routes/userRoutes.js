@@ -8,7 +8,6 @@ const userRouter = Router();
 userRouter.get("/artists", authMiddleware, userController.getArtisticPeople);
 userRouter.post("/login", authMiddleware, userController.signIn);
 userRouter.get("/:id", authMiddleware, userController.getUserById);
-userRouter.get("/all", authMiddleware, userController.getArtists);
 userRouter.patch("/:id", authMiddleware, userController.updateUser);
 userRouter.get("/myFavoriteSongs/:id", userController.getMyFavoriteSongs);
 userRouter.get("/mySongs/:id", userController.getMySongs);
