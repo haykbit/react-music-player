@@ -7,7 +7,9 @@ import "./style/playlist.scss";
 
 function IndividualPlaylist() {
   const { loading, authObserverSuccess } = useSelector((state) => state.auth);
-  const { addSongToPlaylistSuccess } = useSelector((state) => state.playlist);
+  const { addSongToPlaylistSuccess, removeSongSuccess } = useSelector(
+    (state) => state.playlist
+  );
 
   const [playlistId, setPlaylistId] = useState("");
   const [playlistInfo, setPlaylistInfo] = useState(null);
@@ -22,7 +24,7 @@ function IndividualPlaylist() {
     if (!loading && authObserverSuccess) {
       getPlaylistInfo(playlistId);
     }
-  }, [playlistId, addSongToPlaylistSuccess]);
+  }, [playlistId, addSongToPlaylistSuccess, removeSongSuccess]);
 
   function getUrlId() {
     const path = window.location.pathname.toString();
