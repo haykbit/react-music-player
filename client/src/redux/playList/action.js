@@ -8,12 +8,16 @@ import {
   removeSongFromPlaylist,
   removePlaylist,
   updatePlaylist,
+  addSongToPlaylist,
 } from "../../api/api";
 import { uploadImages } from "../../services/cloudinary";
 import {
   PLAYLIST_CREATE_REQUEST,
   PLAYLIST_CREATE_SUCCESS,
   PLAYLIST_CREATE_FAIL,
+  ADD_SONG_TO_PLAYLIST_REQUEST,
+  ADD_SONG_TO_PLAYLIST_SUCCESS,
+  ADD_SONG_TO_PLAYLIST_FAIL,
   GET_MY_PLAYLISTS_REQUEST,
   GET_MY_PLAYLISTS_SUCCESS,
   GET_MY_PLAYLISTS_FAIL,
@@ -43,11 +47,19 @@ import {
 export const createNewPlaylist = (playlistData, image) => async (dispatch) => {
   dispatch({ type: PLAYLIST_CREATE_REQUEST });
   try {
-    const imageData = await uploadImages(image);
-    const playlist = {
-      ...playlistData,
-      image: imageData.url,
-    };
+    let playlist = {};
+    if (image) {
+      const imageData = await uploadImages(image);
+      playlist = {
+        ...playlistData,
+        image: imageData.url,
+      };
+    } else {
+      playlist = {
+        ...playlistData,
+        image: undefined,
+      };
+    }
     dispatch({ type: PLAYLIST_CREATE_SUCCESS });
     await createPlaylists(playlist);
   } catch (error) {
@@ -148,3 +160,13 @@ export const editPlaylist = (playlist, image, id) => async (dispatch) => {
     dispatch({ type: PLAYLIST_EDIT_FAIL });
   }
 };
+export const addSongToPlaylistView =
+  (playlistId, userId, songId) => async (dispatch) => {
+    dispatch({ type: ADD_SONG_TO_PLAYLIST_REQUEST });
+    try {
+      await addSongToPlaylist(playlistId, userId, songId);
+      dispatch({ type: ADD_SONG_TO_PLAYLIST_SUCCESS });
+    } catch (error) {
+      dispatch({ type: ADD_SONG_TO_PLAYLIST_FAIL, payload: error.message });
+    }
+  };

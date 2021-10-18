@@ -3,14 +3,13 @@ import { useDispatch } from "react-redux";
 import { Formik } from "formik";
 import FormSchema from "./FormSchema";
 import "./style/createPlaylistModal.scss";
-import UploadIcon from "../../assets/images/icons/upload-icon.png";
 import SongUploadIcon from "../../assets/images/icons/songImageUpload.png";
 
 import { createNewPlaylist } from "../../redux/playlist/action";
 import Input from "../Input";
 import Textarea from "../Input/Textarea";
 
-const Modal = ({ show, close }) => {
+const CreatePlaylistModal = ({ show, close }) => {
   const [playlistImage, setPlaylistImage] = useState("");
   const [isUploaded, setIsUploaded] = useState(false);
   const [image, setImage] = useState("");
@@ -201,4 +200,4 @@ const Modal = ({ show, close }) => {
   );
 };
 
-export default Modal;
+export default CreatePlaylistModal;

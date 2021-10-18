@@ -17,67 +17,64 @@ if (!firebase.apps.length) {
   firebase.app();
 }
 
-export const auth = firebase.auth();
-
 export function onAuthStateChanged(callback) {
-  return auth.onAuthStateChanged(callback);
+  return firebase.auth().onAuthStateChanged(callback);
 }
 
 export function signInWithGoogle() {
   const GoogleAuthProvider = new firebase.auth.GoogleAuthProvider();
-  return auth.signInWithPopup(GoogleAuthProvider);
+  return firebase.auth().signInWithPopup(GoogleAuthProvider);
 }
 
 export function signInWithEmailAndPassword(email, password) {
-  return auth.signInWithEmailAndPassword(email, password);
+  return firebase.auth().signInWithEmailAndPassword(email, password);
 }
 
 export function signUpWithEmailAndPassword(email, password) {
-  return auth.createUserWithEmailAndPassword(email, password);
+  return firebase.auth().createUserWithEmailAndPassword(email, password);
 }
 
 export function sendPasswordResetEmail(email) {
-  return auth.sendPasswordResetEmail(email);
+  return firebase.auth().sendPasswordResetEmail(email);
 }
 
 export function signOut() {
-  return auth.signOut();
+  return firebase.auth().signOut();
 }
 
 export function getCurrentUserToken() {
-  if (!auth.currentUser) {
+  if (!firebase.auth().currentUser) {
     return null;
   }
 
-  return auth.currentUser.getIdToken();
+  return firebase.auth().currentUser.getIdToken();
 }
 
 export function getCurrentUserEmail() {
-  if (!auth.currentUser) {
+  if (!firebase.auth().currentUser) {
     return null;
   }
 
-  return auth.currentUser.email;
+  return firebase.auth().currentUser.email;
 }
 
 export function getCurrentUser() {
-  return auth.currentUser;
+  return firebase.auth().currentUser;
 }
 
 export function updateUserEmail(email) {
-  return auth.currentUser.updateEmail(email);
+  return firebase.auth().currentUser.updateEmail(email);
 }
 
 //TODO check this function
 export async function reauthenticate() {
-  const login = await auth.signInWithEmailAndPassword(
-    "admin@mail.com",
-    "Admin123$"
-  );
-  return auth.currentUser.reauthenticateWithCredential(login);
+  const login = await firebase
+    .auth()
+    .signInWithEmailAndPassword("admin@mail.com", "Admin123$");
+  return firebase.auth().currentUser.reauthenticateWithCredential(login);
 }
 
 //TODO check this function
 export function updateUserPassword(newPassword) {
-  return auth.currentUser.updatePassword(newPassword);
+  return firebase.auth().currentUser.updatePassword(newPassword);
 }

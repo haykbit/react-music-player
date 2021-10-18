@@ -6,7 +6,7 @@
     display: flex;
     flex-direction: column;
     background-color: #171717;
-    width: 80%;
+    width: 900px;
     height: 600px;
     margin: 0px 20px 0px 20px;
     border-radius: 7px;
@@ -14,6 +14,7 @@
     outline: none;
 
     .profile-component {
+      width: 100%;
     }
 
     .payment-component {
@@ -84,7 +85,7 @@
 
   .profile-item {
     background-color: #171717;
-    width: 80%;
+    width: 3px;
     height: 500px;
     margin: 0px 20px 0px 20px;
     border-radius: 7px;

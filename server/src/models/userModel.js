@@ -13,13 +13,26 @@ const UserSchema = new Schema(
     lastName: {
       type: String,
       trim: true,
-      minLength: [2, "Last name needs to have at least 2 characters"],
+      // minLength: [2, "Last name needs to have at least 2 characters"],
       maxLength: [50, "Last name cannot exceed 50 characters"],
+    },
+    userName: {
+      type: String,
+      trim: true,
+      // required: true,
+      unique: [true, "This user name already exists, please try another one"],
+      minLength: [2, "User name needs to have at least 2 characters"],
+      maxLength: [50, "User name cannot exceed 50 characters"],
     },
     profileImage: {
       type: String,
       default:
         "https://res.cloudinary.com/dzaxp8xwy/image/upload/v1633277832/vehkjqmyzfz9brcqmcto.jpg",
+    },
+    coverImage: {
+      type: String,
+      default:
+        "https://res.cloudinary.com/oasismusic/image/upload/v1634404586/rfnuqfg1retaxby2wflx.jpg",
     },
     email: {
       type: String,

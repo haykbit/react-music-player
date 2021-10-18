@@ -11,15 +11,14 @@ import {
   SEARCH_READY,
 } from "./types";
 
-export const getSearchEngine = (query) => async (dispatch) => {
+export const getSearchEngine = (userId) => async (dispatch) => {
   dispatch({ type: SEARCH_REQUEST });
   try {
     const artist = await getSearchArtist();
-    const playlist = await getSearchPlaylist();
-    const song = await getSearchSong();
-    dispatch({ type: SEARCH_SUCCESS, payload: { query } });
+    const playlist = await getSearchPlaylist(userId);
+    const song = await getSearchSong(userId);
+    dispatch({ type: SEARCH_SUCCESS });
     const obj = { artist, playlist, song };
-    console.log(obj);
     return obj;
   } catch (error) {
     dispatch({ type: SEARCH_FAIL, payload: error.message });

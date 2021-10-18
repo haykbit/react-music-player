@@ -120,6 +120,29 @@ async function updatePlaylist(req, res, next) {
   }
 }
 
+async function addSongToPlaylist(req, res, next) {
+  const { id: songId } = req.params;
+  const { playlistId } = req.body;
+  const { userId } = req.body;
+  try {
+    const checkPlaylist = await db.Playlist.findById(playlistId);
+    if (!checkPlaylist.songs.includes(songId)) {
+      await db.Playlist.findOneAndUpdate(
+        { _id: playlistId, owner: userId },
+        {
+          $push: { songs: [{ _id: songId }] },
+        },
+        { new: true }
+      );
+    }
+    res.status(200).send({
+      message: "OK",
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 async function removeSongFromPlaylist(req, res, next) {
   const { id } = req.params;
   const { songId } = req.body;
@@ -234,13 +257,21 @@ async function getMyFavoritePlaylists(req, res, next) {
 }
 
 async function fetchPlaylists(req, res, next) {
+  const { userId } = req.body;
   try {
     const publicPlaylists = await db.Playlist.find({
       private: false,
+    }).select({ title: 1, playlistImage: 1, genre: 1 });
+    const userPlaylists = await db.Playlist.find({ owner: userId }).select({
+      title: 1,
+      playlistImage: 1,
+      genre: 1,
     });
 
+    const playlists = publicPlaylists.concat(userPlaylists);
+
     res.status(200).send({
-      data: publicPlaylists,
+      data: playlists,
     });
   } catch (err) {
     console.log(err);
@@ -259,5 +290,6 @@ module.exports = {
   followPlaylist,
   cancelFollowPlaylist,
   getMyFavoritePlaylists,
+  addSongToPlaylist,
   fetchPlaylists,
 };

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { getCurrentUser } from "../../services/auth";
 import "./style/rightClickMenu.scss";
 import Modal from "../Modal";
-import SongEditModal from "../SongEditModal";
+import SongEditModal from "../UploadedSongsPlaylist/SongEditModal";
+import { deleteSongFromPlaylist } from "../../redux/playlist/action";
 
 function RightClickMenu({
   show,
@@ -11,20 +13,12 @@ function RightClickMenu({
   song,
   ToggleDeleteModal,
   ToggleEditModal,
+  ToggleAddToPlaylist,
   modals,
+  playlistData,
 }) {
-  // const [modals, setModals] = useState({
-  //   editModal: false,
-  //   deleteModal: false,
-  // });
-
+  const dispatch = useDispatch();
   const userUid = getCurrentUser().uid;
-
-  // const ToggleEditModal = () =>
-  //   setModals({ ...modals, editModal: !modals.editModal });
-
-  // const ToggleDeleteModal = () =>
-  //   setModals({ ...modals, deleteModal: !modals.deleteModal });
 
   async function editHandle() {
     ToggleEditModal();
@@ -34,17 +28,39 @@ function RightClickMenu({
     ToggleDeleteModal();
   }
 
+  function handleAddSong() {
+    ToggleAddToPlaylist();
+    closeMenu();
+  }
+
+  function handleSongRemoveFromPlaylist() {
+    dispatch(deleteSongFromPlaylist(playlistData._id, song._id));
+  }
+
   return (
     <>
       {show ? (
         <div className="context-menu-container" onClick={() => closeMenu()}>
           <div className="context-menu" onClick={(e) => e.stopPropagation()}>
-            <li className="menu-option-box" onClick={() => handleLike()}>
+            <div className="menu-option-box" onClick={() => handleLike()}>
               Favorite
-            </li>
+            </div>
+            <div className="menu-option-box" onClick={() => handleAddSong()}>
+              Add Song
+            </div>
+            {playlistData && playlistData.owner === userUid ? (
+              <div
+                className="menu-option-box"
+                onClick={() => handleSongRemoveFromPlaylist()}
+              >
+                Remove From Playlist
+              </div>
+            ) : (
+              ""
+            )}
             {song.owner === userUid ? (
               <>
-                <li
+                <div
                   className="menu-option-box"
                   onClick={() => {
                     editHandle();
@@ -52,9 +68,9 @@ function RightClickMenu({
                   }}
                 >
                   Edit
-                </li>
+                </div>
 
-                <li
+                <div
                   className="menu-option-box"
                   onClick={() => {
                     deleteHandle();
@@ -62,7 +78,7 @@ function RightClickMenu({
                   }}
                 >
                   Delete
-                </li>
+                </div>
               </>
             ) : (
               ""

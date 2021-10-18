@@ -77,7 +77,6 @@ async function getMyFavoriteSongs(req, res, next) {
   }
 }
 
-//TODO get my songs
 async function getMySongs(req, res, next) {
   const { id: userId } = req.params;
   try {
@@ -106,7 +105,21 @@ async function getArtists(req, res, next) {
 }
 //TODO delete my songs
 
-//TODO edit my songs
+async function getArtisticPeople(req, res, next) {
+  try {
+    const user = await db.User.find({ artist: true }).select({
+      _id: 0,
+      userName: 1,
+      profileImage: 1,
+      firebase_id: 1,
+    });
+    res.status(200).send({
+      data: user,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
 
 module.exports = {
   signIn: signIn,
@@ -115,4 +128,5 @@ module.exports = {
   getMyFavoriteSongs,
   getMySongs,
   getArtists,
+  getArtisticPeople,
 };

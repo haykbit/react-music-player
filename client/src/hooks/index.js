@@ -1,1 +1,1 @@
-export { default } from "./useRightClickMenu";
+export { default } from "./useLockBodyScroll";

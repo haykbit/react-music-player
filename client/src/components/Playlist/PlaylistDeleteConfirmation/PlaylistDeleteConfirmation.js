@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import "./style/DeleteConfirmation.scss";
 import { deletePlaylist } from "../../../redux/playlist/action";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
+import useLockBodyScroll from "../../../hooks/useLockBodyScroll";
 
 const PlaylistDeleteConfirmation = ({ show, close, playlistId, userId }) => {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const PlaylistDeleteConfirmation = ({ show, close, playlistId, userId }) => {
       console.log(err.response.data);
     }
   }
-
+  useLockBodyScroll();
   return (
     <>
       {show ? (

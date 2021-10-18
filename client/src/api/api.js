@@ -28,11 +28,21 @@ export async function getUserProfile(id) {
 
 export async function updateUserProfile(id, profile, profileImage) {
   const userToken = await getCurrentUserToken();
-  console.log(profileImage, "api profileImage");
   return axios({
     method: "PATCH",
     url: `${process.env.REACT_APP_API_BASE_URL}/users/${id}`,
     data: { ...profile, profileImage },
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
+export async function getSearchArtist() {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/users/artists`,
     headers: {
       Authorization: `Bearer ${userToken}`,
     },
@@ -74,6 +84,7 @@ export async function cancelLikeSong(songId, userId) {
     },
   });
 }
+
 export async function getLikedSongs(id) {
   //get user id argument
   const userToken = await getCurrentUserToken();
@@ -98,7 +109,7 @@ export async function removeSongData(id, userId) {
   });
 }
 
-export async function editSongData(id, songData) {
+export async function editSongData(id, songData, image) {
   const userToken = await getCurrentUserToken();
   return axios({
     method: "PATCH",
@@ -106,12 +117,11 @@ export async function editSongData(id, songData) {
     headers: {
       Authorization: `Bearer ${userToken}`,
     },
-    data: { songData },
+    data: { songData, image },
   });
 }
 
 // ?PLAYLISTS
-
 export async function createPlaylists(playlist) {
   const userToken = await getCurrentUserToken();
   return axios({
@@ -136,6 +146,17 @@ export async function removePlaylist(id, userId) {
   });
 }
 
+export async function getPlaylistById(playlistId) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/playlists/${playlistId}`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
 export async function getMyPlaylistsList(id) {
   const userToken = await getCurrentUserToken();
   return axios({
@@ -147,12 +168,23 @@ export async function getMyPlaylistsList(id) {
   });
 }
 
-//!! it is the same as getMySongsData function.
 export async function getMySongsPlaylist(userId) {
   const userToken = await getCurrentUserToken();
   return axios({
     method: "GET",
     url: `${process.env.REACT_APP_API_BASE_URL}/songs/mysongs/${userId}`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
+export async function addSongToPlaylist(playlistId, userId, songId) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "PATCH",
+    url: `${process.env.REACT_APP_API_BASE_URL}/playlists/add/${songId}`,
+    data: { playlistId, userId },
     headers: {
       Authorization: `Bearer ${userToken}`,
     },
@@ -284,5 +316,27 @@ export async function getSearchArtist(userId) {
       Authorization: `Bearer ${userToken}`,
     },
     data: { userId },
+  });
+}
+
+export async function getPublicSongs() {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/songs/public-songs`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
+export async function getSongsForPrivateLists(id) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/songs/accessible-songs/${id}`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
   });
 }

@@ -8,9 +8,13 @@ import IndividualSong from "../../IndividualSong";
 import "./style/playliststack.scss";
 
 function PlaylistStack({ playlist }) {
+  console.log(playlist, "playlistStack");
   const [mySongsData, setMySongsData] = useState(null);
   const { user, loading, authObserverSuccess } = useSelector(
     (state) => state.auth
+  );
+  const { addSongToPlaylistSuccess, removeSongSuccess } = useSelector(
+    (state) => state.playlist
   );
 
   async function loadPlaylistOnMount() {
@@ -18,7 +22,7 @@ function PlaylistStack({ playlist }) {
     setMySongsData(songs.data.data);
   }
 
-  //condition for controll type of playlist
+  //condition for control type of playlist
 
   function handleOnDragEnd(result) {
     if (!result.destination) return;
@@ -34,7 +38,7 @@ function PlaylistStack({ playlist }) {
     if (!loading && authObserverSuccess) {
       loadPlaylistOnMount();
     }
-  }, [loading]);
+  }, [loading, addSongToPlaylistSuccess, removeSongSuccess]);
 
   useEffect(() => {
     if (!loading && authObserverSuccess) {
@@ -77,6 +81,7 @@ function PlaylistStack({ playlist }) {
                                       playlist={mySongsData}
                                       index={index}
                                       favorite={false}
+                                      playlistData={playlist}
                                     />
                                   </div>
                                 </div>

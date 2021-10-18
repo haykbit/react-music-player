@@ -6,7 +6,7 @@ import Button from "../Buttons/index";
 import Input from "../Input/index";
 
 import { getCurrentUser } from "../../services/auth";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   updateUserProfileInfo,
@@ -333,7 +333,7 @@ function ProfileInfo() {
                   </label>
                 </div>
               </div>
-              <div className="button-side">
+              {/* <div className="button-side">
                 {isDisabled ? (
                   <Button
                     className="edit-btn"
@@ -349,7 +349,7 @@ function ProfileInfo() {
                     Save
                   </Button>
                 ) : null}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

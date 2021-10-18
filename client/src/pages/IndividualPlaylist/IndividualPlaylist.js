@@ -1,31 +1,47 @@
-import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { authObserverLoading } from "../../redux/auth/action";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { getPlaylistById } from "../../api/api";
 import Navbar from "../../components/Navbar/Navbar";
 import Playlist from "../../components/Playlist";
 import "./style/playlist.scss";
 
-function IndividualPlaylist(props) {
-  const playlist = props.location.state.item;
-  const history = useHistory();
-  const dispatch = useDispatch();
-  const userStorage = JSON.parse(localStorage.getItem("user"));
-  const { loading, authObserverSuccess, signOutSuccess } = useSelector(
-    (state) => state.auth
+function IndividualPlaylist() {
+  const { loading, authObserverSuccess } = useSelector((state) => state.auth);
+  const { addSongToPlaylistSuccess, removeSongSuccess } = useSelector(
+    (state) => state.playlist
   );
 
-  useEffect(() => {
-    dispatch(authObserverLoading());
-    if (signOutSuccess) {
-      history.push("/login");
-    }
-  }, []);
+  const [playlistId, setPlaylistId] = useState("");
+  const [playlistInfo, setPlaylistInfo] = useState(null);
 
+  useEffect(() => {
+    if (!loading && authObserverSuccess) {
+      getUrlId();
+    }
+  }, [loading]);
+
+  useEffect(() => {
+    if (!loading && authObserverSuccess) {
+      getPlaylistInfo(playlistId);
+    }
+  }, [playlistId, addSongToPlaylistSuccess, removeSongSuccess]);
+
+  function getUrlId() {
+    const path = window.location.pathname.toString();
+    setPlaylistId(path.slice(10));
+  }
+
+  async function getPlaylistInfo(playlistId) {
+    if (playlistId) {
+      const user = await getPlaylistById(playlistId);
+      setPlaylistInfo(user.data.data);
+    }
+  }
   return (
     <>
       <Navbar />
-      <Playlist playlist={playlist} />
+
+      {playlistInfo ? <Playlist playlist={playlistInfo} /> : ""}
     </>
   );
 }
