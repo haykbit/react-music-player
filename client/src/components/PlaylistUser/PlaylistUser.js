@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { authObserverLoading } from "../../redux/auth/action";
-import { getFavoritePlaylists } from "../../redux/playlist/action";
+import { getMySongsPlaylist } from "../../api/api";
+import { getMyPlaylists } from "../../redux/playlist/action";
+import { getSongPlayNow } from "../../redux/player/action";
 import { useHistory } from "react-router";
 import { useLocation } from "react-router-dom";
 import "./style/playlistuser.scss";
@@ -9,30 +10,29 @@ import backgroundPicture from "../../assets/images/background/profile-picture-ba
 import editIcon from "../../assets/images/icons/editIcon.png";
 function PlaylistUser({ playlistUserData }) {
   const history = useHistory();
-  const location = useLocation();
   const dispatch = useDispatch();
   const { user, loading, authObserverSuccess, signOutSuccess } = useSelector(
     (state) => state.auth
   );
-  const { myFavoritePlaylists, playlistCreatedSuccess } = useSelector(
+  const { myPlaylists, playlistCreatedSuccess } = useSelector(
     (state) => state.playlist
   );
 
-  useEffect(() => {
-    if (!loading && authObserverSuccess) {
-      dispatch(getFavoritePlaylists(playlistUserData.firebase_id));
-    }
-  }, [loading, authObserverSuccess, playlistCreatedSuccess]);
-  useEffect(() => {
-    dispatch(authObserverLoading());
-    if (signOutSuccess) {
-      history.push("/login");
-    }
-  }, []);
-  console.log(myFavoritePlaylists);
-
   const [isUploaded, setIsUploaded] = useState(false);
   const [image, setImage] = useState("");
+  const [artistSongs, setArtistSongs] = useState([]);
+
+  useEffect(() => {
+    if (!loading && authObserverSuccess) {
+      dispatch(getMyPlaylists(playlistUserData.firebase_id));
+      loadUserSongs();
+    }
+  }, [loading]);
+
+  async function loadUserSongs() {
+    const songs = await getMySongsPlaylist(playlistUserData.firebase_id);
+    setArtistSongs(songs.data.data);
+  }
 
   function handleImageChange(e) {
     if (e.target.files && e.target.files[0]) {
@@ -44,6 +44,11 @@ function PlaylistUser({ playlistUserData }) {
       reader.readAsDataURL(e.target.files[0]);
     }
   }
+
+  function playSearchedSong(song) {
+    dispatch(getSongPlayNow(song, [song], 0));
+  }
+
   return (
     <div
       className="top-half"
@@ -79,21 +84,29 @@ function PlaylistUser({ playlistUserData }) {
               }}
             ></div>
           </div>
-          <div className="follow-button">
-            <button>Follow</button>
+          <div className="follow-info">
+            <div className="follow-data">
+              <p>Followers : 0</p>
+              <p>Following : 0</p>
+            </div>
+
+            <div className="follow-button">
+              <button>Follow</button>
+            </div>
           </div>
+
           <div className="box-body">
-            {/* <h2 className="profile-title">Profile information</h2> */}
             <div className="box-information">
               <h3 className="profile-name">
                 {playlistUserData.firstName} {playlistUserData.lastName}
               </h3>
             </div>
-            <div className="public-playlist-info">
-              <div className="scroll-container">
-                <div className="scroll">
-                  <>
-                    {myFavoritePlaylists.map((playlist, index) => {
+            <div className="playlist-songs-container">
+              <h3>Playlists</h3>
+              <div className="public-playlist-info">
+                <div className="scroll-container">
+                  <div className="scroll">
+                    {myPlaylists.map((playlist, index) => {
                       return (
                         <div
                           key={playlist.id}
@@ -104,7 +117,7 @@ function PlaylistUser({ playlistUserData }) {
                           }}
                           onClick={() =>
                             history.push({
-                              pathname: `playlist/${playlist._id}`,
+                              pathname: `/playlist/${playlist._id}`,
                               state: { playlist },
                             })
                           }
@@ -113,7 +126,6 @@ function PlaylistUser({ playlistUserData }) {
                             <h1 style={{ fontSize: "20px" }}>
                               {playlist.title}
                             </h1>
-                            <h5>{playlist.description}</h5>
                             <h5>
                               Songs:{" "}
                               {playlist.songs ? playlist.songs.length : "0"}
@@ -122,7 +134,42 @@ function PlaylistUser({ playlistUserData }) {
                         </div>
                       );
                     })}
-                  </>
+                  </div>
+                </div>
+              </div>
+              <div className="public-songs-info">
+                <h3 className="songs-title">Songs</h3>
+                <div className="songs-box">
+                  {artistSongs ? (
+                    <>
+                      {artistSongs.map((song) => {
+                        return (
+                          <div
+                            className="songs-example"
+                            key={song._id}
+                            onClick={() => playSearchedSong(song)}
+                          >
+                            <div
+                              className="song-info-img"
+                              style={{
+                                backgroundImage: `url(${song.songImage})`,
+                              }}
+                            ></div>
+                            <div className="song-info-text">
+                              <div className="song-info-title">
+                                {song.title}
+                              </div>
+                              <div className="song-info-artist">
+                                {song.artist}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
             </div>
