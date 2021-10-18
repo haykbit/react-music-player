@@ -66,15 +66,15 @@ export function updateUserEmail(email) {
   return firebase.auth().currentUser.updateEmail(email);
 }
 
-//TODO check this function
-export async function reauthenticate() {
-  const login = await firebase
-    .auth()
-    .signInWithEmailAndPassword("admin@mail.com", "Admin123$");
-  return firebase.auth().currentUser.reauthenticateWithCredential(login);
+export async function reauthenticate(currentPassword) {
+  const user = firebase.auth().currentUser;
+  const cred = firebase.auth.EmailAuthProvider.credential(
+    user.email,
+    currentPassword
+  );
+  return user.reauthenticateWithCredential(cred);
 }
 
-//TODO check this function
 export function updateUserPassword(newPassword) {
   return firebase.auth().currentUser.updatePassword(newPassword);
 }

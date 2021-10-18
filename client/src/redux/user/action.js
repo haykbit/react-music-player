@@ -8,10 +8,21 @@ import {
   UPDATE_PASSWORD_REQUEST,
   UPDATE_PASSWORD_SUCCESS,
   UPDATE_PASSWORD_FAIL,
+  UPDATE_EMAIL_REQUEST,
+  UPDATE_EMAIL_SUCCESS,
+  UPDATE_EMAIL_FAIL,
   RESET_USER_DATA,
 } from "./types";
-import { getUserProfile, updateUserProfile } from "../../api/api";
-import { updateUserEmail, updateUserPassword } from "../../services/auth";
+import {
+  getUserProfile,
+  updateUserProfile,
+  updateUserEmailInfo,
+} from "../../api/api";
+import {
+  reauthenticate,
+  updateUserEmail,
+  updateUserPassword,
+} from "../../services/auth";
 import { uploadImages } from "../../services/cloudinary";
 
 export const displayUserProfile =
@@ -29,14 +40,7 @@ export const displayUserProfile =
 export const updateUserProfileInfo = (userId, profile) => async (dispatch) => {
   dispatch({ type: UPDATE_PROFILE_REQUEST });
   try {
-    const { email, profileImageURL, profileImageFile } = profile;
-    if (email) {
-      await updateUserEmail(email);
-      dispatch({
-        type: UPDATE_PROFILE_SUCCESS,
-        payload: { ...profile },
-      });
-    }
+    const { profileImageURL, profileImageFile } = profile;
     if (profileImageFile) {
       const imageData = await uploadImages(profileImageFile);
       dispatch({
@@ -56,16 +60,33 @@ export const updateUserProfileInfo = (userId, profile) => async (dispatch) => {
   }
 };
 
-export const updateUserProfilePassword = (password) => async (dispatch) => {
-  dispatch({ type: UPDATE_PASSWORD_REQUEST });
-  try {
-    await updateUserPassword(password);
-    dispatch({ type: UPDATE_PASSWORD_SUCCESS });
-  } catch (error) {
-    dispatch({ type: UPDATE_PASSWORD_FAIL, payload: error.message });
-  }
-};
+export const updateUserProfilePassword =
+  (currentPassword, newPassword) => async (dispatch) => {
+    dispatch({ type: UPDATE_PASSWORD_REQUEST });
+    try {
+      await reauthenticate(currentPassword);
+      await updateUserPassword(newPassword);
+      dispatch({ type: UPDATE_PASSWORD_SUCCESS });
+    } catch (error) {
+      dispatch({ type: UPDATE_PASSWORD_FAIL, payload: error.message });
+    }
+  };
 
 export const resetUserData = () => (dispatch) => {
   dispatch({ type: RESET_USER_DATA });
 };
+
+export const updateUserProfileEmail =
+  (userId, newEmail, currentPassword) => async (dispatch) => {
+    dispatch({ type: UPDATE_EMAIL_REQUEST });
+    try {
+      await reauthenticate(currentPassword);
+      await updateUserEmail(newEmail);
+      await updateUserEmailInfo(userId, newEmail);
+      dispatch({
+        type: UPDATE_EMAIL_SUCCESS,
+      });
+    } catch (error) {
+      dispatch({ type: UPDATE_EMAIL_FAIL, payload: error.message });
+    }
+  };
