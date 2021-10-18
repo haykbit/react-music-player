@@ -44,6 +44,13 @@ const AudioPlayer = () => {
     intervalRef.current = setInterval(() => {
       if (audioRef.current.ended) {
         toNextTrack();
+        if (playlist.length === 1) {
+          setTimeout(() => {
+            audioRef.current.pause();
+            setTrackProgress(0);
+            audioRef.current.play();
+          }, 2000);
+        }
       } else {
         setTrackProgress(audioRef.current.currentTime);
       }
@@ -90,8 +97,17 @@ const AudioPlayer = () => {
 
   useEffect(() => {
     if (isPlaying) {
-      audioRef.current.play();
-      startTimer();
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            audioRef.current.play();
+            startTimer();
+          })
+          .catch((error) => {
+            console.log("playback prevented");
+          });
+      }
     } else {
       audioRef.current.pause();
     }
@@ -106,9 +122,18 @@ const AudioPlayer = () => {
     volumeControl(volumeLevel);
 
     if (isReady.current) {
-      audioRef.current.play();
-      setIsPlaying(true);
-      startTimer();
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            audioRef.current.play();
+            setIsPlaying(true);
+            startTimer();
+          })
+          .catch((error) => {
+            console.log("playback prevented");
+          });
+      }
     } else {
       // Next song is ready
       isReady.current = true;
@@ -121,11 +146,20 @@ const AudioPlayer = () => {
     audioRef.current = new Audio(url);
     setTrackProgress(audioRef.current.currentTime);
     volumeControl(volumeLevel);
+    const playPromise = audioRef.current.play();
 
     if (isReady.current) {
-      audioRef.current.play();
-      setIsPlaying(true);
-      startTimer();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            audioRef.current.play();
+            setIsPlaying(true);
+            startTimer();
+          })
+          .catch((error) => {
+            console.log("playback prevented");
+          });
+      }
     } else {
       // Next song is ready
       isReady.current = true;

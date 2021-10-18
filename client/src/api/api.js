@@ -307,18 +307,6 @@ export async function getSearchPlaylist(userId) {
   });
 }
 
-export async function getSearchArtist(userId) {
-  const userToken = await getCurrentUserToken();
-  return axios({
-    method: "GET",
-    url: `${process.env.REACT_APP_API_BASE_URL}/users/all/`,
-    headers: {
-      Authorization: `Bearer ${userToken}`,
-    },
-    data: { userId },
-  });
-}
-
 export async function getPublicSongs() {
   const userToken = await getCurrentUserToken();
   return axios({

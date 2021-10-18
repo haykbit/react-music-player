@@ -1,6 +1,6 @@
-import { useEffect, useState, useLayoutEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router-dom";
 
 import {
   getSearchArtist,
@@ -18,10 +18,12 @@ import "./style/searchengine.scss";
 function SearchEngine() {
   const history = useHistory();
   const dispatch = useDispatch();
+  const location = useLocation();
+
   const [show, setShow] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [showButton, setshowButton] = useState(true);
-  const [response, setResponse] = useState({});
+  const [response, setResponse] = useState(null);
   const [song, setSong] = useState({});
   const [artist, setArtist] = useState({});
   const [playlist, setPlaylist] = useState({});
@@ -36,26 +38,22 @@ function SearchEngine() {
     if (!loading && authObserverSuccess) {
       getSearch();
     }
-  }, [loading]);
+  }, [loading, url]);
 
   async function getSearch() {
-    // const res = await dispatch(getSearchEngine());
-    const artist = await getSearchArtist(user.uid);
-    const playlist = await getSearchPlaylist(user.uid);
-    const song = await getSearchSong(user.uid);
-    const obj = { artist, playlist, song };
-    setResponse(obj);
-    console.log(response);
     const res = await dispatch(getSearchEngine(user.uid));
-    console.log(res);
     setResponse(res);
   }
 
   const handleSearch = (e) => {
-    let songs = response["song"]["data"]["data"];
-    let artists = response["artist"]["data"]["data"];
-    let playlists = response["playlist"]["data"]["data"];
     let query = e.target.value;
+    let songs, artists, playlists;
+
+    if (response) {
+      songs = response["song"]["data"]["data"];
+      artists = response["artist"]["data"]["data"];
+      playlists = response["playlist"]["data"]["data"];
+    }
 
     if (e.target.value.length > 0) {
       setShow(true);
@@ -71,18 +69,24 @@ function SearchEngine() {
       setSong(filteredSongs);
       setPlaylist(filteredPlaylists);
       setArtist(filteredArtists);
+    } else if (e.target.value.length === 0) {
+      setShow(false);
     } else {
       setShow(false);
     }
   };
 
-  const cardStyle = {
-    display: show ? "block" : "none",
-  };
+  function playSearchedSong(song) {
+    dispatch(getSongPlayNow(song, [song], 0));
+  }
 
   const handleShow = (a) => {
     setShowSearch(!a);
     setshowButton(a);
+  };
+
+  const handleHideSearch = (a) => {
+    setShow(false);
   };
 
   const searchStyle = {
@@ -100,12 +104,12 @@ function SearchEngine() {
     width: "5%",
   };
 
+  const cardStyle = {
+    display: show ? "block" : "none",
+  };
+
   function artistProfile(id) {
     history.push(`/playlist-user/${id}`);
-  }
-
-  function playSearchedSong(song) {
-    dispatch(getSongPlayNow(song, [song], 0));
   }
 
   function playlistPage(id) {
@@ -128,7 +132,7 @@ function SearchEngine() {
           url === "/artist" ? searchStyle : { width: "100%", display: "flex" }
         }
         onMouseLeave={() =>
-          url === "/artist" ? handleShow(showSearch) : handleShow(showSearch)
+          url === "/artist" ? handleShow(showSearch) : handleHideSearch(false)
         }
       >
         <div className="search">
@@ -142,8 +146,9 @@ function SearchEngine() {
           <form>
             <input
               type="text"
-              placeholder="Artistas, canciones o albums"
+              placeholder="Artists, songs or albums"
               onChange={(e) => handleSearch(e)}
+              onMouseEnter={(e) => handleSearch(e)}
             />
           </form>
         </div>
@@ -153,7 +158,7 @@ function SearchEngine() {
               <h2>Artists results</h2>
               <div className="scroll_list">
                 {artist.length > 0 ? (
-                  artist.map((artist) => {
+                  artist.map((artist, index) => {
                     return (
                       <>
                         <div
@@ -165,7 +170,7 @@ function SearchEngine() {
                             src={artist.profileImage}
                             alt={artist.userName}
                           />
-                          <div className="artist_result_card_info">
+                          <div className="artist_result_card_info" key={index}>
                             <h4>{artist.userName}</h4>
                           </div>
                         </div>
@@ -183,7 +188,7 @@ function SearchEngine() {
               <h2>Songs results</h2>
               <div className="scroll_list">
                 {song.length > 0
-                  ? song.map((song) => {
+                  ? song.map((song, index) => {
                       return (
                         <>
                           <div
@@ -192,7 +197,7 @@ function SearchEngine() {
                             onClick={() => playSearchedSong(song)}
                           >
                             <img src={song.songImage} alt={song.title} />
-                            <div className="song_result_card_info">
+                            <div className="song_result_card_info" key={index}>
                               <h4>{song.title}</h4>
                               <h6>{song.genre}</h6>
                             </div>
@@ -208,17 +213,18 @@ function SearchEngine() {
             <h2>Playlist results</h2>
             <div className="scroll_list">
               {playlist.length > 0 ? (
-                playlist.map((playlist) => {
+                playlist.map((playlist, index) => {
                   return (
                     <>
                       <div
+                        key={playlist._id}
                         className="playlist_result_card"
                         style={{
                           backgroundImage: `url(${playlist.playlistImage})`,
                         }}
                         onClick={() => playlistPage(playlist._id)}
                       >
-                        <div className="playlist_result_card_info">
+                        <div className="playlist_result_card_info" key={index}>
                           <h4>{playlist.title}</h4>
                           <h6>{playlist.genre}</h6>
                         </div>
