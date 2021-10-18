@@ -12,13 +12,14 @@ function PlaylistStack({ playlist }) {
   const { user, loading, authObserverSuccess } = useSelector(
     (state) => state.auth
   );
+  const { addSongToPlaylistSuccess } = useSelector((state) => state.playlist);
 
   async function loadPlaylistOnMount() {
     const songs = await getSongsFromPlaylist(playlist._id);
     setMySongsData(songs.data.data);
   }
 
-  //condition for controll type of playlist
+  //condition for control type of playlist
 
   function handleOnDragEnd(result) {
     if (!result.destination) return;
@@ -34,7 +35,7 @@ function PlaylistStack({ playlist }) {
     if (!loading && authObserverSuccess) {
       loadPlaylistOnMount();
     }
-  }, [loading]);
+  }, [loading, addSongToPlaylistSuccess]);
 
   useEffect(() => {
     if (!loading && authObserverSuccess) {

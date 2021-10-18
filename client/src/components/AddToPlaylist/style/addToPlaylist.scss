@@ -15,7 +15,7 @@
   }
 
   .add-to-playlist-box {
-    height: 500px;
+    height: fit-content;
     width: 500px;
     background-color: #171717;
     box-sizing: border-box;
@@ -37,9 +37,12 @@
       }
     }
     .playlists-list-box {
-      height: 80px;
+      height: fit-content;
+      text-align: center;
       width: 100%;
       outline: 1px white solid;
+      color: white;
+      padding: 10px 0;
     }
   }
 }

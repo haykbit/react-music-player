@@ -40,10 +40,14 @@ const reducer = (state = INITIAL_STATE, action) => {
     case PLAYLIST_CREATE_REQUEST:
       return {
         ...state,
+        ...state,
         loading: true,
         playlistCreatedSuccess: false,
-        addedToPlaylistSuccess: false,
         getMyPlaylistsSuccess: false,
+        addSongToPlaylistSuccess: false,
+        removeSongSuccess: false,
+        followSuccess: false,
+        cancelFollowSuccess: false,
         error: null,
       };
     case PLAYLIST_CREATE_SUCCESS:
@@ -51,7 +55,6 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: false,
         playlistCreatedSuccess: true,
-        addedToPlaylistSuccess: false,
         getMyPlaylistsSuccess: false,
         error: null,
       };
@@ -60,7 +63,6 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: false,
         playlistCreatedSuccess: false,
-        addedToPlaylistSuccess: false,
         getMyPlaylistsSuccess: false,
         error: action.payload,
       };
@@ -68,8 +70,13 @@ const reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loading: true,
-        playlistEditSuccess: false,
-        error: false,
+        playlistCreatedSuccess: false,
+        getMyPlaylistsSuccess: false,
+        addSongToPlaylistSuccess: false,
+        removeSongSuccess: false,
+        followSuccess: false,
+        cancelFollowSuccess: false,
+        error: null,
       };
     case PLAYLIST_EDIT_SUCCESS:
       return {
@@ -90,8 +97,11 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: true,
         playlistCreatedSuccess: false,
-        addedToPlaylistSuccess: false,
         getMyPlaylistsSuccess: false,
+        addSongToPlaylistSuccess: false,
+        removeSongSuccess: false,
+        followSuccess: false,
+        cancelFollowSuccess: false,
         error: null,
       };
     case GET_MY_PLAYLISTS_SUCCESS:
@@ -99,7 +109,6 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: false,
         playlistCreatedSuccess: false,
-        addedToPlaylistSuccess: false,
         getMyPlaylistsSuccess: true,
         myPlaylists: action.payload,
         error: null,
@@ -109,7 +118,6 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: false,
         playlistCreatedSuccess: false,
-        addedToPlaylistSuccess: false,
         getMyPlaylistsSuccess: false,
         error: action.payload,
       };
@@ -118,9 +126,11 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: true,
         playlistCreatedSuccess: false,
-        addedToPlaylistSuccess: false,
         getMyPlaylistsSuccess: false,
+        addSongToPlaylistSuccess: false,
         removeSongSuccess: false,
+        followSuccess: false,
+        cancelFollowSuccess: false,
         error: null,
       };
     case REMOVE_SONG_SUCCESS:
@@ -141,7 +151,12 @@ const reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loading: true,
-        deletePlaylistSuccess: false,
+        playlistCreatedSuccess: false,
+        getMyPlaylistsSuccess: false,
+        addSongToPlaylistSuccess: false,
+        removeSongSuccess: false,
+        followSuccess: false,
+        cancelFollowSuccess: false,
         error: null,
       };
     case DELETE_PLAYLIST_SUCCESS:
@@ -163,8 +178,8 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: true,
         playlistCreatedSuccess: false,
-        addedToPlaylistSuccess: false,
         getMyPlaylistsSuccess: false,
+        addSongToPlaylistSuccess: false,
         removeSongSuccess: false,
         followSuccess: false,
         cancelFollowSuccess: false,
@@ -189,8 +204,8 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: true,
         playlistCreatedSuccess: false,
-        addedToPlaylistSuccess: false,
         getMyPlaylistsSuccess: false,
+        addSongToPlaylistSuccess: false,
         removeSongSuccess: false,
         followSuccess: false,
         cancelFollowSuccess: false,
@@ -215,7 +230,6 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: true,
         playlistCreatedSuccess: false,
-        addedToPlaylistSuccess: false,
         getMyPlaylistsSuccess: false,
         getFavoritePlaylistsSuccess: false,
         removeSongSuccess: false,
@@ -243,7 +257,6 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: true,
         playlistCreatedSuccess: false,
-        addedToPlaylistSuccess: false,
         getMyPlaylistsSuccess: false,
         getFavoritePlaylistsSuccess: false,
         removeSongSuccess: false,
@@ -267,6 +280,34 @@ const reducer = (state = INITIAL_STATE, action) => {
         getPublicPlaylistsSuccess: false,
         error: action.payload,
       };
+    case ADD_SONG_TO_PLAYLIST_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        playlistCreatedSuccess: false,
+        getMyPlaylistsSuccess: false,
+        getFavoritePlaylistsSuccess: false,
+        removeSongSuccess: false,
+        followSuccess: false,
+        cancelFollowSuccess: false,
+        getPublicPlaylistsSuccess: false,
+        error: null,
+      };
+    case ADD_SONG_TO_PLAYLIST_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        addSongToPlaylistSuccess: true,
+      };
+    case ADD_SONG_TO_PLAYLIST_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        addToPlaylistFromPlaylistViewSuccess: false,
+      };
+
     default:
       return { ...state };
   }

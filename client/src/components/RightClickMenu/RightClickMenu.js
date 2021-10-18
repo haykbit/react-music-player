@@ -38,22 +38,21 @@ function RightClickMenu({
   function handleAddSong() {
     ToggleAddToPlaylist();
     closeMenu();
-    console.log("I'M ADDING A SONG!");
   }
   return (
     <>
       {show ? (
         <div className="context-menu-container" onClick={() => closeMenu()}>
           <div className="context-menu" onClick={(e) => e.stopPropagation()}>
-            <li className="menu-option-box" onClick={() => handleLike()}>
+            <div className="menu-option-box" onClick={() => handleLike()}>
               Favorite
-            </li>
+            </div>
+            <div className="menu-option-box" onClick={() => handleAddSong()}>
+              Add Song
+            </div>
             {song.owner === userUid ? (
               <>
-                <li className="menu-option-box" onClick={() => handleAddSong()}>
-                  Add Song
-                </li>
-                <li
+                <div
                   className="menu-option-box"
                   onClick={() => {
                     editHandle();
@@ -61,9 +60,9 @@ function RightClickMenu({
                   }}
                 >
                   Edit
-                </li>
+                </div>
 
-                <li
+                <div
                   className="menu-option-box"
                   onClick={() => {
                     deleteHandle();
@@ -71,7 +70,7 @@ function RightClickMenu({
                   }}
                 >
                   Delete
-                </li>
+                </div>
               </>
             ) : (
               ""
