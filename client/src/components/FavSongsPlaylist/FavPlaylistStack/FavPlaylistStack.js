@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
+import { orderFavoriteSongs } from "../../../redux/song/action";
 import { getLikedSongs } from "../../../api/api";
 import IndividualSong from "../../IndividualSong";
 
 import "./style/playliststack.scss";
 
 function FavPlaylistStack() {
+  const dispatch = useDispatch();
   const [favSongsData, setFavSongsData] = useState(null);
+  const [orderInterval, setOrderInterval] = useState(null);
+  const [orderChange, setOrderChange] = useState(false);
   const { user, loading, authObserverSuccess } = useSelector(
     (state) => state.auth
   );
@@ -16,7 +20,13 @@ function FavPlaylistStack() {
 
   async function loadPlaylistOnMount() {
     const favoritedPlaylist = await getLikedSongs(user.uid);
+    console.log(favoritedPlaylist, "FAVORITED PLAYLIST");
     setFavSongsData(favoritedPlaylist.data.data);
+  }
+
+  function setOrderedList() {
+    const orderedList = favSongsData.map((song) => song._id);
+    dispatch(orderFavoriteSongs(user.uid, orderedList));
   }
 
   //condition for controll type of playlist
@@ -28,8 +38,20 @@ function FavPlaylistStack() {
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
+    setOrderChange(!orderChange);
     setFavSongsData(items);
   }
+
+  useEffect(() => {
+    if (favSongsData) {
+      if (orderInterval) {
+        clearTimeout(orderInterval);
+        setOrderInterval(setTimeout(setOrderedList, 3000));
+      } else {
+        setOrderInterval(setTimeout(setOrderedList, 3000));
+      }
+    }
+  }, [orderChange]);
 
   useEffect(() => {
     if (!loading && authObserverSuccess) {
