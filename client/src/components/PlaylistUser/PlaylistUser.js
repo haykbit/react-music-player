@@ -103,7 +103,7 @@ function PlaylistUser({ playlistUserData }) {
                             backgroundImage: `url(${playlist.playlistImage})`,
                           }}
                           onClick={() =>
-                            location.push({
+                            history.push({
                               pathname: `playlist/${playlist._id}`,
                               state: { playlist },
                             })

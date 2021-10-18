@@ -97,12 +97,12 @@
     .public-playlist-info {
       display: flex;
       height: 800px;
-      width: 100%;
+      width: auto;
       box-sizing: border-box;
       padding: 15px;
 
       .scroll-container {
-        height: 404px;
+        height: 275px;
         overflow-x: scroll;
         overflow-y: hidden;
         padding: 0;
@@ -114,18 +114,19 @@
         }
 
         &::-webkit-scrollbar {
-          height: 160px;
+          height: 7px;
           z-index: 100;
         }
 
         &::-webkit-scrollbar-thumb {
           background: rgba(255, 255, 255, 0.685);
-          border-radius: 8px;
+          border-radius: 15px;
         }
       }
 
       .playlist-example {
         display: flex;
+        align-items: center;
         border-radius: 10px;
         height: 250px;
         width: 220px;
