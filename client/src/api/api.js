@@ -122,7 +122,6 @@ export async function editSongData(id, songData, image) {
 }
 
 // ?PLAYLISTS
-
 export async function createPlaylists(playlist) {
   const userToken = await getCurrentUserToken();
   return axios({
