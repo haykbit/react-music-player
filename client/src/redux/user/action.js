@@ -12,11 +12,19 @@ import {
   UPDATE_EMAIL_SUCCESS,
   UPDATE_EMAIL_FAIL,
   RESET_USER_DATA,
+  FOLLOW_USER_REQUEST,
+  FOLLOW_USER_SUCCESS,
+  FOLLOW_USER_FAIL,
+  CANCEL_FOLLOW_USER_REQUEST,
+  CANCEL_FOLLOW_USER_SUCCESS,
+  CANCEL_FOLLOW_USER_FAIL,
 } from "./types";
 import {
   getUserProfile,
   updateUserProfile,
   updateUserEmailInfo,
+  followingUser,
+  cancelFollowingUser,
 } from "../../api/api";
 import {
   reauthenticate,
@@ -90,3 +98,22 @@ export const updateUserProfileEmail =
       dispatch({ type: UPDATE_EMAIL_FAIL, payload: error.message });
     }
   };
+
+export const followUser = (profileUserId, userId) => async (dispatch) => {
+  dispatch({ type: FOLLOW_USER_REQUEST });
+  try {
+    await followingUser(profileUserId, userId);
+    dispatch({ type: FOLLOW_USER_SUCCESS });
+  } catch (error) {
+    dispatch({ type: FOLLOW_USER_FAIL, payload: error.message });
+  }
+};
+export const cancelFollowUser = (profileUserId, userId) => async (dispatch) => {
+  dispatch({ type: CANCEL_FOLLOW_USER_REQUEST });
+  try {
+    await cancelFollowingUser(profileUserId, userId);
+    dispatch({ type: CANCEL_FOLLOW_USER_SUCCESS });
+  } catch (error) {
+    dispatch({ type: CANCEL_FOLLOW_USER_FAIL, payload: error.message });
+  }
+};

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getMySongsPlaylist } from "../../api/api";
 import { getMyPlaylists } from "../../redux/playlist/action";
 import { getSongPlayNow } from "../../redux/player/action";
+import { followUser, cancelFollowUser } from "../../redux/user/action";
 import { useHistory } from "react-router";
 import { useLocation } from "react-router-dom";
 import "./style/playlistuser.scss";
@@ -15,11 +16,14 @@ function PlaylistUser({ playlistUserData }) {
     (state) => state.auth
   );
   const { myPlaylists } = useSelector((state) => state.playlist);
+  const { followUserSuccess, cancelFollowingUserSuccess } = useSelector(
+    (state) => state.user
+  );
 
   const [isUploaded, setIsUploaded] = useState(false);
   const [image, setImage] = useState("");
   const [artistSongs, setArtistSongs] = useState([]);
-
+  const [follow, setFollow] = useState(false);
   useEffect(() => {
     if (!loading && authObserverSuccess) {
       dispatch(getMyPlaylists(playlistUserData.firebase_id));
@@ -47,6 +51,24 @@ function PlaylistUser({ playlistUserData }) {
     dispatch(getSongPlayNow(song, [song], 0));
   }
 
+  function handleFollowUser() {
+    setFollow((prev) => !prev);
+    if (follow === false) {
+      dispatch(followUser(playlistUserData.firebase_id, user.uid));
+    } else {
+      dispatch(cancelFollowUser(playlistUserData.firebase_id, user.uid));
+    }
+  }
+
+  function handleClassNameAndFollow() {
+    const checkFollowers =
+      playlistUserData.followedBy &&
+      playlistUserData.followedBy.some((ele) => ele === user.uid)
+        ? "following"
+        : "follow";
+    console.log(checkFollowers);
+    return checkFollowers;
+  }
   return (
     <div
       className="top-half"
@@ -84,15 +106,30 @@ function PlaylistUser({ playlistUserData }) {
           </div>
           <div className="follow-info">
             <div className="follow-data">
-              <p>Followers : 0</p>
-              <p>Following : 0</p>
+              <p>
+                Followers :{" "}
+                {playlistUserData.followedBy
+                  ? playlistUserData.followedBy.length
+                  : "0"}
+              </p>
+              <p>
+                Following :{" "}
+                {playlistUserData.following ? playlistUserData.following : "0"}
+              </p>
             </div>
-
-            <div className="follow-button">
-              <button>Follow</button>
-            </div>
+            {user && playlistUserData.firebase_id !== user.uid ? (
+              <div className="follow-button">
+                <button
+                  className={`follow-button ${handleClassNameAndFollow()}`}
+                  onClick={handleFollowUser}
+                >
+                  {handleClassNameAndFollow().toUpperCase()}
+                </button>
+              </div>
+            ) : (
+              ""
+            )}
           </div>
-
           <div className="box-body">
             <div className="box-information">
               <h3 className="profile-name">

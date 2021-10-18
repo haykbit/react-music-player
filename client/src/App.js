@@ -1,5 +1,5 @@
 import { Switch, Route } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import AudioPlayer from "../src/components/SongBar/AudioPlayer";
