@@ -16,7 +16,7 @@ import { IoLogOutOutline } from "react-icons/io5";
 import { BiUserCircle } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
 import portadaUno from "../../assets/images/icons/portada-1.png";
-// import userImage from "../../assets/images/icons/profile.jpg";
+import SearchEngine from "../SearchEngine/SearchEngine";
 
 import "./style/navbar.scss";
 
@@ -81,18 +81,7 @@ function Navbar() {
   return (
     <>
       <div className="nav-container">
-        <div className="search">
-          <div
-            className="circle"
-            style={{
-              backgroundImage: `url(${portadaUno})`,
-              backgroundSize: "contain",
-            }}
-          ></div>
-          <form>
-            <input type="text" placeholder="Artistas, canciones o albums" />
-          </form>
-        </div>
+        <SearchEngine />
 
         <div className="nav-menu">
           <div className="menu-actions">
