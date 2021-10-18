@@ -38,6 +38,18 @@ export async function updateUserProfile(id, profile, profileImage) {
   });
 }
 
+export async function updateUserEmailInfo(userId, newEmail) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "PUT",
+    url: `${process.env.REACT_APP_API_BASE_URL}/users/update-email/${userId}`,
+    data: { newEmail },
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
 export async function getSearchArtist() {
   const userToken = await getCurrentUserToken();
   return axios({

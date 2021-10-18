@@ -104,7 +104,7 @@ function PlaylistUser({ playlistUserData }) {
                           }}
                           onClick={() =>
                             history.push({
-                              pathname: `playlist/${playlist._id}`,
+                              pathname: `/playlist/${playlist._id}`,
                               state: { playlist },
                             })
                           }
