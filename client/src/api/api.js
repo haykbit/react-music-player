@@ -157,6 +157,18 @@ export async function orderFavoritedSongs(id, orderedList) {
   });
 }
 
+export async function orderPlaylistsSongs(id, orderedList) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "PATCH",
+    url: `${process.env.REACT_APP_API_BASE_URL}/playlists/order-songs/${id}`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+    data: { orderedList },
+  });
+}
+
 // ?PLAYLISTS
 export async function createPlaylists(playlist) {
   const userToken = await getCurrentUserToken();

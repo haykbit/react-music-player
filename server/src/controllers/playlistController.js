@@ -63,13 +63,14 @@ async function orderMyPlaylists(req, res, next) {
   const { orderedList } = req.body;
 
   try {
-    const orderedSongs = await db.User.findOneAndUpdate(
+    const orderedPlaylists = await db.User.findOneAndUpdate(
       { firebase_id: id },
       { myFavoritePlaylists: orderedList },
       { new: true }
     );
+
     res.status(200).send({
-      data: orderedSongs,
+      data: orderedPlaylists,
     });
   } catch (error) {
     next(error);
@@ -86,6 +87,25 @@ async function getPlaylistById(req, res, next) {
     });
   } catch (err) {
     console.log(err);
+  }
+}
+
+async function orderPlaylistsSongs(req, res, next) {
+  const { id } = req.params;
+  const { orderedList } = req.body;
+
+  try {
+    const orderedSongs = await db.Playlist.findOneAndUpdate(
+      { _id: id },
+      { songs: orderedList },
+      { new: true }
+    );
+
+    res.status(200).send({
+      data: orderedSongs,
+    });
+  } catch (error) {
+    next(error);
   }
 }
 
@@ -188,8 +208,17 @@ async function getSongsByPlaylistId(req, res, next) {
     const songsData = await db.Song.find({
       _id: { $in: playlistSongs },
     });
+
+    // Orders songs as the user's playlists
+    const orderedSongs = playlistSongs.map((playlistId) => {
+      const orderedSong = songsData.filter(
+        (list) => list._id.toString() === playlistId.toString()
+      );
+      return orderedSong[0];
+    });
+
     res.status(200).send({
-      data: songsData,
+      data: orderedSongs,
     });
   } catch (error) {
     next(error);
@@ -321,4 +350,5 @@ module.exports = {
   orderMyPlaylists,
   addSongToPlaylist,
   fetchPlaylists,
+  orderPlaylistsSongs,
 };

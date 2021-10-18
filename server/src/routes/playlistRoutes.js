@@ -24,6 +24,11 @@ playlistRouter.get(
   playlistController.getSongsByPlaylistId
 );
 playlistRouter.patch(
+  "/order-songs/:id",
+  authMiddleware,
+  playlistController.orderPlaylistsSongs
+);
+playlistRouter.patch(
   "/order/:id",
   authMiddleware,
   playlistController.orderMyPlaylists

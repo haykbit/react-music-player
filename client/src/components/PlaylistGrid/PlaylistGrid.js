@@ -80,46 +80,82 @@ function PlaylistGrid({ playlists, privateLists }) {
             </>
           )}
         </div>
-        <div className="playlists">
-          <SortableList
-            onSortEnd={onSortEnd}
-            className="list"
-            draggedItemClassName="dragged"
-          >
+
+        {privateLists ? (
+          <div className="playlists">
+            <SortableList
+              onSortEnd={onSortEnd}
+              className="list"
+              draggedItemClassName="dragged"
+            >
+              {items.map((item, index) => (
+                <SortableItem key={index}>
+                  <div
+                    className="playlist-item"
+                    key={index}
+                    style={{
+                      backgroundImage: `url(${item.playlistImage})`,
+                      width: "250px",
+                      height: "300px",
+                      padding: "10px",
+                      color: "#fff",
+                      whiteSpace: "normal",
+                      borderRadius: "10px",
+                      margin: "10px",
+                      backgroundPosition: "center",
+                      backgroundSize: "cover",
+                      backgroundRepeat: "no-repeat",
+                      cursor: "pointer",
+                    }}
+                    onClick={() =>
+                      history.push({
+                        pathname: `playlist/${item._id}`,
+                        state: { item },
+                      })
+                    }
+                  >
+                    <h1 style={{ fontSize: "40px" }}>{item.title}</h1>
+                    <h5>{item.description}</h5>
+                    <h5>Songs: {item.songs ? item.songs.length : "0"}</h5>
+                  </div>
+                </SortableItem>
+              ))}
+            </SortableList>
+          </div>
+        ) : (
+          <div className="playlists">
             {items.map((item, index) => (
-              <SortableItem key={index}>
-                <div
-                  className="playlist-item"
-                  key={index}
-                  style={{
-                    backgroundImage: `url(${item.playlistImage})`,
-                    width: "250px",
-                    height: "300px",
-                    padding: "10px",
-                    color: "#fff",
-                    whiteSpace: "normal",
-                    borderRadius: "10px",
-                    margin: "10px",
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
-                    cursor: "pointer",
-                  }}
-                  onClick={() =>
-                    history.push({
-                      pathname: `playlist/${item._id}`,
-                      state: { item },
-                    })
-                  }
-                >
-                  <h1 style={{ fontSize: "40px" }}>{item.title}</h1>
-                  <h5>{item.description}</h5>
-                  <h5>Songs: {item.songs ? item.songs.length : "0"}</h5>
-                </div>
-              </SortableItem>
+              <div
+                className="playlist-item"
+                key={index}
+                style={{
+                  backgroundImage: `url(${item.playlistImage})`,
+                  width: "250px",
+                  height: "300px",
+                  padding: "10px",
+                  color: "#fff",
+                  whiteSpace: "normal",
+                  borderRadius: "10px",
+                  margin: "10px",
+                  backgroundPosition: "center",
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  cursor: "pointer",
+                }}
+                onClick={() =>
+                  history.push({
+                    pathname: `playlist/${item._id}`,
+                    state: { item },
+                  })
+                }
+              >
+                <h1 style={{ fontSize: "40px" }}>{item.title}</h1>
+                <h5>{item.description}</h5>
+                <h5>Songs: {item.songs ? item.songs.length : "0"}</h5>
+              </div>
             ))}
-          </SortableList>
-        </div>
+          </div>
+        )}
       </div>
     </>
   );

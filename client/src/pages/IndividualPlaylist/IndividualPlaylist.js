@@ -5,20 +5,20 @@ import Navbar from "../../components/Navbar/Navbar";
 import Playlist from "../../components/Playlist";
 import "./style/playlist.scss";
 
-function IndividualPlaylist(props) {
+function IndividualPlaylist() {
   const { loading, authObserverSuccess } = useSelector((state) => state.auth);
 
   const [playlistId, setPlaylistId] = useState("");
   const [playlistInfo, setPlaylistInfo] = useState(null);
 
   useEffect(() => {
-    if (!loading && authObserverSuccess && !props.location.state) {
+    if (!loading && authObserverSuccess) {
       getUrlId();
     }
   }, [loading]);
 
   useEffect(() => {
-    if (!loading && authObserverSuccess && !props.location.state) {
+    if (!loading && authObserverSuccess) {
       getPlaylistInfo(playlistId);
     }
   }, [playlistId]);

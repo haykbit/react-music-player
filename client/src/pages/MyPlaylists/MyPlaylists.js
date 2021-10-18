@@ -10,7 +10,7 @@ import "./style/myplaylist.scss";
 function MyPlaylists() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { user, loading, authObserverSuccess, signOutSuccess } = useSelector(
+  const { user, loading, authObserverSuccess } = useSelector(
     (state) => state.auth
   );
   const { myFavoritePlaylists, playlistCreatedSuccess } = useSelector(
@@ -22,13 +22,6 @@ function MyPlaylists() {
       dispatch(getFavoritePlaylists(user.uid));
     }
   }, [loading, authObserverSuccess, playlistCreatedSuccess]);
-
-  /* useEffect(() => {
-    dispatch(authObserverLoading());
-    if (signOutSuccess) {
-      history.push("/login");
-    }
-  }, []); */
 
   return (
     <>
