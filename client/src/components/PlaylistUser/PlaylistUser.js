@@ -1,9 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { authObserverLoading } from "../../redux/auth/action";
+import { getFavoritePlaylists } from "../../redux/playlist/action";
+import { useHistory } from "react-router-dom";
 import "./style/playlistuser.scss";
 import backgroundPicture from "../../assets/images/background/profile-picture-background.jpg";
 import editIcon from "../../assets/images/icons/editIcon.png";
 function PlaylistUser({ playlistUserData }) {
-  console.log(playlistUserData);
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const { user, loading, authObserverSuccess, signOutSuccess } = useSelector(
+    (state) => state.auth
+  );
+  const { myFavoritePlaylists, playlistCreatedSuccess } = useSelector(
+    (state) => state.playlist
+  );
+
+  useEffect(() => {
+    if (!loading && authObserverSuccess) {
+      dispatch(getFavoritePlaylists(playlistUserData.firebase_id));
+    }
+  }, [loading, authObserverSuccess, playlistCreatedSuccess]);
+  useEffect(() => {
+    dispatch(authObserverLoading());
+    if (signOutSuccess) {
+      history.push("/login");
+    }
+  }, []);
+  console.log(myFavoritePlaylists);
 
   const [isUploaded, setIsUploaded] = useState(false);
   const [image, setImage] = useState("");
@@ -64,7 +88,12 @@ function PlaylistUser({ playlistUserData }) {
               </h3>
             </div>
             <div className="public-playlist-info">
-              <div className="playlist-example"></div>
+              <div
+                className="playlist-example"
+                style={{
+                  backgroundImage: `url(${myFavoritePlaylists[0].playlistImage})`,
+                }}
+              ></div>
               <div className="playlist-example"></div>
               <div className="playlist-example"></div>
               <div className="playlist-example"></div>
