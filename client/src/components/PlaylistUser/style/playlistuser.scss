@@ -30,7 +30,7 @@
   height: 800px;
   width: 100%;
   position: fixed;
-  margin-top: 40px;
+  margin-top: 10px;
   box-sizing: border-box;
   padding: 60px;
   justify-content: center;
@@ -74,7 +74,7 @@
       flex-direction: column;
       height: 100%;
       width: 100%;
-      overflow-y: hidden;
+      overflow-y: scroll;
 
       .profile-title {
         display: inline;
@@ -96,18 +96,20 @@
       }
     }
     .playlist-songs-container {
-      height: 100%;
+      overflow-y: scroll;
 
       h3 {
         color: white;
         display: flex;
         justify-content: center;
       }
-      overflow-y: scroll;
+
       .public-playlist-info {
+        display: flex;
+        align-items: center;
         justify-content: center;
         height: 180px;
-        width: auto;
+        width: 100%;
         box-sizing: border-box;
         padding: 15px;
 
@@ -121,7 +123,6 @@
 
           .scroll {
             display: flex;
-            justify-content: center;
             width: 100%;
           }
 
@@ -172,6 +173,8 @@
       width: 100%;
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
+      margin-top: 20px;
       justify-content: space-between;
 
       .follow-data {
@@ -199,16 +202,14 @@
     .public-songs-info {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: auto;
+      height: 100%;
       width: 100%;
       box-sizing: border-box;
       padding: 10px;
 
       .songs-box {
-        margin-top: 20px;
         display: flex;
+        justify-content: center;
         flex-wrap: wrap;
 
         .songs-example {
@@ -219,7 +220,11 @@
           margin: 5px;
           border: 1px solid white;
           height: 50px;
-          width: 300px;
+          width: 310px;
+
+          :hover {
+            background-color: gray;
+          }
 
           .song-info-img {
             display: flex;
@@ -229,15 +234,19 @@
             height: 100%;
             justify-content: flex-start;
             width: 70px;
-            outline: 1px solid white;
           }
 
           .song-info-text {
             display: flex;
+            box-sizing: border-box;
+            padding: 10px;
             width: 100%;
-            margin-left: 10px;
             justify-content: center;
             flex-direction: column;
+
+            .song-info-title {
+              font-weight: 500;
+            }
           }
         }
       }

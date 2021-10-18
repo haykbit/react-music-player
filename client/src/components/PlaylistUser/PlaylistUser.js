@@ -161,7 +161,7 @@ function PlaylistUser({ playlistUserData }) {
                                 {song.title}
                               </div>
                               <div className="song-info-artist">
-                                {playlistUserData.userName}
+                                {song.artist}
                               </div>
                             </div>
                           </div>
@@ -172,40 +172,6 @@ function PlaylistUser({ playlistUserData }) {
                     ""
                   )}
                 </div>
-                {/* <div className="scroll-container">
-                  <div className="scroll">
-                    <>
-                      {artistSongs.map((playlist, index) => {
-                        return (
-                          <div
-                            key={playlist.id}
-                            index={index}
-                            className="playlist-example"
-                            style={{
-                              backgroundImage: `url(${playlist.playlistImage})`,
-                            }}
-                            onClick={() =>
-                              history.push({
-                                pathname: `/playlist/${playlist._id}`,
-                                state: { playlist },
-                              })
-                            }
-                          >
-                            <div className="playlist-example-info">
-                              <h1 style={{ fontSize: "20px" }}>
-                                {playlist.title}
-                              </h1>
-                              <h5>
-                                Songs:{" "}
-                                {playlist.songs ? playlist.songs.length : "0"}
-                              </h5>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </>
-                  </div>
-                </div> */}
               </div>
             </div>
           </div>
