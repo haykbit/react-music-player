@@ -11,12 +11,10 @@ import editIcon from "../../assets/images/icons/editIcon.png";
 function PlaylistUser({ playlistUserData }) {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { user, loading, authObserverSuccess, signOutSuccess } = useSelector(
+  const { user, loading, authObserverSuccess } = useSelector(
     (state) => state.auth
   );
-  const { myPlaylists, playlistCreatedSuccess } = useSelector(
-    (state) => state.playlist
-  );
+  const { myPlaylists } = useSelector((state) => state.playlist);
 
   const [isUploaded, setIsUploaded] = useState(false);
   const [image, setImage] = useState("");
@@ -106,69 +104,135 @@ function PlaylistUser({ playlistUserData }) {
               <div className="public-playlist-info">
                 <div className="scroll-container">
                   <div className="scroll">
-                    {myPlaylists.map((playlist, index) => {
-                      return (
-                        <div
-                          key={playlist.id}
-                          index={index}
-                          className="playlist-example"
-                          style={{
-                            backgroundImage: `url(${playlist.playlistImage})`,
-                          }}
-                          onClick={() =>
-                            history.push({
-                              pathname: `/playlist/${playlist._id}`,
-                              state: { playlist },
-                            })
-                          }
-                        >
-                          <div className="playlist-example-info">
-                            <h1 style={{ fontSize: "20px" }}>
-                              {playlist.title}
-                            </h1>
-                            <h5>
-                              Songs:{" "}
-                              {playlist.songs ? playlist.songs.length : "0"}
-                            </h5>
-                          </div>
-                        </div>
-                      );
-                    })}
+                    {user && playlistUserData.firebase_id !== user.uid
+                      ? myPlaylists
+                          .filter((item) => !item.private)
+                          .map((playlist, index) => {
+                            return (
+                              <div
+                                key={playlist.id}
+                                index={index}
+                                className="playlist-example"
+                                style={{
+                                  backgroundImage: `url(${playlist.playlistImage})`,
+                                }}
+                                onClick={() =>
+                                  history.push({
+                                    pathname: `/playlist/${playlist._id}`,
+                                    state: { playlist },
+                                  })
+                                }
+                              >
+                                <div className="playlist-example-info">
+                                  <h1 style={{ fontSize: "20px" }}>
+                                    {playlist.title}
+                                  </h1>
+                                  <h5>{playlist.description}</h5>
+                                  <h5>
+                                    Songs:{" "}
+                                    {playlist.songs
+                                      ? playlist.songs.length
+                                      : "0"}
+                                  </h5>
+                                </div>
+                              </div>
+                            );
+                          })
+                      : myPlaylists.map((playlist, index) => {
+                          return (
+                            <div
+                              key={playlist.id}
+                              index={index}
+                              className="playlist-example"
+                              style={{
+                                backgroundImage: `url(${playlist.playlistImage})`,
+                              }}
+                              onClick={() =>
+                                history.push({
+                                  pathname: `/playlist/${playlist._id}`,
+                                  state: { playlist },
+                                })
+                              }
+                            >
+                              <div className="playlist-example-info">
+                                <h1 style={{ fontSize: "20px" }}>
+                                  {playlist.title}
+                                </h1>
+                                <h5>{playlist.description}</h5>
+                                <h5>
+                                  Songs:{" "}
+                                  {playlist.songs ? playlist.songs.length : "0"}
+                                </h5>
+                              </div>
+                            </div>
+                          );
+                        })}
                   </div>
                 </div>
               </div>
               <div className="public-songs-info">
                 <h3 className="songs-title">Songs</h3>
                 <div className="songs-box">
-                  {artistSongs ? (
+                  {user && playlistUserData.firebase_id !== user.uid ? (
                     <>
-                      {artistSongs.map((song) => {
-                        return (
-                          <div
-                            className="songs-example"
-                            key={song._id}
-                            onClick={() => playSearchedSong(song)}
-                          >
-                            <div
-                              className="song-info-img"
-                              style={{
-                                backgroundImage: `url(${song.songImage})`,
-                              }}
-                            ></div>
-                            <div className="song-info-text">
-                              <div className="song-info-title">
-                                {song.title}
-                              </div>
-                              <div className="song-info-artist">
-                                {song.artist}
-                              </div>
-                            </div>
-                          </div>
-                        );
-                      })}
+                      {artistSongs
+                        ? artistSongs
+                            .filter((item) => !item.private)
+                            .map((song) => {
+                              return (
+                                <div
+                                  className="songs-example"
+                                  key={song._id}
+                                  onClick={() => playSearchedSong(song)}
+                                >
+                                  <div
+                                    className="song-info-img"
+                                    style={{
+                                      backgroundImage: `url(${song.songImage})`,
+                                    }}
+                                  ></div>
+                                  <div className="song-info-text">
+                                    <div className="song-info-title">
+                                      {song.title}
+                                    </div>
+                                    <div className="song-info-artist">
+                                      {song.artist}
+                                    </div>
+                                  </div>
+                                </div>
+                              );
+                            })
+                        : ""}
                     </>
                   ) : (
-                    ""
+                    <>
+                      {artistSongs
+                        ? artistSongs.map((song) => {
+                            return (
+                              <div
+                                className="songs-example"
+                                key={song._id}
+                                onClick={() => playSearchedSong(song)}
+                              >
+                                <div
+                                  className="song-info-img"
+                                  style={{
+                                    backgroundImage: `url(${song.songImage})`,
+                                  }}
+                                ></div>
+                                <div className="song-info-text">
+                                  <div className="song-info-title">
+                                    {song.title}
+                                  </div>
+                                  <div className="song-info-artist">
+                                    {song.artist}
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          })
+                        : ""}
+                    </>
                   )}
                 </div>
               </div>
