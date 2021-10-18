@@ -5,25 +5,26 @@ import Navbar from "../../components/Navbar/Navbar";
 import Playlist from "../../components/Playlist";
 import "./style/playlist.scss";
 
-function IndividualPlaylist(props) {
+function IndividualPlaylist() {
   const { loading, authObserverSuccess } = useSelector((state) => state.auth);
+  const { addSongToPlaylistSuccess, removeSongSuccess } = useSelector(
+    (state) => state.playlist
+  );
 
   const [playlistId, setPlaylistId] = useState("");
   const [playlistInfo, setPlaylistInfo] = useState(null);
 
   useEffect(() => {
-    if (!loading && authObserverSuccess && !props.location.state) {
-      console.log("ENTRÓ");
+    if (!loading && authObserverSuccess) {
       getUrlId();
     }
   }, [loading]);
 
   useEffect(() => {
-    console.log(playlistId);
-    if (!loading && authObserverSuccess && !props.location.state) {
+    if (!loading && authObserverSuccess) {
       getPlaylistInfo(playlistId);
     }
-  }, [playlistId]);
+  }, [playlistId, addSongToPlaylistSuccess, removeSongSuccess]);
 
   function getUrlId() {
     const path = window.location.pathname.toString();
@@ -36,21 +37,11 @@ function IndividualPlaylist(props) {
       setPlaylistInfo(user.data.data);
     }
   }
-
   return (
     <>
       <Navbar />
-      {props.location.state ? (
-        <Playlist playlist={props.location.state.item} />
-      ) : (
-        ""
-      )}
 
-      {playlistInfo && !props.location.state ? (
-        <Playlist playlist={playlistInfo} />
-      ) : (
-        ""
-      )}
+      {playlistInfo ? <Playlist playlist={playlistInfo} /> : ""}
     </>
   );
 }

@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getUserProfile } from "../../api/api";
+import {
+  getUserProfile,
+  getPublicSongs,
+  getSongsForPrivateLists,
+} from "../../api/api";
 import PlaylistStack from "./PlaylistStack";
 import PlaylistContextMenu from "./PlaylistContextMenu/PlaylistContextMenu";
 import PlaylistDeleteConfirmation from "./PlaylistDeleteConfirmation";
@@ -35,7 +39,7 @@ function Playlist({ playlist }) {
   });
   const [follow, setFollow] = useState(false);
   const [myFavPlaylists, setMyFavPlaylists] = useState([]);
-
+  const [displaySongs, setDisplaySongs] = useState([]);
   // Toggles for the diferent menus and modals
   const ToggleContext = () => setContextMenu(!contextMenu);
   const ToggleEditModal = () => {
@@ -47,12 +51,15 @@ function Playlist({ playlist }) {
   const ToggleAddToPlaylist = () =>
     setModals({ ...modals, addToPlaylist: !modals.addToPlaylist });
 
-  const { user, loading, authObserverSuccess } = useSelector(
+  const { loading, user, authObserverSuccess } = useSelector(
     (state) => state.auth
   );
-  const { followSuccess, cancelFollowSuccess } = useSelector(
-    (state) => state.playlist
-  );
+  const {
+    followSuccess,
+    cancelFollowSuccess,
+    addSongToPlaylistSuccess,
+    myFavoritePlaylistsSuccess,
+  } = useSelector((state) => state.playlist);
 
   useEffect(() => {
     if (!loading && authObserverSuccess) {
@@ -61,6 +68,10 @@ function Playlist({ playlist }) {
     }
   }, [loading, followSuccess, cancelFollowSuccess]);
 
+  useEffect(() => {
+    getSongsData();
+  }, [playlist]);
+
   async function getUserInfo() {
     const user = await getUserProfile(playlist.owner);
     setUserInfo(user.data.data);
@@ -68,7 +79,6 @@ function Playlist({ playlist }) {
 
   function handleFollowClick() {
     setFollow((prev) => !prev);
-
     if (follow === false) {
       dispatch(followPlaylist(playlist._id, user.uid));
     } else {
@@ -82,6 +92,22 @@ function Playlist({ playlist }) {
     setMyFavPlaylists(myFavLists.data.data);
   }
 
+  async function getSongsData() {
+    const publicSongs = await getPublicSongs();
+    const accessibleSongs = await getSongsForPrivateLists(user.uid);
+    playlist.private
+      ? setDisplaySongs(
+          [
+            ...accessibleSongs.data.mySongs,
+            ...accessibleSongs.data.othersPublicSongs,
+          ].filter((item) => playlist.songs.includes(item._id) === false)
+        )
+      : setDisplaySongs(
+          publicSongs.data.data.filter(
+            (item) => !playlist.songs.includes(item._id)
+          )
+        );
+  }
   function handleClassNameAndFollow() {
     const checkFavLists = myFavPlaylists.some(
       (ele) => ele["_id"] === playlist._id
@@ -96,7 +122,11 @@ function Playlist({ playlist }) {
         <AddToPlaylist
           show={modals.addToPlaylist}
           close={ToggleAddToPlaylist}
-          text={"Add song"}
+          text={"Add Song"}
+          currentData={playlist}
+          user={user}
+          displayData={displaySongs}
+          isPlaylist={true}
         />
       )}
 
@@ -152,6 +182,8 @@ function Playlist({ playlist }) {
                     ToggleEditModal={ToggleEditModal}
                     ToggleDeleteModal={ToggleDeleteModal}
                     playlist={playlist}
+                    handleFollowClick={handleFollowClick}
+                    follow={follow}
                   />
                 </div>
               </div>

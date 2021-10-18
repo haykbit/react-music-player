@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { dispatchLikeSong, cancelLikedSongs } from "../../redux/song/action";
 import { getSongPlayNow } from "../../redux/player/action";
+import { getMyPlaylists } from "../../redux/playlist/action";
 import { getLikedSongs } from "../../api/api";
 import { fancyTimeFormat } from "../../util/timeFormatter";
 import { BsFillCaretRightFill } from "react-icons/bs";
@@ -13,10 +14,12 @@ import SongEditModal from "../UploadedSongsPlaylist/SongEditModal";
 import DeleteConfirmation from "../DeleteConfirmation";
 import AddToPlaylist from "../AddToPlaylist";
 import { getCurrentUser } from "../../services/auth";
-function IndividualSong({ song, index, playlist, favorite }) {
+function IndividualSong({ song, index, playlist, favorite, playlistData }) {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
-  const { likeSongSuccess, loading } = useSelector((state) => state.song);
+  const { user, authObserverSuccess } = useSelector((state) => state.auth);
+  const { loading } = useSelector((state) => state.song);
+  const { myPlaylists, addSongToPlaylistSuccess, removeSongSuccess } =
+    useSelector((state) => state.playlist);
   const [liked, setLiked] = useState(favorite);
   const [myFavoriteSongs, setMyFavoriteSongs] = useState([]);
   const [modals, setModals] = useState({
@@ -25,19 +28,41 @@ function IndividualSong({ song, index, playlist, favorite }) {
     addToPlaylist: false,
   });
   const [contextMenu, setContextMenu] = useState(false);
+  const [displayMyLists, setDisplayMyLists] = useState([]);
   const Toggle = () => setContextMenu(!contextMenu);
 
   const ToggleAddToPlaylist = () => {
     setModals({ ...modals, addToPlaylist: !modals.addToPlaylist });
+    song.private
+      ? setDisplayMyLists(
+          myPlaylists.filter(
+            (item) => item.private && !item.songs.includes(song._id)
+          )
+        )
+      : setDisplayMyLists(
+          myPlaylists.filter((item) => !item.songs.includes(song._id))
+        );
   };
 
   useEffect(() => {
-    getMyFavSongs();
+    if (!loading && authObserverSuccess) {
+      getMyFavSongs();
+    }
   }, [loading]);
+
+  useEffect(() => {
+    if (!loading && authObserverSuccess) {
+      getMyLists();
+    }
+  }, [displayMyLists, addSongToPlaylistSuccess]);
 
   async function getMyFavSongs() {
     const myFavSongs = await getLikedSongs(user.uid);
     setMyFavoriteSongs(myFavSongs.data.data);
+  }
+
+  function getMyLists() {
+    dispatch(getMyPlaylists(user.uid));
   }
 
   function handleClassName() {
@@ -75,6 +100,10 @@ function IndividualSong({ song, index, playlist, favorite }) {
           show={modals.addToPlaylist}
           close={ToggleAddToPlaylist}
           text="Add to playlist"
+          currentData={song}
+          user={user}
+          displayData={displayMyLists}
+          isPlaylist={false}
         />
       )}
 
@@ -121,6 +150,7 @@ function IndividualSong({ song, index, playlist, favorite }) {
             ToggleDeleteModal={ToggleDeleteModal}
             modals={modals}
             song={song}
+            playlistData={playlistData}
           />
           {modals.editModal && (
             <SongEditModal
