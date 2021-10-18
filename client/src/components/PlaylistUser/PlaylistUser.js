@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { authObserverLoading } from "../../redux/auth/action";
-import { getFavoritePlaylists } from "../../redux/playlist/action";
+import { getMySongsPlaylist } from "../../api/api";
+import { getMyPlaylists } from "../../redux/playlist/action";
+import { getSongPlayNow } from "../../redux/player/action";
 import { useHistory } from "react-router";
 import { useLocation } from "react-router-dom";
 import "./style/playlistuser.scss";
@@ -13,25 +14,25 @@ function PlaylistUser({ playlistUserData }) {
   const { user, loading, authObserverSuccess, signOutSuccess } = useSelector(
     (state) => state.auth
   );
-  const { myFavoritePlaylists, playlistCreatedSuccess } = useSelector(
+  const { myPlaylists, playlistCreatedSuccess } = useSelector(
     (state) => state.playlist
   );
 
-  useEffect(() => {
-    if (!loading && authObserverSuccess) {
-      dispatch(getFavoritePlaylists(playlistUserData.firebase_id));
-    }
-  }, [loading, authObserverSuccess, playlistCreatedSuccess]);
-  useEffect(() => {
-    dispatch(authObserverLoading());
-    if (signOutSuccess) {
-      history.push("/login");
-    }
-  }, []);
-  console.log(myFavoritePlaylists);
-
   const [isUploaded, setIsUploaded] = useState(false);
   const [image, setImage] = useState("");
+  const [artistSongs, setArtistSongs] = useState([]);
+
+  useEffect(() => {
+    if (!loading && authObserverSuccess) {
+      dispatch(getMyPlaylists(playlistUserData.firebase_id));
+      loadUserSongs();
+    }
+  }, [loading]);
+
+  async function loadUserSongs() {
+    const songs = await getMySongsPlaylist(playlistUserData.firebase_id);
+    setArtistSongs(songs.data.data);
+  }
 
   function handleImageChange(e) {
     if (e.target.files && e.target.files[0]) {
@@ -43,6 +44,11 @@ function PlaylistUser({ playlistUserData }) {
       reader.readAsDataURL(e.target.files[0]);
     }
   }
+
+  function playSearchedSong(song) {
+    dispatch(getSongPlayNow(song, [song], 0));
+  }
+
   return (
     <div
       className="top-half"
@@ -101,55 +107,75 @@ function PlaylistUser({ playlistUserData }) {
               <div className="public-playlist-info">
                 <div className="scroll-container">
                   <div className="scroll">
-                    <>
-                      {myFavoritePlaylists.map((playlist, index) => {
-                        return (
-                          <div
-                            key={playlist.id}
-                            index={index}
-                            className="playlist-example"
-                            style={{
-                              backgroundImage: `url(${playlist.playlistImage})`,
-                            }}
-                            onClick={() =>
-                              history.push({
-                                pathname: `/playlist/${playlist._id}`,
-                                state: { playlist },
-                              })
-                            }
-                          >
-                            <div className="playlist-example-info">
-                              <h1 style={{ fontSize: "20px" }}>
-                                {playlist.title}
-                              </h1>
-                              <h5>
-                                Songs:{" "}
-                                {playlist.songs ? playlist.songs.length : "0"}
-                              </h5>
-                            </div>
+                    {myPlaylists.map((playlist, index) => {
+                      return (
+                        <div
+                          key={playlist.id}
+                          index={index}
+                          className="playlist-example"
+                          style={{
+                            backgroundImage: `url(${playlist.playlistImage})`,
+                          }}
+                          onClick={() =>
+                            history.push({
+                              pathname: `/playlist/${playlist._id}`,
+                              state: { playlist },
+                            })
+                          }
+                        >
+                          <div className="playlist-example-info">
+                            <h1 style={{ fontSize: "20px" }}>
+                              {playlist.title}
+                            </h1>
+                            <h5>
+                              Songs:{" "}
+                              {playlist.songs ? playlist.songs.length : "0"}
+                            </h5>
                           </div>
-                        );
-                      })}
-                    </>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
               <div className="public-songs-info">
                 <h3 className="songs-title">Songs</h3>
                 <div className="songs-box">
-                  <div className="songs-example">
-                    <div className="song-info-img">song image</div>
-                    <div className="song-info-text">
-                      <div className="song-info-title">Song Title</div>
-                      <div className="song-info-artist">Songs Artist</div>
-                    </div>
-                  </div>
+                  {artistSongs ? (
+                    <>
+                      {artistSongs.map((song) => {
+                        return (
+                          <div
+                            className="songs-example"
+                            key={song._id}
+                            onClick={() => playSearchedSong(song)}
+                          >
+                            <div
+                              className="song-info-img"
+                              style={{
+                                backgroundImage: `url(${song.songImage})`,
+                              }}
+                            ></div>
+                            <div className="song-info-text">
+                              <div className="song-info-title">
+                                {song.title}
+                              </div>
+                              <div className="song-info-artist">
+                                {playlistUserData.userName}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </>
+                  ) : (
+                    ""
+                  )}
                 </div>
-
                 {/* <div className="scroll-container">
                   <div className="scroll">
                     <>
-                      {myFavoritePlaylists.map((playlist, index) => {
+                      {artistSongs.map((playlist, index) => {
                         return (
                           <div
                             key={playlist.id}
