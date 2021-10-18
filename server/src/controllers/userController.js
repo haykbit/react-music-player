@@ -136,6 +136,7 @@ async function getArtisticPeople(req, res, next) {
     next(error);
   }
 }
+//TODO delete my songs
 
 module.exports = {
   signIn: signIn,
