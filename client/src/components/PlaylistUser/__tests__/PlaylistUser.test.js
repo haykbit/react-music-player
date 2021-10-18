@@ -23,5 +23,5 @@ describe("<PlaylistUser> behavior", () => {
   const { getByText } = renderWithReduxAndRouter(
     <PlaylistUser playlistUserData={mockUser} />
   );
-  expect(getByText("Profile information")).toBeInTheDocument();
+  expect(getByText("test test")).toBeInTheDocument();
 });
