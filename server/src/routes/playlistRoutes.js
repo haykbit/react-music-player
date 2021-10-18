@@ -55,6 +55,12 @@ playlistRouter.patch(
   playlistController.cancelFollowPlaylist
 );
 
+playlistRouter.patch(
+  "/add/:id",
+  authMiddleware,
+  playlistController.addSongToPlaylist
+);
+
 playlistRouter.put(
   "/:id",
   authMiddleware,
