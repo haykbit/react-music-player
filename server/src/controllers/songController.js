@@ -123,7 +123,6 @@ async function likeSong(req, res, next) {
   const { id: songId } = req.params;
   const { userId } = req.body;
   try {
-    const checkSong = await db.Song.findById(songId);
     const checkUser = await db.User.findOne({ firebase_id: userId });
     if (!checkUser.myFavoriteSongs.includes(songId)) {
       const song = await db.Song.findOneAndUpdate(
@@ -246,6 +245,34 @@ async function countPlayedNumber(req, res, next) {
   }
 }
 
+async function getPublicSongs(req, res, next) {
+  try {
+    const publicSongs = await db.Song.find({ private: false }).lean();
+    res.status(200).send({
+      data: publicSongs,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function getAccessibleSongs(req, res, next) {
+  const { id: userId } = req.params;
+  try {
+    const mySongs = await db.Song.find({ owner: userId }).lean();
+    const othersPublicSongs = await db.Song.find({
+      private: false,
+      owner: { $ne: userId },
+    });
+    res.status(200).send({
+      mySongs,
+      othersPublicSongs,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 module.exports = {
   createSong,
   fetchSongs,
@@ -258,4 +285,6 @@ module.exports = {
   countPlayedNumber,
   orderMySongs,
   orderFavoriteSongs,
+  getPublicSongs,
+  getAccessibleSongs,
 };

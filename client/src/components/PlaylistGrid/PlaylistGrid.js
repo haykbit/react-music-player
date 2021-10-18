@@ -57,8 +57,6 @@ function PlaylistGrid({ playlists, privateLists }) {
     setOrderChange(!orderChange);
   };
 
-  console.log("ITEMS: ", items);
-
   return (
     <>
       <div className="playlists-container">

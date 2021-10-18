@@ -138,6 +138,29 @@ async function updatePlaylist(req, res, next) {
   }
 }
 
+async function addSongToPlaylist(req, res, next) {
+  const { id: songId } = req.params;
+  const { playlistId } = req.body;
+  const { userId } = req.body;
+  try {
+    const checkPlaylist = await db.Playlist.findById(playlistId);
+    if (!checkPlaylist.songs.includes(songId)) {
+      await db.Playlist.findOneAndUpdate(
+        { _id: playlistId, owner: userId },
+        {
+          $push: { songs: [{ _id: songId }] },
+        },
+        { new: true }
+      );
+    }
+    res.status(200).send({
+      message: "OK",
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 async function removeSongFromPlaylist(req, res, next) {
   const { id } = req.params;
   const { songId } = req.body;
@@ -296,4 +319,6 @@ module.exports = {
   getMyFavoritePlaylists,
   fetchPlaylists,
   orderMyPlaylists,
+  addSongToPlaylist,
+  fetchPlaylists,
 };

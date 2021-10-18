@@ -13,13 +13,11 @@ function IndividualPlaylist(props) {
 
   useEffect(() => {
     if (!loading && authObserverSuccess && !props.location.state) {
-      console.log("ENTRÓ");
       getUrlId();
     }
   }, [loading]);
 
   useEffect(() => {
-    console.log(playlistId);
     if (!loading && authObserverSuccess && !props.location.state) {
       getPlaylistInfo(playlistId);
     }
@@ -40,17 +38,8 @@ function IndividualPlaylist(props) {
   return (
     <>
       <Navbar />
-      {props.location.state ? (
-        <Playlist playlist={props.location.state.item} />
-      ) : (
-        ""
-      )}
 
-      {playlistInfo && !props.location.state ? (
-        <Playlist playlist={playlistInfo} />
-      ) : (
-        ""
-      )}
+      {playlistInfo ? <Playlist playlist={playlistInfo} /> : ""}
     </>
   );
 }

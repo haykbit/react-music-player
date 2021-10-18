@@ -87,7 +87,7 @@ function SearchEngine() {
   };
 
   function artistProfile(id) {
-    history.push(`playlist-user/${id}`);
+    history.push(`/playlist-user/${id}`);
   }
 
   function playSearchedSong(song) {
@@ -95,7 +95,7 @@ function SearchEngine() {
   }
 
   function playlistPage(id) {
-    history.push(`playlist/${id}`);
+    history.push(`/playlist/${id}`);
   }
 
   return (
@@ -106,7 +106,7 @@ function SearchEngine() {
           style={searchButtonStyle}
           onMouseEnter={() => handleShowSearch(!showButton)}
         >
-          <img src={search} />
+          <img src={search} alt="Search" />
         </div>
       )}
       <div

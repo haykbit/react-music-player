@@ -12,6 +12,7 @@ import {
   SEND_PASSWORD_RESET_FAIL,
   LOADING_OBSERVER,
   LOADING_OBSERVER_SUCCESS,
+  LOADING_OBSERVER_FAIL,
   AUTH_RESET,
 } from "./types";
 
@@ -30,6 +31,13 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: false,
         authObserverSuccess: true,
+      };
+    case LOADING_OBSERVER_FAIL:
+      return {
+        ...state,
+        loading: false,
+        authObserverSuccess: false,
+        error: action.payload,
       };
     case REGISTER_REQUEST:
       return {
