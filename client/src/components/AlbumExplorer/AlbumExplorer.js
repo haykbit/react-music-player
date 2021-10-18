@@ -1,13 +1,13 @@
-import Carousel, { slidesToShowPlugin } from "@brainhubeu/react-carousel";
-import "@brainhubeu/react-carousel/lib/style.css";
-import portadaUno from "../../assets/images/albums/arctic-album-0.jpg";
-import portadaDos from "../../assets/images/albums/arctic-album-1.jpeg";
-import portadaTres from "../../assets/images/albums/arctic-album-2.jpeg";
-import portadaCuatro from "../../assets/images/albums/arctic-album-3.jpeg";
-import portadaCinco from "../../assets/images/albums/arctic-album-4.jpg";
-import portadaSeis from "../../assets/images/albums/arctic-album-5.jpg";
-import portadaOcho from "../../assets/images/albums/gorillaz-demon-days.png";
-import portadaNueve from "../../assets/images/albums/linkin-p-papercut.jpeg";
+// import Carousel, { slidesToShowPlugin } from "@brainhubeu/react-carousel";
+// import "@brainhubeu/react-carousel/lib/style.css";
+// import portadaUno from "../../assets/images/albums/arctic-album-0.jpg";
+// import portadaDos from "../../assets/images/albums/arctic-album-1.jpeg";
+// import portadaTres from "../../assets/images/albums/arctic-album-2.jpeg";
+// import portadaCuatro from "../../assets/images/albums/arctic-album-3.jpeg";
+// import portadaCinco from "../../assets/images/albums/arctic-album-4.jpg";
+// import portadaSeis from "../../assets/images/albums/arctic-album-5.jpg";
+// import portadaOcho from "../../assets/images/albums/gorillaz-demon-days.png";
+// import portadaNueve from "../../assets/images/albums/linkin-p-papercut.jpeg";
 
 import "./style/albumexplorer.scss";
 
@@ -21,7 +21,9 @@ function AlbumExplorer() {
               textAlign: "center",
             }}
           >
-            <Carousel
+            {/* <Carousel
+              slide={false}
+              fade={false}
               plugins={[
                 "centered",
                 "arrows",
@@ -69,7 +71,7 @@ function AlbumExplorer() {
                 <img src={portadaNueve} />
                 <h2>Linkin Park</h2>
               </div>
-            </Carousel>
+            </Carousel> */}
           </div>
         </div>
       </div>
