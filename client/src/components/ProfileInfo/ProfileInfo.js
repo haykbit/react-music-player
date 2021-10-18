@@ -157,7 +157,7 @@ function ProfileInfo() {
                   <input
                     className="user-input"
                     placeholder="Name"
-                    disabled={isDisabled}
+                    // disabled={isDisabled}
                     name="firstName"
                     onChange={(e) => handleProfileChange(e)}
                     value={profile.firstName}
@@ -165,7 +165,7 @@ function ProfileInfo() {
                   <input
                     className="user-input"
                     placeholder="Surname"
-                    disabled={isDisabled}
+                    // disabled={isDisabled}
                     name="lastName"
                     onChange={(e) => handleProfileChange(e)}
                     value={profile.lastName}
