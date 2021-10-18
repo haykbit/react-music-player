@@ -7,9 +7,6 @@ import "./style/playlist.scss";
 
 function IndividualPlaylist() {
   const { loading, authObserverSuccess } = useSelector((state) => state.auth);
-  const { addSongToPlaylistSuccess, removeSongSuccess } = useSelector(
-    (state) => state.playlist
-  );
 
   const [playlistId, setPlaylistId] = useState("");
   const [playlistInfo, setPlaylistInfo] = useState(null);
@@ -24,7 +21,7 @@ function IndividualPlaylist() {
     if (!loading && authObserverSuccess) {
       getPlaylistInfo(playlistId);
     }
-  }, [playlistId, addSongToPlaylistSuccess, removeSongSuccess]);
+  }, [playlistId]);
 
   function getUrlId() {
     const path = window.location.pathname.toString();
@@ -37,6 +34,7 @@ function IndividualPlaylist() {
       setPlaylistInfo(user.data.data);
     }
   }
+
   return (
     <>
       <Navbar />
