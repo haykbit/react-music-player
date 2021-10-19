@@ -17,6 +17,9 @@ import MyPlaylists from "./pages/MyPlaylists";
 import PlaylistUserInfo from "./pages/PlaylistUserInfo";
 import ArtistPage from "./pages/Artist";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
   const history = useHistory();
   const location = useLocation();
@@ -30,7 +33,7 @@ function App() {
     } else if (location.pathname === "/") {
       history.push("/home-page");
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -48,6 +51,18 @@ function App() {
         <Route path="/artist" exact component={ArtistPage} />
       </Switch>
       {authObserverSuccess ? <AudioPlayer /> : null}
+      <ToastContainer
+        position="top-center"
+        toastStyle={{ backgroundColor: "#171717", color: "#fff" }}
+        autoClose={4000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 }
