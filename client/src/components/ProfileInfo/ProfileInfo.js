@@ -73,8 +73,9 @@ function ProfileInfo() {
   function handleUserEmailSubmit(e) {
     e.preventDefault();
     const userId = getCurrentUser().uid;
-    console.log(myEmail, myPassword);
     dispatch(updateUserProfileEmail(userId, myEmail, myPassword));
+    setOpenResetEmail(true);
+    setMyPassword("");
   }
 
   function handleProfileChange(e) {
@@ -195,6 +196,7 @@ function ProfileInfo() {
                     name="myPassword"
                     type="password"
                     placeholder="Current Password"
+                    value={myPassword}
                     onChange={(e) => handleMyPasswordChange(e)}
                     required
                   />

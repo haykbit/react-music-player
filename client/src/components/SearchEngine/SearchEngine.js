@@ -109,11 +109,11 @@ function SearchEngine() {
   };
 
   function artistProfile(id) {
-    history.push(`/playlist-user/${id}`);
+    window.location.replace(`/playlist-user/${id}`);
   }
 
   function playlistPage(id) {
-    history.push(`/playlist/${id}`);
+    window.location.replace(`/playlist/${id}`);
   }
 
   return (

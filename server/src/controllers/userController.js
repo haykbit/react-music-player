@@ -136,7 +136,73 @@ async function getArtisticPeople(req, res, next) {
     next(error);
   }
 }
-//TODO delete my songs
+
+async function followUser(req, res, next) {
+  const { id: profileUserId } = req.params;
+  const { userId } = req.body;
+  try {
+    const checkFollowing = await db.User.findOne({
+      firebase_id: profileUserId,
+    });
+    if (!checkFollowing.followedBy.includes(userId)) {
+      await db.User.findOneAndUpdate(
+        { firebase_id: profileUserId },
+        {
+          $inc: {
+            followed: 1,
+          },
+          $push: { followedBy: [userId] },
+        }
+      );
+      await db.User.findOneAndUpdate(
+        { firebase_id: userId },
+        {
+          $inc: {
+            following: 1,
+          },
+        }
+      );
+    }
+    res.status(200).send({
+      message: "OK",
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+async function cancelFollowUser(req, res, next) {
+  const { id: profileUserId } = req.params;
+  const { userId } = req.body;
+  try {
+    const checkFollowing = await db.User.findOne({
+      firebase_id: profileUserId,
+    });
+    if (checkFollowing.followedBy.includes(userId)) {
+      await db.User.findOneAndUpdate(
+        { firebase_id: profileUserId },
+        {
+          $inc: {
+            followed: -1,
+          },
+          $pull: { followedBy: userId },
+        }
+      );
+      await db.User.findOneAndUpdate(
+        { firebase_id: userId },
+        {
+          $inc: {
+            following: -1,
+          },
+        }
+      );
+    }
+    res.status(200).send({
+      message: "OK",
+    });
+  } catch (error) {
+    next(error);
+  }
+}
 
 module.exports = {
   signIn: signIn,
@@ -146,4 +212,6 @@ module.exports = {
   getMyFavoriteSongs,
   getMySongs,
   getArtisticPeople,
+  followUser,
+  cancelFollowUser,
 };
