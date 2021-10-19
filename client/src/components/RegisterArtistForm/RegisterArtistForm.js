@@ -11,7 +11,7 @@ import { registerWithEmailAndPassword } from "../../redux/auth/action";
 
 import { Link } from "react-router-dom";
 
-function RegisterForm() {
+function RegisterArtistForm() {
   let history = useHistory();
   const dispatch = useDispatch();
   const registerState = useSelector((state) => state.auth.registerSuccess);
@@ -55,7 +55,7 @@ function RegisterForm() {
       }) => (
         <form onSubmit={handleSubmit}>
           <div className="register-box">
-            <div className="text">Register</div>
+            <div className="text">Register Artist</div>
             <div className="space"></div>
             <Input
               className="register-inputs name"
@@ -184,11 +184,6 @@ function RegisterForm() {
                 * Your data will be saved on a secured server
               </p>
             </div>
-            {/* HERE */}
-            <Link to="/register/artist" className="artistLink">
-              <a className="register-btn">Are you an artist? Register here</a>
-            </Link>
-            {/* HERE */}
           </div>
         </form>
       )}
@@ -196,4 +191,4 @@ function RegisterForm() {
   );
 }
 
-export default RegisterForm;
+export default RegisterArtistForm;
