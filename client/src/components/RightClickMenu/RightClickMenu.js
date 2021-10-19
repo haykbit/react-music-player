@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { getCurrentUser } from "../../services/auth";
 import "./style/rightClickMenu.scss";
 import Modal from "../Modal";
 import SongEditModal from "../UploadedSongsPlaylist/SongEditModal";
+import { deleteSongFromPlaylist } from "../../redux/playlist/action";
 
 function RightClickMenu({
   show,
@@ -13,19 +15,10 @@ function RightClickMenu({
   ToggleEditModal,
   ToggleAddToPlaylist,
   modals,
+  playlistData,
 }) {
-  // const [modals, setModals] = useState({
-  //   editModal: false,
-  //   deleteModal: false,
-  // });
-
+  const dispatch = useDispatch();
   const userUid = getCurrentUser().uid;
-
-  // const ToggleEditModal = () =>
-  //   setModals({ ...modals, editModal: !modals.editModal });
-
-  // const ToggleDeleteModal = () =>
-  //   setModals({ ...modals, deleteModal: !modals.deleteModal });
 
   async function editHandle() {
     ToggleEditModal();
@@ -39,6 +32,11 @@ function RightClickMenu({
     ToggleAddToPlaylist();
     closeMenu();
   }
+
+  function handleSongRemoveFromPlaylist() {
+    dispatch(deleteSongFromPlaylist(playlistData._id, song._id));
+  }
+
   return (
     <>
       {show ? (
@@ -50,6 +48,16 @@ function RightClickMenu({
             <div className="menu-option-box" onClick={() => handleAddSong()}>
               Add Song
             </div>
+            {playlistData && playlistData.owner === userUid ? (
+              <div
+                className="menu-option-box"
+                onClick={() => handleSongRemoveFromPlaylist()}
+              >
+                Remove From Playlist
+              </div>
+            ) : (
+              ""
+            )}
             {song.owner === userUid ? (
               <>
                 <div

@@ -14,13 +14,12 @@ import SongEditModal from "../UploadedSongsPlaylist/SongEditModal";
 import DeleteConfirmation from "../DeleteConfirmation";
 import AddToPlaylist from "../AddToPlaylist";
 import { getCurrentUser } from "../../services/auth";
-function IndividualSong({ song, index, playlist, favorite }) {
+function IndividualSong({ song, index, playlist, favorite, playlistData }) {
   const dispatch = useDispatch();
   const { user, authObserverSuccess } = useSelector((state) => state.auth);
   const { loading } = useSelector((state) => state.song);
-  const { myPlaylists, addSongToPlaylistSuccess } = useSelector(
-    (state) => state.playlist
-  );
+  const { myPlaylists, addSongToPlaylistSuccess, removeSongSuccess } =
+    useSelector((state) => state.playlist);
   const [liked, setLiked] = useState(favorite);
   const [myFavoriteSongs, setMyFavoriteSongs] = useState([]);
   const [modals, setModals] = useState({
@@ -151,6 +150,7 @@ function IndividualSong({ song, index, playlist, favorite }) {
             ToggleDeleteModal={ToggleDeleteModal}
             modals={modals}
             song={song}
+            playlistData={playlistData}
           />
           {modals.editModal && (
             <SongEditModal

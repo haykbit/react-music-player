@@ -8,6 +8,7 @@ import {
   removeSongFromPlaylist,
   removePlaylist,
   updatePlaylist,
+  orderUserPlaylists,
   addSongToPlaylist,
 } from "../../api/api";
 import { uploadImages } from "../../services/cloudinary";
@@ -42,6 +43,9 @@ import {
   PLAYLIST_EDIT_REQUEST,
   PLAYLIST_EDIT_SUCCESS,
   PLAYLIST_EDIT_FAIL,
+  ORDER_PLAYLISTS_REQUEST,
+  ORDER_PLAYLISTS_SUCCESS,
+  ORDER_PLAYLISTS_FAIL,
 } from "./types";
 
 export const createNewPlaylist = (playlistData, image) => async (dispatch) => {
@@ -160,6 +164,17 @@ export const editPlaylist = (playlist, image, id) => async (dispatch) => {
     dispatch({ type: PLAYLIST_EDIT_FAIL });
   }
 };
+
+export const orderMyPlaylists = (id, orderedList) => async (dispatch) => {
+  dispatch({ type: ORDER_PLAYLISTS_REQUEST });
+  try {
+    await orderUserPlaylists(id, orderedList);
+    dispatch({ type: ORDER_PLAYLISTS_SUCCESS });
+  } catch (error) {
+    dispatch({ type: ORDER_PLAYLISTS_FAIL, payload: error.message });
+  }
+};
+
 export const addSongToPlaylistView =
   (playlistId, userId, songId) => async (dispatch) => {
     dispatch({ type: ADD_SONG_TO_PLAYLIST_REQUEST });

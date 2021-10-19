@@ -9,6 +9,9 @@ import {
   UPDATE_PASSWORD_REQUEST,
   UPDATE_PASSWORD_SUCCESS,
   UPDATE_PASSWORD_FAIL,
+  UPDATE_EMAIL_REQUEST,
+  UPDATE_EMAIL_SUCCESS,
+  UPDATE_EMAIL_FAIL,
   RESET_USER_DATA,
 } from "./types";
 
@@ -75,6 +78,23 @@ const reducer = (state = INITIAL_STATE, action) => {
         profileUpdated: true,
       };
     case UPDATE_PASSWORD_FAIL:
+      return {
+        ...state,
+        error: action.payload,
+      };
+    case UPDATE_EMAIL_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case UPDATE_EMAIL_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        profileUpdated: true,
+      };
+    case UPDATE_EMAIL_FAIL:
       return {
         ...state,
         error: action.payload,

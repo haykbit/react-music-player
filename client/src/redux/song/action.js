@@ -5,6 +5,9 @@ import {
   cancelLikeSong,
   removeSongData,
   editSongData,
+  orderUserSongs,
+  orderFavoritedSongs,
+  orderPlaylistsSongs,
 } from "../../api/api";
 import { uploadImages, uploadSongs } from "../../services/cloudinary";
 import {
@@ -26,6 +29,9 @@ import {
   CANCEL_LIKED_SONG_REQUEST,
   CANCEL_LIKED_SONG_SUCCESS,
   CANCEL_LIKED_SONG_FAIL,
+  ORDER_MY_SONGS_REQUEST,
+  ORDER_MY_SONGS_SUCCESS,
+  ORDER_MY_SONGS_FAIL,
   DELETE_SONG_REQUEST,
   DELETE_SONG_SUCCESS,
   DELETE_SONG_FAIL,
@@ -107,5 +113,35 @@ export const editActualSong = (songId, songData, image) => async (dispatch) => {
     dispatch({ type: UPDATE_SONG_SUCCESS });
   } catch (error) {
     dispatch({ type: UPDATE_SONG_FAIL, payload: error.message });
+  }
+};
+
+export const orderMySongs = (id, orderedList) => async (dispatch) => {
+  dispatch({ type: ORDER_MY_SONGS_REQUEST });
+  try {
+    await orderUserSongs(id, orderedList);
+    dispatch({ type: ORDER_MY_SONGS_SUCCESS });
+  } catch (error) {
+    dispatch({ type: ORDER_MY_SONGS_FAIL, payload: error.message });
+  }
+};
+
+export const orderFavoriteSongs = (id, orderedList) => async (dispatch) => {
+  dispatch({ type: ORDER_MY_SONGS_REQUEST });
+  try {
+    await orderFavoritedSongs(id, orderedList);
+    dispatch({ type: ORDER_MY_SONGS_SUCCESS });
+  } catch (error) {
+    dispatch({ type: ORDER_MY_SONGS_FAIL, payload: error.message });
+  }
+};
+
+export const orderMyPlaylistsSongs = (id, orderedList) => async (dispatch) => {
+  dispatch({ type: ORDER_MY_SONGS_REQUEST });
+  try {
+    await orderPlaylistsSongs(id, orderedList);
+    dispatch({ type: ORDER_MY_SONGS_SUCCESS });
+  } catch (error) {
+    dispatch({ type: ORDER_MY_SONGS_FAIL, payload: error.message });
   }
 };
