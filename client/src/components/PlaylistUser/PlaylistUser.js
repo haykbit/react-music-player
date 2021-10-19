@@ -66,7 +66,6 @@ function PlaylistUser({ playlistUserData }) {
       playlistUserData.followedBy.some((ele) => ele === user.uid)
         ? "following"
         : "follow";
-    console.log(checkFollowers);
     return checkFollowers;
   }
   return (
