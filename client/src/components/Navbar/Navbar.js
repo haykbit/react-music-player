@@ -79,7 +79,7 @@ function Navbar() {
     history.push("/playlists");
   };
   const handleNavProfileClick = () => {
-    history.push(`/playlist-user/${user.uid}`);
+    window.location.replace(`/playlist-user/${user.uid}`);
   };
   return (
     <>
