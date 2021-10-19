@@ -15,7 +15,6 @@ class SongSeeder extends Seeder
      */
     public function run()
     { {
-            //DB::table('users')->insert([
             $songs = [
                 ["original_id" => "6169963e6f4479521c3b4672", "artist" => "CxYYshpGWbeEy7zdgjd6ckrWBNZ2", "genre" => "Rap", "likes" => 13, "played" => 14, "created_at" => Carbon::now(), "updated_at" => Carbon::now()],
                 ["original_id" => "6169963e6f4479521c3b4673", "artist" => "CxYYshpGWbeEy7zdgjd6ckrWBNZ2", "genre" => "Rap", "likes" => 2, "played" => 53, "created_at" => Carbon::now(), "updated_at" => Carbon::now()],

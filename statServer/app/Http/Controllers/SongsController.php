@@ -6,6 +6,7 @@ use App\Models\Song;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class SongsController extends Controller
 {
@@ -25,7 +26,7 @@ class SongsController extends Controller
     {
         $popularSongs = DB::table('songs')
             ->orderBy('played', 'desc')
-            ->take(20)
+            ->take(10)
             ->get();
         return response()->json([
             'success' => true,
@@ -38,7 +39,7 @@ class SongsController extends Controller
     {
         $likedSongs = DB::table('songs')
             ->orderBy('likes', 'desc')
-            ->take(20)
+            ->take(10)
             ->get();
         return response()->json([
             'success' => true,
@@ -51,7 +52,7 @@ class SongsController extends Controller
     {
         $newSongs = DB::table('songs')
             ->orderBy('created_at', 'desc')
-            ->take(20)
+            ->take(10)
             ->get();
         return response()->json([
             'success' => true,
@@ -62,6 +63,74 @@ class SongsController extends Controller
 
     public function new_song(Request $request)
     {
-        $newSong = DB::table('songs');
+        $songData = $request->songStats;
+        $newSong = DB::table('songs')->insert(
+            array(
+                'original_id' => $songData['_id'],
+                'artist' => $songData['owner'],
+                'genre' => $songData['genre'],
+                'created_at' =>  Carbon::now(),
+                'updated_at' =>  Carbon::now()
+            )
+        );
+
+        return response()->json([
+            'success' => true,
+            'message' => 'OK',
+            'data' => $newSong
+        ]);
+    }
+
+    public function like_song(Request $request, $id)
+    {
+        $likes = DB::table('songs')->where('original_id', $id)->get(['likes']);
+        DB::table('songs')->where('original_id', $id)->update([
+            'likes' => $likes[0]->likes + 1
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'OK',
+        ]);
+    }
+
+    public function dislike_song(Request $request, $id)
+    {
+        $likes = DB::table('songs')->where('original_id', $id)->get(['likes']);
+        if ($likes[0]->likes >= 0) {
+
+            DB::table('songs')->where('original_id', $id)->update([
+                'likes' => $likes[0]->likes - 1
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'OK',
+        ]);
+    }
+
+    public function reproduced_song(Request $request, $id)
+    {
+        $plays = DB::table('songs')->where('original_id', $id)->get(['played']);
+        DB::table('songs')->where('original_id', $id)->update([
+            'played' => $plays[0]->played + 1
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'OK',
+        ]);
+    }
+
+    public function remove_song(Request $request, $id)
+    {
+        $deletedSong = DB::table('songs')->where('original_id', $id)->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'OK',
+            'data' => $deletedSong
+        ]);
     }
 }
