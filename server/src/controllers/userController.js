@@ -38,14 +38,12 @@ async function getUserById(req, res, next) {
 
 async function updateUser(req, res, next) {
   const { id: userId } = req.params;
-  const { firstName, lastName, email, profileImage } = req.body;
-  console.log(req.body);
+  const { firstName, lastName, profileImage } = req.body;
   try {
     const updatedUser = await db.User.findOneAndUpdate(
       { firebase_id: userId },
       {
         $set: {
-          email,
           firstName: firstName || "",
           lastName: lastName || "",
           profileImage: profileImage || "",
@@ -58,6 +56,27 @@ async function updateUser(req, res, next) {
     });
   } catch (err) {
     console.log(err.message);
+  }
+}
+
+async function updateUserEmail(req, res, next) {
+  const { id: userId } = req.params;
+  const { newEmail } = req.body;
+  try {
+    const updatedEmail = await db.User.findOneAndUpdate(
+      { firebase_id: userId },
+      {
+        $set: {
+          email: newEmail,
+        },
+      }
+    );
+
+    res.status(200).send({
+      data: updatedEmail,
+    });
+  } catch (error) {
+    next(error);
   }
 }
 
@@ -117,11 +136,13 @@ async function getArtisticPeople(req, res, next) {
     next(error);
   }
 }
+//TODO delete my songs
 
 module.exports = {
   signIn: signIn,
   getUserById: getUserById,
   updateUser: updateUser,
+  updateUserEmail,
   getMyFavoriteSongs,
   getMySongs,
   getArtisticPeople,
