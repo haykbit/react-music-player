@@ -9,6 +9,12 @@ import {
   orderFavoritedSongs,
   orderPlaylistsSongs,
 } from "../../api/api";
+import {
+  createSongs,
+  deleteSongs,
+  likeSongs,
+  cancelLikeSongs,
+} from "../../api/stats-api";
 import { uploadImages, uploadSongs } from "../../services/cloudinary";
 import {
   POST_SONG_REQUEST,
@@ -41,11 +47,19 @@ export const uploadSongFile = (song, metadata, image) => async (dispatch) => {
   dispatch({ type: POST_SONG_REQUEST });
   try {
     const songData = await uploadSongs(song);
+    let createdSong;
     if (image) {
       const songImage = await uploadImages(image);
-      await uploadSongsData(songData, metadata, songImage.url);
+      createdSong = await uploadSongsData(songData, metadata, songImage.url);
     } else {
-      await uploadSongsData(songData, metadata, undefined);
+      createdSong = await uploadSongsData(songData, metadata, undefined);
+    }
+    const { _id, owner, genre } = createdSong.data.data;
+    const checkPrivate = createdSong.data.data.private;
+    if (!checkPrivate) {
+      const songStats = { _id, owner, genre };
+      //TODO for Laravel
+      // await createSongs(songStats);
     }
     dispatch({ type: POST_SONG_SUCCESS });
   } catch (error) {
@@ -57,6 +71,8 @@ export const dispatchLikeSong = (songId, userId) => async (dispatch) => {
   dispatch({ type: LIKE_SONG_REQUEST });
   try {
     await likeSong(songId, userId);
+    //TODO for Laravel
+    // await likeSongs(songId);
     dispatch({ type: LIKE_SONG_SUCCESS });
   } catch (error) {
     dispatch({ type: LIKE_SONG_FAIL, payload: error.message });
@@ -67,6 +83,8 @@ export const cancelLikedSongs = (songId, userId) => async (dispatch) => {
   dispatch({ type: CANCEL_LIKED_SONG_REQUEST });
   try {
     await cancelLikeSong(songId, userId);
+    //TODO for Laravel
+    // await cancelLikeSongs(songId);
     dispatch({ type: CANCEL_LIKED_SONG_SUCCESS });
   } catch (error) {
     dispatch({ type: CANCEL_LIKED_SONG_FAIL, payload: error.message });
@@ -95,6 +113,8 @@ export const deleteSong = (songId, userId) => async (dispatch) => {
   dispatch({ type: DELETE_SONG_REQUEST });
   try {
     await removeSongData(songId, userId);
+    //TODO for Laravel
+    // await deleteSongs(songId);
     dispatch({ type: DELETE_SONG_SUCCESS });
   } catch (error) {
     dispatch({ type: DELETE_SONG_FAIL, payload: error.message });
