@@ -14,6 +14,7 @@ async function signIn(req, res, next) {
       email: email,
       firstName: req.body.user ? req.body.user.firstName : "",
       lastName: req.body.user ? req.body.user.lastName : "",
+      artist: req.body.user ? req.body.user.artist : "",
     });
 
     res.sendStatus(201);

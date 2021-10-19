@@ -28,6 +28,7 @@ function RegisterForm() {
           registerWithEmailAndPassword(values.email, values.password, {
             firstName: values.name,
             lastName: values.surname,
+            artist: values.artist,
           })
         );
       }}
@@ -37,7 +38,7 @@ function RegisterForm() {
         email: "",
         password: "",
         confirm: "",
-        // checkboxArtist: false,
+        artist: false,
         checkboxOne: false,
         checkboxTwo: false,
       }}
@@ -125,22 +126,6 @@ function RegisterForm() {
               errorMessage={errors.email}
             />
             <div className="checkboxes">
-              {/*START */}
-              {/* <label>
-                <input
-                  type="checkbox"
-                  className="checkboxTwo"
-                  name="checkboxTwo"
-                  value={values.checkboxArtist}
-                  onChange={handleChange}
-                />
-                <span>¿Are you an Artist?</span>
-                <p className="info">
-                  * Please check if you are interested in share your music with
-                  everyone
-                </p>
-              </label> */}
-              {/* END */}
               <label>
                 <Checkbox
                   name="checkboxOne"
@@ -168,8 +153,7 @@ function RegisterForm() {
                 <div className="errorMessage">{errors.checkboxOne}</div>
               )}
             </div>
-            {/* <button className="register-inputs button">Register</button> */}
-            {/* <Link to="home-page"> */}
+
             <Button
               submitButton
               disabled={isValidating || !isValid}
@@ -177,18 +161,16 @@ function RegisterForm() {
             >
               Register
             </Button>
-            {/* </Link> */}
 
             <div>
               <p className="info">
                 * Your data will be saved on a secured server
               </p>
             </div>
-            {/* HERE */}
+
             <Link to="/register/artist" className="artistLink">
-              <a className="register-btn">Are you an artist? Register here</a>
+              Are you an artist? Register here
             </Link>
-            {/* HERE */}
           </div>
         </form>
       )}

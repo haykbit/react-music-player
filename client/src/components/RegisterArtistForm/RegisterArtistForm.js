@@ -9,8 +9,6 @@ import FormSchema from "./FormSchema";
 import "./style/RegisterForm.scss";
 import { registerWithEmailAndPassword } from "../../redux/auth/action";
 
-import { Link } from "react-router-dom";
-
 function RegisterArtistForm() {
   let history = useHistory();
   const dispatch = useDispatch();
@@ -28,6 +26,7 @@ function RegisterArtistForm() {
           registerWithEmailAndPassword(values.email, values.password, {
             firstName: values.name,
             lastName: values.surname,
+            artist: values.artist,
           })
         );
       }}
@@ -37,7 +36,7 @@ function RegisterArtistForm() {
         email: "",
         password: "",
         confirm: "",
-        // checkboxArtist: false,
+        artist: true,
         checkboxOne: false,
         checkboxTwo: false,
       }}
@@ -55,7 +54,7 @@ function RegisterArtistForm() {
       }) => (
         <form onSubmit={handleSubmit}>
           <div className="register-box">
-            <div className="text">Register Artist</div>
+            <div className="text">Artist</div>
             <div className="space"></div>
             <Input
               className="register-inputs name"
@@ -125,22 +124,6 @@ function RegisterArtistForm() {
               errorMessage={errors.email}
             />
             <div className="checkboxes">
-              {/*START */}
-              {/* <label>
-                <input
-                  type="checkbox"
-                  className="checkboxTwo"
-                  name="checkboxTwo"
-                  value={values.checkboxArtist}
-                  onChange={handleChange}
-                />
-                <span>¿Are you an Artist?</span>
-                <p className="info">
-                  * Please check if you are interested in share your music with
-                  everyone
-                </p>
-              </label> */}
-              {/* END */}
               <label>
                 <Checkbox
                   name="checkboxOne"
@@ -168,8 +151,7 @@ function RegisterArtistForm() {
                 <div className="errorMessage">{errors.checkboxOne}</div>
               )}
             </div>
-            {/* <button className="register-inputs button">Register</button> */}
-            {/* <Link to="home-page"> */}
+
             <Button
               submitButton
               disabled={isValidating || !isValid}
@@ -177,7 +159,6 @@ function RegisterArtistForm() {
             >
               Register
             </Button>
-            {/* </Link> */}
 
             <div>
               <p className="info">
