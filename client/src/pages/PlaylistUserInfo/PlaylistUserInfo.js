@@ -8,21 +8,23 @@ function PlaylistUserInfo(props) {
   const [userId, setUserId] = useState("");
   const [userInfo, setUserInfo] = useState(null);
 
-  let playlistUserData = "";
+  // let playlistUserData = "";
 
   const { loading, authObserverSuccess } = useSelector((state) => state.auth);
-
+  const { followUserSuccess, cancelFollowingUserSuccess } = useSelector(
+    (state) => state.user
+  );
   useEffect(() => {
-    if (!loading && authObserverSuccess && !props.location.state) {
+    if (!loading && authObserverSuccess) {
       getUrlId();
     }
   }, [loading]);
 
   useEffect(() => {
-    if (!loading && authObserverSuccess && !props.location.state) {
+    if (!loading && authObserverSuccess) {
       getUserInfo(userId);
     }
-  }, [userId]);
+  }, [userId, followUserSuccess, cancelFollowingUserSuccess]);
 
   function getUrlId() {
     const path = window.location.pathname.toString();
@@ -36,18 +38,18 @@ function PlaylistUserInfo(props) {
     }
   }
 
-  if (props.location.state) {
-    playlistUserData = props.location.state.userInfo;
-  }
+  // if (props.location.state) {
+  //   playlistUserData = props.location.state.userInfo;
+  // }
 
   return (
     <>
       <Navbar />
-      {playlistUserData ? (
+      {/* {playlistUserData ? (
         <PlaylistUser playlistUserData={playlistUserData} />
       ) : (
         ""
-      )}
+      )} */}
       {userInfo ? <PlaylistUser playlistUserData={userInfo} /> : ""}
     </>
   );

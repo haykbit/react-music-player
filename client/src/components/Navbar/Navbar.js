@@ -78,6 +78,9 @@ function Navbar() {
   const handlePlaylists = () => {
     history.push("/playlists");
   };
+  const handleNavProfileClick = () => {
+    window.location.replace(`/playlist-user/${user.uid}`);
+  };
   return (
     <>
       <div className="nav-container">
@@ -92,7 +95,7 @@ function Navbar() {
 
             <nav>
               <ul>
-                <li className="user-icon-li">
+                <li className="user-icon-li" onClick={handleNavProfileClick}>
                   <div
                     className="user-icon"
                     style={{

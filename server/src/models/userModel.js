@@ -72,6 +72,18 @@ const UserSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    following: {
+      type: Number,
+      default: 0,
+    },
+    followed: {
+      type: Number,
+      default: 0,
+    },
+    followedBy: {
+      type: [{ type: String, ref: "user" }],
+      default: [],
+    },
   },
   { timestamps: true }
 );
