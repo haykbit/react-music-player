@@ -24,7 +24,6 @@ function PlaylistCarrusel() {
   useEffect(() => {
     if (!loading && authObserverSuccess) {
       stableDispatch(displayPublicPlaylists(user.uid));
-      console.log(publicPlaylists);
     }
   }, [loading, authObserverSuccess, stableDispatch]);
 
@@ -48,8 +47,10 @@ function PlaylistCarrusel() {
                               backgroundRepeat: "no-repeat",
                             }}
                           >
-                            <div className="list-name">
-                              <h1>{playlist.title}</h1>
+                            <div className="dark-back">
+                              <div className="list-name">
+                                <h1>{playlist.title}</h1>
+                              </div>
                             </div>
                           </div>
                         </a>
