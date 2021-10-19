@@ -24,7 +24,9 @@ const FormSchema = Yup.object().shape({
         );
         return regExp.test(val);
       }
-    ),
+    )
+    .notOneOf([Yup.ref("currentPassword"), null], "New password cannot be same as the old one"),
+
   confirm: Yup.string()
     .required("Please confirm your password")
     .oneOf([Yup.ref("newPassword"), null], "Passwords must match"),

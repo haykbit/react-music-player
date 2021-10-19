@@ -13,6 +13,12 @@ import {
   UPDATE_EMAIL_SUCCESS,
   UPDATE_EMAIL_FAIL,
   RESET_USER_DATA,
+  FOLLOW_USER_REQUEST,
+  FOLLOW_USER_SUCCESS,
+  FOLLOW_USER_FAIL,
+  CANCEL_FOLLOW_USER_REQUEST,
+  CANCEL_FOLLOW_USER_SUCCESS,
+  CANCEL_FOLLOW_USER_FAIL,
 } from "./types";
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -97,6 +103,7 @@ const reducer = (state = INITIAL_STATE, action) => {
     case UPDATE_EMAIL_FAIL:
       return {
         ...state,
+        loading: false,
         error: action.payload,
       };
     case RESET_USER_DATA:
@@ -104,6 +111,50 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         userProfile: null,
         profileUpdated: false,
+      };
+    case FOLLOW_USER_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+        followUserSuccess: false,
+        cancelFollowingUserSuccess: false,
+      };
+    case FOLLOW_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        followUserSuccess: true,
+        error: null,
+      };
+    case FOLLOW_USER_FAIL:
+      return {
+        ...state,
+        followUserSuccess: false,
+        loading: false,
+        error: action.payload,
+      };
+    case CANCEL_FOLLOW_USER_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+        followUserSuccess: false,
+        cancelFollowingUserSuccess: false,
+      };
+    case CANCEL_FOLLOW_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        cancelFollowingUserSuccess: true,
+        error: null,
+      };
+    case CANCEL_FOLLOW_USER_FAIL:
+      return {
+        ...state,
+        loading: false,
+        cancelFollowingUserSuccess: false,
+        error: action.payload,
       };
     default:
       return { ...state };

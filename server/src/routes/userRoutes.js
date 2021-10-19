@@ -9,6 +9,12 @@ userRouter.get("/artists", authMiddleware, userController.getArtisticPeople);
 userRouter.post("/login", authMiddleware, userController.signIn);
 userRouter.get("/:id", authMiddleware, userController.getUserById);
 userRouter.patch("/:id", authMiddleware, userController.updateUser);
+userRouter.patch("/follow/:id", authMiddleware, userController.followUser);
+userRouter.patch(
+  "/cancel-follow/:id",
+  authMiddleware,
+  userController.cancelFollowUser
+);
 userRouter.put(
   "/update-email/:id",
   authMiddleware,
