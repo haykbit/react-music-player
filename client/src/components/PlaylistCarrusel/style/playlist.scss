@@ -2,9 +2,23 @@
   margin-left: 25px;
   margin-top: 40px;
 
+  .recomend-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+
+    .recomend-icon {
+      width: 40px;
+      height: 40px;
+      margin-left: 20px;
+      color: #fff;
+    }
+  }
+
   h2 {
     color: #fff;
     font-size: 50px;
+    margin: 0px;
   }
 
   h1 {

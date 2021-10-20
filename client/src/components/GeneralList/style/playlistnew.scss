@@ -7,6 +7,7 @@
   h2 {
     color: #fff;
     font-size: 40px;
+    margin-right: 20px;
   }
 
   h1 {
@@ -16,15 +17,53 @@
 
   .new-spain {
     width: 50%;
+
+    .new-title {
+      display: flex;
+      align-items: center;
+
+      .icon-like {
+        width: 30px;
+        height: 30px;
+        color: #fff;
+      }
+    }
   }
 
   .new-world {
     width: 50%;
+    .new-title {
+      display: flex;
+      align-items: center;
+
+      .icon-like {
+        width: 30px;
+        height: 30px;
+        color: #fff;
+      }
+    }
   }
 }
 
 .song-list {
   .song-container {
     width: 90%;
+  }
+}
+
+@media (max-width: 940px) {
+  .newlist-container {
+    display: block;
+
+    .new-spain,
+    .new-world {
+      width: 90%;
+    }
+  }
+
+  .song-list {
+    .song-container {
+      width: 100%;
+    }
   }
 }

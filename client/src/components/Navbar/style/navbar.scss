@@ -172,6 +172,11 @@ nav {
   justify-content: flex-end;
   margin-right: 35px;
 }
+@media (max-width: 940px) {
+  .menu-actions {
+    margin-right: 15px;
+  }
+}
 
 .user-icon {
   width: 38px;

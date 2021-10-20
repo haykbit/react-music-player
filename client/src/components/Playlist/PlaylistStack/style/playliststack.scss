@@ -58,6 +58,31 @@
       h5 {
         margin: 0px 0px 0px 20px;
       }
+
+      @media (max-width: 1140px) {
+        h3,
+        h5 {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          width: 140px;
+          height: 1.2em;
+          white-space: nowrap;
+        }
+      }
+
+      @media (max-width: 940px) {
+        h3,
+        h5 {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 625px) {
+        h3,
+        h5 {
+          width: 100px;
+        }
+      }
     }
   }
 

@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 125px;
+  height: 120px;
   color: #fff;
   background-color: #0b0b0b;
   box-shadow: 4px -8px 32px 0px rgba(0, 0, 0, 0.75);
@@ -50,15 +50,24 @@
     width: 100%;
     align-items: center;
     justify-content: center;
-    margin-right: 150px;
     margin-left: 10px;
 
     .track-bar {
       display: flex;
       width: 100%;
+      margin-right: 40px;
 
       h4 {
         width: 40px;
+      }
+    }
+
+    @media (max-width: 750px) {
+      .track-bar,
+      .add-icon,
+      .volume-icon,
+      .volume {
+        display: none;
       }
     }
 
@@ -87,12 +96,19 @@
       margin-left: 5px;
     }
 
+    @media (max-width: 850px) {
+      .artwork {
+        width: 50px;
+        height: 50px;
+        border-radius: 7px;
+      }
+    }
+
     .song-info {
       display: flex;
       flex-direction: column;
-      margin-left: 20px;
-      width: 50%;
-      flex-wrap: nowrap;
+      margin: 0px 0px 0px 20px;
+      width: 40%;
       color: #fff;
 
       h4 {
@@ -103,6 +119,44 @@
         margin: 0;
         font-size: 17px;
         font-weight: 500;
+      }
+
+      @media (max-width: 1175px) {
+        h4 {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          width: 150px;
+          height: 1.2em;
+          white-space: nowrap;
+        }
+      }
+
+      @media (max-width: 850px) {
+        h4 {
+          font-size: 15px;
+        }
+        h6 {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  .audio-player {
+    height: 80px;
+
+    .track-info {
+      width: 80%;
+
+      .song-info {
+        h4 {
+          font-size: 20px;
+        }
+        h6 {
+          font-size: 17px;
+        }
       }
     }
   }

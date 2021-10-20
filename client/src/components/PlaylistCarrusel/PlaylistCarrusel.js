@@ -5,6 +5,7 @@ import { authObserverLoading } from "../../redux/auth/action";
 import { displayPublicPlaylists } from "../../redux/playlist/action";
 import { sortPublicPlaylistsByLikes } from "../../api/api";
 import portadaUno from "../../assets/images/icons/portada-1.png";
+import { GiLoveSong } from "react-icons/gi";
 
 import "./style/playlist.scss";
 
@@ -34,7 +35,10 @@ function PlaylistCarrusel() {
   return (
     <>
       <div className="recomend-container">
-        <h2 className="recomend-title">You may like</h2>
+        <div className="recomend-title">
+          <h2 className="title">You may like</h2>
+          <GiLoveSong className="recomend-icon" />
+        </div>
         <div className="recomend-list">
           <div className="scroll-container">
             <div className="scroll">

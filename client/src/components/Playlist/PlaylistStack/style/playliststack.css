@@ -15,6 +15,11 @@
 }
 
 .DragDropList .characters li {
+<<<<<<< HEAD
+  display: -webkit-box;
+  display: -ms-flexbox;
+=======
+>>>>>>> develop
   display: flex;
   align-items: center;
   border-radius: 0.2em;
@@ -60,6 +65,31 @@
 .song-container .song-list-playlist .song-info h3,
 .song-container .song-list-playlist .song-info h5 {
   margin: 0px 0px 0px 20px;
+}
+
+@media (max-width: 1140px) {
+  .song-container .song-list-playlist .song-info h3,
+  .song-container .song-list-playlist .song-info h5 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 140px;
+    height: 1.2em;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 940px) {
+  .song-container .song-list-playlist .song-info h3,
+  .song-container .song-list-playlist .song-info h5 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 625px) {
+  .song-container .song-list-playlist .song-info h3,
+  .song-container .song-list-playlist .song-info h5 {
+    width: 100px;
+  }
 }
 
 .song-container .playlists-header {
