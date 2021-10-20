@@ -5,13 +5,19 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   width: 100%;
-  height: 90px;
+  height: 120px;
   color: #fff;
   background-color: #0b0b0b;
   -webkit-box-shadow: 4px -8px 32px 0px rgba(0, 0, 0, 0.75);
           box-shadow: 4px -8px 32px 0px rgba(0, 0, 0, 0.75);
   position: fixed;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
   bottom: 0;
   border-radius: 22px 22px 0px 0px;
 }
@@ -23,15 +29,15 @@
 }
 
 .audio-player .volume-icon {
-  width: 50px;
+  width: 60px;
   height: 50px;
   color: #fff;
   margin-left: 30px;
 }
 
 .audio-player .add-icon {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 50px;
   color: white;
   margin-left: 20px;
   cursor: pointer;
@@ -57,14 +63,28 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: 100%;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-left: 20px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.audio-player .track-info .track-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+
+.audio-player .track-info .track-bar h4 {
+  width: 40px;
 }
 
 .audio-player .track-info .progress {
-  width: 520px;
+  width: 100%;
   margin: 0px 20px 0px 20px;
 }
 
@@ -94,7 +114,7 @@
       -ms-flex-direction: column;
           flex-direction: column;
   margin: 0px 40px 0px 20px;
-  width: 150px;
+  width: 50%;
   color: #fff;
 }
 
@@ -107,16 +127,5 @@
   margin: 0;
   font-size: 17px;
   font-weight: 500;
-}
-
-.audio-player .track-info .track-bar {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 620px;
-}
-
-.audio-player .track-info .track-bar h4 {
-  width: 40px;
 }
 /*# sourceMappingURL=songbar.css.map */

@@ -18,10 +18,9 @@
   border-radius: 7px;
   border: none;
   outline: none;
-}
-
-.profile-container .profile-card .profile-component {
-  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
 }
 
 .profile-container .profile-card h2 {
