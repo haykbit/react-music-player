@@ -2,6 +2,20 @@
 ## 📔 Description
 ## Table of Contents <!-- omit in toc -->
 
+## Requirements
+
+This project runs with some specific technologies that require a previous installation to work with it:
+
+| Function       | Technology                                      | Required |
+| -------------- | ----------------------------------------------- | -------- |
+| Code editor    | [VS Code](https://code.visualstudio.com/)       | True*    |
+| Mongo DataBase | [MongoDB](https://www.mongodb.com/)             | True     |
+| MongoDB Visual Interface | [Visual BD Helper](https://www.mongodb.com/products/compass)      | False |
+| Web server stack package   | [XAMPP](https://www.apachefriends.org/es/index.html) / [MAMP](https://www.mamp.info/en/windows/) | True |
+| Package manager for PHP   | [Composer](https://getcomposer.org/) | True     |
+
+*_You can choose between the dozens of possibilities, VSCode is only a recommendation_
+
 ## Getting Started
 1. Clone the repository
    
@@ -14,14 +28,24 @@
     ```
 3. Start
 
-- Open terminals for client and server
+- Open terminals for client
 
     ```
    $ yarn client  
-   ```     
+   ``` 
+   
+- Open terminal for NodeJs server (don't forget to initialise MongoDB) 
+   
+   ```
+   $yarn server
+   ```
+   
+- And last but not least open terminal for Laravel server (and remember to start your XAMPP or MAMP package)
+   
    ```
    $ yarn server
    ``` 
+
 
 ## Dependencies
 - [React](https://reactjs.org/)
