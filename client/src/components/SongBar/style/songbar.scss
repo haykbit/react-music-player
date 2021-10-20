@@ -3,7 +3,11 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+<<<<<<< HEAD
   height: 120px;
+=======
+  height: 125px;
+>>>>>>> develop
   color: #fff;
   background-color: #0b0b0b;
   box-shadow: 4px -8px 32px 0px rgba(0, 0, 0, 0.75);
@@ -42,6 +46,7 @@
   .audio-controls {
     display: flex;
     margin: 0px 20px 0px 0px;
+    margin-left: 15px;
   }
 
   .track-info {
@@ -49,6 +54,8 @@
     width: 100%;
     align-items: center;
     justify-content: center;
+    margin-right: 150px;
+    margin-left: 10px;
 
     .track-bar {
       display: flex;
@@ -75,7 +82,7 @@
     }
 
     .volume {
-      width: 100px;
+      width: 30%;
       margin: 0px 20px 0px 20px;
     }
 
@@ -88,9 +95,10 @@
     }
 
     .artwork {
-      width: 70px;
-      height: 70px;
-      border-radius: 7px;
+      width: 55px;
+      height: 55px;
+      border-radius: 5px;
+      margin-left: 5px;
     }
 
     @media (max-width: 850px) {
@@ -104,8 +112,14 @@
     .song-info {
       display: flex;
       flex-direction: column;
+<<<<<<< HEAD
       margin: 0px 0px 0px 20px;
       width: 40%;
+=======
+      margin-left: 20px;
+      width: 50%;
+      flex-wrap: nowrap;
+>>>>>>> develop
       color: #fff;
 
       h4 {

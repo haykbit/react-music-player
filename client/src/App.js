@@ -19,6 +19,7 @@ import ArtistPage from "./pages/Artist";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Spinner from "./components/Spinner/Spinner";
 
 function App() {
   const history = useHistory();
@@ -26,6 +27,9 @@ function App() {
   const dispatch = useDispatch();
   const userStorage = JSON.parse(localStorage.getItem("user"));
   const { loading, authObserverSuccess } = useSelector((state) => state.auth);
+  const songLoading = useSelector((state) => state.song.uploadSongLoading);
+  const userLoading = useSelector((state) => state.user.updateLoading);
+
   useEffect(() => {
     dispatch(authObserverLoading());
     if (!loading && !authObserverSuccess && !userStorage) {
@@ -35,21 +39,32 @@ function App() {
     }
   }, [dispatch]);
 
+  const handleBack = () => {
+    history.goBack();
+  };
+
   return (
     <>
-      <Switch>
-        <Route path="/home-page" exact component={Home} />
-        <Route path="/register" exact component={Register} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/profile" exact component={Profile} />
-        <Route path="/mysongs" exact component={UploadedSongs} />
-        <Route path="/favorites" exact component={FavSongs} />
-        <Route path="/playlist/:id" exact component={IndividualPlaylist} />
-        <Route path="/my-playlists" exact component={MyPlaylists} />
-        <Route path="/playlists" exact component={Playlists} />
-        <Route path="/playlist-user/:id" exact component={PlaylistUserInfo} />
-        <Route path="/artist" exact component={ArtistPage} />
-      </Switch>
+      <div className="arrow-container">
+        <div className="arrow-left" onClick={handleBack}></div>
+      </div>
+      {songLoading || userLoading ? (
+        <Spinner color={"white"} loading={true} />
+      ) : (
+        <Switch>
+          <Route path="/home-page" exact component={Home} />
+          <Route path="/register" exact component={Register} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/profile" exact component={Profile} />
+          <Route path="/mysongs" exact component={UploadedSongs} />
+          <Route path="/favorites" exact component={FavSongs} />
+          <Route path="/playlist/:id" exact component={IndividualPlaylist} />
+          <Route path="/my-playlists" exact component={MyPlaylists} />
+          <Route path="/playlists" exact component={Playlists} />
+          <Route path="/playlist-user/:id" exact component={PlaylistUserInfo} />
+          <Route path="/artist" exact component={ArtistPage} />
+        </Switch>
+      )}
       {authObserverSuccess ? <AudioPlayer /> : null}
       <ToastContainer
         position="top-center"

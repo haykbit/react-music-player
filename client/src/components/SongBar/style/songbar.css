@@ -77,11 +77,15 @@
   display: -ms-flexbox;
   display: flex;
   width: 100%;
+<<<<<<< HEAD
   margin-right: 40px;
+=======
+>>>>>>> develop
 }
 
 .audio-player .track-info .track-bar h4 {
   width: 40px;
+<<<<<<< HEAD
 }
 
 @media (max-width: 750px) {
@@ -91,6 +95,8 @@
   .audio-player .track-info .volume {
     display: none;
   }
+=======
+>>>>>>> develop
 }
 
 .audio-player .track-info .progress {
@@ -131,8 +137,13 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+<<<<<<< HEAD
   margin: 0px 0px 0px 20px;
   width: 40%;
+=======
+  margin: 0px 40px 0px 20px;
+  width: 50%;
+>>>>>>> develop
   color: #fff;
 }
 
@@ -146,6 +157,7 @@
   font-size: 17px;
   font-weight: 500;
 }
+<<<<<<< HEAD
 
 @media (max-width: 1175px) {
   .audio-player .track-info .song-info h4 {
@@ -180,4 +192,6 @@
     font-size: 17px;
   }
 }
+=======
+>>>>>>> develop
 /*# sourceMappingURL=songbar.css.map */

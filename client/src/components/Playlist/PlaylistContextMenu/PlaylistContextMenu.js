@@ -45,39 +45,47 @@ function PlaylistContextMenu({
   return (
     <>
       {show ? (
-        <div className="context-menu-container" onClick={() => closeMenu()}>
-          <div className="context-menu" onClick={(e) => e.stopPropagation()}>
-            {playlist.owner === userId ? (
-              <>
-                <li className="menu-option-box" onClick={() => handleAddSong()}>
-                  Add Song
-                </li>
-                <li
-                  className="menu-option-box"
-                  onClick={() => {
-                    editHandle();
-                    closeMenu();
-                  }}
-                >
-                  Edit Playlist
-                </li>
+        <div>
+          <div
+            className="context-menu-container-playlist"
+            onClick={() => closeMenu()}
+          >
+            <div className="context-menu" onClick={(e) => e.stopPropagation()}>
+              {playlist.owner === userId ? (
+                <>
+                  <li
+                    className="menu-option-box"
+                    onClick={() => handleAddSong()}
+                  >
+                    Add Song
+                  </li>
+                  <li
+                    className="menu-option-box"
+                    onClick={() => {
+                      editHandle();
+                      closeMenu();
+                    }}
+                  >
+                    Edit Playlist
+                  </li>
 
-                <li
-                  className="menu-option-box"
-                  onClick={() => {
-                    deleteHandle();
-                    closeMenu();
-                  }}
-                >
-                  Delete Playlist
-                </li>
-              </>
-            ) : (
-              ""
-            )}
-            <li className="menu-option-box" onClick={() => handleShare()}>
-              Share
-            </li>
+                  <li
+                    className="menu-option-box"
+                    onClick={() => {
+                      deleteHandle();
+                      closeMenu();
+                    }}
+                  >
+                    Delete Playlist
+                  </li>
+                </>
+              ) : (
+                ""
+              )}
+              <li className="menu-option-box" onClick={() => handleShare()}>
+                Share
+              </li>
+            </div>
           </div>
         </div>
       ) : null}

@@ -1,22 +1,9 @@
-@-webkit-keyframes App-logo-spin {
-  from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
-}
-
 @keyframes App-logo-spin {
   from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   to {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
@@ -28,12 +15,13 @@
 }
 
 .DragDropList .characters li {
+<<<<<<< HEAD
   display: -webkit-box;
   display: -ms-flexbox;
+=======
+>>>>>>> develop
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   border-radius: 0.2em;
   width: 90%;
 }
@@ -55,24 +43,21 @@
 }
 
 .song-container .song-list-playlist {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
+  width: 100%;
   margin-top: 15px;
   background-color: #171717;
   padding: 10px;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-between;
+  align-items: center;
   border-radius: 10px;
 }
 
+.song-container .song-list-playlist:hover {
+  background-color: #666666;
+}
+
 .song-container .song-list-playlist .song-info {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   color: #fff;
 }
@@ -108,13 +93,9 @@
 }
 
 .song-container .playlists-header {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   color: #fff;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   margin-left: 75px;
 }
 
@@ -134,30 +115,25 @@
   background-color: #fff;
   border-radius: 5px;
   margin-left: 8px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .song-container .song-actions-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
 .song-container .song-actions-container .song-actions {
-  width: 150px;
+  width: 100%;
   height: 40px;
   background-color: #0f0f0f;
   border-radius: 50px;
   margin-right: 10px;
   color: #fff;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .song-container .song-actions-container .song-actions .song-play .play-icon {
@@ -174,15 +150,11 @@
   border: none;
   background-color: #363636;
   cursor: pointer;
-  -webkit-transition: -webkit-transform 0.2s;
-  transition: -webkit-transform 0.2s;
   transition: transform 0.2s;
-  transition: transform 0.2s, -webkit-transform 0.2s;
 }
 
 .song-container .song-actions-container .song-actions .song-play button:hover {
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .song-container .song-actions-container .song-actions .song-like .like-icon {
@@ -194,6 +166,7 @@
 }
 
 .song-container .song-actions-container .song-actions .song-like .like-icon:hover {
+  transform: scale(1.2);
   color: #ff4747;
 }
 
@@ -202,7 +175,7 @@
 }
 
 .song-container .song-actions-container .song-actions .song-like button {
-  width: 40px;
+  width: 100%;
   height: 40px;
   border: none;
   background-color: transparent;
@@ -210,17 +183,13 @@
 }
 
 .song-container .context-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   margin-bottom: 4px;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
 
 .song-container .context-container .context-icon {
-  width: 30px;
+  width: 100%;
   height: 30px;
 }
 
@@ -237,5 +206,45 @@
   border: none;
   font-size: larger;
   height: 30px;
+}
+
+@media only screen and (max-width: 400px) {
+  .song-container {
+    width: 370px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .song-container .song-list-playlist .song-actions {
+    width: 100px;
+  }
+  .song-container .song-list-playlist .song-info {
+    font-size: 12px;
+  }
+  .song-container .song-list-playlist .context-icon {
+    width: 20px;
+    height: 30px;
+  }
+}
+
+.song-play .play-icon {
+  width: 22px;
+  height: 18px;
+  color: #fff;
+  margin-top: 3px;
+}
+
+.song-play button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  border: none;
+  background-color: #363636;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.song-play button:hover {
+  transform: scale(1.1);
 }
 /*# sourceMappingURL=playliststack.css.map */

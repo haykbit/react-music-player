@@ -90,13 +90,13 @@
           justify-content: space-evenly;
           align-items: center;
 
-          .upload-button:hover {
+          &:hover {
             svg {
               color: rgb(0, 119, 255);
             }
           }
 
-          .upload-button:active {
+          &:active {
             box-shadow: 0px 0px 0px 3px rgb(0, 119, 255);
             transform: scale(0.97);
           }
@@ -182,4 +182,31 @@
       }
     }
   }
+}
+@media only screen and (max-width: 843px) {
+  .my-playlist-body {
+    .right-side {
+      display: none;
+    }
+    .left-side {
+      width: 100%;
+      .playlist-title {
+        .album-column {
+          height: 200px;
+        }
+        .text-column {
+          margin-right: 15px;
+          h1 {
+            font-weight: 500;
+          }
+          h3 {
+            font-weight: 300;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 400px) {
 }

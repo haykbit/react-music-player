@@ -73,5 +73,5 @@ const PlaylistSchema = new Schema(
 
 const Playlist = mongoose.model("Playlist", PlaylistSchema);
 module.exports = {
-  Playlist: Playlist,
+  Playlist,
 };
