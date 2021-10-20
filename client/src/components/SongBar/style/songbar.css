@@ -57,6 +57,7 @@
   display: -ms-flexbox;
   display: flex;
   margin: 0px 20px 0px 0px;
+  margin-left: 15px;
 }
 
 .audio-player .track-info {
@@ -70,6 +71,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  margin-left: 10px;
 }
 
 .audio-player .track-info .track-bar {
@@ -77,15 +79,11 @@
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-<<<<<<< HEAD
   margin-right: 40px;
-=======
->>>>>>> develop
 }
 
 .audio-player .track-info .track-bar h4 {
   width: 40px;
-<<<<<<< HEAD
 }
 
 @media (max-width: 750px) {
@@ -95,8 +93,6 @@
   .audio-player .track-info .volume {
     display: none;
   }
-=======
->>>>>>> develop
 }
 
 .audio-player .track-info .progress {
@@ -105,7 +101,7 @@
 }
 
 .audio-player .track-info .volume {
-  width: 100px;
+  width: 30%;
   margin: 0px 20px 0px 20px;
 }
 
@@ -116,9 +112,10 @@
 }
 
 .audio-player .track-info .artwork {
-  width: 70px;
-  height: 70px;
-  border-radius: 7px;
+  width: 55px;
+  height: 55px;
+  border-radius: 5px;
+  margin-left: 5px;
 }
 
 @media (max-width: 850px) {
@@ -137,13 +134,8 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-<<<<<<< HEAD
   margin: 0px 0px 0px 20px;
   width: 40%;
-=======
-  margin: 0px 40px 0px 20px;
-  width: 50%;
->>>>>>> develop
   color: #fff;
 }
 
@@ -157,7 +149,6 @@
   font-size: 17px;
   font-weight: 500;
 }
-<<<<<<< HEAD
 
 @media (max-width: 1175px) {
   .audio-player .track-info .song-info h4 {
@@ -192,6 +183,4 @@
     font-size: 17px;
   }
 }
-=======
->>>>>>> develop
 /*# sourceMappingURL=songbar.css.map */

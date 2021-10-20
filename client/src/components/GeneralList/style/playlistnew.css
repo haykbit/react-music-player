@@ -22,7 +22,6 @@
   width: 50%;
 }
 
-<<<<<<< HEAD
 .newlist-container .new-spain .new-title {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -38,13 +37,10 @@
   color: #fff;
 }
 
-=======
->>>>>>> develop
 .newlist-container .new-world {
   width: 50%;
 }
 
-<<<<<<< HEAD
 .newlist-container .new-world .new-title {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -75,9 +71,5 @@
   .song-list .song-container {
     width: 100%;
   }
-=======
-.song-list .song-container {
-  width: 90%;
->>>>>>> develop
 }
 /*# sourceMappingURL=playlistnew.css.map */

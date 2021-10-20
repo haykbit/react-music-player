@@ -3,11 +3,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-<<<<<<< HEAD
   height: 120px;
-=======
-  height: 125px;
->>>>>>> develop
   color: #fff;
   background-color: #0b0b0b;
   box-shadow: 4px -8px 32px 0px rgba(0, 0, 0, 0.75);
@@ -54,7 +50,6 @@
     width: 100%;
     align-items: center;
     justify-content: center;
-    margin-right: 150px;
     margin-left: 10px;
 
     .track-bar {
@@ -112,14 +107,8 @@
     .song-info {
       display: flex;
       flex-direction: column;
-<<<<<<< HEAD
       margin: 0px 0px 0px 20px;
       width: 40%;
-=======
-      margin-left: 20px;
-      width: 50%;
-      flex-wrap: nowrap;
->>>>>>> develop
       color: #fff;
 
       h4 {
