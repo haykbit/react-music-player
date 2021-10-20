@@ -6,7 +6,34 @@
 
 ## Dependencies
 
+- [React](https://reactjs.org/)
+- [React-Dom](https://reactjs.org/docs/react-dom.html)
+- [React-Redux](https://react-redux.js.org/)
+- [React-Router-DOM](https://reactrouter.com/web/guides/quick-start)
+- [React-Icons](https://react-icons.github.io/react-icons/)
+- [React-Spinners](https://github.com/davidhu2000/react-spinners)
+- [React-Toastify](https://github.com/fkhadra/react-toastify)
+- [React-Beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd)
+- [React-easy-sort](https://github.com/ricardo-ch/react-easy-sort)
+- [Redux](https://redux.js.org/)
+- [Formik](https://formik.org/)
+- [Yup](https://github.com/jquense/yup)
+- [Express](https://expressjs.com/)
+- [Axios](https://github.com/axios/axios)
+- [Firebase](https://firebase.google.com/)
+- [Cross-env](https://github.com/kentcdodds/cross-env)
+- [Dotenv](https://github.com/motdotla/dotenv)
+- [Mongoose](https://mongoosejs.com/)
+- [Body-parser](https://github.com/expressjs/body-parser)
+- [Helmet](https://github.com/helmetjs/helmet)
+- [CORS](https://github.com/expressjs/cors)
+- [Lodash](https://lodash.com/)
+- [Sass](https://sass-lang.com/)
+- [PostCSS](https://postcss.org/)
+
 ## Contents and Branches Naming Strategy
+
+This project has a naming strategy for its different elements to facilitate and unify the work between its Collaborators. These conventions are presented below.
 
 ## File Structure
 
