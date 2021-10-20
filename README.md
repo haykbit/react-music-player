@@ -53,6 +53,23 @@
 
 This project has a naming strategy for its different elements to facilitate and unify the work between its Collaborators. These conventions are presented below.
 
+### Branches
+Branches are always preceded by a Category Word and a Number.
+
+The category word tries to be descriptive and define the content of the branch: __F__ for __Features__, __FIX__ for __fixes__ and __error handling__, __DOC__ for __Documentation__ or __ENH__ for __Enhancements__.
+
+This category word is followed by a number, that always correspond with the __issue number__ of the project. This is an easy an ordered system that allows the Collaborators to find and work easily on each task.
+
+After this featured code, you can find a short but descriptive name that is separated by hyphens.
+
+By this rule this is a real case of the Branch name that you can find in this same project: _F01/user-authentication_.
+
+### Structural elements
+Structural element names have a strict policy to be simple, clear and descriptive. This element includes React components and pages as well as all the main elements of Servers, and normally have to be written with __camelCase__ convention. The exception to this are React components, who are written using __PascalCase__ convention.
+
+### Style elements
+Style elements, that includes all _scss_ files and _classes_ have the same rules: lowercase connected by hyphens. The names need to be __descriptive__ but __short__ and, in case they are nested components or classes, should have a reference of their __parent element__ on the name.
+
 ## File Structure
 - Front-end
 ```
