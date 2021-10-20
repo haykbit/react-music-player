@@ -3,6 +3,7 @@ const INITIAL_STATE = {
   loading: false,
   error: null,
   getUserProfileSuccess: false,
+  updateLoading: false,
   profileUpdated: false,
   followUserSuccess: false,
   cancelFollowingUserSuccess: false,

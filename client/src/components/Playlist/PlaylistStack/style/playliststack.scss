@@ -6,45 +6,49 @@
     transform: rotate(360deg);
   }
 }
+.DragDropList {
+  .characters {
+    list-style: none;
+    padding-left: 0;
+    width: 100%;
+    margin-top: 20px;
+  }
 
-.characters {
-  list-style: none;
-  padding-left: 0;
-  width: 100%;
-  margin-top: 50px;
-}
+  .characters li {
+    display: flex;
+    align-items: center;
+    border-radius: 0.2em;
+    width: 90%;
+  }
 
-.characters li {
-  display: flex;
-  align-items: center;
-  border-radius: 0.2em;
-  width: 90%;
-}
+  .characters-thumb img {
+    display: block;
+    width: 55px;
+    border-radius: 5px;
+    height: auto;
+  }
 
-.characters-thumb img {
-  display: block;
-  width: 55px;
-  border-radius: 5px;
-  height: auto;
-}
-
-.container-global {
-  width: 50px;
-  height: 100px;
-  background-color: red;
+  .container-global {
+    width: 50px;
+    height: 100px;
+  }
 }
 
 .song-container {
   width: 100%;
-
   .song-list-playlist {
     display: flex;
+    width: 100%;
     margin-top: 15px;
     background-color: #171717;
     padding: 10px;
     justify-content: space-between;
     align-items: center;
     border-radius: 10px;
+
+    &:hover {
+      background-color: #666666;
+    }
 
     .song-info {
       display: flex;
@@ -80,6 +84,9 @@
     background-color: #fff;
     border-radius: 5px;
     margin-left: 8px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 
   .song-actions-container {
@@ -126,6 +133,7 @@
           margin-right: 5px;
 
           &:hover {
+            transform: scale(1.2);
             color: rgb(255, 71, 71);
           }
 

@@ -68,13 +68,13 @@ const reducer = (state = INITIAL_STATE, action) => {
         userProfile: null,
         loading: false,
         error: action.payload,
-        getUserProfileSuccess: false,
         profileUpdated: false,
       };
     case UPDATE_PASSWORD_REQUEST:
       return {
         ...state,
         loading: true,
+        updateLoading: true,
         error: null,
       };
     case UPDATE_PASSWORD_SUCCESS:
@@ -82,16 +82,19 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: false,
         profileUpdated: true,
+        updateLoading: false,
       };
     case UPDATE_PASSWORD_FAIL:
       return {
         ...state,
         error: action.payload,
+        updateLoading: false,
       };
     case UPDATE_EMAIL_REQUEST:
       return {
         ...state,
         loading: true,
+        updateLoading: true,
         error: null,
       };
     case UPDATE_EMAIL_SUCCESS:
@@ -99,11 +102,13 @@ const reducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: false,
         profileUpdated: true,
+        updateLoading: false,
       };
     case UPDATE_EMAIL_FAIL:
       return {
         ...state,
         loading: false,
+        updateLoading: false,
         error: action.payload,
       };
     case RESET_USER_DATA:

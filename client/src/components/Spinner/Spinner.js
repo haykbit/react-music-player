@@ -1,10 +1,10 @@
 import React from "react";
-import BounceLoader from "react-spinners/BounceLoader";
-
-function Spinner() {
+import ScaleLoader from "react-spinners/ScaleLoader";
+import "./style/spinner.scss";
+function Spinner({ color, loading }) {
   return (
-    <div>
-      <BounceLoader />
+    <div className="loader-container">
+      <ScaleLoader height={35} color={color} loading={loading} />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 .my-playlist-body {
-  height: 100%;
   display: flex;
+  height: 100%;
 
   .left-side {
     display: flex;
@@ -9,19 +9,20 @@
     display: flex;
     flex-direction: column;
     margin-left: 30px;
+    margin-bottom: 100px;
 
     .playlist-title {
       display: flex;
-      height: 35vh;
+      height: 25vh;
       width: 100%;
       height: fit-content;
       box-sizing: border-box;
-      padding: 20px;
+      padding: 15px;
       border-bottom: rgb(95, 95, 95, 0.2) 0.5px solid;
 
       .album-column {
-        height: 300px;
-        width: 350px;
+        height: 250px;
+        width: 250px;
         border-radius: 20px;
         background-position: center;
       }
@@ -73,16 +74,38 @@
           font-size: larger;
           height: 30px;
         }
+        .upload-button {
+          width: 130px;
+          padding: 15px;
+          margin-top: 40px;
+          background-color: #171717;
+          color: #fff;
+          border-radius: 10px;
+          font-weight: 600;
+          border: none;
+          text-align: center;
+          cursor: pointer;
+          z-index: 1;
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
 
-        .upload-button:hover {
-          svg {
-            color: rgb(0, 119, 255);
+          &:hover {
+            svg {
+              color: rgb(0, 119, 255);
+            }
           }
-        }
 
-        .upload-button:active {
-          box-shadow: 0px 0px 0px 3px rgb(0, 119, 255);
-          transform: scale(0.97);
+          &:active {
+            box-shadow: 0px 0px 0px 3px rgb(0, 119, 255);
+            transform: scale(0.97);
+          }
+          .upload-icon {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            color: #fff;
+          }
         }
         .follow-button {
           border-radius: 5px;
@@ -102,10 +125,11 @@
       }
     }
     .song-stack {
+      display: flex;
+      flex-direction: column;
       height: 100%;
       width: 100%;
-      box-sizing: border-box;
-      padding: 10px;
+      overflow: scroll;
     }
   }
 
@@ -115,7 +139,9 @@
     height: 90vh;
     width: 40%;
     box-sizing: border-box;
-    padding: 20px;
+    padding: 15px;
+    justify-content: center;
+    align-items: center;
 
     .relevant-title {
       display: flex;
@@ -140,8 +166,8 @@
         margin-right: 15px;
       }
       .album-image {
-        width: 120px;
-        height: 120px;
+        width: 150px;
+        height: 150px;
         border-radius: 5px;
       }
       .relevant-song-name {

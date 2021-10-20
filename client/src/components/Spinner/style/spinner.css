@@ -1,0 +1,22 @@
+.loader-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100vh;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.loader-container .loader {
+  text-align: center;
+}
+
+.loader-container .loader span {
+  position: absolute;
+  top: 30vh;
+}
+/*# sourceMappingURL=spinner.css.map */

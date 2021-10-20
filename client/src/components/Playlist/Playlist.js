@@ -37,7 +37,6 @@ function Playlist({ playlist }) {
     editModal: false,
     deleteModal: false,
   });
-  const [follow, setFollow] = useState(false);
   const [myFavPlaylists, setMyFavPlaylists] = useState([]);
   const [displaySongs, setDisplaySongs] = useState([]);
 
@@ -79,8 +78,10 @@ function Playlist({ playlist }) {
   }
 
   function handleFollowClick() {
-    setFollow((prev) => !prev);
-    if (follow === false) {
+    const isFollowed = myFavPlaylists.some(
+      (ele) => ele["_id"] === playlist._id
+    );
+    if (isFollowed === false) {
       dispatch(followPlaylist(playlist._id, user.uid));
     } else {
       dispatch(cancelFollowPlaylist(playlist._id, user.uid));
@@ -175,7 +176,7 @@ function Playlist({ playlist }) {
                   <IoMdMore className="context-icon" />
                 </button>
 
-                <div className="context-container">
+                <div className="context-container-playlist">
                   <PlaylistContextMenu
                     show={contextMenu}
                     closeMenu={ToggleContext}
@@ -184,7 +185,6 @@ function Playlist({ playlist }) {
                     ToggleDeleteModal={ToggleDeleteModal}
                     playlist={playlist}
                     handleFollowClick={handleFollowClick}
-                    follow={follow}
                   />
                 </div>
               </div>

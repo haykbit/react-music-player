@@ -9,7 +9,7 @@ import portadaDos from "../../assets/images/albums/arctic-album-1.jpeg";
 import portadaTres from "../../assets/images/albums/arctic-album-2.jpeg";
 import portadaCuatro from "../../assets/images/albums/arctic-album-3.jpeg";
 
-import "./style/playlistcomponent.scss";
+// import "./style/playlistcomponent.scss";
 import { getUserProfile } from "../../api/api";
 
 function FavSongsPlaylist() {
