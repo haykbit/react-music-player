@@ -20,14 +20,14 @@
   }
 }
 
-.characters {
+.DragDropList .characters {
   list-style: none;
   padding-left: 0;
   width: 100%;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
-.characters li {
+.DragDropList .characters li {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -38,17 +38,16 @@
   width: 90%;
 }
 
-.characters-thumb img {
+.DragDropList .characters-thumb img {
   display: block;
   width: 55px;
   border-radius: 5px;
   height: auto;
 }
 
-.container-global {
+.DragDropList .container-global {
   width: 50px;
   height: 100px;
-  background-color: red;
 }
 
 .song-container {

@@ -16,7 +16,6 @@ export async function syncUserData(user) {
 
 export async function getUserProfile(id) {
   const userToken = await getCurrentUserToken();
-
   return axios({
     method: "GET",
     url: `${process.env.REACT_APP_API_BASE_URL}/users/${id}`,

@@ -52,8 +52,10 @@ function PlaylistUser({ playlistUserData }) {
   }
 
   function handleFollowUser() {
-    setFollow((prev) => !prev);
-    if (follow === false) {
+    const isFollowed =
+      playlistUserData.followedBy &&
+      playlistUserData.followedBy.some((ele) => ele === user.uid);
+    if (isFollowed === false) {
       dispatch(followUser(playlistUserData.firebase_id, user.uid));
     } else {
       dispatch(cancelFollowUser(playlistUserData.firebase_id, user.uid));

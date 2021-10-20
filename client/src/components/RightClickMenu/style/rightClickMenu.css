@@ -1,5 +1,7 @@
 .context-menu-container {
-  height: 250px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   width: 150px;
   border-radius: 10px;
   background-color: #313131;
