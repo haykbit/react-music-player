@@ -11,7 +11,7 @@
 
   .modal {
     display: flex;
-    width: auto;
+    width: 500px;
     height: auto;
     padding: 2rem;
     border-radius: 20px;
@@ -26,22 +26,21 @@
 
     .left-side-modal {
       display: flex;
+      width: 100%;
       flex-direction: column;
       height: auto;
-
-      // background-color: blanchedalmond;
 
       .modal-input-box,
       .modal-button-box,
       .modal-title,
       .modal-image-box {
-        //   outline: 1px solid white;
         height: 50px;
         margin: 5px;
 
         button {
           border-radius: 5px;
-          width: 120px;
+          width: 100%;
+          margin: 5px;
           cursor: pointer;
         }
         .submit {
@@ -53,7 +52,7 @@
         input,
         select {
           height: 45px;
-          width: 300px;
+          width: 100%;
           box-sizing: border-box;
           padding: 10px;
           border-radius: 5px;
@@ -77,7 +76,7 @@
       align-items: center;
       .upload-icon {
         height: 30px;
-        width: 30px;
+        width: 10%;
         cursor: pointer;
         background-repeat: no-repeat;
         background-size: contain;
@@ -89,7 +88,7 @@
 
     .right-side-modal {
       height: 200px;
-      width: 200px;
+      width: 100%;
       margin-left: 10px;
       display: flex;
 
@@ -97,7 +96,7 @@
         display: flex;
         margin-left: 10px;
         height: 100%;
-        width: 200px;
+        width: 100%;
         label {
           height: 200px;
         }
@@ -108,7 +107,7 @@
         }
         .song-image-upload {
           height: 100%;
-          width: 200px;
+          width: 100%;
           justify-content: center;
           background-color: transparent;
           background-repeat: no-repeat;
@@ -122,9 +121,31 @@
         .song-image-preview {
           margin-top: 3px;
           height: 200px;
-          width: 200px;
+          width: 100%;
           object-fit: cover;
           border-radius: 5px;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 400px) {
+  .modal-container {
+    .modal {
+      width: 300px;
+      height: 300px;
+
+      .left-side-modal {
+        .modal-input-box,
+        .modal-button-box,
+        .modal-title,
+        .modal-image-box {
+          height: 30px;
+          margin: 10px;
+
+          button {
+            height: 20px;
+          }
         }
       }
     }

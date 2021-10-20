@@ -3,9 +3,27 @@
   margin-top: 40px;
 }
 
+.recomend-container .recomend-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 30px;
+}
+
+.recomend-container .recomend-title .recomend-icon {
+  width: 40px;
+  height: 40px;
+  margin-left: 20px;
+  color: #fff;
+}
+
 .recomend-container h2 {
   color: #fff;
   font-size: 50px;
+  margin: 0px;
 }
 
 .recomend-container h1 {

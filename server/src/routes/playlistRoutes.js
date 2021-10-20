@@ -40,6 +40,11 @@ playlistRouter.get(
   playlistController.fetchMyPlaylists
 );
 playlistRouter.get(
+  "/sort-playlists",
+  authMiddleware,
+  playlistController.sortPlaylistsByLikes
+);
+playlistRouter.get(
   "/my-favorite-lists/:id",
   authMiddleware,
   playlistController.getMyFavoritePlaylists

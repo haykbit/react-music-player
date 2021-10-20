@@ -27,6 +27,40 @@
   margin-left: 5px;
 }
 
+.user-info .content button {
+  width: 42%;
+  background-color: #2b008d;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+}
+
+.user-info .content .password-button {
+  background-color: red;
+}
+
+.user-info .content input,
+.user-info .content button {
+  height: 40px;
+  border-radius: 7px;
+  margin: 5px;
+}
+
+.user-info .content input {
+  width: 40%;
+  padding: 5px;
+  font-size: 18px;
+  background-color: #585858;
+  color: white;
+}
+
+.user-info .content input:focus {
+  background-color: #fff;
+  color: #0f0f0f;
+}
+
 .user-info .left-column {
   width: 200px;
   height: auto;
@@ -98,40 +132,6 @@
       -ms-flex-pack: center;
           justify-content: center;
   width: 100%;
-}
-
-.user-info .right-column .form-box input,
-.user-info .right-column .form-box button {
-  height: 40px;
-  border-radius: 7px;
-  margin: 5px;
-}
-
-.user-info .right-column .form-box input {
-  width: 40%;
-  padding: 5px;
-  font-size: 18px;
-  background-color: #585858;
-  color: white;
-}
-
-.user-info .right-column .form-box input:focus {
-  background-color: #fff;
-  color: #0f0f0f;
-}
-
-.user-info .right-column .form-box button {
-  width: 42%;
-  background-color: #2b008d;
-  color: #fff;
-  font-size: 18px;
-  font-weight: 500;
-  border: none;
-  cursor: pointer;
-}
-
-.user-info .right-column .form-box .password-button {
-  background-color: red;
 }
 
 .user-info .right-column ::-webkit-scrollbar {

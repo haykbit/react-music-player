@@ -17,10 +17,6 @@ function UserProfile() {
 
   const history = useHistory();
 
-  const handleHome = () => {
-    history.push("/home-page");
-  };
-
   useEffect(() => {
     setShow({ user: true });
   }, []);
@@ -46,9 +42,6 @@ function UserProfile() {
                 <li onClick={() => handleShow("sub")}>Subscription</li>
                 <li onClick={() => handleShow("upload")}>Uploads</li>
               </ul>
-            </div>
-            <div>
-              <button onClick={handleHome}>Home</button>
             </div>
           </div>
           <div className="profile-card">
