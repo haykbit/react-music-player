@@ -9,8 +9,7 @@
     "name surname"
     "password cpassword"
     "email checkboxes"
-    "button info"
-    ;
+    "button info";
 
   background-color: rgba(23, 23, 23, 0.85);
   border-radius: 25px;
@@ -114,4 +113,9 @@ span {
   color: #fff;
   text-align: center;
   margin: 5px;
+  text-decoration: none;
+}
+
+.artistLink:hover {
+  font-weight: bold;
 }
