@@ -176,7 +176,7 @@ function Playlist({ playlist }) {
                   <IoMdMore className="context-icon" />
                 </button>
 
-                <div className="context-container">
+                <div className="context-container-playlist">
                   <PlaylistContextMenu
                     show={contextMenu}
                     closeMenu={ToggleContext}

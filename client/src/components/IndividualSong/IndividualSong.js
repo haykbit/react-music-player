@@ -110,7 +110,6 @@ function IndividualSong({ song, index, playlist, favorite, playlistData }) {
           className="song-cover"
           style={{
             backgroundImage: `url(${song.songImage})`,
-            backgroundSize: "cover",
           }}
         ></div>
         <div className="song-name">
