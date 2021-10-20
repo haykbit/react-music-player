@@ -53,7 +53,11 @@ function App() {
       {authObserverSuccess ? <AudioPlayer /> : null}
       <ToastContainer
         position="top-center"
-        toastStyle={{ backgroundColor: "#171717", color: "#fff" }}
+        toastStyle={{
+          backgroundColor: "#171717",
+          color: "#fff",
+          fontSize: "12px",
+        }}
         autoClose={4000}
         hideProgressBar
         newestOnTop={false}
