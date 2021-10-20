@@ -208,7 +208,6 @@ const AudioPlayer = () => {
               />
               <h4>{fancyTimeFormat(trackProgress)}</h4>
             </div>
-            <MdPlaylistAdd className="add-icon" />
             <GiSoundWaves className="volume-icon" />
             <input
               type="range"
