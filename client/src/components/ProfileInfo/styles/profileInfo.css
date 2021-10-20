@@ -1,18 +1,17 @@
 .user-info {
   height: 500px;
+<<<<<<< HEAD
   display: -webkit-box;
   display: -ms-flexbox;
+=======
+  width: 100px;
+>>>>>>> develop
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   margin: 5%;
 }
 
 .user-info .content {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   height: auto;
   width: 800px;
@@ -72,7 +71,11 @@
 }
 
 .user-info .right-column {
+<<<<<<< HEAD
   width: 1000px;
+=======
+  width: 100%;
+>>>>>>> develop
   margin-left: 20px;
   height: auto;
   /* width */
@@ -81,14 +84,12 @@
   /* Handle on hover */
 }
 
-.user-info .right-column button {
-  color: #fff;
-  font-size: 18px;
-  font-weight: 500;
-  border: none;
-  cursor: pointer;
+.user-info .right-column .form-box {
+  width: 100%;
+  background-color: #ff3939;
 }
 
+<<<<<<< HEAD
 .user-info .right-column .form-box {
   width: 100%;
 }
@@ -97,11 +98,16 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+=======
+.user-info .right-column .form-box input,
+.user-info .right-column .form-box button {
+>>>>>>> develop
   padding: 15px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  font-size: 18px;
   border-radius: 7px;
+}
+
+.user-info .right-column .form-box input {
+  font-size: 18px;
   background-color: #585858;
   color: white;
 }
@@ -112,11 +118,8 @@
 }
 
 .user-info .right-column .form-box button {
-  padding: 15px;
-  width: 270px;
-  border-radius: 5px;
-  margin: 0;
   background-color: #2b008d;
+<<<<<<< HEAD
 }
 
 .user-info .right-column .form-box .password-button {
@@ -149,44 +152,13 @@
 }
 
 .user-info .right-column .genre-side label {
+=======
+  color: #fff;
+>>>>>>> develop
   font-size: 18px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.user-info .right-column .genre-side label input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-}
-
-.user-info .right-column .button-side {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-}
-
-.user-info .right-column .button-side .edit-btn {
-  padding: 15px;
-  border-radius: 5px;
-  margin: 10px;
-  background-color: #ff3939;
-}
-
-.user-info .right-column .button-side .save-btn {
-  padding: 15px;
-  border-radius: 5px;
-  margin: 10px;
-  background-color: #395fff;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
 }
 
 .user-info .right-column ::-webkit-scrollbar {
