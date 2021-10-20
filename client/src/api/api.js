@@ -410,3 +410,14 @@ export async function cancelFollowingUser(profileUserId, userId) {
     },
   });
 }
+
+export async function sortPublicPlaylistsByLikes() {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/playlists/sort-playlists`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}

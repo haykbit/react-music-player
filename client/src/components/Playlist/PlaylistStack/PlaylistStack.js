@@ -9,7 +9,6 @@ import IndividualSong from "../../IndividualSong";
 import "./style/playliststack.scss";
 
 function PlaylistStack({ playlist }) {
-  console.log(playlist);
   const dispatch = useDispatch();
   const [mySongsData, setMySongsData] = useState(null);
   const [orderInterval, setOrderInterval] = useState(null);
