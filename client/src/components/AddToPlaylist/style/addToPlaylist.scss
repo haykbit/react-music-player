@@ -40,9 +40,13 @@
       height: fit-content;
       text-align: center;
       width: 100%;
-      outline: 1px white solid;
+      outline: 1px rgba(107, 106, 106, 0.66) solid;
       color: white;
       padding: 10px 0;
+      cursor: pointer;
+      &:hover {
+        background-color: rgba(107, 106, 106, 0.66) ;
+      }
     }
   }
 }

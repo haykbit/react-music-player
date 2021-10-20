@@ -37,31 +37,20 @@ function AddToPlaylist({
               {" "}
               <p>{text}</p>
             </div>
-            {displayData.length === 0
-              ? "no"
-              : displayData.map((list, index) => {
-                  return (
-                    <div
-                      className="playlists-list-box"
-                      onClick={() =>
-                        handleClick(list._id, user.uid, currentData._id)
-                      }
-                      key={index}
-                    >
-                      {list.title}
-                    </div>
-                  );
-                })}
-            {/* <div className="playlists-list-box"></div>
-            <div className="playlists-list-box"></div>
-            <div className="playlists-list-box"></div>
-            <div className="playlists-list-box"></div>
-            <div className="playlists-list-box"></div>
-            <div className="playlists-list-box"></div>
-            <div className="playlists-list-box"></div>
-            <div className="playlists-list-box"></div>
-            <div className="playlists-list-box"></div>
-            <div className="playlists-list-box"></div> */}
+            {displayData &&
+              displayData.map((list, index) => {
+                return (
+                  <div
+                    className="playlists-list-box"
+                    onClick={() =>
+                      handleClick(list._id, user.uid, currentData._id)
+                    }
+                    key={index}
+                  >
+                    {list.title}
+                  </div>
+                );
+              })}
           </div>
         </div>
       ) : null}
