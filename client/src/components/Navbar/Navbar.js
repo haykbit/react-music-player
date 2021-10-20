@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/auth/action";
 import { resetUserData } from "../../redux/user/action";
 import { getUserProfile } from "../../api/api";
-
+import homeIcon from "../../assets/images/icons/home-icon.png";
 import { RiMusic2Line, RiFolderMusicLine } from "react-icons/ri";
 import { MdFavoriteBorder } from "react-icons/md";
 import { GoListUnordered } from "react-icons/go";
@@ -71,10 +71,22 @@ function Navbar() {
   const handleNavProfileClick = () => {
     window.location.replace(`/playlist-user/${user.uid}`);
   };
+
+  const handleHome = () => {
+    history.push("./home-page");
+  };
   return (
     <>
       <div className="nav-container">
         <SearchEngine />
+        <div className="home-icon-container">
+          <img
+            onClick={handleHome}
+            className="home-icon"
+            src={homeIcon}
+            alt="home-icon"
+          ></img>
+        </div>
 
         <div className="nav-menu">
           <div className="menu-actions">
