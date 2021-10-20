@@ -1,3 +1,9 @@
+@media (max-width: 578px) {
+  .nav-style {
+    width: 150% !important;
+  }
+}
+
 .search {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -32,6 +38,12 @@
   caret-color: white;
 }
 
+@media (max-width: 458px) {
+  .search input input {
+    font-size: 15px !important;
+  }
+}
+
 .search input:focus {
   outline: none;
 }
@@ -57,6 +69,8 @@
   width: 70%;
   height: 500px;
   background-color: #060606;
+  -webkit-box-shadow: 0 10px 20px #000000a8;
+          box-shadow: 0 10px 20px #000000a8;
   z-index: -1;
   border-radius: 7px;
   color: #fff;
@@ -70,7 +84,7 @@
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .search_result .result_container .artist_result {

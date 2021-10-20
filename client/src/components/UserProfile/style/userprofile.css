@@ -89,4 +89,20 @@
   margin: 0px 20px 0px 20px;
   border-radius: 7px;
 }
+
+.arrow-container {
+  height: 105px;
+  width: 105px;
+  margin-top: 90px;
+  position: fixed;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.arrow-container .arrow-icon {
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
 /*# sourceMappingURL=userprofile.css.map */
