@@ -157,7 +157,7 @@ function Playlist({ playlist }) {
                 >
                   {userInfo.firstName} {userInfo.lastName}
                 </h3>
-                <p className="playlist-genre">{playlist.description}</p>
+                <p className="playlist-description">{playlist.description}</p>
                 <p className="song-number">{playlist.songs.length} songs</p>
                 {!playlist.private && user.uid !== playlist.owner ? (
                   <div>
