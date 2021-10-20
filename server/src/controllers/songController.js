@@ -2,7 +2,7 @@ const db = require("../models");
 
 async function createSong(req, res, next) {
   const { duration, url } = req.body.song;
-  const { title, genre, artist, private } = req.body.metadata;
+  const { title, genre, artist, private, album } = req.body.metadata;
   const { image } = req.body;
   const { uid } = req.user;
   try {
@@ -14,6 +14,7 @@ async function createSong(req, res, next) {
       duration,
       owner: uid,
       private,
+      album,
       songImage: image,
     });
     await db.User.findOneAndUpdate(
@@ -23,7 +24,7 @@ async function createSong(req, res, next) {
       }
     );
     res.status(200).send({
-      message: "OK",
+      data: newSong,
     });
   } catch (error) {
     next(error);
@@ -183,7 +184,7 @@ async function cancelLikeSong(req, res, next) {
 
 async function updateSong(req, res, next) {
   const { id } = req.params;
-  const { title, artist, genre, album } = req.body.songData;
+  const { title, artist, album } = req.body.songData;
   const { image } = req.body;
   try {
     const updatedSong = await db.Song.findOneAndUpdate(
@@ -192,7 +193,6 @@ async function updateSong(req, res, next) {
         $set: {
           title: title || "",
           artist: artist || "",
-          genre: genre || "",
           album: album || "",
           songImage: image || "",
         },
