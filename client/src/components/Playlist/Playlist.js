@@ -5,18 +5,16 @@ import {
   getUserProfile,
   getPublicSongs,
   getSongsForPrivateLists,
+  orderedTopLists,
 } from "../../api/api";
+import { bestSongsByGenre } from "../../api/stats-api";
+
 import PlaylistStack from "./PlaylistStack";
 import PlaylistContextMenu from "./PlaylistContextMenu/PlaylistContextMenu";
 import PlaylistDeleteConfirmation from "./PlaylistDeleteConfirmation";
 import EditPlaylistModal from "./EditPlaylistModal";
 
 import { IoMdMore } from "react-icons/io";
-
-import portadaUno from "../../assets/images/icons/portada-1.png";
-import portadaDos from "../../assets/images/albums/arctic-album-1.jpeg";
-import portadaTres from "../../assets/images/albums/arctic-album-2.jpeg";
-import portadaCuatro from "../../assets/images/albums/arctic-album-3.jpeg";
 
 import "./style/playlistcomponent.scss";
 import {
@@ -39,6 +37,7 @@ function Playlist({ playlist }) {
   });
   const [myFavPlaylists, setMyFavPlaylists] = useState([]);
   const [displaySongs, setDisplaySongs] = useState([]);
+  const [genreSongs, setGenreSongs] = useState(null);
 
   // Toggles for the diferent menus and modals
   const ToggleContext = () => setContextMenu(!contextMenu);
@@ -65,6 +64,7 @@ function Playlist({ playlist }) {
     if (!loading && authObserverSuccess) {
       getUserInfo();
       getFavoritePlaylistsInfo();
+      getBestSongs();
     }
   }, [loading, followSuccess, cancelFollowSuccess]);
 
@@ -118,6 +118,14 @@ function Playlist({ playlist }) {
       : "follow";
     return checkFavLists;
   }
+
+  async function getBestSongs() {
+    const top = await bestSongsByGenre(playlist.genre);
+    const cleanedList = top.data.data.map((song) => song.original_id);
+    const songsByGenre = await orderedTopLists(cleanedList);
+    setGenreSongs(songsByGenre.data.data);
+  }
+
   return (
     <>
       {modals.addToPlaylist && (
@@ -194,57 +202,38 @@ function Playlist({ playlist }) {
             </div>
           </div>
           <div className="right-side">
-            <div className="relevant-title">Top 3 most relevant songs</div>
-            <div className="relevant-songs">
-              <div className="number">1</div>
-              <div
-                className="album-image"
-                style={{
-                  backgroundImage: `url(${portadaTres})`,
-                  backgroundSize: "cover",
-                  backgroundRepeat: "no-repeat",
-                }}
-              ></div>
-              <div className="relevant-song-name">
-                {" "}
-                Four Out Of Five
-                <div className="relevant-song-artist">Arctic Monkeys</div>
-              </div>
-            </div>
-            <div className="relevant-songs">
-              <div className="number">2</div>
-              <div
-                className="album-image"
-                style={{
-                  backgroundImage: `url(${portadaDos})`,
-                  backgroundSize: "cover",
-                  backgroundRepeat: "no-repeat",
-                }}
-              >
-                {" "}
-              </div>
-              <div className="relevant-song-name">
-                {" "}
-                Brainstorm - Live
-                <div className="relevant-song-artist">Arctic Monkeys</div>
-              </div>
-            </div>
-            <div className="relevant-songs">
-              <div className="number">3</div>
-              <div
-                className="album-image"
-                style={{
-                  backgroundImage: `url(${portadaCuatro})`,
-                  backgroundSize: "cover",
-                  backgroundRepeat: "no-repeat",
-                }}
-              ></div>
-              <div className="relevant-song-name">
-                {" "}
-                She's Thunderstorms
-                <div className="relevant-song-artist">Arctic Monkeys</div>
-              </div>
-            </div>
+            {genreSongs && genreSongs.length > 0 ? (
+              <>
+                <div className="relevant-title">
+                  Top 3 {playlist.genre} songs
+                </div>
+                {genreSongs.map((song) => {
+                  return (
+                    <>
+                      <div className="relevant-songs" key={song._id}>
+                        <div
+                          className="album-image"
+                          style={{
+                            backgroundImage: `url(${song.songImage})`,
+                            backgroundSize: "cover",
+                            backgroundRepeat: "no-repeat",
+                          }}
+                        ></div>
+                        <div className="relevant-song-name">
+                          {" "}
+                          {song.title}
+                          <div className="relevant-song-artist">
+                            {song.artist}
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  );
+                })}
+              </>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       ) : (

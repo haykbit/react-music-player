@@ -7,6 +7,7 @@ import {
   onAuthStateChanged,
 } from "../../services/auth";
 import { getUserProfile, syncUserData } from "../../api/api";
+import { genresExec } from "../../api/stats-api";
 import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
@@ -65,6 +66,7 @@ export const login = () => async (dispatch) => {
     await syncUserData(userProfile);
     dispatch({ type: LOGIN_SUCCESS, payload: accessToken });
     toast.success("You are successfully logged in");
+    await genresExec();
     dispatch({ type: LOAD_PROFILE, payload: userProfile });
   } catch (error) {
     dispatch({ type: LOGIN_FAIL, payload: error.message });

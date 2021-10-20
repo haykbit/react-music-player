@@ -6,6 +6,7 @@ const playlistRouter = Router();
 
 //http://localhost:4000/playlists/
 
+playlistRouter.put("/top", authMiddleware, playlistController.bestListSongs);
 playlistRouter.get("/all", authMiddleware, playlistController.fetchPlaylists);
 playlistRouter.post("/", authMiddleware, playlistController.createPlaylist);
 playlistRouter.patch(

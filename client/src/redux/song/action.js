@@ -116,7 +116,7 @@ export const deleteSong = (songId, userId) => async (dispatch) => {
   try {
     await removeSongData(songId, userId);
     // Laravel function
-    //await deleteSongs(songId);
+    await deleteSongs(songId);
     toast.info("Successfully Deleted");
     dispatch({ type: DELETE_SONG_SUCCESS });
   } catch (error) {

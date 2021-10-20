@@ -12,7 +12,7 @@ function GeneralList({ playlist, playlistGeneral }) {
     <>
       <div className="newlist-container">
         <section className="new-spain">
-          <h2 className="recomend-title">New songs Spain</h2>
+          <h2 className="recomend-title">New songs</h2>
           <div className="song-list">
             {playlist &&
               playlist.map((song, index) => {
@@ -68,7 +68,7 @@ function GeneralList({ playlist, playlistGeneral }) {
           </div>
         </section>
         <section className="new-world">
-          <h2 className="recomend-title">New songs Europe</h2>
+          <h2 className="recomend-title">Most popular songs</h2>
           <div className="song-list">
             {playlistGeneral &&
               playlistGeneral.map((song, index) => {

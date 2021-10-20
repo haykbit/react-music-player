@@ -387,6 +387,7 @@ export async function getSongsForPrivateLists(id) {
     },
   });
 }
+
 export async function followingUser(profileUserId, userId) {
   const userToken = await getCurrentUserToken();
   return axios({
@@ -408,5 +409,17 @@ export async function cancelFollowingUser(profileUserId, userId) {
     headers: {
       Authorization: `Bearer ${userToken}`,
     },
+  });
+}
+
+export async function orderedTopLists(songList) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "PUT",
+    url: `${process.env.REACT_APP_API_BASE_URL}/playlists/top/`,
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+    data: { songList },
   });
 }

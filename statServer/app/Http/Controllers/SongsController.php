@@ -27,8 +27,8 @@ class SongsController extends Controller
     {
         $popularSongs = DB::table('songs')
             ->orderBy('played', 'desc')
-            ->take(10)
-            ->get();
+            ->take(7)
+            ->get(['original_id']);
         return response()->json([
             'success' => true,
             'message' => 'OK',
@@ -40,8 +40,8 @@ class SongsController extends Controller
     {
         $likedSongs = DB::table('songs')
             ->orderBy('likes', 'desc')
-            ->take(10)
-            ->get();
+            ->take(7)
+            ->get(['original_id']);
         return response()->json([
             'success' => true,
             'message' => 'OK',
@@ -53,8 +53,8 @@ class SongsController extends Controller
     {
         $newSongs = DB::table('songs')
             ->orderBy('created_at', 'desc')
-            ->take(10)
-            ->get();
+            ->take(7)
+            ->get(['original_id']);
         return response()->json([
             'success' => true,
             'message' => 'OK',
@@ -84,20 +84,26 @@ class SongsController extends Controller
 
     public function reproduced_song(Request $request, $id)
     {
-        $plays = DB::table('songs')->where('original_id', $id)->get(['played']);
-        DB::table('songs')->where('original_id', $id)->update([
-            'played' => $plays[0]->played + 1
-        ]);
+        try {
+            $plays = DB::table('songs')->where('original_id', $id)->get();
+            DB::table('songs')->where('original_id', $id)->update([
+                'played' => $plays[0]->played + 1
+            ]);
 
-        return response()->json([
-            'success' => true,
-            'message' => 'OK',
-        ]);
+            return response()->json([
+                'success' => true,
+                'message' => 'OK',
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong',
+            ]);
+        }
     }
 
     public function remove_song(Request $request, $id)
     {
-        error_log("ENTERED");
         error_log($id);
         $deletedSong = DB::table('songs')->where('original_id', $id)->delete();
 
@@ -105,6 +111,20 @@ class SongsController extends Controller
             'success' => true,
             'message' => 'OK',
             'data' => $deletedSong
+        ]);
+    }
+
+    public function get_top_by_genre(Request $request)
+    {
+        $bestGenreSongs = DB::table('songs')
+            ->where('genre', $request->genre)
+            ->orderBy('played', 'desc')
+            ->take(3)
+            ->get(['original_id']);
+        return response()->json([
+            'success' => true,
+            'message' => 'OK',
+            'data' => $bestGenreSongs
         ]);
     }
 }
