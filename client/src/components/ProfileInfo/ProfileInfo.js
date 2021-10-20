@@ -52,16 +52,20 @@ function ProfileInfo() {
   }, [loading]);
 
   async function updateOnMount() {
-    console.log(user, "REDUX USER");
-    const userData = await getUserProfile(user.uid);
-    console.log(userData, "USER DATA");
-    const { email, firstName, lastName, profileImage } = userData.data.data;
-    setMyEmail(email);
-    setProfile({
-      firstName: firstName,
-      lastName: lastName,
-      profileImageURL: profileImage || "",
-    });
+    try {
+      console.log(user, "REDUX USER");
+      const userData = await getUserProfile(user.uid);
+      console.log(userData, "USER DATA");
+      const { email, firstName, lastName, profileImage } = userData.data.data;
+      setMyEmail(email);
+      setProfile({
+        firstName: firstName,
+        lastName: lastName,
+        profileImageURL: profileImage || "",
+      });
+    } catch (error) {
+      alert("HELLO");
+    }
   }
 
   function handleUserInfoSubmit(e) {
@@ -172,40 +176,14 @@ function ProfileInfo() {
                     value={profile.lastName}
                   />
                   <Button type="submit">Change Profile</Button>
+                  <Button
+                    className="user-input password-button"
+                    onClick={() => setOpenResetEmail(!openResetEmail)}
+                  >
+                    Reset Email
+                  </Button>
                 </div>
               </form>
-              <Button
-                className="user-input password-button"
-                onClick={() => setOpenResetEmail(!openResetEmail)}
-              >
-                Reset Email
-              </Button>
-              <div hidden={openResetEmail}>
-                <form onSubmit={handleUserEmailSubmit}>
-                  <input
-                    className="new-password-input"
-                    name="myEmail"
-                    type="text"
-                    placeholder="New Email"
-                    onChange={handleEmailChange}
-                    value={myEmail}
-                    required
-                  />
-                  <input
-                    className="new-password-input"
-                    name="myPassword"
-                    type="password"
-                    placeholder="Current Password"
-                    value={myPassword}
-                    onChange={(e) => handleMyPasswordChange(e)}
-                    required
-                  />
-
-                  <Button type="submit" className="user-input password-button">
-                    Save
-                  </Button>
-                </form>
-              </div>
               <Button
                 className="user-input password-button"
                 onClick={() => setOpenResetPassword(!openResetPassword)}
@@ -275,7 +253,7 @@ function ProfileInfo() {
                         onBlur={handleBlur}
                       />
                       <Button
-                        className="user-input password-button"
+                        className="user-input"
                         submitButton
                         disabled={isValidating || !isValid}
                       >
@@ -284,6 +262,33 @@ function ProfileInfo() {
                     </form>
                   )}
                 </Formik>
+              </div>
+
+              <div hidden={openResetEmail}>
+                <form onSubmit={handleUserEmailSubmit}>
+                  <input
+                    className="new-password-input"
+                    name="myEmail"
+                    type="text"
+                    placeholder="New Email"
+                    onChange={handleEmailChange}
+                    value={myEmail}
+                    required
+                  />
+                  <input
+                    className="new-password-input"
+                    name="myPassword"
+                    type="password"
+                    placeholder="Current Password"
+                    value={myPassword}
+                    onChange={(e) => handleMyPasswordChange(e)}
+                    required
+                  />
+
+                  <Button type="submit" className="user-input">
+                    Save
+                  </Button>
+                </form>
               </div>
             </div>
           </div>
