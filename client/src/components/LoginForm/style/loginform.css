@@ -31,6 +31,7 @@
 
 .login-container .login-section .forgotPassword .recover-link {
   color: #fff;
+  text-decoration: underline;
   cursor: pointer;
 }
 

@@ -128,6 +128,7 @@ function SearchEngine() {
         </div>
       )}
       <div
+        className="nav-style"
         style={
           url === "/artist" ? searchStyle : { width: "100%", display: "flex" }
         }
