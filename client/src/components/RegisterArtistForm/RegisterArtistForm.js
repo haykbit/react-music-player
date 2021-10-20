@@ -9,9 +9,7 @@ import FormSchema from "./FormSchema";
 import "./style/RegisterForm.scss";
 import { registerWithEmailAndPassword } from "../../redux/auth/action";
 
-import { Link } from "react-router-dom";
-
-function RegisterForm() {
+function RegisterArtistForm() {
   let history = useHistory();
   const dispatch = useDispatch();
   const registerState = useSelector((state) => state.auth.registerSuccess);
@@ -38,7 +36,7 @@ function RegisterForm() {
         email: "",
         password: "",
         confirm: "",
-        artist: false,
+        artist: true,
         checkboxOne: false,
         checkboxTwo: false,
       }}
@@ -56,7 +54,7 @@ function RegisterForm() {
       }) => (
         <form onSubmit={handleSubmit}>
           <div className="register-box">
-            <div className="text">Register</div>
+            <div className="text">Artist</div>
             <div className="space"></div>
             <Input
               className="register-inputs name"
@@ -167,10 +165,6 @@ function RegisterForm() {
                 * Your data will be saved on a secured server
               </p>
             </div>
-
-            <Link to="/register/artist" className="artistLink">
-              Are you an artist? Register here
-            </Link>
           </div>
         </form>
       )}
@@ -178,4 +172,4 @@ function RegisterForm() {
   );
 }
 
-export default RegisterForm;
+export default RegisterArtistForm;

@@ -71,7 +71,7 @@
         }
         .playlist-user {
           cursor: pointer;
-          text-decoration: underline;
+          text-decoration: none;
           &:hover {
             color: darkgoldenrod;
           }
