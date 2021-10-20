@@ -12,19 +12,8 @@
     border-radius: 7px;
     border: none;
     outline: none;
-
-    .profile-component {
-      width: 100%;
-    }
-
-    .payment-component {
-    }
-
-    .sub-component {
-    }
-
-    .upload-component {
-    }
+    box-sizing: border-box;
+    padding: 10px;
 
     h2 {
       margin-bottom: 40px;

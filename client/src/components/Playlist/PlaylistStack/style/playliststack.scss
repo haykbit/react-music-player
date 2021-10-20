@@ -6,32 +6,32 @@
     transform: rotate(360deg);
   }
 }
+.DragDropList {
+  .characters {
+    list-style: none;
+    padding-left: 0;
+    width: 100%;
+    margin-top: 20px;
+  }
 
-.characters {
-  list-style: none;
-  padding-left: 0;
-  width: 100%;
-  margin-top: 50px;
-}
+  .characters li {
+    display: flex;
+    align-items: center;
+    border-radius: 0.2em;
+    width: 90%;
+  }
 
-.characters li {
-  display: flex;
-  align-items: center;
-  border-radius: 0.2em;
-  width: 90%;
-}
+  .characters-thumb img {
+    display: block;
+    width: 55px;
+    border-radius: 5px;
+    height: auto;
+  }
 
-.characters-thumb img {
-  display: block;
-  width: 55px;
-  border-radius: 5px;
-  height: auto;
-}
-
-.container-global {
-  width: 50px;
-  height: 100px;
-  background-color: red;
+  .container-global {
+    width: 50px;
+    height: 100px;
+  }
 }
 
 .song-container {
