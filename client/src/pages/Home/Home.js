@@ -21,7 +21,7 @@ function Home() {
   }
 
   async function getGeneralSongsData() {
-    const songs = await getSongsFromPlaylist("61698eef6f4479521c3b4625");
+    const songs = await getSongsFromPlaylist("61698eef6f4479521c3b4627");
     setGeneralSongs(songs.data.data);
   }
 
