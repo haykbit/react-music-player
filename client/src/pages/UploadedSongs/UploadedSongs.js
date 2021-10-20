@@ -13,13 +13,14 @@ function UploadedSongs() {
   const { user, authObserverSuccess, signOutSuccess, loading } = useSelector(
     (state) => state.auth
   );
+  const { uploadSongSuccess } = useSelector((state) => state.song);
   const [userInfo, setUserInfo] = useState("");
 
   useEffect(() => {
     if (!loading && authObserverSuccess) {
       getUserInfo();
     }
-  }, [loading, authObserverSuccess]);
+  }, [loading, authObserverSuccess, uploadSongSuccess]);
 
   useEffect(() => {
     dispatch(authObserverLoading());

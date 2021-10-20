@@ -8,10 +8,11 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  position: fixed;
+  position: absolute;
+  top: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(39, 39, 39, 0.8);
+  overflow-y: hidden;
   overflow: hidden;
 }
 
@@ -20,7 +21,9 @@
 }
 
 .add-to-playlist-container .add-to-playlist-box {
-  height: 500px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   width: 500px;
   background-color: #171717;
   -webkit-box-sizing: border-box;
@@ -28,6 +31,8 @@
   padding: 15px;
   border-radius: 7px;
   overflow: auto;
+  -webkit-box-shadow: 0px 0px 19px 7px #353535;
+          box-shadow: 0px 0px 19px 7px #353535;
 }
 
 .add-to-playlist-container .add-to-playlist-box .add-to-playlist-title {
@@ -48,8 +53,18 @@
 }
 
 .add-to-playlist-container .add-to-playlist-box .playlists-list-box {
-  height: 80px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  text-align: center;
   width: 100%;
-  outline: 1px white solid;
+  outline: 1px rgba(107, 106, 106, 0.66) solid;
+  color: white;
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.add-to-playlist-container .add-to-playlist-box .playlists-list-box:hover {
+  background-color: rgba(107, 106, 106, 0.66);
 }
 /*# sourceMappingURL=addToPlaylist.css.map */

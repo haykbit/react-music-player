@@ -12,12 +12,15 @@
       -ms-flex-direction: column;
           flex-direction: column;
   background-color: #171717;
-  width: 80%;
+  width: 900px;
   height: 600px;
   margin: 0px 20px 0px 20px;
   border-radius: 7px;
   border: none;
   outline: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
 }
 
 .profile-container .profile-card h2 {
@@ -81,7 +84,7 @@
 
 .profile-container .profile-item {
   background-color: #171717;
-  width: 80%;
+  width: 3px;
   height: 500px;
   margin: 0px 20px 0px 20px;
   border-radius: 7px;

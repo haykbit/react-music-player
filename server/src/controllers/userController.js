@@ -14,9 +14,13 @@ async function signIn(req, res, next) {
       email: email,
       firstName: req.body.user ? req.body.user.firstName : "",
       lastName: req.body.user ? req.body.user.lastName : "",
+      userName: req.body.user ? req.body.user.userName : "",
+      profileImage: undefined,
     });
 
-    res.sendStatus(201);
+    res.status(200).send({
+      data: newUser,
+    });
   } catch (err) {
     console.log(err);
   }
@@ -205,9 +209,9 @@ async function cancelFollowUser(req, res, next) {
 }
 
 module.exports = {
-  signIn: signIn,
-  getUserById: getUserById,
-  updateUser: updateUser,
+  signIn,
+  getUserById,
+  updateUser,
   updateUserEmail,
   getMyFavoriteSongs,
   getMySongs,
