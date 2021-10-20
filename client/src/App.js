@@ -39,8 +39,15 @@ function App() {
     }
   }, [dispatch]);
 
+  const handleBack = () => {
+    history.goBack();
+  };
+
   return (
     <>
+      <div className="arrow-container">
+        <div className="arrow-left" onClick={handleBack}></div>
+      </div>
       {songLoading || userLoading ? (
         <Spinner color={"white"} loading={true} />
       ) : (
