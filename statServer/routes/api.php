@@ -24,7 +24,7 @@ Route::get('/popular-songs', [SongsController::class, 'get_popular_songs']);
 Route::get('/liked-songs', [SongsController::class, 'get_liked_songs']);
 Route::get('/new-songs', [SongsController::class, 'get_new_songs']);
 Route::patch('/song-like/{id}', [SongsController::class, 'like_song']);
-Route::patch('/song-dislike/{id}', [SongsController::class, 'like_song']);
+Route::patch('/song-dislike/{id}', [SongsController::class, 'dislike_song']);
 Route::patch('/song-played/{id}', [SongsController::class, 'reproduced_song']);
 Route::get('/songs', [SongsController::class, 'get_all_songs']);
 Route::post('/song', [SongsController::class, 'new_song']);

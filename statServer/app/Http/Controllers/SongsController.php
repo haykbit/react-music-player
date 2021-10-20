@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Error;
 
 class SongsController extends Controller
 {
@@ -63,7 +64,7 @@ class SongsController extends Controller
 
     public function new_song(Request $request)
     {
-        $songData = $request->songStats;
+        $songData = $request->songData;
         $newSong = DB::table('songs')->insert(
             array(
                 'original_id' => $songData['_id'],
@@ -78,35 +79,6 @@ class SongsController extends Controller
             'success' => true,
             'message' => 'OK',
             'data' => $newSong
-        ]);
-    }
-
-    public function like_song(Request $request, $id)
-    {
-        $likes = DB::table('songs')->where('original_id', $id)->get(['likes']);
-        DB::table('songs')->where('original_id', $id)->update([
-            'likes' => $likes[0]->likes + 1
-        ]);
-
-        return response()->json([
-            'success' => true,
-            'message' => 'OK',
-        ]);
-    }
-
-    public function dislike_song(Request $request, $id)
-    {
-        $likes = DB::table('songs')->where('original_id', $id)->get(['likes']);
-        if ($likes[0]->likes >= 0) {
-
-            DB::table('songs')->where('original_id', $id)->update([
-                'likes' => $likes[0]->likes - 1
-            ]);
-        }
-
-        return response()->json([
-            'success' => true,
-            'message' => 'OK',
         ]);
     }
 
@@ -125,6 +97,8 @@ class SongsController extends Controller
 
     public function remove_song(Request $request, $id)
     {
+        error_log("ENTERED");
+        error_log($id);
         $deletedSong = DB::table('songs')->where('original_id', $id)->delete();
 
         return response()->json([
