@@ -20,7 +20,6 @@ function IndividualSong({ song, index, playlist, favorite, playlistData }) {
   const { loading } = useSelector((state) => state.song);
   const { myPlaylists, addSongToPlaylistSuccess, removeSongSuccess } =
     useSelector((state) => state.playlist);
-  const [liked, setLiked] = useState(favorite);
   const [myFavoriteSongs, setMyFavoriteSongs] = useState([]);
   const [modals, setModals] = useState({
     editModal: false,
@@ -30,7 +29,6 @@ function IndividualSong({ song, index, playlist, favorite, playlistData }) {
   const [contextMenu, setContextMenu] = useState(false);
   const [displayMyLists, setDisplayMyLists] = useState([]);
   const Toggle = () => setContextMenu(!contextMenu);
-
   const ToggleAddToPlaylist = () => {
     setModals({ ...modals, addToPlaylist: !modals.addToPlaylist });
     song.private
@@ -73,8 +71,8 @@ function IndividualSong({ song, index, playlist, favorite, playlistData }) {
   }
 
   function handleLikeClick() {
-    setLiked((prev) => !prev);
-    if (liked === false) {
+    const isLiked = myFavoriteSongs.some((ele) => ele["_id"] === song._id);
+    if (isLiked === false) {
       dispatch(dispatchLikeSong(song._id, user.uid));
     } else {
       dispatch(cancelLikedSongs(song._id, user.uid));

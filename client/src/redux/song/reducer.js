@@ -36,6 +36,7 @@ const reducer = (state = INITIAL_STATE, action) => {
         error: null,
         songData: action.payload,
         uploadSongSuccess: false,
+        uploadSongLoading: true,
       };
     case POST_SONG_SUCCESS:
       return {
@@ -44,6 +45,7 @@ const reducer = (state = INITIAL_STATE, action) => {
         uploadSongSuccess: true,
         error: null,
         songData: null,
+        uploadSongLoading: false,
       };
     case POST_SONG_FAIL:
       return {
@@ -52,6 +54,7 @@ const reducer = (state = INITIAL_STATE, action) => {
         uploadSongSuccess: false,
         error: action.payload,
         songData: null,
+        uploadSongLoading: false,
       };
     case GET_MY_SONGS_REQUEST:
       return {

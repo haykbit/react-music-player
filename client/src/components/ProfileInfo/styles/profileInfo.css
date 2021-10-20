@@ -1,21 +1,30 @@
 .user-info {
   height: 500px;
-  width: 100px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  margin: 5%;
-}
-
-.user-info .content {
-  display: flex;
-  height: auto;
-  width: 800px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .user-info .user-info-title {
-  margin-left: 0 !important;
-  margin-top: -10px;
+  margin-left: 5px !important;
+  margin-top: 10px;
   margin-bottom: 40px;
+}
+
+.user-info .content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  height: auto;
+  width: 100%;
+  margin-left: 5px;
 }
 
 .user-info .left-column {
@@ -23,7 +32,7 @@
   height: auto;
 }
 
-.user-info .profile-picture {
+.user-info .left-column .profile-picture {
   width: 150px;
   height: 150px;
   background-size: contain;
@@ -32,11 +41,11 @@
   background-repeat: "no-repeat";
 }
 
-.user-info .profile-picture input {
+.user-info .left-column .profile-picture input {
   display: none;
 }
 
-.user-info .profile-picture-uploaded {
+.user-info .left-column .profile-picture-uploaded {
   width: 150px;
   height: 150px;
   background-size: cover;
@@ -47,11 +56,11 @@
   background-position: center;
 }
 
-.user-info .profile-picture-uploaded input {
+.user-info .left-column .profile-picture-uploaded input {
   display: none;
 }
 
-.user-info .close-icon {
+.user-info .left-column .close-icon {
   width: 30px;
   height: 30px;
   z-index: 10;
@@ -76,17 +85,31 @@
 }
 
 .user-info .right-column .form-box {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   width: 100%;
-  background-color: #ff3939;
 }
 
 .user-info .right-column .form-box input,
 .user-info .right-column .form-box button {
-  padding: 15px;
+  height: 40px;
   border-radius: 7px;
+  margin: 5px;
 }
 
 .user-info .right-column .form-box input {
+  width: 40%;
+  padding: 5px;
   font-size: 18px;
   background-color: #585858;
   color: white;
@@ -98,12 +121,17 @@
 }
 
 .user-info .right-column .form-box button {
+  width: 42%;
   background-color: #2b008d;
   color: #fff;
   font-size: 18px;
   font-weight: 500;
   border: none;
   cursor: pointer;
+}
+
+.user-info .right-column .form-box .password-button {
+  background-color: red;
 }
 
 .user-info .right-column ::-webkit-scrollbar {
