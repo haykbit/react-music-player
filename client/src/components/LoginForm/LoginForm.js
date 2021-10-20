@@ -57,9 +57,9 @@ function LoginForm() {
               <button className="login-btn">Login</button>
             </form>
             <div className="forgotPassword">
-              Forgot your password? Click{" "}
+              Forgot your password?{" "}
               <span className="recover-link" onClick={handleRecover}>
-                here
+                Click here
               </span>
             </div>
 

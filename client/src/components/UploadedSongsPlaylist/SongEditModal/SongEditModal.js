@@ -44,7 +44,6 @@ const SongEditModal = ({ show, close, song }) => {
                 title: song.title,
                 artist: song.artist,
                 album: song.album,
-                genre: song.genre,
                 initialImage: song.songImage,
               }}
               validationSchema={FormSchema}
@@ -60,7 +59,7 @@ const SongEditModal = ({ show, close, song }) => {
                 handleBlur,
               }) => (
                 <div>
-                  <div className="modal-title">Upload Song</div>
+                  <div className="modal-title">Edit Song</div>
                   <form onSubmit={handleSubmit} className="form-box">
                     <div className="left-side-modal">
                       <div className="modal-input-box">
@@ -108,42 +107,6 @@ const SongEditModal = ({ show, close, song }) => {
                           errorMessage={errors.album}
                         />
                       </div>
-                      <div className="modal-input-box">
-                        <select
-                          name="genre"
-                          className="register-inputs"
-                          autoComplete="on"
-                          value={values.genre}
-                          onChange={handleChange}
-                          onBlur={handleBlur}
-                          hasErrorMessage={touched.genre}
-                          errorMessage={errors.genre}
-                        >
-                          <option value="">Select a genre</option>
-                          <option value="Country">Country</option>
-                          <option value="Electronic dance music (EDM)">
-                            Electronic dance music (EDM)
-                          </option>
-                          <option value="Hip-hop">Hip-hop</option>
-                          <option value="Indie rock">Indie rock</option>
-                          <option value="Jazz">Jazz</option>
-                          <option value="K-pop">K-pop</option>
-                          <option value="Metal">Metal</option>
-                          <option value="Oldies">Oldies</option>
-                          <option value="Pop">Pop</option>
-                          <option value="Rap">Rap</option>
-                          <option value="Rhythm & blues (R&B)">
-                            Rhythm & blues (R&B)
-                          </option>
-                          <option value="Rock">Rock</option>
-                          <option value="Techno">Techno</option>
-                          <option value="Folk">Folk</option>
-                          <option value="Ska">Ska</option>
-                          <option value="Reggae">Reggae</option>
-                          <option value="Punk">Punk</option>
-                        </select>
-                      </div>
-
                       <div className="modal-button-box">
                         <button className="modal-close" onClick={() => close()}>
                           Cancel
