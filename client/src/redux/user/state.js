@@ -4,6 +4,8 @@ const INITIAL_STATE = {
   error: null,
   getUserProfileSuccess: false,
   profileUpdated: false,
+  followUserSuccess: false,
+  cancelFollowingUserSuccess: false,
 };
 
 export default INITIAL_STATE;

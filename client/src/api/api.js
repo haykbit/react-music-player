@@ -388,3 +388,26 @@ export async function getSongsForPrivateLists(id) {
     },
   });
 }
+export async function followingUser(profileUserId, userId) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "PATCH",
+    url: `${process.env.REACT_APP_API_BASE_URL}/users/follow/${profileUserId}`,
+    data: { userId },
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
+export async function cancelFollowingUser(profileUserId, userId) {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "PATCH",
+    url: `${process.env.REACT_APP_API_BASE_URL}/users/cancel-follow/${profileUserId}`,
+    data: { userId },
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}

@@ -177,7 +177,22 @@
       flex-wrap: wrap;
       margin-top: 20px;
       justify-content: space-between;
-
+      .follow-button {
+        border-radius: 5px;
+        width: 120px;
+        height: 40px;
+        cursor: pointer;
+        letter-spacing: 1px;
+        font-weight: 500;
+        color: white;
+        align-items: center;
+        &.follow {
+          background-color: rgb(112, 3, 122);
+        }
+        &.following {
+          background-color: rgb(255, 102, 0);
+        }
+      }
       .follow-data {
         display: flex;
         margin-left: 15px;
