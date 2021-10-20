@@ -6,8 +6,6 @@ import { getMySongsPlaylist } from "../../../api/api";
 import { orderMySongs } from "../../../redux/song/action";
 import IndividualSong from "../../IndividualSong/index";
 
-import "./style/playliststack.scss";
-
 function UploadedPlaylistStack() {
   const dispatch = useDispatch();
   const [mySongsData, setMySongsData] = useState(null);

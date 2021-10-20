@@ -90,13 +90,13 @@
           justify-content: space-evenly;
           align-items: center;
 
-          .upload-button:hover {
+          &:hover {
             svg {
               color: rgb(0, 119, 255);
             }
           }
 
-          .upload-button:active {
+          &:active {
             box-shadow: 0px 0px 0px 3px rgb(0, 119, 255);
             transform: scale(0.97);
           }

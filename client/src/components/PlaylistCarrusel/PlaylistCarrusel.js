@@ -43,8 +43,9 @@ function PlaylistCarrusel() {
                             className="list-item"
                             style={{
                               backgroundImage: `url(${playlist.playlistImage})`,
-                              backgroundSize: "auto",
+                              backgroundSize: "cover",
                               backgroundRepeat: "no-repeat",
+                              backgroundPosition: "center",
                             }}
                           >
                             <div className="dark-back">
