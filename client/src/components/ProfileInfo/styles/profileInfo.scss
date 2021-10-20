@@ -15,6 +15,36 @@
     height: auto;
     width: 100%;
     margin-left: 5px;
+        button {
+        width: 42%;
+        background-color: #2b008d;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 500;
+        border: none;
+        cursor: pointer;
+      }
+      .password-button {
+        background-color: red;
+      }
+       input,
+      button {
+        height: 40px;
+        border-radius: 7px;
+        margin: 5px;
+      }
+      input {
+        width: 40%;
+        padding: 5px;
+        font-size: 18px;
+        background-color: #585858;
+        color: white;
+
+        &:focus {
+          background-color: #fff;
+          color: #0f0f0f;
+        }
+      }
   }
 
   .left-column {
@@ -74,39 +104,6 @@
       justify-content: center;
       width: 100%;
 
-      input,
-      button {
-        height: 40px;
-
-        border-radius: 7px;
-        margin: 5px;
-      }
-
-      input {
-        width: 40%;
-        padding: 5px;
-        font-size: 18px;
-        background-color: #585858;
-        color: white;
-
-        &:focus {
-          background-color: #fff;
-          color: #0f0f0f;
-        }
-      }
-
-      button {
-        width: 42%;
-        background-color: #2b008d;
-        color: #fff;
-        font-size: 18px;
-        font-weight: 500;
-        border: none;
-        cursor: pointer;
-      }
-      .password-button {
-        background-color: red;
-      }
     }
 
     /* width */

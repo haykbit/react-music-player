@@ -334,6 +334,21 @@ async function fetchPlaylists(req, res, next) {
   }
 }
 
+async function sortPlaylistsByLikes(req, res, next) {
+  try {
+    const sortedPlaylists = await db.Playlist.find({ private: false })
+      .sort({
+        likes: -1,
+      })
+      .limit(5);
+    res.status(200).send({
+      data: sortedPlaylists,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 module.exports = {
   fetchMyPlaylists,
   fetchPublicPlaylists,
@@ -351,4 +366,5 @@ module.exports = {
   addSongToPlaylist,
   fetchPlaylists,
   orderPlaylistsSongs,
+  sortPlaylistsByLikes,
 };
