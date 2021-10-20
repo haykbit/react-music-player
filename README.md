@@ -7,8 +7,23 @@
    
    ```
    $ git clone https://github.com/haykbit/react-music-player.git
-## Dependencies
+    ```
+2. Installing
+    ```
+    $ yarn install
+    ```
+3. Start
 
+- Open terminals for client and server
+
+    ```
+   $ yarn client  
+   ```     
+   ```
+   $ yarn server
+   ``` 
+
+## Dependencies
 - [React](https://reactjs.org/)
 - [React-Dom](https://reactjs.org/docs/react-dom.html)
 - [React-Redux](https://react-redux.js.org/)
