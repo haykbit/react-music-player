@@ -1,5 +1,5 @@
 .user-info {
-  height: 80%;
+  height: 500px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -14,7 +14,8 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 100%;
+  height: auto;
+  width: 800px;
 }
 
 .user-info .user-info-title {
@@ -24,10 +25,8 @@
 }
 
 .user-info .left-column {
-  width: 20%;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
+  width: 200px;
+  height: auto;
 }
 
 .user-info .profile-picture {
@@ -73,8 +72,9 @@
 }
 
 .user-info .right-column {
-  width: 80%;
-  height: 100%;
+  width: 1000px;
+  margin-left: 20px;
+  height: auto;
   /* width */
   /* Track */
   /* Handle */
@@ -87,6 +87,10 @@
   font-weight: 500;
   border: none;
   cursor: pointer;
+}
+
+.user-info .right-column .form-box {
+  width: 100%;
 }
 
 .user-info .right-column .form-box input {
@@ -127,8 +131,9 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  margin: 10px;
-  height: 40%;
+  margin-top: 10px;
+  height: 200px;
+  width: 600px;
   overflow: hidden;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;

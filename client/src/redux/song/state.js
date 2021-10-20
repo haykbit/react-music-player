@@ -3,6 +3,7 @@ const INITIAL_STATE = {
   loading: false,
   error: null,
   uploadSongSuccess: false,
+  uploadSongLoading: false,
   getSongsSuccess: false,
   songUpdated: false,
   myLikedSongsSuccess: false,
