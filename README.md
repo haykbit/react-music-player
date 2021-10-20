@@ -3,13 +3,222 @@
 ## Table of Contents <!-- omit in toc -->
 
 ## Getting Started
-
+1. Clone the repository
+   
+   ```
+   $ git clone https://github.com/haykbit/react-music-player.git
 ## Dependencies
 
 ## Contents and Branches Naming Strategy
 
 ## File Structure
+- Front-end
+```
+📦client
+ ┣ 📂node_modules
+ ┣ 📂src
+ ┃ ┣ 📂__tests__
+ ┃ ┃ ┗ 📜web.test.js
+ ┃ ┣ 📂api
+ ┃ ┃ ┣ 📜api.js
+ ┃ ┃ ┗ 📜stats-api.js
+ ┃ ┣ 📂assets
+ ┃ ┃ ┣ 📂images
+ ┃ ┃ ┃ ┣ 📂albums
+ ┃ ┃ ┃ ┣ 📂background
+ ┃ ┃ ┃ ┗ 📂icons
+ ┃ ┃ ┗ 📂music
+ ┃ ┣ 📂components
+ ┃ ┃ ┣ 📂AddToPlaylist
+ ┃ ┃ ┃ ┣ 📂style
+ ┃ ┃ ┃ ┃ ┣ 📜addToPlaylist.css
+ ┃ ┃ ┃ ┃ ┣ 📜addToPlaylist.css.map
+ ┃ ┃ ┃ ┃ ┗ 📜addToPlaylist.scss
+ ┃ ┃ ┃ ┣ 📜AddToPlaylist.js
+ ┃ ┃ ┃ ┗ 📜index.js
+ ┃ ┃ ┣ 📂AlbumExplorer
+ ┃ ┃ ┃ ┣ 📂style
+ ┃ ┃ ┃ ┣ 📜AlbumExplorer.js
+ ┃ ┃ ┃ ┗ 📜index.js
+ ┃ ┃ ┣ 📂Buttons
+ ┃ ┃ ┃ ┣ 📂__tests__
+ ┃ ┃ ┃ ┃ ┗ 📜Button.test.js
+ ┃ ┃ ┃ ┣ 📜Button.js
+ ┃ ┃ ┃ ┗ 📜index.js
+ ┃ ┃ ┣ 📂CreatePlaylistModal
+ ┃ ┃ ┃ ┣ 📂__tests__
+ ┃ ┃ ┃ ┃ ┗ 📜CreatePlaylistModal.test.js
+ ┃ ┃ ┃ ┣ 📂style
+ ┃ ┃ ┃ ┣ 📜CreatePlaylistModal.js
+ ┃ ┃ ┃ ┣ 📜FormSchema.js
+ ┃ ┃ ┃ ┗ 📜index.js
+ ┃ ┃ ┣ 📂DeleteConfirmation
+ ┃ ┃ ┣ 📂FavSongsPlaylist
+ ┃ ┃ ┃ ┣ 📂FavPlaylistStack
+ ┃ ┃ ┃ ┃ ┣ 📜FavPlaylistStack.js
+ ┃ ┃ ┃ ┃ ┗ 📜index.js
+ ┃ ┃ ┃ ┣ 📜FavSongsPlaylist.js
+ ┃ ┃ ┃ ┗ 📜index.js
+ ┃ ┃ ┣ 📂GeneralList
+ ┃ ┃ ┣ 📂IndividualSong
+ ┃ ┃ ┣ 📂Input
+ ┃ ┃ ┃ ┣ 📂Checkboxes
+ ┃ ┃ ┃ ┃ ┣ 📜Checkbox.js
+ ┃ ┃ ┃ ┃ ┗ 📜index.js
+ ┃ ┃ ┃ ┣ 📂Textarea
+ ┃ ┃ ┃ ┃ ┣ 📂style
+ ┃ ┃ ┃ ┃ ┣ 📜Textarea.js
+ ┃ ┃ ┃ ┃ ┗ 📜index.js
+ ┃ ┃ ┃ ┣ 📂__tests__
+ ┃ ┃ ┃ ┃ ┗ 📜Input.test.js
+ ┃ ┃ ┃ ┣ 📜Input.js
+ ┃ ┃ ┃ ┗ 📜index.js
+ ┃ ┃ ┣ 📂LoginForm
+ ┃ ┃ ┣ 📂Modal
+ ┃ ┃ ┣ 📂Navbar
+ ┃ ┃ ┣ 📂PasswordRecovery
+ ┃ ┃ ┣ 📂PaymentInfo
+ ┃ ┃ ┣ 📂Playlist
+ ┃ ┃ ┃ ┣ 📂EditPlaylistModal
+ ┃ ┃ ┃ ┣ 📂PlaylistContextMenu
+ ┃ ┃ ┃ ┣ 📂PlaylistDeleteConfirmation
+ ┃ ┃ ┃ ┣ 📂PlaylistStack
+ ┃ ┃ ┃ ┣ 📂style
+ ┃ ┃ ┃ ┣ 📜Playlist.js
+ ┃ ┃ ┃ ┗ 📜index.js
+ ┃ ┃ ┣ 📂PlaylistCarrusel
+ ┃ ┃ ┣ 📂PlaylistGrid
+ ┃ ┃ ┣ 📂PlaylistUser
+ ┃ ┃ ┃ ┣ 📂__tests__
+ ┃ ┃ ┃ ┃ ┗ 📜PlaylistUser.test.js
+ ┃ ┃ ┃ ┣ 📂style
+ ┃ ┃ ┃ ┣ 📜PlaylistUser.js
+ ┃ ┃ ┃ ┗ 📜index.js
+ ┃ ┃ ┣ 📂ProfileInfo
+ ┃ ┃ ┣ 📂RegisterForm
+ ┃ ┃ ┣ 📂RightClickMenu
+ ┃ ┃ ┣ 📂SearchEngine
+ ┃ ┃ ┣ 📂SongBar
+ ┃ ┃ ┣ 📂Spinner
+ ┃ ┃ ┣ 📂SubscriptionInfo
+ ┃ ┃ ┣ 📂UploadInfo
+ ┃ ┃ ┣ 📂UploadedSongsPlaylist
+ ┃ ┃ ┃ ┣ 📂SongEditModal
+ ┃ ┃ ┃ ┃ ┣ 📂style
+ ┃ ┃ ┃ ┃ ┣ 📜FormSchema.js
+ ┃ ┃ ┃ ┃ ┣ 📜SongEditModal.js
+ ┃ ┃ ┃ ┃ ┗ 📜index.js
+ ┃ ┃ ┃ ┣ 📂UploadedPlaylistStack
+ ┃ ┃ ┃ ┃ ┣ 📜UploadedPlaylistStack.js
+ ┃ ┃ ┃ ┃ ┗ 📜index.js
+ ┃ ┃ ┃ ┣ 📜UploadedSongsPlaylist.js
+ ┃ ┃ ┃ ┗ 📜index.js
+ ┃ ┃ ┗ 📂UserProfile
+ ┃ ┣ 📂hooks
+ ┃ ┃ ┣ 📜index.js
+ ┃ ┃ ┣ 📜useLockBodyScroll.js
+ ┃ ┃ ┗ 📜useRightClickMenu.js
+ ┃ ┣ 📂pages
+ ┃ ┃ ┣ 📂Artist
+ ┃ ┃ ┃ ┣ 📂style
+ ┃ ┃ ┃ ┣ 📜Artist.js
+ ┃ ┃ ┃ ┗ 📜index.js
+ ┃ ┃ ┣ 📂FavSongs
+ ┃ ┃ ┣ 📂Home
+ ┃ ┃ ┣ 📂IndividualPlaylist
+ ┃ ┃ ┣ 📂Login
+ ┃ ┃ ┣ 📂MyPlaylists
+ ┃ ┃ ┃ ┣ 📂__test__
+ ┃ ┃ ┃ ┃ ┗ 📜MyPlaylists.test.js
+ ┃ ┃ ┃ ┣ 📂style
+ ┃ ┃ ┃ ┣ 📜MyPlaylists.js
+ ┃ ┃ ┃ ┗ 📜index.js
+ ┃ ┃ ┣ 📂PlaylistUserInfo
+ ┃ ┃ ┣ 📂Playlists
+ ┃ ┃ ┣ 📂Profile
+ ┃ ┃ ┣ 📂Register
+ ┃ ┃ ┗ 📂UploadedSongs
+ ┃ ┣ 📂redux
+ ┃ ┃ ┣ 📂auth
+ ┃ ┃ ┃ ┣ 📜action.js
+ ┃ ┃ ┃ ┣ 📜reducer.js
+ ┃ ┃ ┃ ┣ 📜state.js
+ ┃ ┃ ┃ ┗ 📜types.js
+ ┃ ┃ ┣ 📂player
+ ┃ ┃ ┣ 📂playlist
+ ┃ ┃ ┣ 📂search
+ ┃ ┃ ┣ 📂song
+ ┃ ┃ ┣ 📂user
+ ┃ ┃ ┣ 📜reducers.js
+ ┃ ┃ ┗ 📜store.js
+ ┃ ┣ 📂services
+ ┃ ┃ ┣ 📂auth
+ ┃ ┃ ┃ ┣ 📜auth.js
+ ┃ ┃ ┃ ┗ 📜index.js
+ ┃ ┃ ┗ 📂cloudinary
+ ┃ ┃ ┃ ┣ 📜cloudinary.js
+ ┃ ┃ ┃ ┗ 📜index.js
+ ┃ ┣ 📂util
+ ┃ ┃ ┣ 📜test-util.js
+ ┃ ┃ ┗ 📜timeFormatter.js
+ ┃ ┣ 📜App.js
+ ┃ ┣ 📜App.test.js
+ ┃ ┣ 📜index.css
+ ┃ ┣ 📜index.js
+ ┃ ┣ 📜reportWebVitals.js
+ ┃ ┗ 📜setupTests.js
+ ┣ 📜.env.local
+ ┣ 📜.gitignore
+ ┗ 📜package.json
+```    
+**Repeated file structure omitted*
 
+- Back-end
+```
+📦server
+ ┣ 📂node_modules
+ ┃ ┗ 📂.bin
+ ┃ ┃ ┗ 📜nodemon
+ ┣ 📂src
+ ┃ ┣ 📂__tests__
+ ┃ ┃ ┗ 📜server.test.js
+ ┃ ┣ 📂config
+ ┃ ┃ ┣ 📜config.js
+ ┃ ┃ ┗ 📜index.js
+ ┃ ┣ 📂controllers
+ ┃ ┃ ┣ 📜index.js
+ ┃ ┃ ┣ 📜playlistController.js
+ ┃ ┃ ┣ 📜songController.js
+ ┃ ┃ ┗ 📜userController.js
+ ┃ ┣ 📂db
+ ┃ ┃ ┣ 📂__tests__
+ ┃ ┃ ┃ ┗ 📜connect.test.js
+ ┃ ┃ ┗ 📜connect.js
+ ┃ ┣ 📂middleware
+ ┃ ┃ ┣ 📜authMiddleware.js
+ ┃ ┃ ┗ 📜index.js
+ ┃ ┣ 📂models
+ ┃ ┃ ┣ 📜index.js
+ ┃ ┃ ┣ 📜playlistModel.js
+ ┃ ┃ ┣ 📜songModel.js
+ ┃ ┃ ┗ 📜userModel.js
+ ┃ ┣ 📂routes
+ ┃ ┃ ┣ 📜index.js
+ ┃ ┃ ┣ 📜playlistRoutes.js
+ ┃ ┃ ┣ 📜songRoutes.js
+ ┃ ┃ ┗ 📜userRoutes.js
+ ┃ ┣ 📂utils
+ ┃ ┃ ┣ 📂auth
+ ┃ ┃ ┃ ┣ 📜firebase.js
+ ┃ ┃ ┃ ┗ 📜verifyIdToken.js
+ ┃ ┃ ┗ 📂tests
+ ┃ ┣ 📜index.js
+ ┃ ┗ 📜server.js
+ ┣ 📜.env
+ ┣ 📜.gitignore
+ ┣ 📜package.json
+ ┗ 📜yarn-error.log
+```
 ### Technology used
 <details>
 <summary>Front-end</summary>
