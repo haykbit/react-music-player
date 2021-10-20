@@ -32,6 +32,7 @@ import {
   updateUserPassword,
 } from "../../services/auth";
 import { uploadImages } from "../../services/cloudinary";
+import { toast } from "react-toastify";
 
 export const displayUserProfile =
   ({ userId }) =>
@@ -41,6 +42,7 @@ export const displayUserProfile =
       const userProfile = await getUserProfile({ userId });
       dispatch({ type: GET_PROFILE_SUCCESS, payload: userProfile });
     } catch (error) {
+      toast.error("Something went wrong! Try again");
       dispatch({ type: GET_PROFILE_FAIL, payload: error.message });
     }
   };
@@ -58,12 +60,15 @@ export const updateUserProfileInfo = (userId, profile) => async (dispatch) => {
       await updateUserProfile(userId, profile, imageData.url);
     } else {
       await updateUserProfile(userId, profile, profileImageURL);
+      toast.info("Your profile has been successfully updated");
+
       dispatch({
         type: UPDATE_PROFILE_SUCCESS,
         payload: { ...profile },
       });
     }
   } catch (error) {
+    toast.error("Something went wrong! Try again");
     dispatch({ type: UPDATE_PROFILE_FAIL, payload: error.message });
   }
 };
@@ -74,8 +79,10 @@ export const updateUserProfilePassword =
     try {
       await reauthenticate(currentPassword);
       await updateUserPassword(newPassword);
+      toast.info("Your password has been successfully updated");
       dispatch({ type: UPDATE_PASSWORD_SUCCESS });
     } catch (error) {
+      toast.error("Something went wrong! Try again");
       dispatch({ type: UPDATE_PASSWORD_FAIL, payload: error.message });
     }
   };
@@ -91,10 +98,12 @@ export const updateUserProfileEmail =
       await reauthenticate(currentPassword);
       await updateUserEmail(newEmail);
       await updateUserEmailInfo(userId, newEmail);
+      toast.info("Your email has been successfully updated");
       dispatch({
         type: UPDATE_EMAIL_SUCCESS,
       });
     } catch (error) {
+      toast.error(error.message.split(":")[1].split(".")[0]);
       dispatch({ type: UPDATE_EMAIL_FAIL, payload: error.message });
     }
   };
@@ -105,6 +114,7 @@ export const followUser = (profileUserId, userId) => async (dispatch) => {
     await followingUser(profileUserId, userId);
     dispatch({ type: FOLLOW_USER_SUCCESS });
   } catch (error) {
+    toast.error("Something went wrong! Try again");
     dispatch({ type: FOLLOW_USER_FAIL, payload: error.message });
   }
 };
@@ -114,6 +124,7 @@ export const cancelFollowUser = (profileUserId, userId) => async (dispatch) => {
     await cancelFollowingUser(profileUserId, userId);
     dispatch({ type: CANCEL_FOLLOW_USER_SUCCESS });
   } catch (error) {
+    toast.error("Something went wrong! Try again");
     dispatch({ type: CANCEL_FOLLOW_USER_FAIL, payload: error.message });
   }
 };

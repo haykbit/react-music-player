@@ -37,7 +37,6 @@ function Playlist({ playlist }) {
     editModal: false,
     deleteModal: false,
   });
-  const [follow, setFollow] = useState(false);
   const [myFavPlaylists, setMyFavPlaylists] = useState([]);
   const [displaySongs, setDisplaySongs] = useState([]);
 
@@ -79,8 +78,10 @@ function Playlist({ playlist }) {
   }
 
   function handleFollowClick() {
-    setFollow((prev) => !prev);
-    if (follow === false) {
+    const isFollowed = myFavPlaylists.some(
+      (ele) => ele["_id"] === playlist._id
+    );
+    if (isFollowed === false) {
       dispatch(followPlaylist(playlist._id, user.uid));
     } else {
       dispatch(cancelFollowPlaylist(playlist._id, user.uid));
@@ -156,26 +157,26 @@ function Playlist({ playlist }) {
                 >
                   {userInfo.firstName} {userInfo.lastName}
                 </h3>
-                <p className="playlist-genre">{playlist.description}</p>
+                <p className="playlist-description">{playlist.description}</p>
                 <p className="song-number">{playlist.songs.length} songs</p>
-                {!playlist.private && user.uid !== playlist.owner ? (
-                  <div>
+                <div>
+                  {!playlist.private && user.uid !== playlist.owner ? (
                     <button
                       className={`follow-button ${handleClassNameAndFollow()}`}
                       onClick={handleFollowClick}
                     >
                       {handleClassNameAndFollow().toUpperCase()}
                     </button>
-                  </div>
-                ) : null}
-                <button
-                  onClick={() => ToggleContext()}
-                  className="context-menu-btn"
-                >
-                  <IoMdMore className="context-icon" />
-                </button>
+                  ) : null}
+                  <button
+                    onClick={() => ToggleContext()}
+                    className="context-menu-btn"
+                  >
+                    <IoMdMore className="context-icon" />
+                  </button>
+                </div>
 
-                <div className="context-container">
+                <div className="context-container-playlist">
                   <PlaylistContextMenu
                     show={contextMenu}
                     closeMenu={ToggleContext}
@@ -184,7 +185,6 @@ function Playlist({ playlist }) {
                     ToggleDeleteModal={ToggleDeleteModal}
                     playlist={playlist}
                     handleFollowClick={handleFollowClick}
-                    follow={follow}
                   />
                 </div>
               </div>

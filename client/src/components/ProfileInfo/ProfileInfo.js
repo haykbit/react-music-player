@@ -52,16 +52,20 @@ function ProfileInfo() {
   }, [loading]);
 
   async function updateOnMount() {
-    console.log(user, "REDUX USER");
-    const userData = await getUserProfile(user.uid);
-    console.log(userData, "USER DATA");
-    const { email, firstName, lastName, profileImage } = userData.data.data;
-    setMyEmail(email);
-    setProfile({
-      firstName: firstName,
-      lastName: lastName,
-      profileImageURL: profileImage || "",
-    });
+    try {
+      console.log(user, "REDUX USER");
+      const userData = await getUserProfile(user.uid);
+      console.log(userData, "USER DATA");
+      const { email, firstName, lastName, profileImage } = userData.data.data;
+      setMyEmail(email);
+      setProfile({
+        firstName: firstName,
+        lastName: lastName,
+        profileImageURL: profileImage || "",
+      });
+    } catch (error) {
+      alert("HELLO");
+    }
   }
 
   function handleUserInfoSubmit(e) {
@@ -98,6 +102,14 @@ function ProfileInfo() {
     };
 
     reader.readAsDataURL(e.target.files[0]);
+  }
+  function handleEmailOpen() {
+    setOpenResetEmail(!openResetEmail);
+    setOpenResetPassword(true);
+  }
+  function handlePasswordOpen() {
+    setOpenResetPassword(!openResetPassword);
+    setOpenResetEmail(true);
   }
   return (
     <>
@@ -158,7 +170,6 @@ function ProfileInfo() {
                   <input
                     className="user-input"
                     placeholder="Name"
-                    // disabled={isDisabled}
                     name="firstName"
                     onChange={(e) => handleProfileChange(e)}
                     value={profile.firstName}
@@ -166,7 +177,6 @@ function ProfileInfo() {
                   <input
                     className="user-input"
                     placeholder="Surname"
-                    // disabled={isDisabled}
                     name="lastName"
                     onChange={(e) => handleProfileChange(e)}
                     value={profile.lastName}
@@ -174,117 +184,120 @@ function ProfileInfo() {
                   <Button type="submit">Change Profile</Button>
                 </div>
               </form>
+            </div>
+            <div>
               <Button
                 className="user-input password-button"
-                onClick={() => setOpenResetEmail(!openResetEmail)}
+                onClick={() => handleEmailOpen()}
               >
                 Reset Email
               </Button>
-              <div hidden={openResetEmail}>
-                <form onSubmit={handleUserEmailSubmit}>
-                  <input
-                    className="new-password-input"
-                    name="myEmail"
-                    type="text"
-                    placeholder="New Email"
-                    onChange={handleEmailChange}
-                    value={myEmail}
-                    required
-                  />
-                  <input
-                    className="new-password-input"
-                    name="myPassword"
-                    type="password"
-                    placeholder="Current Password"
-                    value={myPassword}
-                    onChange={(e) => handleMyPasswordChange(e)}
-                    required
-                  />
-
-                  <Button type="submit" className="user-input password-button">
-                    Save
-                  </Button>
-                </form>
-              </div>
               <Button
                 className="user-input password-button"
-                onClick={() => setOpenResetPassword(!openResetPassword)}
+                onClick={() => handlePasswordOpen()}
               >
                 Reset Password
               </Button>
-              <div hidden={openResetPassword}>
-                <Formik
-                  onSubmit={(values) => {
-                    setOpenResetPassword(true);
-                    dispatch(
-                      updateUserProfilePassword(
-                        values.currentPassword,
-                        values.newPassword
-                      )
-                    );
-                  }}
-                  initialValues={{
-                    currentPassword: "",
-                    newPassword: "",
-                    confirm: "",
-                  }}
-                  validationSchema={FormSchema}
-                >
-                  {({
-                    errors,
-                    values,
-                    touched,
-                    isValidating,
-                    isValid,
-                    handleSubmit,
-                    handleChange,
-                    handleBlur,
-                  }) => (
-                    <form onSubmit={handleSubmit} key={2}>
-                      <Input
-                        className="new-password-input"
-                        name="currentPassword"
-                        type="password"
-                        placeholder="Current Password"
-                        onChange={handleChange}
-                        value={values.currentPassword}
-                        hasErrorMessage={touched.currentPassword}
-                        errorMessage={errors.currentPassword}
-                        onBlur={handleBlur}
-                      />
-                      <Input
-                        className="new-password-input"
-                        name="newPassword"
-                        type="password"
-                        placeholder="New Password"
-                        onChange={handleChange}
-                        value={values.newPassword}
-                        hasErrorMessage={touched.newPassword}
-                        errorMessage={errors.newPassword}
-                        onBlur={handleBlur}
-                      />
-                      <Input
-                        className="new-password-input"
-                        name="confirm"
-                        type="password"
-                        placeholder="Repeat New Password"
-                        onChange={handleChange}
-                        value={values.confirm}
-                        hasErrorMessage={touched.confirm}
-                        errorMessage={errors.confirm}
-                        onBlur={handleBlur}
-                      />
-                      <Button
-                        className="user-input password-button"
-                        submitButton
-                        disabled={isValidating || !isValid}
-                      >
-                        Save
-                      </Button>
-                    </form>
-                  )}
-                </Formik>
-              </div>
+            </div>
+            <div hidden={openResetPassword}>
+              <Formik
+                onSubmit={(values) => {
+                  setOpenResetPassword(true);
+                  dispatch(
+                    updateUserProfilePassword(
+                      values.currentPassword,
+                      values.newPassword
+                    )
+                  );
+                }}
+                initialValues={{
+                  currentPassword: "",
+                  newPassword: "",
+                  confirm: "",
+                }}
+                validationSchema={FormSchema}
+              >
+                {({
+                  errors,
+                  values,
+                  touched,
+                  isValidating,
+                  isValid,
+                  handleSubmit,
+                  handleChange,
+                  handleBlur,
+                }) => (
+                  <form onSubmit={handleSubmit} key={2}>
+                    <Input
+                      className="new-password-input"
+                      name="currentPassword"
+                      type="password"
+                      placeholder="Current Password"
+                      onChange={handleChange}
+                      value={values.currentPassword}
+                      hasErrorMessage={touched.currentPassword}
+                      errorMessage={errors.currentPassword}
+                      onBlur={handleBlur}
+                    />
+                    <Input
+                      className="new-password-input"
+                      name="newPassword"
+                      type="password"
+                      placeholder="New Password"
+                      onChange={handleChange}
+                      value={values.newPassword}
+                      hasErrorMessage={touched.newPassword}
+                      errorMessage={errors.newPassword}
+                      onBlur={handleBlur}
+                    />
+                    <Input
+                      className="new-password-input"
+                      name="confirm"
+                      type="password"
+                      placeholder="Repeat New Password"
+                      onChange={handleChange}
+                      value={values.confirm}
+                      hasErrorMessage={touched.confirm}
+                      errorMessage={errors.confirm}
+                      onBlur={handleBlur}
+                    />
+                    <Button
+                      className="user-input"
+                      submitButton
+                      disabled={isValidating || !isValid}
+                    >
+                      Save
+                    </Button>
+                  </form>
+                )}
+              </Formik>
+            </div>
+
+            <div hidden={openResetEmail}>
+              <form onSubmit={handleUserEmailSubmit}>
+                <input
+                  className="new-password-input"
+                  name="myEmail"
+                  type="text"
+                  placeholder="New Email"
+                  onChange={handleEmailChange}
+                  value={myEmail}
+                  required
+                />
+                <input
+                  className="new-password-input"
+                  name="myPassword"
+                  type="password"
+                  placeholder="Current Password"
+                  value={myPassword}
+                  onChange={(e) => handleMyPasswordChange(e)}
+                  required
+                />
+
+                <Button type="submit" className="user-input">
+                  Save
+                </Button>
+              </form>
             </div>
           </div>
         </div>

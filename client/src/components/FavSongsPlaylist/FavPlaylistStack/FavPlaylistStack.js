@@ -6,8 +6,6 @@ import { orderFavoriteSongs } from "../../../redux/song/action";
 import { getLikedSongs } from "../../../api/api";
 import IndividualSong from "../../IndividualSong";
 
-import "./style/playliststack.scss";
-
 function FavPlaylistStack() {
   const dispatch = useDispatch();
   const [favSongsData, setFavSongsData] = useState(null);

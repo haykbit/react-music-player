@@ -12,19 +12,8 @@
     border-radius: 7px;
     border: none;
     outline: none;
-
-    .profile-component {
-      width: 100%;
-    }
-
-    .payment-component {
-    }
-
-    .sub-component {
-    }
-
-    .upload-component {
-    }
+    box-sizing: border-box;
+    padding: 10px;
 
     h2 {
       margin-bottom: 40px;
@@ -89,5 +78,19 @@
     height: 500px;
     margin: 0px 20px 0px 20px;
     border-radius: 7px;
+  }
+}
+.arrow-container {
+  height: 105px;
+  width: 105px;
+  margin-top: 90px;
+  position: fixed;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  .arrow-icon {
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
   }
 }

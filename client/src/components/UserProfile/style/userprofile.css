@@ -12,12 +12,15 @@
       -ms-flex-direction: column;
           flex-direction: column;
   background-color: #171717;
-  width: 80%;
+  width: 900px;
   height: 600px;
   margin: 0px 20px 0px 20px;
   border-radius: 7px;
   border: none;
   outline: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
 }
 
 .profile-container .profile-card h2 {
@@ -81,9 +84,25 @@
 
 .profile-container .profile-item {
   background-color: #171717;
-  width: 80%;
+  width: 3px;
   height: 500px;
   margin: 0px 20px 0px 20px;
   border-radius: 7px;
+}
+
+.arrow-container {
+  height: 105px;
+  width: 105px;
+  margin-top: 90px;
+  position: fixed;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.arrow-container .arrow-icon {
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
 }
 /*# sourceMappingURL=userprofile.css.map */

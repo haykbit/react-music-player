@@ -16,7 +16,6 @@ export async function syncUserData(user) {
 
 export async function getUserProfile(id) {
   const userToken = await getCurrentUserToken();
-
   return axios({
     method: "GET",
     url: `${process.env.REACT_APP_API_BASE_URL}/users/${id}`,
@@ -406,6 +405,17 @@ export async function cancelFollowingUser(profileUserId, userId) {
     method: "PATCH",
     url: `${process.env.REACT_APP_API_BASE_URL}/users/cancel-follow/${profileUserId}`,
     data: { userId },
+    headers: {
+      Authorization: `Bearer ${userToken}`,
+    },
+  });
+}
+
+export async function sortPublicPlaylistsByLikes() {
+  const userToken = await getCurrentUserToken();
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_API_BASE_URL}/playlists/sort-playlists`,
     headers: {
       Authorization: `Bearer ${userToken}`,
     },

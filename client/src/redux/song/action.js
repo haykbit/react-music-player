@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import {
   uploadSongsData,
   likeSong,
@@ -9,6 +10,12 @@ import {
   orderFavoritedSongs,
   orderPlaylistsSongs,
 } from "../../api/api";
+import {
+  createSongs,
+  deleteSongs,
+  likeSongs,
+  cancelLikeSongs,
+} from "../../api/stats-api";
 import { uploadImages, uploadSongs } from "../../services/cloudinary";
 import {
   POST_SONG_REQUEST,
@@ -41,14 +48,24 @@ export const uploadSongFile = (song, metadata, image) => async (dispatch) => {
   dispatch({ type: POST_SONG_REQUEST });
   try {
     const songData = await uploadSongs(song);
+    let createdSong;
     if (image) {
       const songImage = await uploadImages(image);
-      await uploadSongsData(songData, metadata, songImage.url);
+      createdSong = await uploadSongsData(songData, metadata, songImage.url);
     } else {
-      await uploadSongsData(songData, metadata, undefined);
+      createdSong = await uploadSongsData(songData, metadata, undefined);
     }
+    const { _id, owner, genre } = createdSong.data.data;
+    const checkPrivate = createdSong.data.data.private;
+    if (!checkPrivate) {
+      const songStats = { _id, owner, genre };
+      //TODO for Laravel
+      // await createSongs(songStats);
+    }
+    toast.info("Successfully Uploaded");
     dispatch({ type: POST_SONG_SUCCESS });
   } catch (error) {
+    toast.error("Something went wrong! Try again");
     dispatch({ type: POST_SONG_FAIL, payload: error.message });
   }
 };
@@ -57,8 +74,11 @@ export const dispatchLikeSong = (songId, userId) => async (dispatch) => {
   dispatch({ type: LIKE_SONG_REQUEST });
   try {
     await likeSong(songId, userId);
+    //TODO for Laravel
+    // await likeSongs(songId);
     dispatch({ type: LIKE_SONG_SUCCESS });
   } catch (error) {
+    toast.error("Something went wrong! Try again");
     dispatch({ type: LIKE_SONG_FAIL, payload: error.message });
   }
 };
@@ -67,8 +87,11 @@ export const cancelLikedSongs = (songId, userId) => async (dispatch) => {
   dispatch({ type: CANCEL_LIKED_SONG_REQUEST });
   try {
     await cancelLikeSong(songId, userId);
+    //TODO for Laravel
+    // await cancelLikeSongs(songId);
     dispatch({ type: CANCEL_LIKED_SONG_SUCCESS });
   } catch (error) {
+    toast.error("Something went wrong! Try again");
     dispatch({ type: CANCEL_LIKED_SONG_FAIL, payload: error.message });
   }
 };
@@ -78,6 +101,7 @@ export const dispatchMySongsData = () => async (dispatch) => {
   try {
     dispatch({ type: GET_MY_SONGS_SUCCESS });
   } catch (error) {
+    toast.error("Something went wrong! Try again");
     dispatch({ type: GET_MY_SONGS_FAIL, payload: error.message });
   }
 };
@@ -87,6 +111,7 @@ export const getMyLikedSongs = () => async (dispatch) => {
   try {
     dispatch({ type: GET_MY_LIKED_SONGS_SUCCESS });
   } catch (error) {
+    toast.error("Something went wrong! Try again");
     dispatch({ type: GET_MY_LIKED_SONGS_FAIL, payload: error.message });
   }
 };
@@ -95,8 +120,12 @@ export const deleteSong = (songId, userId) => async (dispatch) => {
   dispatch({ type: DELETE_SONG_REQUEST });
   try {
     await removeSongData(songId, userId);
+    //TODO for Laravel
+    // await deleteSongs(songId);
+    toast.info("Successfully Deleted");
     dispatch({ type: DELETE_SONG_SUCCESS });
   } catch (error) {
+    toast.error("Something went wrong! Try again");
     dispatch({ type: DELETE_SONG_FAIL, payload: error.message });
   }
 };
@@ -110,8 +139,10 @@ export const editActualSong = (songId, songData, image) => async (dispatch) => {
     } else {
       await editSongData(songId, songData, songData.initialImage);
     }
+    toast.info("Successfully Edited");
     dispatch({ type: UPDATE_SONG_SUCCESS });
   } catch (error) {
+    toast.error("Something went wrong! Try again");
     dispatch({ type: UPDATE_SONG_FAIL, payload: error.message });
   }
 };
@@ -122,6 +153,7 @@ export const orderMySongs = (id, orderedList) => async (dispatch) => {
     await orderUserSongs(id, orderedList);
     dispatch({ type: ORDER_MY_SONGS_SUCCESS });
   } catch (error) {
+    toast.error("Something went wrong! Try again");
     dispatch({ type: ORDER_MY_SONGS_FAIL, payload: error.message });
   }
 };
@@ -132,6 +164,7 @@ export const orderFavoriteSongs = (id, orderedList) => async (dispatch) => {
     await orderFavoritedSongs(id, orderedList);
     dispatch({ type: ORDER_MY_SONGS_SUCCESS });
   } catch (error) {
+    toast.error("Something went wrong! Try again");
     dispatch({ type: ORDER_MY_SONGS_FAIL, payload: error.message });
   }
 };
@@ -142,6 +175,7 @@ export const orderMyPlaylistsSongs = (id, orderedList) => async (dispatch) => {
     await orderPlaylistsSongs(id, orderedList);
     dispatch({ type: ORDER_MY_SONGS_SUCCESS });
   } catch (error) {
+    toast.error("Something went wrong! Try again");
     dispatch({ type: ORDER_MY_SONGS_FAIL, payload: error.message });
   }
 };

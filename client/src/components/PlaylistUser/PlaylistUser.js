@@ -52,8 +52,10 @@ function PlaylistUser({ playlistUserData }) {
   }
 
   function handleFollowUser() {
-    setFollow((prev) => !prev);
-    if (follow === false) {
+    const isFollowed =
+      playlistUserData.followedBy &&
+      playlistUserData.followedBy.some((ele) => ele === user.uid);
+    if (isFollowed === false) {
       dispatch(followUser(playlistUserData.firebase_id, user.uid));
     } else {
       dispatch(cancelFollowUser(playlistUserData.firebase_id, user.uid));
@@ -75,7 +77,7 @@ function PlaylistUser({ playlistUserData }) {
         backgroundImage: `url(${backgroundPicture})`,
       }}
     >
-      <div className="edit-background">
+      {/* <div className="edit-background">
         {" "}
         <label
           htmlFor="upload-input"
@@ -91,7 +93,7 @@ function PlaylistUser({ playlistUserData }) {
           accept=".jpg, .jpeg, .png"
           onChange={handleImageChange}
         />
-      </div>
+      </div> */}
 
       <div className="profile-page-container">
         <div className="profile-page-box">

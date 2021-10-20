@@ -1,10 +1,11 @@
 .top-half {
   display: flex;
-  height: 60vh;
+  height: 91vh;
   width: 100%;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  overflow: hidden;
 
   .edit-background {
     display: flex;
@@ -198,9 +199,8 @@
         margin-left: 15px;
         p {
           color: white;
-          font-size: 20px;
+          font-size: 15px;
           font-weight: 600;
-          border-bottom: 1px solid white;
           margin: 5px;
         }
       }
@@ -231,15 +231,14 @@
         .songs-example {
           cursor: pointer;
           display: flex;
-          color: white;
+          color: rgb(255, 255, 255);
           cursor: pointer;
           margin: 5px;
-          border: 1px solid white;
           height: 50px;
           width: 310px;
-
-          :hover {
-            background-color: gray;
+          background-color: #17171773;
+          &:hover {
+            background-color: rgba(117, 115, 115, 0.74);
           }
 
           .song-info-img {
@@ -262,6 +261,9 @@
 
             .song-info-title {
               font-weight: 500;
+            }
+            .song-info-artist {
+              font-size: 12px;
             }
           }
         }

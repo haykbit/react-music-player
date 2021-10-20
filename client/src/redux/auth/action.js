@@ -24,6 +24,7 @@ import {
   LOADING_OBSERVER_FAIL,
   AUTH_RESET,
 } from "./types";
+import { toast } from "react-toastify";
 
 export const authObserverLoading = () => (dispatch) => {
   try {
@@ -63,6 +64,7 @@ export const login = () => async (dispatch) => {
     localStorage.setItem("user", JSON.stringify(userProfile));
     await syncUserData(userProfile);
     dispatch({ type: LOGIN_SUCCESS, payload: accessToken });
+    toast.success("You are successfully logged in");
     dispatch({ type: LOAD_PROFILE, payload: userProfile });
   } catch (error) {
     dispatch({ type: LOGIN_FAIL, payload: error.message });
@@ -85,10 +87,13 @@ export const registerWithEmailAndPassword =
         type: REGISTER_SUCCESS,
         payload: { ...user, email },
       });
+      toast.success("You are successfully registered!");
+
       await syncUserData(userProfile);
       dispatch({ type: AUTH_RESET });
     } catch (error) {
       dispatch({ type: REGISTER_FAIL, payload: error.message });
+      toast.warn(error.message.split(":")[1].split(".")[0]);
     }
   };
 
@@ -109,15 +114,19 @@ export const loginWithEmailAndPassword =
 
       dispatch({ type: LOGIN_SUCCESS, payload: accessToken });
       dispatch({ type: LOAD_PROFILE, payload: userProfile });
+      toast.success("You are successfully logged in");
       await syncUserData(userProfile);
     } catch (error) {
       dispatch({ type: LOGIN_FAIL, payload: error.message });
+      toast.error("Wrong Email or Password");
     }
   };
 
 export const logout = () => async (dispatch) => {
   localStorage.removeItem("user");
   dispatch({ type: SIGN_OUT_SUCCESS });
+  toast.success("You are successfully logged out");
+
   await signOut();
 };
 
@@ -126,10 +135,12 @@ export const sendPasswordResetEmailToUser = (email) => async (dispatch) => {
   try {
     await sendPasswordResetEmail(email);
     dispatch({ type: SEND_PASSWORD_RESET_SUCCESS });
+    toast.success("Email sent! Check your email");
   } catch (error) {
     dispatch({
       type: SEND_PASSWORD_RESET_FAIL,
       payload: error.message,
     });
+    toast.error(error.message.split(":")[1].split(".")[0]);
   }
 };

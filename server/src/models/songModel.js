@@ -85,5 +85,5 @@ const SongSchema = new Schema(
 
 const Song = mongoose.model("Song", SongSchema);
 module.exports = {
-  Song: Song,
+  Song,
 };
