@@ -130,17 +130,6 @@ function PlaylistGrid({ playlists, privateLists }) {
                 key={index}
                 style={{
                   backgroundImage: `url(${item.playlistImage})`,
-                  width: "250px",
-                  height: "300px",
-                  padding: "10px",
-                  color: "#fff",
-                  whiteSpace: "normal",
-                  borderRadius: "10px",
-                  margin: "10px",
-                  backgroundPosition: "center",
-                  backgroundSize: "cover",
-                  backgroundRepeat: "no-repeat",
-                  cursor: "pointer",
                 }}
                 onClick={() =>
                   history.push({
