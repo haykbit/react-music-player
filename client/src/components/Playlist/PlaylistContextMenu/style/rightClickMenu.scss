@@ -1,4 +1,4 @@
-.context-menu-container {
+.context-menu-container-playlist {
   height: fit-content;
   width: 150px;
   border-radius: 10px;
@@ -6,8 +6,9 @@
   color: white;
   display: flex;
   flex-direction: column;
-  position: absolute;
-  transform: translateX(20%) translateY(50%);
+  position: static;
+  float: right;
+  // transform: translateX(0%) translateY(0%);
   box-sizing: border-box;
   padding: 15px;
   z-index: 1000;
