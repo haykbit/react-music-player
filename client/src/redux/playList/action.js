@@ -64,9 +64,12 @@ export const createNewPlaylist = (playlistData, image) => async (dispatch) => {
         image: undefined,
       };
     }
+    toast.info("Playlist successfully created!");
     dispatch({ type: PLAYLIST_CREATE_SUCCESS });
+
     await createPlaylists(playlist);
   } catch (error) {
+    toast.error("Something went wrong! Try again");
     dispatch({ type: PLAYLIST_CREATE_FAIL, payload: error.message });
   }
 };
@@ -86,8 +89,10 @@ export const deleteSongFromPlaylist =
     dispatch({ type: REMOVE_SONG_REQUEST });
     try {
       await removeSongFromPlaylist(playlistId, songId);
+      toast.info("Song successfully deleted from playlist!");
       dispatch({ type: REMOVE_SONG_SUCCESS });
     } catch (error) {
+      toast.error("Something went wrong! Try again");
       dispatch({ type: REMOVE_SONG_FAIL, payload: error.message });
     }
   };
@@ -96,8 +101,10 @@ export const deletePlaylist = (playlistId, userId) => async (dispatch) => {
   dispatch({ type: DELETE_PLAYLIST_REQUEST });
   try {
     await removePlaylist(playlistId, userId);
+    toast.info("Playlist successfully deleted!");
     dispatch({ type: DELETE_PLAYLIST_SUCCESS });
   } catch (error) {
+    toast.error("Something went wrong! Try again");
     dispatch({ type: DELETE_PLAYLIST_FAIL, payload: error.message });
   }
 };
@@ -108,6 +115,7 @@ export const followPlaylist = (playlistId, userId) => async (dispatch) => {
     await followingPlaylist(playlistId, userId);
     dispatch({ type: FOLLOW_PLAYLIST_SUCCESS });
   } catch (error) {
+    toast.error("Something went wrong! Try again");
     dispatch({ type: FOLLOW_PLAYLIST_FAIL, payload: error.message });
   }
 };
@@ -119,6 +127,7 @@ export const cancelFollowPlaylist =
       await cancelFollowingPlaylist(playlistId, userId);
       dispatch({ type: CANCEL_FOLLOW_PLAYLIST_SUCCESS });
     } catch (error) {
+      toast.error("Something went wrong! Try again");
       dispatch({ type: CANCEL_FOLLOW_PLAYLIST_FAIL, payload: error.message });
     }
   };
@@ -132,6 +141,7 @@ export const getFavoritePlaylists = (userId) => async (dispatch) => {
       payload: myFavLists.data.data,
     });
   } catch (error) {
+    toast.error("Something went wrong! Try again");
     dispatch({ type: GET_FAVORITE_PLAYLISTS_FAIL, payload: error.message });
   }
 };
@@ -145,6 +155,7 @@ export const displayPublicPlaylists = (userId) => async (dispatch) => {
       payload: publicPlaylists.data.data,
     });
   } catch (error) {
+    toast.error("Something went wrong! Try again");
     dispatch({ type: GET_PUBLIC_PLAYLISTS_FAIL, payload: error.message });
   }
 };
@@ -158,9 +169,10 @@ export const editPlaylist = (playlist, image, id) => async (dispatch) => {
     } else {
       updatePlaylist(playlist, playlist.initialImage, id);
     }
-
+    toast.info("Playlist successfully edited!");
     dispatch({ type: PLAYLIST_EDIT_SUCCESS });
   } catch (error) {
+    toast.error("Something went wrong! Try again");
     dispatch({ type: PLAYLIST_EDIT_FAIL });
   }
 };
@@ -171,6 +183,7 @@ export const orderMyPlaylists = (id, orderedList) => async (dispatch) => {
     await orderUserPlaylists(id, orderedList);
     dispatch({ type: ORDER_PLAYLISTS_SUCCESS });
   } catch (error) {
+    toast.error("Something went wrong! Try again");
     dispatch({ type: ORDER_PLAYLISTS_FAIL, payload: error.message });
   }
 };
@@ -180,8 +193,10 @@ export const addSongToPlaylistView =
     dispatch({ type: ADD_SONG_TO_PLAYLIST_REQUEST });
     try {
       await addSongToPlaylist(playlistId, userId, songId);
+      toast.info("Song successfully added to playlist!");
       dispatch({ type: ADD_SONG_TO_PLAYLIST_SUCCESS });
     } catch (error) {
+      toast.error("Something went wrong! Try again");
       dispatch({ type: ADD_SONG_TO_PLAYLIST_FAIL, payload: error.message });
     }
   };
