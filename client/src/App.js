@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import AudioPlayer from "../src/components/SongBar/AudioPlayer";
-
+import { HiArrowSmLeft } from "react-icons/hi";
 import { authObserverLoading } from "./redux/auth/action";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -43,11 +43,16 @@ function App() {
     history.goBack();
   };
 
+  let url = window.location.pathname;
+
   return (
     <>
-      <div className="arrow-container">
-        <div className="arrow-left" onClick={handleBack}></div>
-      </div>
+      {url != "/home-page" ? (
+        <div className="arrow-container">
+          <HiArrowSmLeft className="arrow-icon" onClick={handleBack} />
+        </div>
+      ) : null}
+
       {songLoading || userLoading ? (
         <Spinner color={"white"} loading={true} />
       ) : (
