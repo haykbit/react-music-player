@@ -1,6 +1,7 @@
 # [React-music-player](#react-music-player)
 ## 📔 Description
 **A Music player made with React and Node.js**
+
 Listen to your favorite artists and bands, discover songs on other peoples playlists and enjoy yourself in this musical Oasis.
 
 ## Table of Contents <!-- omit in toc -->
@@ -25,8 +26,19 @@ This project runs with some specific technologies that require a previous instal
 | MongoDB Visual Interface | [Visual BD Helper](https://www.mongodb.com/products/compass)      | False |
 | Web server stack package   | [XAMPP](https://www.apachefriends.org/es/index.html) / [MAMP](https://www.mamp.info/en/windows/) | True |
 | Package manager for PHP   | [Composer](https://getcomposer.org/) | True     |
+| Cloud file manager | [Cloudinary](https://cloudinary.com) | True |
 
-*_You can choose between the dozens of possibilities, VSCode is only a recommendation_
+*_You can choose between dozens of possibilities, VSCode is only a recommendation_
+
+### ENV files
+
+It's required to create .env files to store your environment and sensitive information.
+
+For the __client__ .env is necessary to add the __Firebase__ configuration and credentials, your __Cloudinary__ path and credentials, and your access path to both Server.
+
+For __main server__ .env is necessary to add the __Firebase Admin__ credentials, your __Mongo Databse__ connection information and the path to the __Client__.
+
+For the __secondary server__ .env it is required to have the data related to the __Laravel configuration__ and to the __SQL Database__ connection.
 
 ## Getting Started
 1. Clone the repository
@@ -117,7 +129,7 @@ Style elements, that includes all _scss_ files and _classes_ have the same rules
 
 * You don't remember the title of that song? Search by song name, playlist or band!
 
-[![Image from Gyazo](https://i.gyazo.com/84688af5bea421702b6add253614c1b3.gif)](https://gyazo.com/84688af5bea421702b6add253614c1b3)
+[![Image from Gyazo](https://i.gyazo.com/ae675b20d2d3dbbd61ec93484364389b.gif)](https://gyazo.com/ae675b20d2d3dbbd61ec93484364389b)
 
 * Upload your own songs, only for your ears to enjoy.
 
