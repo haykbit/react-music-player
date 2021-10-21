@@ -43,7 +43,7 @@ This project runs with some specific technologies that require a previous instal
 - And last but not least open terminal for Laravel server (and remember to start your XAMPP or MAMP package)
    
    ```
-   $ yarn server
+   $ yarn stats
    ``` 
 
 
@@ -94,10 +94,27 @@ Structural element names have a strict policy to be simple, clear and descriptiv
 ### Style elements
 Style elements, that includes all _scss_ files and _classes_ have the same rules: lowercase connected by hyphens. The names need to be __descriptive__ but __short__ and, in case they are nested components or classes, should have a reference of their __parent element__ on the name.
 
-## Screentshots
+## Main Features
+* Log in with your email or a __Google Account__ with total security.
+
+* Create your personal _Playlists_ and add as many tracks as you want.
+
 [![Image from Gyazo](https://i.gyazo.com/40b387cfb51de9084eb5ab4deb38ff5e.gif)](https://gyazo.com/40b387cfb51de9084eb5ab4deb38ff5e)
+
+* Save your most loved songs: you can find all of them on your ***Favorite*** section!
+
+* You don't remember the title of that song? Search by song name, playlist or band!
+
 [![Image from Gyazo](https://i.gyazo.com/84688af5bea421702b6add253614c1b3.gif)](https://gyazo.com/84688af5bea421702b6add253614c1b3)
+
+* Upload your own songs, only for your ears to enjoy.
+
+* Discover the latest hits, the most beloved music and the best of each genre on this incredible homepage.
+
 [![Image from Gyazo](https://i.gyazo.com/8e57d8d5bf262c6b4bd50f9e34dd10d8.gif)](https://gyazo.com/8e57d8d5bf262c6b4bd50f9e34dd10d8)
+
+* Are you an artist? Share your music with the world!
+
 ## File Structure
 - Front-end
 ```
