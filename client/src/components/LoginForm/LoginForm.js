@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 import { login, loginWithEmailAndPassword } from "../../redux/auth/action";
 import google from "../../assets/images/icons/search.png";
 import gmail from "../../assets/images/icons/gmail.png";
+import logo from "../../assets/images/icons/logo-oasis.png";
 import "./style/loginform.scss";
+
 import PasswordRecovery from "../PasswordRecovery/PasswordRecovery";
 
 function LoginForm() {
@@ -35,6 +37,9 @@ function LoginForm() {
 
   return (
     <div className="login-container" onSubmit={handleLoginWithEmailAndPassword}>
+      <div className="logo">
+        <img src={logo} alt="" width="400px" height="400px" />
+      </div>
       <div className="login-section">
         {recoverPass.recover ? (
           <PasswordRecovery recoverOff={recoverOff} />

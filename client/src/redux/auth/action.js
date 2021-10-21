@@ -80,6 +80,7 @@ export const registerWithEmailAndPassword =
         firstName: user.firstName,
         lastName: user.lastName,
         email: email,
+        artist: user.artist || false,
       };
 
       dispatch({
