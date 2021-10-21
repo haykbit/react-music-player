@@ -331,6 +331,30 @@ async function fetchPlaylists(req, res, next) {
   }
 }
 
+async function bestListSongs(req, res, next) {
+  const { songList } = req.body;
+
+  try {
+    const songsData = await db.Song.find({
+      _id: { $in: songList },
+    });
+
+    // Orders songs as the user's playlists
+    const orderedSongs = songList.map((songId) => {
+      const orderedSong = songsData.filter(
+        (song) => song._id.toString() === songId.toString()
+      );
+      return orderedSong[0];
+    });
+
+    res.status(200).send({
+      data: orderedSongs,
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
 async function sortPlaylistsByLikes(req, res, next) {
   try {
     const sortedPlaylists = await db.Playlist.find({ private: false })
@@ -363,5 +387,6 @@ module.exports = {
   addSongToPlaylist,
   fetchPlaylists,
   orderPlaylistsSongs,
+  bestListSongs,
   sortPlaylistsByLikes,
 };

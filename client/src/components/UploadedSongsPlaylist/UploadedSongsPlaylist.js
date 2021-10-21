@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { bestSongsByGenre } from "../../api/stats-api";
+import { orderedTopLists } from "../../api/api";
 
 import Modal from "../Modal";
 import UploadedPlaylistStack from "./UploadedPlaylistStack";
@@ -6,13 +9,27 @@ import UploadedPlaylistStack from "./UploadedPlaylistStack";
 import { FiUploadCloud } from "react-icons/fi";
 
 import portadaUno from "../../assets/images/icons/portada-1.png";
-import portadaDos from "../../assets/images/albums/arctic-album-1.jpeg";
-import portadaTres from "../../assets/images/albums/arctic-album-2.jpeg";
-import portadaCuatro from "../../assets/images/albums/arctic-album-3.jpeg";
 
 function UploadedSongsPlaylist({ userInfo }) {
   const [modal, setModal] = useState(false);
+  const [genreSongs, setGenreSongs] = useState(null);
   const Toggle = () => setModal(!modal);
+
+  const { loading, authObserverSuccess } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (!loading && authObserverSuccess) {
+      getBestSongs();
+    }
+  }, [loading]);
+
+  async function getBestSongs() {
+    const top = await bestSongsByGenre("Ska");
+    const cleanedList = top.data.data.map((song) => song.original_id);
+    const songsByGenre = await orderedTopLists(cleanedList);
+    setGenreSongs(songsByGenre.data.data);
+  }
+
   return (
     <>
       <div className="my-playlist-body">
@@ -48,57 +65,36 @@ function UploadedSongsPlaylist({ userInfo }) {
           </div>
         </div>
         <div className="right-side">
-          <div className="relevant-title">Top 3 most relevant songs</div>
-          <div className="relevant-songs">
-            <div className="number">1</div>
-            <div
-              className="album-image"
-              style={{
-                backgroundImage: `url(${portadaTres})`,
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-              }}
-            ></div>
-            <div className="relevant-song-name">
-              {" "}
-              Four Out Of Five
-              <div className="relevant-song-artist">Arctic Monkeys</div>
-            </div>
-          </div>
-          <div className="relevant-songs">
-            <div className="number">2</div>
-            <div
-              className="album-image"
-              style={{
-                backgroundImage: `url(${portadaDos})`,
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-              }}
-            >
-              {" "}
-            </div>
-            <div className="relevant-song-name">
-              {" "}
-              Brainstorm - Live
-              <div className="relevant-song-artist">Arctic Monkeys</div>
-            </div>
-          </div>
-          <div className="relevant-songs">
-            <div className="number">3</div>
-            <div
-              className="album-image"
-              style={{
-                backgroundImage: `url(${portadaCuatro})`,
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-              }}
-            ></div>
-            <div className="relevant-song-name">
-              {" "}
-              She's Thunderstorms
-              <div className="relevant-song-artist">Arctic Monkeys</div>
-            </div>
-          </div>
+          {genreSongs ? (
+            <>
+              <div className="relevant-title">Top 3 Ska songs</div>
+              {genreSongs.map((song) => {
+                return (
+                  <>
+                    <div className="relevant-songs" key={song._id}>
+                      <div
+                        className="album-image"
+                        style={{
+                          backgroundImage: `url(${song.songImage})`,
+                          backgroundSize: "cover",
+                          backgroundRepeat: "no-repeat",
+                        }}
+                      ></div>
+                      <div className="relevant-song-name">
+                        {" "}
+                        {song.title}
+                        <div className="relevant-song-artist">
+                          {song.artist}
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                );
+              })}
+            </>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </>

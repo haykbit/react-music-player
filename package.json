@@ -3,11 +3,13 @@
   "private": true,
   "workspaces": [
     "client",
-    "server"
+    "server",
+    "statserver"
   ],
   "scripts": {
     "client": "yarn workspace client start",
     "server": "yarn workspace server server",
+    "stats": "yarn workspace statserver stats",
     "start": "concurrently --kill-others-on-fail \"yarn server\"  \"yarn client\""
   },
   "contributors": [

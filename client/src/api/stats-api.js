@@ -1,51 +1,80 @@
 import axios from "axios";
 
-export const makeApi = () => {
-  return axios.create({
-    baseURL: `${process.env.LARAVEL_STATISTICS_API}`,
+export async function getPopularSongs() {
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_LARAVEL_STATISTICS_API}/popular-songs`,
   });
-};
+}
 
-export const getPopularSongs = (api = makeApi()) => {
-  return api.get(`/popular-songs`);
-};
+export async function getMostLikedSongs() {
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_LARAVEL_STATISTICS_API}/liked-songs`,
+  });
+}
 
-export const getMostLikedSongs = (api = makeApi()) => {
-  return api.get(`/liked-songs`);
-};
+export async function getNewSongs() {
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_LARAVEL_STATISTICS_API}/new-songs`,
+  });
+}
 
-export const getNewSongs = (api = makeApi()) => {
-  return api.get(`/new-songs`);
-};
+export async function createSongs(songData) {
+  return axios({
+    method: "POST",
+    url: `${process.env.REACT_APP_LARAVEL_STATISTICS_API}/song`,
+    data: { songData },
+  });
+}
 
-export const createSongs = (api = makeApi(), data) => {
-  return api.post(`/song`, data);
-};
+export async function deleteSongs(songId) {
+  return axios({
+    method: "DELETE",
+    url: `${process.env.REACT_APP_LARAVEL_STATISTICS_API}/delete-song/${songId}`,
+  });
+}
 
-export const deleteSongs = (api = makeApi(), songId) => {
-  return api.delete(`/song/${songId}`);
-};
+export async function getPopularGenres() {
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_LARAVEL_STATISTICS_API}/popular-genres`,
+  });
+}
 
-export const getPopularGenres = (api = makeApi()) => {
-  return api.get(`/popular-genres`);
-};
+export async function getMostLikedGenres() {
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_LARAVEL_STATISTICS_API}/liked-genres`,
+  });
+}
 
-export const getMostLikedGenres = (api = makeApi()) => {
-  return api.get(`/liked-genres`);
-};
+export async function getNewGenres() {
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_LARAVEL_STATISTICS_API}/new-genres`,
+  });
+}
 
-export const getNewGenres = (api = makeApi()) => {
-  return api.get(`/new-genres`);
-};
+export async function playedSongs(songId) {
+  return axios({
+    method: "PATCH",
+    url: `${process.env.REACT_APP_LARAVEL_STATISTICS_API}/song-played/${songId}`,
+  });
+}
 
-export const likeSongs = (api = makeApi(), songId) => {
-  return api.patch(`/song-like/${songId}`);
-};
+export async function bestSongsByGenre(genre) {
+  return axios({
+    method: "PUT",
+    url: `${process.env.REACT_APP_LARAVEL_STATISTICS_API}/song-genre/`,
+    data: { genre },
+  });
+}
 
-export const cancelLikeSongs = (api = makeApi(), songId) => {
-  return api.patch(`/song-dislike/${songId}`);
-};
-
-export const playedSongs = (api = makeApi(), songId) => {
-  return api.patch(`/song-played/${songId}`);
-};
+export async function genresExec() {
+  return axios({
+    method: "GET",
+    url: `${process.env.REACT_APP_LARAVEL_STATISTICS_API}/update_genres/`,
+  });
+}

@@ -4,6 +4,7 @@ const { playlistController } = require("../controllers");
 
 const playlistRouter = Router();
 
+playlistRouter.put("/top", authMiddleware, playlistController.bestListSongs);
 playlistRouter.get("/all", authMiddleware, playlistController.fetchPlaylists);
 playlistRouter.post("/", authMiddleware, playlistController.createPlaylist);
 playlistRouter.patch(

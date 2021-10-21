@@ -7,8 +7,10 @@ export const getSongPlayNow = (song, playlist, index) => async (dispatch) => {
   dispatch({ type: PLAY_REQUEST });
   try {
     dispatch({ type: PLAY_SUCCESS, payload: { song, playlist, index } });
-    // TODO Laravel
-    // await playedSongs(song._Id);
+    // Laravel function
+    if (!song.private) {
+      await playedSongs(song._id);
+    }
     await countPlayed(song._id);
     dispatch({ type: PLAY_READY });
   } catch (error) {

@@ -58,8 +58,7 @@ export const uploadSongFile = (song, metadata, image) => async (dispatch) => {
     const checkPrivate = createdSong.data.data.private;
     if (!checkPrivate) {
       const songStats = { _id, owner, genre };
-      //TODO for Laravel
-      // await createSongs(songStats);
+      await createSongs(songStats);
     }
     toast.info("Successfully Uploaded");
     dispatch({ type: POST_SONG_SUCCESS });
@@ -73,8 +72,6 @@ export const dispatchLikeSong = (songId, userId) => async (dispatch) => {
   dispatch({ type: LIKE_SONG_REQUEST });
   try {
     await likeSong(songId, userId);
-    //TODO for Laravel
-    // await likeSongs(songId);
     dispatch({ type: LIKE_SONG_SUCCESS });
   } catch (error) {
     toast.error("Something went wrong! Try again");
@@ -86,8 +83,6 @@ export const cancelLikedSongs = (songId, userId) => async (dispatch) => {
   dispatch({ type: CANCEL_LIKED_SONG_REQUEST });
   try {
     await cancelLikeSong(songId, userId);
-    //TODO for Laravel
-    // await cancelLikeSongs(songId);
     dispatch({ type: CANCEL_LIKED_SONG_SUCCESS });
   } catch (error) {
     toast.error("Something went wrong! Try again");
@@ -119,8 +114,8 @@ export const deleteSong = (songId, userId) => async (dispatch) => {
   dispatch({ type: DELETE_SONG_REQUEST });
   try {
     await removeSongData(songId, userId);
-    //TODO for Laravel
-    // await deleteSongs(songId);
+    // Laravel function
+    await deleteSongs(songId);
     toast.info("Successfully Deleted");
     dispatch({ type: DELETE_SONG_SUCCESS });
   } catch (error) {
