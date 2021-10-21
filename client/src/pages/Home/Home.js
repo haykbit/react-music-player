@@ -6,7 +6,6 @@ import { getPublicSongs, getSongsFromPlaylist } from "../../api/api";
 import PlaylistCarrusel from "../../components/PlaylistCarrusel";
 import GeneralList from "../../components/GeneralList/GeneralList";
 import Navbar from "../../components/Navbar/Navbar";
-import AlbumExplorer from "../../components/AlbumExplorer";
 
 import "./style/home.scss";
 
@@ -36,7 +35,6 @@ function Home() {
       <Navbar />
       <PlaylistCarrusel />
       <GeneralList playlist={songs} playlistGeneral={generalSongs} />
-      <AlbumExplorer />
     </>
   );
 }
