@@ -20,7 +20,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: auto;
+  width: 500px;
   height: auto;
   padding: 2rem;
   border-radius: 20px;
@@ -46,6 +46,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: 100%;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -66,7 +67,8 @@
 .modal-container .modal .left-side-modal .modal-title button,
 .modal-container .modal .left-side-modal .modal-image-box button {
   border-radius: 5px;
-  width: 120px;
+  width: 100%;
+  margin: 5px;
   cursor: pointer;
 }
 
@@ -93,7 +95,7 @@
 .modal-container .modal .left-side-modal .modal-image-box input,
 .modal-container .modal .left-side-modal .modal-image-box select {
   height: 45px;
-  width: 300px;
+  width: 100%;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 10px;
@@ -136,7 +138,7 @@
 
 .modal-container .modal .modal-image-box .upload-icon {
   height: 30px;
-  width: 30px;
+  width: 10%;
   cursor: pointer;
   background-repeat: no-repeat;
   background-size: contain;
@@ -148,7 +150,7 @@
 
 .modal-container .modal .right-side-modal {
   height: 200px;
-  width: 200px;
+  width: 100%;
   margin-left: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -161,7 +163,7 @@
   display: flex;
   margin-left: 10px;
   height: 100%;
-  width: 200px;
+  width: 100%;
 }
 
 .modal-container .modal .right-side-modal .upload-image-box label {
@@ -176,7 +178,7 @@
 
 .modal-container .modal .right-side-modal .upload-image-box .song-image-upload {
   height: 100%;
-  width: 200px;
+  width: 100%;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -193,9 +195,29 @@
 .modal-container .modal .right-side-modal .upload-image-box .song-image-preview {
   margin-top: 3px;
   height: 200px;
-  width: 200px;
+  width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 5px;
+}
+
+@media only screen and (max-width: 400px) {
+  .modal-container .modal {
+    width: 300px;
+    height: 300px;
+  }
+  .modal-container .modal .left-side-modal .modal-input-box,
+  .modal-container .modal .left-side-modal .modal-button-box,
+  .modal-container .modal .left-side-modal .modal-title,
+  .modal-container .modal .left-side-modal .modal-image-box {
+    height: 30px;
+    margin: 10px;
+  }
+  .modal-container .modal .left-side-modal .modal-input-box button,
+  .modal-container .modal .left-side-modal .modal-button-box button,
+  .modal-container .modal .left-side-modal .modal-title button,
+  .modal-container .modal .left-side-modal .modal-image-box button {
+    height: 20px;
+  }
 }
 /*# sourceMappingURL=modal.css.map */
