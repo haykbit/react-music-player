@@ -13,9 +13,19 @@
   width: 100%;
   background-color: rgba(0, 0, 0, 0.95);
   padding: 18px;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+}
+
+.nav-container .home-icon-container {
+  height: 100%;
+  width: 80px;
+  margin-top: 13px;
+}
+
+.nav-container .home-icon-container .home-icon {
+  height: 100%;
+  width: 25px;
+  margin-left: 10px;
+  cursor: pointer;
 }
 
 .nav-container .circle {
