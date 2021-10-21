@@ -2,7 +2,6 @@ import { toast } from "react-toastify";
 import {
   uploadSongsData,
   likeSong,
-  getLikedSongs,
   cancelLikeSong,
   removeSongData,
   editSongData,

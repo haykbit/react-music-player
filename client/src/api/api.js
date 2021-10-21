@@ -1,7 +1,6 @@
 import axios from "axios";
 import { getCurrentUserToken } from "../services/auth";
 
-// ?USERS
 export async function syncUserData(user) {
   const userToken = await getCurrentUserToken();
   return axios({
@@ -60,7 +59,6 @@ export async function getSearchArtist() {
   });
 }
 
-// ?SONGS
 export async function uploadSongsData(song, metadata, image) {
   const userToken = await getCurrentUserToken();
   return axios({
@@ -97,7 +95,6 @@ export async function cancelLikeSong(songId, userId) {
 }
 
 export async function getLikedSongs(id) {
-  //get user id argument
   const userToken = await getCurrentUserToken();
   return axios({
     method: "GET",
@@ -180,7 +177,6 @@ export async function orderPlaylistsSongs(id, orderedList) {
   });
 }
 
-// ?PLAYLISTS
 export async function createPlaylists(playlist) {
   const userToken = await getCurrentUserToken();
   return axios({

@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { getCurrentUser } from "../../services/auth";
 import "./style/rightClickMenu.scss";
-import Modal from "../Modal";
-import SongEditModal from "../UploadedSongsPlaylist/SongEditModal";
 import { deleteSongFromPlaylist } from "../../redux/playlist/action";
 
 function RightClickMenu({
@@ -14,7 +12,6 @@ function RightClickMenu({
   ToggleDeleteModal,
   ToggleEditModal,
   ToggleAddToPlaylist,
-  modals,
   playlistData,
 }) {
   const dispatch = useDispatch();

@@ -2,7 +2,6 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 
 if (!firebase.apps.length) {
-  // Paste your config object here ⬇️
   const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_KEY,
     authDomain: process.env.REACT_APP_FIREBASE_DOMAIN,
@@ -13,7 +12,6 @@ if (!firebase.apps.length) {
   };
   firebase.initializeApp(firebaseConfig);
 } else {
-  // if already initialized, use that one
   firebase.app();
 }
 

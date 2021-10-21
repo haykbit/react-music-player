@@ -39,7 +39,6 @@ function Playlist({ playlist }) {
   const [displaySongs, setDisplaySongs] = useState([]);
   const [genreSongs, setGenreSongs] = useState(null);
 
-  // Toggles for the diferent menus and modals
   const ToggleContext = () => setContextMenu(!contextMenu);
   const ToggleEditModal = () => {
     setModals({ ...modals, editModal: !modals.editModal });
@@ -53,12 +52,9 @@ function Playlist({ playlist }) {
   const { loading, user, authObserverSuccess } = useSelector(
     (state) => state.auth
   );
-  const {
-    followSuccess,
-    cancelFollowSuccess,
-    addSongToPlaylistSuccess,
-    myFavoritePlaylistsSuccess,
-  } = useSelector((state) => state.playlist);
+  const { followSuccess, cancelFollowSuccess } = useSelector(
+    (state) => state.playlist
+  );
 
   useEffect(() => {
     if (!loading && authObserverSuccess) {

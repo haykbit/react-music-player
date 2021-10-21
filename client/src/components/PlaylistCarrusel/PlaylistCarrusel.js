@@ -1,10 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { authObserverLoading } from "../../redux/auth/action";
-import { displayPublicPlaylists } from "../../redux/playlist/action";
 import { sortPublicPlaylistsByLikes } from "../../api/api";
-import portadaUno from "../../assets/images/icons/portada-1.png";
 import { GiLoveSong } from "react-icons/gi";
 
 import "./style/playlist.scss";
@@ -13,12 +10,7 @@ function PlaylistCarrusel() {
   const history = useHistory();
   const dispatch = useDispatch();
   const [sortedLists, setSortedLists] = useState([]);
-  const { user, loading, authObserverSuccess, signOutSuccess } = useSelector(
-    (state) => state.auth
-  );
-  const { publicPlaylists, getPublicPlaylistsSuccess } = useSelector(
-    (state) => state.playlist
-  );
+  const { loading, authObserverSuccess } = useSelector((state) => state.auth);
 
   const stableDispatch = useCallback(dispatch, []);
 
@@ -52,7 +44,6 @@ function PlaylistCarrusel() {
                           history.push(`/playlist/${playlist._id}`)
                         }
                       >
-                        {/* <a href="/home-page" className="fill-div"> */}
                         <div
                           className="list-item"
                           style={{
@@ -68,7 +59,6 @@ function PlaylistCarrusel() {
                             </div>
                           </div>
                         </div>
-                        {/* </a> */}
                       </div>
                     );
                   })

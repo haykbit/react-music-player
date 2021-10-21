@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { BsFillCaretRightFill } from "react-icons/bs";
 
 import { getNewSongs, getPopularSongs } from "../../api/stats-api";
 import { orderedTopLists } from "../../api/api";

@@ -9,7 +9,6 @@ import portadaUno from "../../assets/images/icons/portada-1.png";
 import { getUserProfile } from "../../api/api";
 
 function FavSongsPlaylist() {
-  const [modal, setModal] = useState(false);
   const [userProfile, setUserProfile] = useState([]);
   const [genreSongs, setGenreSongs] = useState(null);
 
@@ -17,8 +16,6 @@ function FavSongsPlaylist() {
     (state) => state.auth
   );
   const { cancelLikedSuccess } = useSelector((state) => state.song);
-  const Toggle = () => setModal(!modal);
-
   useEffect(() => {
     if (!loading && authObserverSuccess) {
       getUserData();

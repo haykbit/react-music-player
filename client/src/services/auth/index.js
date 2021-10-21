@@ -1,5 +1,4 @@
 export {
-  // auth,
   onAuthStateChanged,
   signInWithGoogle,
   signInWithEmailAndPassword,
