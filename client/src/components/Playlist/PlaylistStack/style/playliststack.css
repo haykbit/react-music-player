@@ -1,9 +1,22 @@
-@keyframes App-logo-spin {
+@-webkit-keyframes App-logo-spin {
   from {
-    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
   }
   to {
-    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
   }
 }
 
@@ -15,13 +28,12 @@
 }
 
 .DragDropList .characters li {
-<<<<<<< HEAD
   display: -webkit-box;
   display: -ms-flexbox;
-=======
->>>>>>> develop
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   border-radius: 0.2em;
   width: 90%;
 }
@@ -43,13 +55,19 @@
 }
 
 .song-container .song-list-playlist {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 100%;
   margin-top: 15px;
   background-color: #171717;
   padding: 10px;
-  justify-content: space-between;
-  align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   border-radius: 10px;
 }
 
@@ -58,6 +76,8 @@
 }
 
 .song-container .song-list-playlist .song-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   color: #fff;
 }
@@ -93,9 +113,13 @@
 }
 
 .song-container .playlists-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   color: #fff;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin-left: 75px;
 }
 
@@ -121,6 +145,8 @@
 }
 
 .song-container .song-actions-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -131,9 +157,15 @@
   border-radius: 50px;
   margin-right: 10px;
   color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .song-container .song-actions-container .song-actions .song-play .play-icon {
@@ -150,11 +182,15 @@
   border: none;
   background-color: #363636;
   cursor: pointer;
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
   transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
 }
 
 .song-container .song-actions-container .song-actions .song-play button:hover {
-  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 .song-container .song-actions-container .song-actions .song-like .like-icon {
@@ -166,7 +202,8 @@
 }
 
 .song-container .song-actions-container .song-actions .song-like .like-icon:hover {
-  transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
   color: #ff4747;
 }
 
@@ -183,9 +220,13 @@
 }
 
 .song-container .context-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   margin-bottom: 4px;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .song-container .context-container .context-icon {
@@ -211,9 +252,15 @@
 @media only screen and (max-width: 400px) {
   .song-container {
     width: 370px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
   .song-container .song-list-playlist .song-actions {
     width: 100px;
@@ -241,10 +288,14 @@
   border: none;
   background-color: #363636;
   cursor: pointer;
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
   transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
 }
 
 .song-play button:hover {
-  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 /*# sourceMappingURL=playliststack.css.map */

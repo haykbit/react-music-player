@@ -1,4 +1,4 @@
-.context-menu-container {
+.context-menu-container-playlist {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -13,16 +13,14 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  position: absolute;
-  -webkit-transform: translateX(20%) translateY(50%);
-          transform: translateX(20%) translateY(50%);
+  position: fixed;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 15px;
   z-index: 1000;
 }
 
-.context-menu-container .context-menu {
+.context-menu-container-playlist .context-menu {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -37,7 +35,7 @@
   border-radius: 10px;
 }
 
-.context-menu-container .context-menu .menu-option-box {
+.context-menu-container-playlist .context-menu .menu-option-box {
   cursor: pointer;
   list-style: none;
   font-weight: 500;
@@ -45,7 +43,7 @@
   margin: 5px;
 }
 
-.context-menu-container .menu-option-box:hover {
+.context-menu-container-playlist .menu-option-box:hover {
   background-color: #666666;
 }
 /*# sourceMappingURL=rightClickMenu.css.map */
