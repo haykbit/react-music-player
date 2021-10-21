@@ -6,7 +6,6 @@ import { getMyPlaylists } from "../../redux/playlist/action";
 import { getLikedSongs } from "../../api/api";
 import { fancyTimeFormat } from "../../util/timeFormatter";
 import { BsFillCaretRightFill } from "react-icons/bs";
-import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { IoMdMore } from "react-icons/io";
 import RightClickMenu from "../RightClickMenu";
@@ -14,12 +13,13 @@ import SongEditModal from "../UploadedSongsPlaylist/SongEditModal";
 import DeleteConfirmation from "../DeleteConfirmation";
 import AddToPlaylist from "../AddToPlaylist";
 import { getCurrentUser } from "../../services/auth";
-function IndividualSong({ song, index, playlist, favorite, playlistData }) {
+function IndividualSong({ song, index, playlist, playlistData }) {
   const dispatch = useDispatch();
   const { user, authObserverSuccess } = useSelector((state) => state.auth);
   const { loading } = useSelector((state) => state.song);
-  const { myPlaylists, addSongToPlaylistSuccess, removeSongSuccess } =
-    useSelector((state) => state.playlist);
+  const { myPlaylists, addSongToPlaylistSuccess } = useSelector(
+    (state) => state.playlist
+  );
   const [myFavoriteSongs, setMyFavoriteSongs] = useState([]);
   const [modals, setModals] = useState({
     editModal: false,

@@ -10,7 +10,6 @@ import { GoListUnordered } from "react-icons/go";
 import { IoLogOutOutline } from "react-icons/io5";
 import { BiUserCircle } from "react-icons/bi";
 import { useHistory } from "react-router-dom";
-import portadaUno from "../../assets/images/icons/portada-1.png";
 import SearchEngine from "../SearchEngine/SearchEngine";
 
 import "./style/navbar.scss";

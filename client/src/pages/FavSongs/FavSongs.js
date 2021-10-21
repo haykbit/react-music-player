@@ -9,10 +9,7 @@ import "./style/playlist.scss";
 function FavSongs() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const userStorage = JSON.parse(localStorage.getItem("user"));
-  const { loading, authObserverSuccess, signOutSuccess } = useSelector(
-    (state) => state.auth
-  );
+  const { signOutSuccess } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(authObserverLoading());

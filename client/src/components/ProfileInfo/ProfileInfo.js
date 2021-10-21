@@ -18,7 +18,6 @@ import { Formik } from "formik";
 import FormSchema from "./FormSchema";
 
 function ProfileInfo() {
-  const [isDisabled, setIsDisabled] = useState(true);
   const [openResetPassword, setOpenResetPassword] = useState(true);
   const [openResetEmail, setOpenResetEmail] = useState(true);
   const [profile, setProfile] = useState({
@@ -72,7 +71,6 @@ function ProfileInfo() {
     e.preventDefault();
     const userId = getCurrentUser().uid;
     dispatch(updateUserProfileInfo(userId, profile));
-    setIsDisabled((prevState) => !prevState);
   }
   function handleUserEmailSubmit(e) {
     e.preventDefault();

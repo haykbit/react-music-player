@@ -3,9 +3,6 @@ import {
   PLAYLIST_CREATE_REQUEST,
   PLAYLIST_CREATE_SUCCESS,
   PLAYLIST_CREATE_FAIL,
-  GET_PLAYLIST_REQUEST,
-  GET_PLAYLIST_SUCCESS,
-  GET_PLAYLIST_FAIL,
   GET_MY_PLAYLISTS_REQUEST,
   GET_MY_PLAYLISTS_SUCCESS,
   GET_MY_PLAYLISTS_FAIL,
@@ -42,7 +39,6 @@ const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case PLAYLIST_CREATE_REQUEST:
       return {
-        ...state,
         ...state,
         loading: true,
         playlistCreatedSuccess: false,

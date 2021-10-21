@@ -27,8 +27,6 @@ function FavPlaylistStack() {
     dispatch(orderFavoriteSongs(user.uid, orderedList));
   }
 
-  //condition for controll type of playlist
-
   function handleOnDragEnd(result) {
     if (!result.destination) return;
 

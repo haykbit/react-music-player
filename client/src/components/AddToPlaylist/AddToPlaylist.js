@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { addSongToPlaylistView } from "../../redux/playlist/action";
 import "./style/addToPlaylist.scss";
 import useLockBodyScroll from "../../hooks/useLockBodyScroll";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 function AddToPlaylist({
   show,

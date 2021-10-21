@@ -209,7 +209,6 @@ async function getSongsByPlaylistId(req, res, next) {
       _id: { $in: playlistSongs },
     });
 
-    // Orders songs as the user's playlists
     const orderedSongs = playlistSongs.map((playlistId) => {
       const orderedSong = songsData.filter(
         (list) => list._id.toString() === playlistId.toString()
@@ -226,7 +225,6 @@ async function getSongsByPlaylistId(req, res, next) {
 }
 
 async function followPlaylist(req, res, next) {
-  // playlist id
   const { id: playlistId } = req.params;
   const { userId } = req.body;
   try {
@@ -296,7 +294,6 @@ async function getMyFavoritePlaylists(req, res, next) {
       _id: { $in: myFavLists },
     });
 
-    // Orders playlists as the user's favorite playlists list
     const orderedPlaylists = myFavLists.map((playlistId) => {
       const orderedList = myFavListsData.filter(
         (list) => list._id.toString() === playlistId.toString()

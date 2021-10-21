@@ -179,7 +179,6 @@ const Modal = ({ show, close, userInfo }) => {
                             }}
                             type="file"
                             required
-                            //TODO create function to upload more than one song at a time
                           ></input>
                         </label>
                       </div>

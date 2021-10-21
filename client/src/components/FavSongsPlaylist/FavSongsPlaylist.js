@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Modal from "../Modal";
 import PlaylistStack from "./FavPlaylistStack";
 import { useSelector } from "react-redux";
-import { FiUploadCloud } from "react-icons/fi";
 
 import portadaUno from "../../assets/images/icons/portada-1.png";
 import portadaDos from "../../assets/images/albums/arctic-album-1.jpeg";
@@ -12,13 +10,11 @@ import portadaCuatro from "../../assets/images/albums/arctic-album-3.jpeg";
 import { getUserProfile } from "../../api/api";
 
 function FavSongsPlaylist() {
-  const [modal, setModal] = useState(false);
   const [userProfile, setUserProfile] = useState([]);
   const { user, loading, authObserverSuccess } = useSelector(
     (state) => state.auth
   );
   const { cancelLikedSuccess } = useSelector((state) => state.song);
-  const Toggle = () => setModal(!modal);
   useEffect(() => {
     if (!loading && authObserverSuccess) {
       getUserData();

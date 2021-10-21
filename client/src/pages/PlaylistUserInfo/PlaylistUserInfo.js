@@ -4,11 +4,9 @@ import Navbar from "../../components/Navbar/Navbar";
 import PlaylistUser from "../../components/PlaylistUser";
 import { getUserProfile } from "../../api/api";
 
-function PlaylistUserInfo(props) {
+function PlaylistUserInfo() {
   const [userId, setUserId] = useState("");
   const [userInfo, setUserInfo] = useState(null);
-
-  // let playlistUserData = "";
 
   const { loading, authObserverSuccess } = useSelector((state) => state.auth);
   const { followUserSuccess, cancelFollowingUserSuccess } = useSelector(
@@ -38,18 +36,9 @@ function PlaylistUserInfo(props) {
     }
   }
 
-  // if (props.location.state) {
-  //   playlistUserData = props.location.state.userInfo;
-  // }
-
   return (
     <>
       <Navbar />
-      {/* {playlistUserData ? (
-        <PlaylistUser playlistUserData={playlistUserData} />
-      ) : (
-        ""
-      )} */}
       {userInfo ? <PlaylistUser playlistUserData={userInfo} /> : ""}
     </>
   );
