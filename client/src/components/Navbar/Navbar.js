@@ -73,7 +73,7 @@ function Navbar() {
   };
 
   const handleHome = () => {
-    history.push("./home-page");
+    history.push(".././home-page");
   };
   return (
     <>
