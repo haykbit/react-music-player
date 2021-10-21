@@ -42,6 +42,7 @@
   transition: -webkit-transform 0.2s;
   transition: transform 0.2s;
   transition: transform 0.2s, -webkit-transform 0.2s;
+  cursor: pointer;
 }
 
 .recomend-container .list-item:hover {

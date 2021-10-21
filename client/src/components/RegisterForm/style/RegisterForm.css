@@ -167,4 +167,14 @@ span {
   padding: 2px;
 }
 
+.artistLink {
+  color: #fff;
+  text-align: center;
+  margin: 5px;
+  text-decoration: none;
+}
+
+.artistLink:hover {
+  font-weight: bold;
+}
 /*# sourceMappingURL=RegisterForm.css.map */
