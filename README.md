@@ -27,7 +27,7 @@ This project runs with some specific technologies that require a previous instal
 | Package manager for PHP   | [Composer](https://getcomposer.org/) | True     |
 | Cloud file manager | [Cloudinary](https://cloudinary.com) | True |
 
-*_You can choose between the dozens of possibilities, VSCode is only a recommendation_
+*_You can choose between dozens of possibilities, VSCode is only a recommendation_
 
 ### ENV files
 
