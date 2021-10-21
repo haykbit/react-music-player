@@ -1,7 +1,19 @@
 # [React-music-player](#react-music-player)
 ## 📔 Description
-## Table of Contents <!-- omit in toc -->
+A Music player made with React and Node.js
 
+
+## Table of Contents <!-- omit in toc -->
+  - [Requirements](#requirements)
+  - [Getting Started](#getting-started)
+  - [Dependencies](#dependencies)
+  - [Contents and Branches Naming Strategy](#contents-and-branches-naming-strategy)
+    - [Branches](#branches)
+    - [Structural elements](#structural-elements)
+    - [Style elements](#style-elements)
+  - [Screentshots](#screentshots)
+  - [File Structure](#file-structure)
+  - [Technology used](#technology-used)
 ## Requirements
 
 This project runs with some specific technologies that require a previous installation to work with it:
@@ -306,7 +318,7 @@ Style elements, that includes all _scss_ files and _classes_ have the same rules
  ┣ 📜package.json
  ┗ 📜yarn-error.log
 ```
-### Technology used
+## Technology used
 <details>
 <summary>Front-end</summary>
 
@@ -328,4 +340,3 @@ Style elements, that includes all _scss_ files and _classes_ have the same rules
 ![PHP](https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=PHP&logoColor=white)
 ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=Firebase&logoColor=white)
 </details>
-
