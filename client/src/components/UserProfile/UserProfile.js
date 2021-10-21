@@ -3,7 +3,6 @@ import ProfileInfo from "../ProfileInfo/index";
 import PaymentInfo from "../PaymentInfo/index";
 import SubscriptionInfo from "../SubscriptionInfo/SubscriptionInfo";
 import UploadInfo from "../UploadInfo";
-import { useHistory } from "react-router-dom";
 
 import "./style/userprofile.scss";
 
@@ -14,8 +13,6 @@ function UserProfile() {
     sub: false,
     upload: false,
   });
-
-  const history = useHistory();
 
   useEffect(() => {
     setShow({ user: true });

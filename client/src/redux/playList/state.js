@@ -12,7 +12,6 @@ const INITIAL_STATE = {
   followSuccess: false,
   cancelFollowSuccess: false,
   getPublicPlaylistsSuccess: false,
-  error: null,
   myPlaylists: [],
   myFavoritePlaylists: [],
   publicPlaylists: [],

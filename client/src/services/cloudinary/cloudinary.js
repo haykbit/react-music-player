@@ -30,6 +30,5 @@ export const uploadImages = async (file) => {
     process.env.REACT_APP_CLOUDINARY_IMAGES_API,
     formData
   );
-  //TODO check images variable to get secure_url and return it
   return images.data;
 };

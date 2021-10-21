@@ -5,10 +5,8 @@ import { getMyPlaylists } from "../../redux/playlist/action";
 import { getSongPlayNow } from "../../redux/player/action";
 import { followUser, cancelFollowUser } from "../../redux/user/action";
 import { useHistory } from "react-router";
-import { useLocation } from "react-router-dom";
 import "./style/playlistuser.scss";
 import backgroundPicture from "../../assets/images/background/profile-picture-background.jpg";
-import editIcon from "../../assets/images/icons/editIcon.png";
 function PlaylistUser({ playlistUserData }) {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -16,14 +14,9 @@ function PlaylistUser({ playlistUserData }) {
     (state) => state.auth
   );
   const { myPlaylists } = useSelector((state) => state.playlist);
-  const { followUserSuccess, cancelFollowingUserSuccess } = useSelector(
-    (state) => state.user
-  );
 
-  const [isUploaded, setIsUploaded] = useState(false);
-  const [image, setImage] = useState("");
   const [artistSongs, setArtistSongs] = useState([]);
-  const [follow, setFollow] = useState(false);
+
   useEffect(() => {
     if (!loading && authObserverSuccess) {
       dispatch(getMyPlaylists(playlistUserData.firebase_id));
@@ -34,17 +27,6 @@ function PlaylistUser({ playlistUserData }) {
   async function loadUserSongs() {
     const songs = await getMySongsPlaylist(playlistUserData.firebase_id);
     setArtistSongs(songs.data.data);
-  }
-
-  function handleImageChange(e) {
-    if (e.target.files && e.target.files[0]) {
-      let reader = new FileReader();
-      setImage(e.target.files[0]);
-      reader.onload = function (e) {
-        setIsUploaded(true);
-      };
-      reader.readAsDataURL(e.target.files[0]);
-    }
   }
 
   function playSearchedSong(song) {

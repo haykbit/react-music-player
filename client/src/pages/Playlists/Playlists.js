@@ -10,13 +10,10 @@ import "./style/playlist.scss";
 function Playlists() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const userStorage = JSON.parse(localStorage.getItem("user"));
   const { user, loading, authObserverSuccess, signOutSuccess } = useSelector(
     (state) => state.auth
   );
-  const { publicPlaylists, getPublicPlaylistsSuccess } = useSelector(
-    (state) => state.playlist
-  );
+  const { publicPlaylists } = useSelector((state) => state.playlist);
   useEffect(() => {
     if (!loading && authObserverSuccess) {
       dispatch(displayPublicPlaylists(user.uid));

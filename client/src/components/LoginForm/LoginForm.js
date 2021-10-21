@@ -55,6 +55,7 @@ function LoginForm() {
               />
               <input
                 placeholder="Password"
+                type="password"
                 value={password}
                 name="password"
                 onChange={handleChange}

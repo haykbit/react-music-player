@@ -4,12 +4,7 @@ import {
   getSearchSong,
 } from "../../api/api";
 
-import {
-  SEARCH_REQUEST,
-  SEARCH_SUCCESS,
-  SEARCH_FAIL,
-  SEARCH_READY,
-} from "./types";
+import { SEARCH_REQUEST, SEARCH_SUCCESS, SEARCH_FAIL } from "./types";
 
 export const getSearchEngine = (userId) => async (dispatch) => {
   dispatch({ type: SEARCH_REQUEST });

@@ -2,7 +2,6 @@
 
 * {
   font-family: "Montserrat", sans-serif;
-  //outline: 1px solid red;
 }
 
 body {
@@ -16,11 +15,6 @@ body {
   overflow-x: hidden;
 }
 ::-webkit-scrollbar {
-  width: 0; /* Remove scrollbar space */
-  // background: transparent; /* Optional: just make scrollbar invisible */
+  width: 0;
 }
 
-/* Optional: show position indicator in red */
-// ::-webkit-scrollbar-thumb {
-//   background: #ff0000;
-// }

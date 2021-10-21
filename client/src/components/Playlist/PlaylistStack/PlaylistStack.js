@@ -31,8 +31,6 @@ function PlaylistStack({ playlist }) {
     dispatch(orderMyPlaylistsSongs(playlist._id, orderedList));
   }
 
-  //condition for control type of playlist
-
   function handleOnDragEnd(result) {
     if (!result.destination) return;
 

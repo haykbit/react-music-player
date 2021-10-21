@@ -4,7 +4,6 @@ const { userController } = require("../controllers");
 
 const userRouter = Router();
 
-//http://localhost:4000/users/
 userRouter.get("/artists", authMiddleware, userController.getArtisticPeople);
 userRouter.post("/login", authMiddleware, userController.signIn);
 userRouter.get("/:id", authMiddleware, userController.getUserById);

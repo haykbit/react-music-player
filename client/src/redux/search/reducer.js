@@ -1,11 +1,6 @@
 import INITIAL_STATE from "./state";
 
-import {
-  SEARCH_REQUEST,
-  SEARCH_SUCCESS,
-  SEARCH_FAIL,
-  SEARCH_READY,
-} from "./types";
+import { SEARCH_REQUEST, SEARCH_SUCCESS, SEARCH_FAIL } from "./types";
 
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -28,11 +23,6 @@ const reducer = (state = INITIAL_STATE, action) => {
         loading: false,
         searchSuccess: false,
         error: action.payload,
-      };
-    case SEARCH_READY:
-      return {
-        ...state,
-        searchSuccess: false,
       };
     default:
       return { ...state };

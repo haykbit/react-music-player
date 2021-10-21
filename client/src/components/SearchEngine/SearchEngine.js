@@ -1,12 +1,5 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
-
-import {
-  getSearchArtist,
-  getSearchPlaylist,
-  getSearchSong,
-} from "../../api/api";
 
 import { getSearchEngine } from "../../redux/search/action";
 import { getSongPlayNow } from "../../redux/player/action";
@@ -16,9 +9,7 @@ import search from "../../assets/images/icons/search2.png";
 import "./style/searchengine.scss";
 
 function SearchEngine() {
-  const history = useHistory();
   const dispatch = useDispatch();
-  const location = useLocation();
 
   const [show, setShow] = useState(false);
   const [showSearch, setShowSearch] = useState(false);

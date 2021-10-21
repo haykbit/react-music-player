@@ -68,7 +68,6 @@ async function getSongsByUser(req, res, next) {
     const user = await db.User.findOne({ firebase_id: ownerId });
     const mySongsList = user.mySongs;
 
-    // Orders songs as the user uploaded songs list
     const orderedSongs = mySongsList.map((songId) => {
       const orderedSong = songs.filter(
         (song) => song._id.toString() === songId.toString()

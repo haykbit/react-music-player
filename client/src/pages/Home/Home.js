@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { BsFillCaretRightFill } from "react-icons/bs";
 
 import { getPublicSongs, getSongsFromPlaylist } from "../../api/api";
 import PlaylistCarrusel from "../../components/PlaylistCarrusel";
