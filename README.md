@@ -117,7 +117,7 @@ Style elements, that includes all _scss_ files and _classes_ have the same rules
 
 * You don't remember the title of that song? Search by song name, playlist or band!
 
-[![Image from Gyazo](https://i.gyazo.com/84688af5bea421702b6add253614c1b3.gif)](https://gyazo.com/84688af5bea421702b6add253614c1b3)
+[![Image from Gyazo](https://i.gyazo.com/ae675b20d2d3dbbd61ec93484364389b.gif)](https://gyazo.com/ae675b20d2d3dbbd61ec93484364389b)
 
 * Upload your own songs, only for your ears to enjoy.
 
