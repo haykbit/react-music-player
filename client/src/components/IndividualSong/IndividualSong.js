@@ -86,7 +86,6 @@ function IndividualSong({ song, index, playlist, favorite, playlistData }) {
     setModals({ ...modals, deleteModal: !modals.deleteModal });
 
   function handlePlayClick() {
-    //TODO add hidden or not condition
     dispatch(getSongPlayNow(song, playlist, index));
   }
 
