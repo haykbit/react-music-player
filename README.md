@@ -1,7 +1,7 @@
 # [React-music-player](#react-music-player)
 ## 📔 Description
-A Music player made with React and Node.js
-
+**A Music player made with React and Node.js**
+Listen to your favorite artists and bands, discover songs on other peoples playlists and enjoy yourself in this musical Oasis.
 
 ## Table of Contents <!-- omit in toc -->
   - [Requirements](#requirements)
