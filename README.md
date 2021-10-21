@@ -25,8 +25,19 @@ This project runs with some specific technologies that require a previous instal
 | MongoDB Visual Interface | [Visual BD Helper](https://www.mongodb.com/products/compass)      | False |
 | Web server stack package   | [XAMPP](https://www.apachefriends.org/es/index.html) / [MAMP](https://www.mamp.info/en/windows/) | True |
 | Package manager for PHP   | [Composer](https://getcomposer.org/) | True     |
+| Cloud file manager | [Cloudinary](https://cloudinary.com) | True |
 
 *_You can choose between the dozens of possibilities, VSCode is only a recommendation_
+
+### ENV files
+
+It's required to create .env files to store your environment and sensitive information.
+
+For the __client__ .env is necessary to add the __Firebase__ configuration and credentials, your __Cloudinary__ path and credentials, and your access path to both Server.
+
+For __main server__ .env is necessary to add the __Firebase Admin__ credentials, your __Mongo Databse__ connection information and the path to the __Client__.
+
+For the __secondary server__ .env it is required to have the data related to the __Laravel configuration__ and to the __SQL Database__ connection.
 
 ## Getting Started
 1. Clone the repository
