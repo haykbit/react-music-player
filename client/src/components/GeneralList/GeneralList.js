@@ -21,7 +21,6 @@ function GeneralList({ playlist, playlistGeneral }) {
           <div className="song-list">
             {playlist &&
               playlist.map((song, index) => {
-                console.log(song);
                 return (
                   <div className="song-container" key={index}>
                     <div className="song-list-playlist">

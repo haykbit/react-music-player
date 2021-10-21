@@ -6,7 +6,6 @@ import { orderedTopLists } from "../../api/api";
 
 import portadaUno from "../../assets/images/icons/portada-1.png";
 
-// import "./style/playlistcomponent.scss";
 import { getUserProfile } from "../../api/api";
 
 function FavSongsPlaylist() {

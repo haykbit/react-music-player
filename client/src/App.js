@@ -8,6 +8,7 @@ import { authObserverLoading } from "./redux/auth/action";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
+import RegisterArtist from "./pages/RegisterArtist";
 import Profile from "./pages/Profile";
 import Playlists from "./pages/Playlists";
 import IndividualPlaylist from "./pages/IndividualPlaylist";
@@ -59,6 +60,7 @@ function App() {
         <Switch>
           <Route path="/home-page" exact component={Home} />
           <Route path="/register" exact component={Register} />
+          <Route path="/register/artist" exact component={RegisterArtist} />
           <Route path="/login" exact component={Login} />
           <Route path="/profile" exact component={Profile} />
           <Route path="/mysongs" exact component={UploadedSongs} />

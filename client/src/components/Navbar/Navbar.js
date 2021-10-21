@@ -73,20 +73,25 @@ function Navbar() {
   };
 
   const handleHome = () => {
-    history.push("./home-page");
+    history.push(".././home-page");
   };
+
+  let url = window.location.pathname;
+
   return (
     <>
       <div className="nav-container">
         <SearchEngine />
-        <div className="home-icon-container">
-          <img
-            onClick={handleHome}
-            className="home-icon"
-            src={homeIcon}
-            alt="home-icon"
-          ></img>
-        </div>
+        {url != "/home-page" ? (
+          <div className="home-icon-container">
+            <img
+              onClick={handleHome}
+              className="home-icon"
+              src={homeIcon}
+              alt="home-icon"
+            ></img>
+          </div>
+        ) : null}
 
         <div className="nav-menu">
           <div className="menu-actions">
