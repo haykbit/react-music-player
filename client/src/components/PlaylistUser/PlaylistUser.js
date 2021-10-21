@@ -77,24 +77,6 @@ function PlaylistUser({ playlistUserData }) {
         backgroundImage: `url(${backgroundPicture})`,
       }}
     >
-      {/* <div className="edit-background">
-        {" "}
-        <label
-          htmlFor="upload-input"
-          className="edit-icon"
-          style={{
-            backgroundImage: `url(${editIcon})`,
-          }}
-        ></label>
-        <input
-          id="upload-input"
-          className="input-upload"
-          type="file"
-          accept=".jpg, .jpeg, .png"
-          onChange={handleImageChange}
-        />
-      </div> */}
-
       <div className="profile-page-container">
         <div className="profile-page-box">
           <div className="box-header">
