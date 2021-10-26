@@ -38,7 +38,7 @@ const CONFIG = {
       certConfig: {
         type: FB_CERT_TYPE,
         project_id: FB_CERT_PROJECT_ID,
-        private_key_id: FB_CERT_PRIVATE_KEY_ID,
+        private_key_id: FB_CERT_PRIVATE_KEY_ID.replace(/\n/g, "n"),
         private_key: FB_CERT_PRIVATE_KEY,
         client_email: FB_CERT_CLIENT_EMAIL,
         client_id: FB_CERT_CLIEND_ID,
@@ -65,7 +65,7 @@ const CONFIG = {
         type: FB_CERT_TYPE,
         project_id: FB_CERT_PROJECT_ID,
         private_key_id: FB_CERT_PRIVATE_KEY_ID,
-        private_key: FB_CERT_PRIVATE_KEY,
+        private_key: FB_CERT_PRIVATE_KEY.replace(/\n/g, "n"),
         client_email: FB_CERT_CLIENT_EMAIL,
         client_id: FB_CERT_CLIEND_ID,
         aut_uri: FB_CERT_AUTH_URI,
@@ -90,7 +90,7 @@ const CONFIG = {
       certConfig: {
         type: FB_CERT_TYPE,
         project_id: FB_CERT_PROJECT_ID,
-        private_key_id: FB_CERT_PRIVATE_KEY_ID,
+        private_key_id: FB_CERT_PRIVATE_KEY_ID.replace(/\n/g, "n"),
         private_key: FB_CERT_PRIVATE_KEY,
         client_email: FB_CERT_CLIENT_EMAIL,
         client_id: FB_CERT_CLIEND_ID,
