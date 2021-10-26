@@ -1,0 +1,273 @@
+.top-half {
+  display: flex;
+  height: 91vh;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+
+  .edit-background {
+    display: flex;
+    height: 50px;
+    width: 50px;
+    margin-left: 10px;
+    margin-top: 5px;
+
+    .edit-icon {
+      height: 100%;
+      width: 100%;
+      cursor: pointer;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    input {
+      display: none;
+    }
+  }
+}
+.profile-page-container {
+  display: flex;
+  height: 800px;
+  width: 100%;
+  position: fixed;
+  margin-top: 10px;
+  box-sizing: border-box;
+  padding: 60px;
+  justify-content: center;
+  align-items: center;
+  overflow-y: scroll;
+
+  .profile-page-box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    margin-right: 20px;
+    background-color: rgb(61, 61, 61, 0.9);
+
+    .box-header {
+      display: flex;
+      flex-direction: row;
+      height: 100px;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+
+      .profile-picture {
+        display: flex;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        z-index: 10;
+        align-items: center;
+        object-fit: center;
+        height: 150px;
+        width: 150px;
+        border-radius: 50%;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+          rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+          rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+      }
+    }
+    .box-body {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
+      overflow-y: scroll;
+
+      .profile-title {
+        display: inline;
+        width: 250px;
+        border-bottom: 3px solid #f9dd94;
+      }
+
+      .box-information {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 150px;
+        width: 100%;
+
+        .profile-name {
+          font-size: 30px;
+          color: white;
+        }
+      }
+    }
+    .playlist-songs-container {
+      overflow-y: scroll;
+
+      h3 {
+        color: white;
+        display: flex;
+        justify-content: center;
+      }
+
+      .public-playlist-info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 180px;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 15px;
+
+        .scroll-container {
+          height: 190px;
+          overflow-x: scroll;
+          overflow-y: hidden;
+          padding: 0;
+          white-space: nowrap;
+          width: auto;
+
+          .scroll {
+            display: flex;
+            width: 100%;
+          }
+
+          &::-webkit-scrollbar {
+            height: 5px;
+            z-index: 100;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.685);
+            border-radius: 15px;
+          }
+        }
+
+        .playlist-example {
+          color: white;
+          display: flex;
+          align-items: center;
+          border-radius: 10px;
+          height: 180px;
+          width: 200px;
+          background-color: black;
+          margin-right: 15px;
+          background-position: center;
+          background-size: cover;
+          background-repeat: no-repeat;
+          cursor: pointer;
+          transition: transform 0.2s;
+          box-sizing: border-box;
+          padding: 10px;
+
+          &:hover {
+            transform: scale(0.95);
+            box-shadow: 0px 0px 0px 3px rgb(255, 255, 255);
+          }
+
+          .playlist-example-info {
+            overflow: auto;
+            width: 100%;
+          }
+        }
+      }
+    }
+    .songs-title {
+      margin-top: 25px;
+    }
+    .follow-info {
+      width: 100%;
+      display: flex;
+
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      justify-content: space-between;
+      .follow-button {
+        border-radius: 5px;
+        width: 120px;
+        height: 40px;
+        cursor: pointer;
+        letter-spacing: 1px;
+        font-weight: 500;
+        color: white;
+        align-items: center;
+        &.follow {
+          background-color: rgb(112, 3, 122);
+        }
+        &.following {
+          background-color: rgb(255, 102, 0);
+        }
+      }
+      .follow-data {
+        display: flex;
+        margin-left: 15px;
+        p {
+          color: white;
+          font-size: 15px;
+          font-weight: 600;
+          margin: 5px;
+        }
+      }
+      .follow-button {
+        display: flex;
+        margin-right: 35px;
+      }
+
+      button {
+        height: 80%;
+        width: 100%;
+        cursor: pointer;
+      }
+    }
+    .public-songs-info {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px;
+
+      .songs-box {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        .songs-example {
+          cursor: pointer;
+          display: flex;
+          color: rgb(255, 255, 255);
+          cursor: pointer;
+          margin: 5px;
+          height: 50px;
+          width: 310px;
+          background-color: #17171773;
+          &:hover {
+            background-color: rgba(117, 115, 115, 0.74);
+          }
+
+          .song-info-img {
+            display: flex;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100%;
+            justify-content: flex-start;
+            width: 70px;
+          }
+
+          .song-info-text {
+            display: flex;
+            box-sizing: border-box;
+            padding: 10px;
+            width: 100%;
+            justify-content: center;
+            flex-direction: column;
+
+            .song-info-title {
+              font-weight: 500;
+            }
+            .song-info-artist {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

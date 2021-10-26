@@ -1,0 +1,97 @@
+.profile-container {
+  margin-left: 25px;
+  margin-top: 30px;
+  overflow: hidden;
+
+  .profile-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #171717;
+    width: 900px;
+    height: 500px;
+    margin: 0px 20px 0px 20px;
+    border-radius: 7px;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    padding: 10px;
+
+    h2 {
+      margin-bottom: 40px;
+      margin-left: 5%;
+    }
+  }
+
+  h2 {
+    color: #fff;
+    font-size: 40px;
+  }
+
+  h1 {
+    color: #fff;
+    padding: 20px;
+  }
+
+  .profile-content {
+    display: flex;
+  }
+
+  .lateral-menu {
+    width: 25%;
+
+    button {
+      color: #fff;
+      font-size: 18px;
+      margin-top: 20px;
+      padding: 12px;
+      width: 100px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #395fff;
+    }
+  }
+  .profile-menu {
+    background-color: #171717;
+    border-radius: 7px;
+    padding: 5%;
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      color: #fff;
+      font-size: 20px;
+      font-weight: 500;
+      padding: 20px 20px 20px 20px;
+      cursor: pointer;
+      background-color: #0f0f0f;
+      border-radius: 7px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .profile-item {
+    background-color: #171717;
+    width: 3px;
+    height: 500px;
+    margin: 0px 20px 0px 20px;
+    border-radius: 7px;
+  }
+}
+.arrow-container {
+  height: 105px;
+  width: 105px;
+  margin-top: 90px;
+  position: fixed;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  .arrow-icon {
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,223 @@
+.modal-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 2;
+}
+
+.modal-container .modal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 500px;
+  height: auto;
+  padding: 2rem;
+  border-radius: 20px;
+  background-color: rgba(61, 61, 61, 0.9);
+  -webkit-box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modal-container .modal .form-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.modal-container .modal .left-side-modal {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: auto;
+}
+
+.modal-container .modal .left-side-modal .modal-input-box,
+.modal-container .modal .left-side-modal .modal-button-box,
+.modal-container .modal .left-side-modal .modal-title,
+.modal-container .modal .left-side-modal .modal-image-box {
+  height: 50px;
+  margin: 5px;
+}
+
+.modal-container .modal .left-side-modal .modal-input-box button,
+.modal-container .modal .left-side-modal .modal-button-box button,
+.modal-container .modal .left-side-modal .modal-title button,
+.modal-container .modal .left-side-modal .modal-image-box button {
+  border-radius: 5px;
+  width: 100%;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.modal-container .modal .left-side-modal .modal-input-box .submit,
+.modal-container .modal .left-side-modal .modal-button-box .submit,
+.modal-container .modal .left-side-modal .modal-title .submit,
+.modal-container .modal .left-side-modal .modal-image-box .submit {
+  background-color: rgba(2, 138, 250, 0.801);
+}
+
+.modal-container .modal .left-side-modal .modal-input-box .modal-close,
+.modal-container .modal .left-side-modal .modal-button-box .modal-close,
+.modal-container .modal .left-side-modal .modal-title .modal-close,
+.modal-container .modal .left-side-modal .modal-image-box .modal-close {
+  background-color: rgba(165, 161, 159, 0.863);
+}
+
+.modal-container .modal .left-side-modal .modal-input-box input,
+.modal-container .modal .left-side-modal .modal-input-box select,
+.modal-container .modal .left-side-modal .modal-button-box input,
+.modal-container .modal .left-side-modal .modal-button-box select,
+.modal-container .modal .left-side-modal .modal-title input,
+.modal-container .modal .left-side-modal .modal-title select,
+.modal-container .modal .left-side-modal .modal-image-box input,
+.modal-container .modal .left-side-modal .modal-image-box select {
+  height: 45px;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.modal-container .modal .left-side-modal .modal-input-box,
+.modal-container .modal .left-side-modal .modal-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal-container .modal .modal-button-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.modal-container .modal .modal-image-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal-container .modal .modal-image-box .upload-icon {
+  height: 30px;
+  width: 10%;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.modal-container .modal .modal-image-box input {
+  display: none;
+}
+
+.modal-container .modal .right-side-modal {
+  height: 200px;
+  width: 100%;
+  margin-left: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.modal-container .modal .right-side-modal .upload-image-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: 10px;
+  height: 100%;
+  width: 100%;
+}
+
+.modal-container .modal .right-side-modal .upload-image-box label {
+  height: 200px;
+}
+
+.modal-container .modal .right-side-modal .upload-image-box p {
+  font-size: 15px;
+  margin-left: 25px;
+  color: white;
+}
+
+.modal-container .modal .right-side-modal .upload-image-box .song-image-upload {
+  height: 100%;
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.modal-container .modal .right-side-modal .upload-image-box input {
+  display: none;
+}
+
+.modal-container .modal .right-side-modal .upload-image-box .song-image-preview {
+  margin-top: 3px;
+  height: 200px;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
+}
+
+@media only screen and (max-width: 400px) {
+  .modal-container .modal {
+    width: 300px;
+    height: 300px;
+  }
+  .modal-container .modal .left-side-modal .modal-input-box,
+  .modal-container .modal .left-side-modal .modal-button-box,
+  .modal-container .modal .left-side-modal .modal-title,
+  .modal-container .modal .left-side-modal .modal-image-box {
+    height: 30px;
+    margin: 10px;
+  }
+  .modal-container .modal .left-side-modal .modal-input-box button,
+  .modal-container .modal .left-side-modal .modal-button-box button,
+  .modal-container .modal .left-side-modal .modal-title button,
+  .modal-container .modal .left-side-modal .modal-image-box button {
+    height: 20px;
+  }
+}
+/*# sourceMappingURL=modal.css.map */
