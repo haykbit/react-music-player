@@ -5,6 +5,7 @@
     "private": true,
     "main": "./src/Server.php",
     "scripts": {
+        "start": "php artisan serve",
         "stats": "php artisan serve",
         "dev": "npm run development",
         "development": "mix",
