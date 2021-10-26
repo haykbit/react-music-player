@@ -38,7 +38,7 @@ const CONFIG = {
       certConfig: {
         type: FB_CERT_TYPE,
         project_id: FB_CERT_PROJECT_ID,
-        private_key_id: FB_CERT_PRIVATE_KEY_ID.replace(/\n/g, "n"),
+        private_key_id: FB_CERT_PRIVATE_KEY_ID.replace(/\\n/g, "\n"),
         private_key: FB_CERT_PRIVATE_KEY,
         client_email: FB_CERT_CLIENT_EMAIL,
         client_id: FB_CERT_CLIEND_ID,
