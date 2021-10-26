@@ -6,6 +6,7 @@
   "main": "./src/app.js",
   "license": "MIT",
   "scripts": {
+    "start": "node ./src/index.js",
     "server": "nodemon ./src/index.js",
     "test": "jest --env=node",
     "test:ci:all": "jest --env=node",
