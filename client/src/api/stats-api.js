@@ -67,7 +67,7 @@ export async function playedSongs(songId) {
 export async function bestSongsByGenre(genre) {
   return axios({
     method: "PUT",
-    url: `${process.env.REACT_APP_LARAVEL_STATISTICS_API}/song-genre/`,
+    url: `${process.env.REACT_APP_LARAVEL_STATISTICS_API}/song-genre`,
     data: { genre },
   });
 }
@@ -75,6 +75,6 @@ export async function bestSongsByGenre(genre) {
 export async function genresExec() {
   return axios({
     method: "GET",
-    url: `${process.env.REACT_APP_LARAVEL_STATISTICS_API}/update_genres/`,
+    url: `${process.env.REACT_APP_LARAVEL_STATISTICS_API}/update_genres`,
   });
 }
